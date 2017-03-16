@@ -21271,7 +21271,7 @@ var Store = assign({}, EventEmitter.prototype, {
                     }
                 }
 
-                QIStrage.set(state);
+                QIStrage.set(_state);
                 Store.emitChangeAuthentication();
                 break;
         };
