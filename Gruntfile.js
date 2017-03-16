@@ -30,7 +30,8 @@ module.exports = function(grunt) {
             app: {
                 files: [
                     { 'src/js/react/AppEntry.js': 'src/js/react/jsx/AppEntry.jsx' },
-                    { 'src/js/react/QTools.js': 'src/js/react/jsx/QTools.jsx' }
+                    { 'src/js/react/QTools.js': 'src/js/react/jsx/QTools.jsx' },
+                    { 'src/js/react/InputAuthForm.js': 'src/js/react/jsx/InputAuthForm.jsx' }
                 ]
             }
         },
