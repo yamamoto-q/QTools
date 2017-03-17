@@ -60,6 +60,9 @@ var Store = assign({}, EventEmitter.prototype, {
     getLoginedUser:function(){
         return _state.userQuserSelf;
     },
+    getAvater:function(qUserId){
+        return _state.resopnses['avater-' + qUserId];
+    },
 	// Event
     addLoginSuccessListener:function(callback){
         this.on(EVENT.LOGIN_SUCCESS, callback);

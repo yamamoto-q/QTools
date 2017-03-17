@@ -16,8 +16,11 @@ module.exports = React.createClass({
 	},
 
 	componentDidMount: function() {
+		var self = this;
 		_QApi.Store.addOnGetAvaterListener(this.state.id, function(){
 			console.log("addOnGetAvaterListener");
+			var avaterBlob = getAvater(self.state.id);
+			console.log(avaterBlob);
 		});
 	},
 	

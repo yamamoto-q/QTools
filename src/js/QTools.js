@@ -21509,6 +21509,9 @@ var Store = assign({}, EventEmitter.prototype, {
     getLoginedUser:function(){
         return _state.userQuserSelf;
     },
+    getAvater:function(qUserId){
+        return _state.resopnses['avater-' + qUserId];
+    },
 	// Event
     addLoginSuccessListener:function(callback){
         this.on(EVENT.LOGIN_SUCCESS, callback);
@@ -21609,8 +21612,11 @@ module.exports = React.createClass({
 	},
 
 	componentDidMount: function componentDidMount() {
+		var self = this;
 		_QApi.Store.addOnGetAvaterListener(this.state.id, function () {
 			console.log("addOnGetAvaterListener");
+			var avaterBlob = getAvater(self.state.id);
+			console.log(avaterBlob);
 		});
 	},
 
