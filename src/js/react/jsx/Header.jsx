@@ -14,6 +14,14 @@ module.exports = React.createClass({
 			name:loginedUser.name
 		}
 	},
+
+	componentDidMount: function() {
+		_QApi.Store.addOnGetAvaterListener(this.state.id, function(){
+			console.log("addOnGetAvaterListener");
+		});
+	},
+	
+
 	render: function() {
 		return (<div>header {this.state.name}</div>);
 	}

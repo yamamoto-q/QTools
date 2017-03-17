@@ -18,6 +18,13 @@ module.exports = React.createClass({
 			name: loginedUser.name
 		};
 	},
+
+	componentDidMount: function componentDidMount() {
+		_QApi.Store.addOnGetAvaterListener(this.state.id, function () {
+			console.log("addOnGetAvaterListener");
+		});
+	},
+
 	render: function render() {
 		return React.createElement(
 			'div',

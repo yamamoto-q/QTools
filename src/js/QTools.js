@@ -21474,19 +21474,25 @@ var Action = {
         });
     },
     getAvater:function(qUserId){
-        dispatcher.dispatch({
-            actionType: "getAvater",
-            value: {
-                qUserId:qUserId
-            }
-        });
+        if(typeof _state.resopnses['avater-' + qUserId] === "undefined"){
+            dispatcher.dispatch({
+                actionType: "getAvater",
+                value: {
+                    qUserId:qUserId,
+                    requestId:'avater-' + qUserId
+                }
+            });
+        }else{
+            Store.emitOnGetAvater('avater-' + qUserId);
+        }
     }
 };
 
 // Store
 var EVENT = {
     LOGIN_ERROR: "login_error",
-    LOGIN_SUCCESS: "login_success"
+    LOGIN_SUCCESS: "login_success",
+    ON_GET_AVATER: "on_get_avater"
 }
 
 var _state = {
@@ -21495,7 +21501,8 @@ var _state = {
 		context_path : null,
 		email : null
 	},
-    userQuserSelf:null
+    userQuserSelf:null,
+    resopnses:{}
 };
 
 var Store = assign({}, EventEmitter.prototype, {
@@ -21514,6 +21521,12 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     emitLoginError:function(){
         this.emit(EVENT.LOGIN_ERROR);
+    },
+    addOnGetAvaterListener:function(qUserId, callback){
+        this.on(EVENT.ON_GET_AVATER + "-avater-" + qUserId, callback);
+    },
+    emitOnGetAvater:function(requestId){
+        this.emit(EVENT.ON_GET_AVATER + "-" + requestId);
     },
     // Dispacher
     dispatcherIndex: dispatcher.register(function(payload) {
@@ -21550,10 +21563,14 @@ var Store = assign({}, EventEmitter.prototype, {
 
             case "getAvater":
                 var qUserId = payload.value.qUserId;
+                var requestId = payload.value.requestId;
+
                 _API.API.UserIconView(qUserId, function(blob){
                     // Success
-                    console.log(blob);
-                    
+                    //console.log(blob);
+                    _state.resopnses[requestId] = blob;
+                    Store.emitOnGetAvater(requestId);
+
                 }, function(jqXHR, textStatus){
                     // fail
                     console.log(jqXHR, textStatus);
@@ -21590,6 +21607,13 @@ module.exports = React.createClass({
 			name: loginedUser.name
 		};
 	},
+
+	componentDidMount: function componentDidMount() {
+		_QApi.Store.addOnGetAvaterListener(this.state.id, function () {
+			console.log("addOnGetAvaterListener");
+		});
+	},
+
 	render: function render() {
 		return React.createElement(
 			'div',
