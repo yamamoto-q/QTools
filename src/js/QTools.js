@@ -21472,6 +21472,14 @@ var Action = {
             value: {
             }
         });
+    },
+    getAvater:function(qUserId){
+        dispatcher.dispatch({
+            actionType: "getAvater",
+            value: {
+                qUserId:qUserId
+            }
+        });
     }
 };
 
@@ -21539,6 +21547,19 @@ var Store = assign({}, EventEmitter.prototype, {
     			});
 
     			break;
+
+            case "getAvater":
+                var qUserId = payload.value.qUserId;
+                _API.API.UserIconView(qUserId, function(blob){
+                    // Success
+                    console.log(blob);
+                    
+                }, function(jqXHR, textStatus){
+                    // fail
+                    console.log(jqXHR, textStatus);
+                });
+                break;
+
         };
     })
 });
@@ -21553,12 +21574,16 @@ module.exports = {
 
 var React = require('react');
 var _Login = require('./Controller_Login.js');
+var _QApi = require('./Controller_Questetra_API.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
 		var loginedUser = _Login.Store.getLoginedUser();
+
+		_QApi.Action.getAvater(loginedUser.id);
+
 		return {
 			id: loginedUser.id,
 			mail: loginedUser.mail,
@@ -21575,7 +21600,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Login.js":183,"react":180}],186:[function(require,module,exports){
+},{"./Controller_Login.js":183,"./Controller_Questetra_API.js":184,"react":180}],186:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -21766,6 +21791,30 @@ var QuestetraAPI = function(){
         });
     }
 
+    function _UserIconView(qUserId, success, fail){
+        var oReq = new XMLHttpRequest();
+        oReq.open("GET", _contextPath + "User/Icon/view?name=usericon%2f" + qUserId, true);
+        oReq.withCredentials = true;
+        oReq.setRequestHeader('Authorization', 'Basic ' + _credentials);
+        oReq.responseType = "blob";
+
+        oReq.onload = function(oEvent) {
+            var blob = oReq.response;
+            //console.log(blob.type);
+
+            var reader = new FileReader();
+            reader.onloadend = function() {
+                if(typeof success === "function"){
+                    success(reader.result);
+                }
+            };
+            
+            reader.readAsDataURL(blob);
+        };
+
+        oReq.send();
+    }
+
 	return {
 		setAuth:function(contextPath, email, apiPassword){
 			_contextPath = contextPath;
@@ -21777,7 +21826,10 @@ var QuestetraAPI = function(){
 		},
 		userQuserSelf:function(success, fail){
 			_UserQuserSelf(success, fail);
-		}
+		},
+        UserIconView:function(qUserId, success, fail){
+            _UserIconView(qUserId, success, fail);
+        }
 	};
 }
 

@@ -23,6 +23,14 @@ var Action = {
             value: {
             }
         });
+    },
+    getAvater:function(qUserId){
+        dispatcher.dispatch({
+            actionType: "getAvater",
+            value: {
+                qUserId:qUserId
+            }
+        });
     }
 };
 
@@ -90,6 +98,19 @@ var Store = assign({}, EventEmitter.prototype, {
     			});
 
     			break;
+
+            case "getAvater":
+                var qUserId = payload.value.qUserId;
+                _API.API.UserIconView(qUserId, function(blob){
+                    // Success
+                    console.log(blob);
+                    
+                }, function(jqXHR, textStatus){
+                    // fail
+                    console.log(jqXHR, textStatus);
+                });
+                break;
+
         };
     })
 });
