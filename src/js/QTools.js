@@ -21103,17 +21103,19 @@ module.exports = React.createClass({
 	},
 
 	componentDidMount: function componentDidMount() {
+		var qUserId = this.props.quser_id;
+
 		var self = this;
-		_QApi.Store.addOnGetAvaterListener(this.state.qUserId, function () {
+		_QApi.Store.addOnGetAvaterListener(tqUserId, function () {
 			if (self.isMounted()) {
-				var avaterBlob = _QApi.Store.getAvater(this.state.qUserId);
+				var avaterBlob = _QApi.Store.getAvater(qUserId);
 				self.setState({
 					blob: avaterBlob
 				});
 			}
 		});
 
-		_QApi.Action.getAvater(this.state.qUserId);
+		_QApi.Action.getAvater(qUserId);
 	},
 
 	render: function render() {
