@@ -77,12 +77,12 @@ var Strage = function(_nameSpace) {
             nameSpaceObj = $.extend(defaultObj, nameSpaceObj);
             setStrageValue(nameSpaceObj);
         }
+
         return nameSpaceObj;
     };
 
     function setStrageValue(Obj) {
         localStorage.setItem(nameSpace, JSON.stringify(Obj));
-
     }
 
     var method = {

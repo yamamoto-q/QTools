@@ -21085,7 +21085,7 @@ var QTools = require('./QTools.js');
 	};
 })(window.jQuery);
 
-},{"./QTools.js":184,"react":180,"react-dom":29}],182:[function(require,module,exports){
+},{"./QTools.js":186,"react":180,"react-dom":29}],182:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -21165,12 +21165,12 @@ var Strage = function(_nameSpace) {
             nameSpaceObj = $.extend(defaultObj, nameSpaceObj);
             setStrageValue(nameSpaceObj);
         }
+
         return nameSpaceObj;
     };
 
     function setStrageValue(Obj) {
         localStorage.setItem(nameSpace, JSON.stringify(Obj));
-
     }
 
     var method = {
@@ -21284,22 +21284,253 @@ module.exports = {
 }
 
 },{"events":1,"flux":25,"object-assign":27}],183:[function(require,module,exports){
+var EventEmitter = require("events").EventEmitter;
+var assign = require("object-assign");
+var Dispatcher = require('flux').Dispatcher;
+var dispatcher = new Dispatcher();
+
+var _Strage = require('./Contloller_Strage.js');
+var _QApi = require('./Controller_Questetra_API.js');
+
+var Action = {
+    setAuth:function(context, email, api_password){
+        dispatcher.dispatch({
+            actionType: "setAuth",
+            value: {
+                context:context,
+                email:email,
+                api_password:api_password
+            }
+        });
+    }
+};
+
+var _state = {
+	isWaitingStrage:true,
+	isValidAuthParam:false,
+	isChallengeLogin:false,
+	loginSuccess:false,
+	auth:{
+		api_password : null,
+		context_path : null,
+		email : null
+	}
+}
+
+
+// Store
+var EVENT = {
+    CHANGE_STATE: "change_state"
+}
+
+var Store = assign({}, EventEmitter.prototype, {
+	isWaitingStrage:function(){
+		return _state.isWaitingStrage;
+	},
+	isValidAuthParam:function(){
+		return _state.isValidAuthParam;
+	},
+	isChallengeLogin:function(){
+		return _state.isChallengeLogin;
+	},
+	loginSuccess:function(){
+		return _state.loginSuccess;
+	},
+	getAuth:function(){
+		return _state.auth;
+	},
+	// Event
+    addChangeStateListener:function(callback){
+        this.on(EVENT.CHANGE_STATE, callback);
+    },
+    emitChangeState:function(){
+    	console.log("emitChangeState");
+        this.emit(EVENT.CHANGE_STATE);
+    },
+    // Dispacher
+    dispatcherIndex: dispatcher.register(function(payload) {
+        switch (payload.actionType) {
+    		case "setAuth":
+    			// Strage に認証情報を保存する （ > 2 Strage に保存された認証情報が変更された時　が発生する）
+    			var context_path = payload.value.context;
+                var email = payload.value.email;
+                var api_password = payload.value.api_password;
+                //console.log("setAuth", context_path, email, api_password);
+
+                // 保存
+                _Strage.Action.setAuthentication(context_path, email, api_password);
+
+    			break;
+        };
+    })
+});
+
+module.exports = {
+    Action: Action,
+    Store: Store
+}
+
+// 1. Strage から認証情報を取得する
+_Strage.Store.addGetAuthenticationListener(function () {
+	_onGetAndChangeStrageAuth();
+
+
+});
+
+// 2. Strage に保存された認証情報が変更された時
+_Strage.Store.addChangeAuthenticationListener(function () {
+	_onGetAndChangeStrageAuth();
+});
+
+// 3. Strage に保存された認証情報にもとづき、Stateを変更する
+var _onGetAndChangeStrageAuth = function(){
+	var auth = _Strage.Store.getAuthState();
+	_state.isWaitingStrage = false;
+	_state.loginSuccess = false;
+
+	if(auth && auth.api_password && auth.context_path && auth.email){
+		_state.auth.api_password = auth.api_password;
+		_state.auth.context_path = auth.context_path;
+		_state.auth.email = auth.email;
+		_state.isValidAuthParam = true;
+
+		_challengeLogin();
+		return;
+	}else{
+		_state.auth.api_password = null;
+		_state.auth.context_path = null;
+		_state.auth.email = null;
+		_state.isValidAuthParam = false;
+
+		Store.emitChangeState();
+	}
+}
+
+// 4. ログインにチャレンジする
+var _challengeLogin = function(){
+	_state.isChallengeLogin = true;
+	_state.loginSuccess = false;
+	Store.emitChangeState();
+	//setTimeout(function(){
+		_QApi.Action.setAuth(_state.auth.context_path, _state.auth.email, _state.auth.api_password);
+		_QApi.Action.challengLogin();
+	//}, 250);
+};
+
+//
+_QApi.Store.addLoginErrorListener(function () {
+	setTimeout(function(){
+		_state.isChallengeLogin = false;
+		_state.loginSuccess = false;
+		Store.emitChangeState();
+	}, 250);
+});
+
+setTimeout(function(){
+	_Strage.Action.getAuthentication();
+}, 1000);
+},{"./Contloller_Strage.js":182,"./Controller_Questetra_API.js":184,"events":1,"flux":25,"object-assign":27}],184:[function(require,module,exports){
+var EventEmitter = require("events").EventEmitter;
+var assign = require("object-assign");
+var Dispatcher = require('flux').Dispatcher;
+var dispatcher = new Dispatcher();
+
+
+var _API = require('./Questetra_API.js');
+
+var Action = {
+    setAuth:function(context, email, api_password){
+        dispatcher.dispatch({
+            actionType: "setAuth",
+            value: {
+                context:context,
+                email:email,
+                api_password:api_password
+            }
+        });
+    },
+    challengLogin:function(){
+        dispatcher.dispatch({
+            actionType: "challengLogin",
+            value: {
+            }
+        });
+    }
+};
+
+// Store
+var EVENT = {
+    LOGIN_ERROR: "login_error"
+}
+
+var _state = {
+	auth:{
+		api_password : null,
+		context_path : null,
+		email : null
+	}
+};
+
+var Store = assign({}, EventEmitter.prototype, {
+	// Event
+    addLoginErrorListener:function(callback){
+        this.on(EVENT.LOGIN_ERROR, callback);
+    },
+    emitLoginError:function(){
+    	console.log("emitLoginError");
+        this.emit(EVENT.LOGIN_ERROR);
+    },
+    // Dispacher
+    dispatcherIndex: dispatcher.register(function(payload) {
+        switch (payload.actionType) {
+    		case "setAuth":
+    			_state.auth.context_path = payload.value.context;
+                _state.auth.email = payload.value.email;
+                _state.auth.api_password = payload.value.api_password;
+
+                console.log(36, _state);
+
+    			break;
+    		case "challengLogin":
+    			console.log(47, "challengLogin");
+
+    			_API.API.setAuth(_state.auth.context_path, _state.auth.email, _state.auth.api_password);
+    			_API.API.userQuserSelf(function(){
+    				// Success
+    			}, function(jqXHR, textStatus){
+    				// fail
+    				console.log(jqXHR, textStatus);
+    				Store.emitLoginError();
+    			});
+
+    			break;
+        };
+    })
+});
+
+module.exports = {
+    Action: Action,
+    Store: Store
+}
+
+},{"./Questetra_API.js":187,"events":1,"flux":25,"object-assign":27}],185:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var _Strage = require('./Contloller_Strage.js');
+//var _Strage = require('./Contloller_Strage.js');
+var _Login = require('./Controller_Login.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
-		var auth = _Strage.Store.getAuthState();
+		var auth = _Login.Store.getAuth();
 
 		if (auth) {
 			return {
-				context_path: auth.context_path,
-				email: auth.email,
-				api_password: auth.api_password
+				context_path: auth.context_path || "",
+				email: auth.email || "",
+				api_password: auth.api_password || ""
 			};
 		} else {
 			return {
@@ -21329,7 +21560,7 @@ module.exports = React.createClass({
 	},
 	onClickLoginBtn: function onClickLoginBtn(e) {
 		console.log(this.state);
-		_Strage.Action.setAuthentication(this.state.context_path, this.state.email, this.state.api_password);
+		_Login.Action.setAuth(this.state.context_path, this.state.email, this.state.api_password);
 	},
 	render: function render() {
 		return React.createElement(
@@ -21347,100 +21578,178 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Contloller_Strage.js":182,"react":180}],184:[function(require,module,exports){
+},{"./Controller_Login.js":183,"react":180}],186:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var _Strage = require('./Contloller_Strage.js');
+//var _Strage = require('./Contloller_Strage.js');
+var _Login = require('./Controller_Login.js');
 var InputAuthForm = require('./InputAuthForm.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
 
+
 	getInitialState: function getInitialState() {
+		var isWaitingStrage = _Login.Store.isWaitingStrage();
+		var isValidAuthParam = _Login.Store.isValidAuthParam();
+		var isChallengeLogin = _Login.Store.isChallengeLogin();
+		var loginSuccess = _Login.Store.loginSuccess();
+
 		return {
-			isStrageWait: true,
-			isChallengeLogin: false,
-			auth: null
+			showSplash: isWaitingStrage,
+			showAuthInput: isValidAuthParam == false || loginSuccess == false,
+			showLogining: isChallengeLogin == true
 		};
 	},
+
 	componentDidMount: function componentDidMount() {
 		var self = this;
-
-		_Strage.Store.addGetAuthenticationListener(function () {
-			// 認証情報のロードが完了したとき
+		_Login.Store.addChangeStateListener(function () {
+			console.log("addChangeStateListener");
 			if (self.isMounted()) {
-				var auth = _Strage.Store.getAuthState();
+				var isWaitingStrage = _Login.Store.isWaitingStrage();
+				var isValidAuthParam = _Login.Store.isValidAuthParam();
+				var isChallengeLogin = _Login.Store.isChallengeLogin();
+				var loginSuccess = _Login.Store.loginSuccess();
 
-				setTimeout(function () {
-					self.setState({
-						isStrageWait: false,
-						auth: auth
-					});
-
-					// 認証にチャレンジ
-					self.challengeLogin();
-				}, 500);
-			};
-		});
-
-		_Strage.Store.addChangeAuthenticationListener(function () {
-			// 認証情報のロードが変更された時
-			if (self.isMounted()) {
-				var auth = _Strage.Store.getAuthState();
 				self.setState({
-					auth: auth
+					showSplash: isWaitingStrage,
+					showAuthInput: isValidAuthParam == false || loginSuccess == false,
+					showLogining: isChallengeLogin == true
 				});
-
-				// 認証にチャレンジ
-				setTimeout(function () {
-					self.challengeLogin();
-				}, 500);
 			};
 		});
-
-		_Strage.Action.getAuthentication();
+		/*
+  _Strage.Store.addGetAuthenticationListener(function () {
+  	// 認証情報のロードが完了したとき
+  	if (self.isMounted()) {
+  		var auth = _Strage.Store.getAuthState();
+  				setTimeout(function(){
+  			self.setState({
+  				isStrageWait:false,
+  				auth: auth
+  			});
+  					// 認証にチャレンジ
+  			self.challengeLogin();
+  		}, 500);
+  	};
+  });
+  		_Strage.Store.addChangeAuthenticationListener(function(){
+  	// 認証情報のロードが変更された時
+  	if (self.isMounted()) {
+  		var auth = _Strage.Store.getAuthState();
+  		self.setState({
+  			auth: auth
+  		});
+  				// 認証にチャレンジ
+  		setTimeout(function(){
+  			self.challengeLogin();
+  		}, 500);
+  	};
+  });
+  		_Strage.Action.getAuthentication();
+  */
 	},
-	challengeLogin: function challengeLogin() {
-		// 認証にチャレンジする
-		if (this.isMounted()) {
-			this.setState({
-				isChallengeLogin: true
-			});
-			var context_path = this.state.auth.context_path;
-			var email = this.state.auth.email;
-			var api_password = this.state.auth.api_password;
-			console.log("challengeLogin", context_path, email, api_password);
-		};
-	},
-
+	/*
+ challengeLogin(){
+ 	// 認証にチャレンジする
+ 	if (this.isMounted()) {
+ 		this.setState({
+ 				isChallengeLogin:true
+ 		});
+ 		var context_path = this.state.auth.context_path;
+ 		var email = this.state.auth.email;
+ 		var api_password = this.state.auth.api_password;
+ 		console.log("challengeLogin", context_path, email, api_password);
+ 	};
+ },
+ */
 	render: function render() {
-		if (this.state.isStrageWait) {
-			// Strage 待ち
+		if (this.state.showSplash) {
 			return React.createElement(
 				'div',
 				null,
-				'Splash'
+				'splash'
 			);
-		} else if (!this.state.auth) {
-			// 認証情報無し
+		} else if (this.state.showAuthInput) {
 			return React.createElement(InputAuthForm, null);
-		} else if (this.state.isChallengeLogin) {
-			// 認証情報あり 認証チャレンジ中
+		} else if (this.state.showLogining) {
 			return React.createElement(
 				'div',
 				null,
-				'isChallengeLogin'
-			);
-		} else {
-			// Logined
-			return React.createElement(
-				'div',
-				null,
-				'Logined'
+				'Login...'
 			);
 		}
+		return React.createElement(
+			'div',
+			null,
+			'QTools'
+		);
 	}
 });
 
-},{"./Contloller_Strage.js":182,"./InputAuthForm.js":183,"react":180}]},{},[181]);
+},{"./Controller_Login.js":183,"./InputAuthForm.js":185,"react":180}],187:[function(require,module,exports){
+
+
+var QuestetraAPI = function(){
+    var _contextPath;
+    var _email;
+    var _apiPassword;
+    var _credentials;
+
+	function _request(request_url, success, fail, data, dataType, method){
+        $.ajax({
+                url: _contextPath + request_url,
+                type: method,
+                data:data,
+                dataType: dataType,
+                headers: {
+                    "Authorization": "Basic " + _credentials
+                }
+            })
+            .done(function(data) {
+                if(typeof success === "function"){
+                    success(data);
+                }
+            })
+            .fail(function(jqXHR, textStatus) {
+                if(typeof fail === "function"){
+                    fail(jqXHR, textStatus);
+                }
+            })
+            .always(function() {
+                //console.log("complete");
+            });
+    };
+
+	function _UserQuserSelf(success, fail) {
+        _request("API/User/Quser/self", function(data){
+            success(data);
+        },function(jqXHR, textStatus){
+            fail(jqXHR, textStatus);
+        });
+    }
+
+	return {
+		setAuth:function(contextPath, email, apiPassword){
+			_contextPath = contextPath;
+            _email = email;
+            _apiPassword = apiPassword;
+            _credentials = btoa(unescape(encodeURIComponent(email + ":" + apiPassword)));
+
+            console.log(_credentials);
+		},
+		userQuserSelf:function(success, fail){
+			_UserQuserSelf(success, fail);
+		}
+	};
+}
+
+var _QuestetraAPI = QuestetraAPI();
+
+module.exports = {
+    API:_QuestetraAPI
+}
+
+},{}]},{},[181]);

@@ -1,19 +1,20 @@
 'use strict';
 
 var React = require('react');
-var _Strage = require('./Contloller_Strage.js');
+//var _Strage = require('./Contloller_Strage.js');
+var _Login = require('./Controller_Login.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
-		var auth = _Strage.Store.getAuthState();
+		var auth = _Login.Store.getAuth();
 
 		if (auth) {
 			return {
-				context_path: auth.context_path,
-				email: auth.email,
-				api_password: auth.api_password
+				context_path: auth.context_path || "",
+				email: auth.email || "",
+				api_password: auth.api_password || ""
 			};
 		} else {
 			return {
@@ -43,7 +44,7 @@ module.exports = React.createClass({
 	},
 	onClickLoginBtn: function onClickLoginBtn(e) {
 		console.log(this.state);
-		_Strage.Action.setAuthentication(this.state.context_path, this.state.email, this.state.api_password);
+		_Login.Action.setAuth(this.state.context_path, this.state.email, this.state.api_password);
 	},
 	render: function render() {
 		return React.createElement(
