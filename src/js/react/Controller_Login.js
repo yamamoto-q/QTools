@@ -28,7 +28,8 @@ var _state = {
 		api_password : null,
 		context_path : null,
 		email : null
-	}
+	},
+	loginedUser:null
 }
 
 
@@ -50,6 +51,9 @@ var Store = assign({}, EventEmitter.prototype, {
 	loginSuccess:function(){
 		return _state.loginSuccess;
 	},
+	getLoginedUser:function(){
+		return _state.loginedUser;
+	},
 	getAuth:function(){
 		return _state.auth;
 	},
@@ -69,7 +73,8 @@ var Store = assign({}, EventEmitter.prototype, {
     			var context_path = payload.value.context;
                 var email = payload.value.email;
                 var api_password = payload.value.api_password;
-                //console.log("setAuth", context_path, email, api_password);
+                
+                _state.loginedUser = null;
 
                 // 保存
                 _Strage.Action.setAuthentication(context_path, email, api_password);
@@ -87,8 +92,6 @@ module.exports = {
 // 1. Strage から認証情報を取得する
 _Strage.Store.addGetAuthenticationListener(function () {
 	_onGetAndChangeStrageAuth();
-
-
 });
 
 // 2. Strage に保存された認証情報が変更された時
@@ -101,6 +104,7 @@ var _onGetAndChangeStrageAuth = function(){
 	var auth = _Strage.Store.getAuthState();
 	_state.isWaitingStrage = false;
 	_state.loginSuccess = false;
+	_state.loginedUser = null;
 
 	if(auth && auth.api_password && auth.context_path && auth.email){
 		_state.auth.api_password = auth.api_password;
@@ -124,6 +128,7 @@ var _onGetAndChangeStrageAuth = function(){
 var _challengeLogin = function(){
 	_state.isChallengeLogin = true;
 	_state.loginSuccess = false;
+	_state.loginedUser = null;
 	Store.emitChangeState();
 	_QApi.Action.setAuth(_state.auth.context_path, _state.auth.email, _state.auth.api_password);
 	_QApi.Action.challengLogin();
@@ -131,17 +136,21 @@ var _challengeLogin = function(){
 
 //
 _QApi.Store.addLoginSuccessListener(function(){
+	_state.loginedUser = _QApi.Store.getLoginedUser();
+	_state.isChallengeLogin = false;
+	_state.loginSuccess = true;
+
 	setTimeout(function(){
-		_state.isChallengeLogin = false;
-		_state.loginSuccess = true;
 		Store.emitChangeState();
 	}, 250);
 });
 
 _QApi.Store.addLoginErrorListener(function () {
+	_state.loginedUser = null;
+	_state.isChallengeLogin = false;
+	_state.loginSuccess = false;
+
 	setTimeout(function(){
-		_state.isChallengeLogin = false;
-		_state.loginSuccess = false;
 		Store.emitChangeState();
 	}, 250);
 });

@@ -21314,7 +21314,8 @@ var _state = {
 		api_password : null,
 		context_path : null,
 		email : null
-	}
+	},
+	loginedUser:null
 }
 
 
@@ -21336,6 +21337,9 @@ var Store = assign({}, EventEmitter.prototype, {
 	loginSuccess:function(){
 		return _state.loginSuccess;
 	},
+	getLoginedUser:function(){
+		return _state.loginedUser;
+	},
 	getAuth:function(){
 		return _state.auth;
 	},
@@ -21355,7 +21359,8 @@ var Store = assign({}, EventEmitter.prototype, {
     			var context_path = payload.value.context;
                 var email = payload.value.email;
                 var api_password = payload.value.api_password;
-                //console.log("setAuth", context_path, email, api_password);
+                
+                _state.loginedUser = null;
 
                 // 保存
                 _Strage.Action.setAuthentication(context_path, email, api_password);
@@ -21373,8 +21378,6 @@ module.exports = {
 // 1. Strage から認証情報を取得する
 _Strage.Store.addGetAuthenticationListener(function () {
 	_onGetAndChangeStrageAuth();
-
-
 });
 
 // 2. Strage に保存された認証情報が変更された時
@@ -21387,6 +21390,7 @@ var _onGetAndChangeStrageAuth = function(){
 	var auth = _Strage.Store.getAuthState();
 	_state.isWaitingStrage = false;
 	_state.loginSuccess = false;
+	_state.loginedUser = null;
 
 	if(auth && auth.api_password && auth.context_path && auth.email){
 		_state.auth.api_password = auth.api_password;
@@ -21410,6 +21414,7 @@ var _onGetAndChangeStrageAuth = function(){
 var _challengeLogin = function(){
 	_state.isChallengeLogin = true;
 	_state.loginSuccess = false;
+	_state.loginedUser = null;
 	Store.emitChangeState();
 	_QApi.Action.setAuth(_state.auth.context_path, _state.auth.email, _state.auth.api_password);
 	_QApi.Action.challengLogin();
@@ -21417,17 +21422,21 @@ var _challengeLogin = function(){
 
 //
 _QApi.Store.addLoginSuccessListener(function(){
+	_state.loginedUser = _QApi.Store.getLoginedUser();
+	_state.isChallengeLogin = false;
+	_state.loginSuccess = true;
+
 	setTimeout(function(){
-		_state.isChallengeLogin = false;
-		_state.loginSuccess = true;
 		Store.emitChangeState();
 	}, 250);
 });
 
 _QApi.Store.addLoginErrorListener(function () {
+	_state.loginedUser = null;
+	_state.isChallengeLogin = false;
+	_state.loginSuccess = false;
+
 	setTimeout(function(){
-		_state.isChallengeLogin = false;
-		_state.loginSuccess = false;
 		Store.emitChangeState();
 	}, 250);
 });
@@ -21475,10 +21484,14 @@ var _state = {
 		api_password : null,
 		context_path : null,
 		email : null
-	}
+	},
+    userQuserSelf:null
 };
 
 var Store = assign({}, EventEmitter.prototype, {
+    getLoginedUser:function(){
+        return _state.userQuserSelf;
+    },
 	// Event
     addLoginSuccessListener:function(callback){
         this.on(EVENT.LOGIN_SUCCESS, callback);
@@ -21499,17 +21512,20 @@ var Store = assign({}, EventEmitter.prototype, {
     			_state.auth.context_path = payload.value.context;
                 _state.auth.email = payload.value.email;
                 _state.auth.api_password = payload.value.api_password;
-
-                console.log(36, _state);
-
+                _state.userQuserSelf = null;
     			break;
+
     		case "challengLogin":
     			console.log(47, "challengLogin");
+                _state.userQuserSelf = null;
 
     			_API.API.setAuth(_state.auth.context_path, _state.auth.email, _state.auth.api_password);
     			_API.API.userQuserSelf(function(data){
     				// Success
-                    console.log(data);
+                    _state.userQuserSelf.id = data.quser.id;
+                    _state.userQuserSelf.email = data.quser.email;
+                    _state.userQuserSelf.name = data.quser.name;
+
                     Store.emitLoginSuccess();
 
     			}, function(jqXHR, textStatus){
@@ -21610,12 +21626,14 @@ module.exports = React.createClass({
 		var isValidAuthParam = _Login.Store.isValidAuthParam();
 		var isChallengeLogin = _Login.Store.isChallengeLogin();
 		var loginSuccess = _Login.Store.loginSuccess();
+		var loginedUser = _Login.Store.getLoginedUser();
 
 		return {
 			showSplash: isWaitingStrage,
 			showAuthInput: isValidAuthParam == false || loginSuccess == false,
 			showLogining: isChallengeLogin == true,
-			loginSuccess: loginSuccess
+			loginSuccess: loginSuccess,
+			loginedUser: loginedUser
 		};
 	},
 
@@ -21628,60 +21646,18 @@ module.exports = React.createClass({
 				var isValidAuthParam = _Login.Store.isValidAuthParam();
 				var isChallengeLogin = _Login.Store.isChallengeLogin();
 				var loginSuccess = _Login.Store.loginSuccess();
+				var loginedUser = _Login.Store.getLoginedUser();
 
 				self.setState({
 					showSplash: isWaitingStrage,
 					showAuthInput: isValidAuthParam == false || loginSuccess == false,
 					showLogining: isChallengeLogin == true,
-					loginSuccess: loginSuccess
+					loginSuccess: loginSuccess,
+					loginedUser: loginedUser
 				});
 			};
 		});
-		/*
-  _Strage.Store.addGetAuthenticationListener(function () {
-  	// 認証情報のロードが完了したとき
-  	if (self.isMounted()) {
-  		var auth = _Strage.Store.getAuthState();
-  				setTimeout(function(){
-  			self.setState({
-  				isStrageWait:false,
-  				auth: auth
-  			});
-  					// 認証にチャレンジ
-  			self.challengeLogin();
-  		}, 500);
-  	};
-  });
-  		_Strage.Store.addChangeAuthenticationListener(function(){
-  	// 認証情報のロードが変更された時
-  	if (self.isMounted()) {
-  		var auth = _Strage.Store.getAuthState();
-  		self.setState({
-  			auth: auth
-  		});
-  				// 認証にチャレンジ
-  		setTimeout(function(){
-  			self.challengeLogin();
-  		}, 500);
-  	};
-  });
-  		_Strage.Action.getAuthentication();
-  */
 	},
-	/*
- challengeLogin(){
- 	// 認証にチャレンジする
- 	if (this.isMounted()) {
- 		this.setState({
- 				isChallengeLogin:true
- 		});
- 		var context_path = this.state.auth.context_path;
- 		var email = this.state.auth.email;
- 		var api_password = this.state.auth.api_password;
- 		console.log("challengeLogin", context_path, email, api_password);
- 	};
- },
- */
 	render: function render() {
 		if (this.state.showSplash) {
 			return React.createElement(
@@ -21697,11 +21673,16 @@ module.exports = React.createClass({
 				null,
 				'Login...'
 			);
-		} else if (this.state.sloginSuccess) {
+		} else if (this.state.loginSuccess) {
 			return React.createElement(
 				'div',
 				null,
-				'Login Success'
+				'Login Success',
+				React.createElement(
+					'pre',
+					null,
+					JSON.stringify(this.state.loginedUser, null, 2)
+				)
 			);
 		}
 		return React.createElement(

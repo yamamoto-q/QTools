@@ -37,10 +37,14 @@ var _state = {
 		api_password : null,
 		context_path : null,
 		email : null
-	}
+	},
+    userQuserSelf:null
 };
 
 var Store = assign({}, EventEmitter.prototype, {
+    getLoginedUser:function(){
+        return _state.userQuserSelf;
+    },
 	// Event
     addLoginSuccessListener:function(callback){
         this.on(EVENT.LOGIN_SUCCESS, callback);
@@ -61,17 +65,20 @@ var Store = assign({}, EventEmitter.prototype, {
     			_state.auth.context_path = payload.value.context;
                 _state.auth.email = payload.value.email;
                 _state.auth.api_password = payload.value.api_password;
-
-                console.log(36, _state);
-
+                _state.userQuserSelf = null;
     			break;
+
     		case "challengLogin":
     			console.log(47, "challengLogin");
+                _state.userQuserSelf = null;
 
     			_API.API.setAuth(_state.auth.context_path, _state.auth.email, _state.auth.api_password);
     			_API.API.userQuserSelf(function(data){
     				// Success
-                    console.log(data);
+                    _state.userQuserSelf.id = data.quser.id;
+                    _state.userQuserSelf.email = data.quser.email;
+                    _state.userQuserSelf.name = data.quser.name;
+
                     Store.emitLoginSuccess();
 
     			}, function(jqXHR, textStatus){
