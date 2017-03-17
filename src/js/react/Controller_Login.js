@@ -125,13 +125,19 @@ var _challengeLogin = function(){
 	_state.isChallengeLogin = true;
 	_state.loginSuccess = false;
 	Store.emitChangeState();
-	//setTimeout(function(){
-		_QApi.Action.setAuth(_state.auth.context_path, _state.auth.email, _state.auth.api_password);
-		_QApi.Action.challengLogin();
-	//}, 250);
+	_QApi.Action.setAuth(_state.auth.context_path, _state.auth.email, _state.auth.api_password);
+	_QApi.Action.challengLogin();
 };
 
 //
+_QApi.Store.addLoginSuccessListener(function(){
+	setTimeout(function(){
+		_state.isChallengeLogin = false;
+		_state.loginSuccess = true;
+		Store.emitChangeState();
+	}, 250);
+});
+
 _QApi.Store.addLoginErrorListener(function () {
 	setTimeout(function(){
 		_state.isChallengeLogin = false;

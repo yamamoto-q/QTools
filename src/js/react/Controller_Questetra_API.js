@@ -28,7 +28,8 @@ var Action = {
 
 // Store
 var EVENT = {
-    LOGIN_ERROR: "login_error"
+    LOGIN_ERROR: "login_error",
+    LOGIN_SUCCESS: "login_success"
 }
 
 var _state = {
@@ -41,11 +42,16 @@ var _state = {
 
 var Store = assign({}, EventEmitter.prototype, {
 	// Event
+    addLoginSuccessListener:function(callback){
+        this.on(EVENT.LOGIN_SUCCESS, callback);
+    },
+    emitLoginSuccess:function(){
+        this.emit(EVENT.LOGIN_SUCCESS);
+    },
     addLoginErrorListener:function(callback){
         this.on(EVENT.LOGIN_ERROR, callback);
     },
     emitLoginError:function(){
-    	console.log("emitLoginError");
         this.emit(EVENT.LOGIN_ERROR);
     },
     // Dispacher

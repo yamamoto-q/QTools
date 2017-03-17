@@ -21411,13 +21411,19 @@ var _challengeLogin = function(){
 	_state.isChallengeLogin = true;
 	_state.loginSuccess = false;
 	Store.emitChangeState();
-	//setTimeout(function(){
-		_QApi.Action.setAuth(_state.auth.context_path, _state.auth.email, _state.auth.api_password);
-		_QApi.Action.challengLogin();
-	//}, 250);
+	_QApi.Action.setAuth(_state.auth.context_path, _state.auth.email, _state.auth.api_password);
+	_QApi.Action.challengLogin();
 };
 
 //
+_QApi.Store.addLoginSuccessListener(function(){
+	setTimeout(function(){
+		_state.isChallengeLogin = false;
+		_state.loginSuccess = true;
+		Store.emitChangeState();
+	}, 250);
+});
+
 _QApi.Store.addLoginErrorListener(function () {
 	setTimeout(function(){
 		_state.isChallengeLogin = false;
@@ -21460,7 +21466,8 @@ var Action = {
 
 // Store
 var EVENT = {
-    LOGIN_ERROR: "login_error"
+    LOGIN_ERROR: "login_error",
+    LOGIN_SUCCESS: "login_success"
 }
 
 var _state = {
@@ -21473,11 +21480,16 @@ var _state = {
 
 var Store = assign({}, EventEmitter.prototype, {
 	// Event
+    addLoginSuccessListener:function(callback){
+        this.on(EVENT.LOGIN_SUCCESS, callback);
+    },
+    emitLoginSuccess:function(){
+        this.emit(EVENT.LOGIN_SUCCESS);
+    },
     addLoginErrorListener:function(callback){
         this.on(EVENT.LOGIN_ERROR, callback);
     },
     emitLoginError:function(){
-    	console.log("emitLoginError");
         this.emit(EVENT.LOGIN_ERROR);
     },
     // Dispacher
@@ -21599,7 +21611,8 @@ module.exports = React.createClass({
 		return {
 			showSplash: isWaitingStrage,
 			showAuthInput: isValidAuthParam == false || loginSuccess == false,
-			showLogining: isChallengeLogin == true
+			showLogining: isChallengeLogin == true,
+			loginSuccess: loginSuccess
 		};
 	},
 
@@ -21616,7 +21629,8 @@ module.exports = React.createClass({
 				self.setState({
 					showSplash: isWaitingStrage,
 					showAuthInput: isValidAuthParam == false || loginSuccess == false,
-					showLogining: isChallengeLogin == true
+					showLogining: isChallengeLogin == true,
+					loginSuccess: loginSuccess
 				});
 			};
 		});
@@ -21679,6 +21693,12 @@ module.exports = React.createClass({
 				'div',
 				null,
 				'Login...'
+			);
+		} else if (this.state.sloginSuccess) {
+			return React.createElement(
+				'div',
+				null,
+				'Login Success'
 			);
 		}
 		return React.createElement(

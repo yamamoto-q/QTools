@@ -18,7 +18,8 @@ module.exports = React.createClass({
 		return {
 			showSplash: isWaitingStrage,
 			showAuthInput: isValidAuthParam == false || loginSuccess == false,
-			showLogining: isChallengeLogin == true
+			showLogining: isChallengeLogin == true,
+			loginSuccess: loginSuccess
 		};
 	},
 
@@ -35,7 +36,8 @@ module.exports = React.createClass({
 				self.setState({
 					showSplash: isWaitingStrage,
 					showAuthInput: isValidAuthParam == false || loginSuccess == false,
-					showLogining: isChallengeLogin == true
+					showLogining: isChallengeLogin == true,
+					loginSuccess: loginSuccess
 				});
 			};
 		});
@@ -98,6 +100,12 @@ module.exports = React.createClass({
 				'div',
 				null,
 				'Login...'
+			);
+		} else if (this.state.sloginSuccess) {
+			return React.createElement(
+				'div',
+				null,
+				'Login Success'
 			);
 		}
 		return React.createElement(
