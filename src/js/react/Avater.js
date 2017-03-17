@@ -36,7 +36,7 @@ module.exports = React.createClass({
 	render: function render() {
 		if (this.state.blob) {
 			var style = {
-				backgroundImage: this.state.blob
+				backgroundImage: "url(" + this.state.blob + ")"
 			};
 			return React.createElement('div', { className: 'avater', style: style });
 		} else {

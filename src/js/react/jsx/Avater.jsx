@@ -19,7 +19,7 @@ module.exports = React.createClass({
 			if (self.isMounted()) {
 				var avaterBlob = _QApi.Store.getAvater(self.state.qUserId);
 				console.log(18, avaterBlob);
-				
+
 				self.setState({
 					blob:avaterBlob
 				});
@@ -32,7 +32,7 @@ module.exports = React.createClass({
 	render: function() {
 		if(this.state.blob){
 			var style = {
-				backgroundImage:this.state.blob
+				backgroundImage:"url("  + this.state.blob + ")"
 			};
 			return (<div className="avater" style={style} />);
 		}else{
