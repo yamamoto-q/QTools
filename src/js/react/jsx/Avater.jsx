@@ -12,7 +12,7 @@ module.exports = React.createClass({
 
 	componentDidMount: function() {
 		var qUserId = this.props.quser_id;
-		
+
 		var self = this;
 		_QApi.Store.addOnGetAvaterListener(this.state.qUserId, function(){
 			if (self.isMounted()) {
@@ -28,9 +28,9 @@ module.exports = React.createClass({
 	
 	render: function() {
 		if(this.state.blob){
-			return (<div><img src={this.state.blob} /></div>);
+			return (<div className="avater" style={{backgroundImage:this.state.blob}}></div>);
 		}else{
-			return (<div>?</div>);
+			return (<div className="avater" >?</div>);
 		}
 		
 	}

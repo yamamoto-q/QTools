@@ -22,8 +22,7 @@ module.exports = React.createClass({
 	render: function render() {
 		return React.createElement(
 			'div',
-			null,
-			'header ',
+			{ id: 'header' },
 			this.state.name,
 			' ',
 			React.createElement(Avater, { quser_id: this.state.id })

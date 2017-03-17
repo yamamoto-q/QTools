@@ -16,6 +16,6 @@ module.exports = React.createClass({
 		}
 	},	
 	render: function() {
-		return (<div>header {this.state.name} <Avater quser_id={this.state.id} /></div>);
+		return (<div id="header">{this.state.name} <Avater quser_id={this.state.id} /></div>);
 	}
 });

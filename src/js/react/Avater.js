@@ -32,15 +32,11 @@ module.exports = React.createClass({
 
 	render: function render() {
 		if (this.state.blob) {
-			return React.createElement(
-				'div',
-				null,
-				React.createElement('img', { src: this.state.blob })
-			);
+			return React.createElement('div', { className: 'avater', style: { backgroundImage: this.state.blob } });
 		} else {
 			return React.createElement(
 				'div',
-				null,
+				{ className: 'avater' },
 				'?'
 			);
 		}
