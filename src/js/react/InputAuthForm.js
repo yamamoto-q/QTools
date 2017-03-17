@@ -1,7 +1,6 @@
 'use strict';
 
 var React = require('react');
-//var _Strage = require('./Contloller_Strage.js');
 var _Login = require('./Controller_Login.js');
 
 module.exports = React.createClass({
@@ -43,7 +42,7 @@ module.exports = React.createClass({
 		});
 	},
 	onClickLoginBtn: function onClickLoginBtn(e) {
-		console.log(this.state);
+		//console.log(this.state);
 		_Login.Action.setAuth(this.state.context_path, this.state.email, this.state.api_password);
 	},
 	render: function render() {

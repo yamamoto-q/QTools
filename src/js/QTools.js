@@ -21463,6 +21463,7 @@ var _onGetAndChangeStrageAuth = function(){
 
 		_challengeLogin();
 		return;
+		
 	}else{
 		_state.auth.api_password = null;
 		_state.auth.context_path = null;
@@ -21720,7 +21721,6 @@ module.exports = React.createClass({
 'use strict';
 
 var React = require('react');
-//var _Strage = require('./Contloller_Strage.js');
 var _Login = require('./Controller_Login.js');
 
 module.exports = React.createClass({
@@ -21762,7 +21762,7 @@ module.exports = React.createClass({
 		});
 	},
 	onClickLoginBtn: function onClickLoginBtn(e) {
-		console.log(this.state);
+		//console.log(this.state);
 		_Login.Action.setAuth(this.state.context_path, this.state.email, this.state.api_password);
 	},
 	render: function render() {
@@ -21821,6 +21821,8 @@ module.exports = React.createClass({
 				var loginSuccess = _Login.Store.loginSuccess();
 				var changeAuth = _Login.Store.changeAuth();
 				var loginedUser = _Login.Store.getLoginedUser();
+
+				console.log(37, isValidAuthParam, loginSuccess, changeAuth);
 
 				self.setState({
 					showSplash: isWaitingStrage,

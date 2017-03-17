@@ -38,6 +38,8 @@ module.exports = React.createClass({
 				var changeAuth = _Login.Store.changeAuth();
 				var loginedUser = _Login.Store.getLoginedUser();
 
+				console.log(37, isValidAuthParam, loginSuccess, changeAuth);
+
 				self.setState({
 					showSplash: isWaitingStrage,
 					showAuthInput: isValidAuthParam == false || loginSuccess == false || changeAuth == true,

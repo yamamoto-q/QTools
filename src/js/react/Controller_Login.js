@@ -133,6 +133,7 @@ var _onGetAndChangeStrageAuth = function(){
 
 		_challengeLogin();
 		return;
+		
 	}else{
 		_state.auth.api_password = null;
 		_state.auth.context_path = null;
