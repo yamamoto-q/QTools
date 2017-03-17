@@ -21805,7 +21805,7 @@ module.exports = React.createClass({
 
 		return {
 			showSplash: isWaitingStrage,
-			showAuthInput: isValidAuthParam == false || changeAuth == true,
+			showAuthInput: isValidAuthParam == false || loginSuccess == false || changeAuth == true,
 			showLogining: isChallengeLogin == true,
 			loginSuccess: loginSuccess,
 			loginedUser: loginedUser
@@ -21828,7 +21828,7 @@ module.exports = React.createClass({
 
 				self.setState({
 					showSplash: isWaitingStrage,
-					showAuthInput: isValidAuthParam == false || changeAuth == true,
+					showAuthInput: isValidAuthParam == false || loginSuccess == false || changeAuth == true,
 					showLogining: isChallengeLogin == true,
 					loginSuccess: loginSuccess,
 					loginedUser: loginedUser
@@ -21843,6 +21843,14 @@ module.exports = React.createClass({
 				null,
 				'splash'
 			);
+		} else if (this.state.showAuthInput) {
+			return React.createElement(InputAuthForm, null);
+		} else if (this.state.showLogining) {
+			return React.createElement(
+				'div',
+				null,
+				'Login...'
+			);
 		} else if (this.state.loginSuccess) {
 			return React.createElement(
 				'div',
@@ -21853,14 +21861,6 @@ module.exports = React.createClass({
 					null,
 					JSON.stringify(this.state.loginedUser, null, 2)
 				)
-			);
-		} else if (this.state.showAuthInput) {
-			return React.createElement(InputAuthForm, null);
-		} else if (this.state.showLogining) {
-			return React.createElement(
-				'div',
-				null,
-				'Login...'
 			);
 		}
 		return React.createElement(

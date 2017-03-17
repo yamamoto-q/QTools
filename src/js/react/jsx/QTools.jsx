@@ -17,7 +17,7 @@ module.exports = React.createClass({
 
 		return {
 			showSplash:isWaitingStrage,
-			showAuthInput:isValidAuthParam == false || changeAuth == true,
+			showAuthInput:isValidAuthParam == false || loginSuccess == false || changeAuth == true,
 			showLogining:isChallengeLogin == true,
 			loginSuccess:loginSuccess,
 			loginedUser:loginedUser
@@ -40,7 +40,7 @@ module.exports = React.createClass({
 
 				self.setState({
 					showSplash:isWaitingStrage,
-					showAuthInput:isValidAuthParam == false || changeAuth == true,
+					showAuthInput:isValidAuthParam == false || loginSuccess == false || changeAuth == true,
 					showLogining:isChallengeLogin == true,
 					loginSuccess:loginSuccess,
 					loginedUser:loginedUser
@@ -54,20 +54,19 @@ module.exports = React.createClass({
 		if(this.state.showSplash){
 			return (<div>splash</div>);
 
-		}else if(this.state.loginSuccess){
-			return (
-				<div>
-					<Header/>
-					<pre>{JSON.stringify(this.state.loginedUser, null, 2)}</pre>
-				</div>
-			);
-
 		}else if(this.state.showAuthInput){
 			return (<InputAuthForm />);
 
 		}else if(this.state.showLogining){
 			return (<div>Login...</div>);
 
+		}else if(this.state.loginSuccess){
+			return (
+				<div>
+					<Header/>
+					<pre>{JSON.stringify(this.state.loginedUser, null, 2)}</pre>
+				</div>
+				);
 		}
 		return (<div>QTools</div>);
 	}
