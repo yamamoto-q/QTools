@@ -1,6 +1,7 @@
 var React = require('react');
 var _Login = require('./Controller_Login.js');
 var _QApi = require('./Controller_Questetra_API.js');
+var Avater = require('./Avater.js');
 
 module.exports = React.createClass({
 	getInitialState: function() {
@@ -19,7 +20,7 @@ module.exports = React.createClass({
 		var self = this;
 		_QApi.Store.addOnGetAvaterListener(this.state.id, function(){
 			console.log("addOnGetAvaterListener");
-			var avaterBlob = getAvater(self.state.id);
+			var avaterBlob = _QApi.Store.getAvater(self.state.id);
 			console.log(avaterBlob);
 		});
 	},
