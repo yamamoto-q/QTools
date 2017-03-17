@@ -19,6 +19,9 @@ module.exports = React.createClass({
 			name: loginedUser.name
 		};
 	},
+	onClickLogout: function onClickLogout() {
+		_Login.Action.logout();
+	},
 	render: function render() {
 		return React.createElement(
 			'div',
@@ -46,7 +49,7 @@ module.exports = React.createClass({
 						React.createElement('div', { className: 'dropdown-divider' }),
 						React.createElement(
 							'a',
-							{ className: 'dropdown-item', href: '#' },
+							{ className: 'dropdown-item', onClick: this.onClickLogout },
 							'Logout'
 						)
 					)

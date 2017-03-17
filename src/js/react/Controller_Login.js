@@ -16,6 +16,13 @@ var Action = {
                 api_password:api_password
             }
         });
+    },
+    logout:function(){
+        dispatcher.dispatch({
+            actionType: "logout",
+            value: {
+            }
+        });
     }
 };
 
@@ -24,6 +31,7 @@ var _state = {
 	isValidAuthParam:false,
 	isChallengeLogin:false,
 	loginSuccess:false,
+	changeAuth:false,
 	auth:{
 		api_password : null,
 		context_path : null,
@@ -51,6 +59,9 @@ var Store = assign({}, EventEmitter.prototype, {
 	loginSuccess:function(){
 		return _state.loginSuccess;
 	},
+	changeAuth:function(){
+		return _state.changeAuth;
+	},
 	getLoginedUser:function(){
 		return _state.loginedUser;
 	},
@@ -75,11 +86,19 @@ var Store = assign({}, EventEmitter.prototype, {
                 var api_password = payload.value.api_password;
                 
                 _state.loginedUser = null;
+                _state.changeAuth = false;
 
                 // 保存
                 _Strage.Action.setAuthentication(context_path, email, api_password);
 
     			break;
+
+    		case "logout":
+    			console.log("logout");
+    			_state.changeAuth = true;
+    			Store.emitChangeState();
+    			break;
+
         };
     })
 });

@@ -14,7 +14,10 @@ module.exports = React.createClass({
 			mail:loginedUser.mail,
 			name:loginedUser.name
 		}
-	},	
+	},
+	onClickLogout:function(){
+		_Login.Action.logout();
+	},
 	render: function() {
 		return (
 			<div id="header">
@@ -25,7 +28,7 @@ module.exports = React.createClass({
 						<div className="dropdown-menu dropdown-menu-right">
 							<h6 className="dropdown-header">{this.state.name}</h6>
 							<div className="dropdown-divider"></div>
-							<a className="dropdown-item" href="#" >Logout</a>
+							<a className="dropdown-item" onClick={this.onClickLogout}>Logout</a>
 						</div>
 					</div>
 				</div>

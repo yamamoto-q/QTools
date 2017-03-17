@@ -21350,6 +21350,13 @@ var Action = {
                 api_password:api_password
             }
         });
+    },
+    logout:function(){
+        dispatcher.dispatch({
+            actionType: "logout",
+            value: {
+            }
+        });
     }
 };
 
@@ -21358,6 +21365,7 @@ var _state = {
 	isValidAuthParam:false,
 	isChallengeLogin:false,
 	loginSuccess:false,
+	changeAuth:false,
 	auth:{
 		api_password : null,
 		context_path : null,
@@ -21385,6 +21393,9 @@ var Store = assign({}, EventEmitter.prototype, {
 	loginSuccess:function(){
 		return _state.loginSuccess;
 	},
+	changeAuth:function(){
+		return _state.changeAuth;
+	},
 	getLoginedUser:function(){
 		return _state.loginedUser;
 	},
@@ -21409,11 +21420,19 @@ var Store = assign({}, EventEmitter.prototype, {
                 var api_password = payload.value.api_password;
                 
                 _state.loginedUser = null;
+                _state.changeAuth = false;
 
                 // 保存
                 _Strage.Action.setAuthentication(context_path, email, api_password);
 
     			break;
+
+    		case "logout":
+    			console.log("logout");
+    			_state.changeAuth = true;
+    			Store.emitChangeState();
+    			break;
+
         };
     })
 });
@@ -21659,6 +21678,9 @@ module.exports = React.createClass({
 			name: loginedUser.name
 		};
 	},
+	onClickLogout: function onClickLogout() {
+		_Login.Action.logout();
+	},
 	render: function render() {
 		return React.createElement(
 			'div',
@@ -21686,7 +21708,7 @@ module.exports = React.createClass({
 						React.createElement('div', { className: 'dropdown-divider' }),
 						React.createElement(
 							'a',
-							{ className: 'dropdown-item', href: '#' },
+							{ className: 'dropdown-item', onClick: this.onClickLogout },
 							'Logout'
 						)
 					)
@@ -21779,10 +21801,11 @@ module.exports = React.createClass({
 		var isChallengeLogin = _Login.Store.isChallengeLogin();
 		var loginSuccess = _Login.Store.loginSuccess();
 		var loginedUser = _Login.Store.getLoginedUser();
+		var changeAuth = _Login.Store.changeAuth();
 
 		return {
 			showSplash: isWaitingStrage,
-			showAuthInput: isValidAuthParam == false || loginSuccess == false,
+			showAuthInput: isValidAuthParam == false || loginSuccess == false || changeAuth == true,
 			showLogining: isChallengeLogin == true,
 			loginSuccess: loginSuccess,
 			loginedUser: loginedUser
@@ -21799,10 +21822,11 @@ module.exports = React.createClass({
 				var isChallengeLogin = _Login.Store.isChallengeLogin();
 				var loginSuccess = _Login.Store.loginSuccess();
 				var loginedUser = _Login.Store.getLoginedUser();
+				var changeAuth = _Login.Store.changeAuth();
 
 				self.setState({
 					showSplash: isWaitingStrage,
-					showAuthInput: isValidAuthParam == false || loginSuccess == false,
+					showAuthInput: isValidAuthParam == false || loginSuccess == false || changeAuth == true,
 					showLogining: isChallengeLogin == true,
 					loginSuccess: loginSuccess,
 					loginedUser: loginedUser

@@ -11,10 +11,12 @@ module.exports = React.createClass({
 		var isChallengeLogin = _Login.Store.isChallengeLogin();
 		var loginSuccess = _Login.Store.loginSuccess();
 		var loginedUser = _Login.Store.getLoginedUser();
+		var changeAuth = _Login.Store.changeAuth();
+		
 
 		return {
 			showSplash:isWaitingStrage,
-			showAuthInput:isValidAuthParam == false || loginSuccess == false,
+			showAuthInput:isValidAuthParam == false || loginSuccess == false || changeAuth == true,
 			showLogining:isChallengeLogin == true,
 			loginSuccess:loginSuccess,
 			loginedUser:loginedUser
@@ -31,10 +33,11 @@ module.exports = React.createClass({
 				var isChallengeLogin = _Login.Store.isChallengeLogin();
 				var loginSuccess = _Login.Store.loginSuccess();
 				var loginedUser = _Login.Store.getLoginedUser();
+				var changeAuth = _Login.Store.changeAuth();
 
 				self.setState({
 					showSplash:isWaitingStrage,
-					showAuthInput:isValidAuthParam == false || loginSuccess == false,
+					showAuthInput:isValidAuthParam == false || loginSuccess == false || changeAuth == true,
 					showLogining:isChallengeLogin == true,
 					loginSuccess:loginSuccess,
 					loginedUser:loginedUser
