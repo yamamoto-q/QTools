@@ -21107,10 +21107,10 @@ module.exports = React.createClass({
 
 		var self = this;
 		_QApi.Store.addOnGetAvaterListener(this.state.qUserId, function () {
-			console.log(18, "addOnGetAvaterListener");
+			//console.log(18, "addOnGetAvaterListener");
 			if (self.isMounted()) {
 				var avaterBlob = _QApi.Store.getAvater(self.state.qUserId);
-				console.log(18, avaterBlob);
+				//console.log(18, avaterBlob);
 
 				self.setState({
 					blob: avaterBlob
@@ -21663,9 +21663,18 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			{ id: 'header' },
-			this.state.name,
-			' ',
-			React.createElement(Avater, { quser_id: this.state.id })
+			React.createElement('div', { className: 'bar-left' }),
+			React.createElement(
+				'div',
+				{ className: 'bar-right' },
+				React.createElement(
+					'div',
+					{ className: 'bar-item' },
+					this.state.name,
+					' ',
+					React.createElement(Avater, { quser_id: this.state.id })
+				)
+			)
 		);
 	}
 });

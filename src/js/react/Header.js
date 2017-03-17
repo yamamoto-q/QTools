@@ -23,9 +23,18 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			{ id: 'header' },
-			this.state.name,
-			' ',
-			React.createElement(Avater, { quser_id: this.state.id })
+			React.createElement('div', { className: 'bar-left' }),
+			React.createElement(
+				'div',
+				{ className: 'bar-right' },
+				React.createElement(
+					'div',
+					{ className: 'bar-item' },
+					this.state.name,
+					' ',
+					React.createElement(Avater, { quser_id: this.state.id })
+				)
+			)
 		);
 	}
 });
