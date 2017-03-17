@@ -21805,7 +21805,7 @@ module.exports = React.createClass({
 
 		return {
 			showSplash: isWaitingStrage,
-			showAuthInput: isValidAuthParam == false || loginSuccess == false || changeAuth == true,
+			showAuthInput: isValidAuthParam == false || changeAuth == true,
 			showLogining: isChallengeLogin == true,
 			loginSuccess: loginSuccess,
 			loginedUser: loginedUser
@@ -21828,7 +21828,7 @@ module.exports = React.createClass({
 
 				self.setState({
 					showSplash: isWaitingStrage,
-					showAuthInput: isValidAuthParam == false || loginSuccess == false || changeAuth == true,
+					showAuthInput: isValidAuthParam == false || changeAuth == true,
 					showLogining: isChallengeLogin == true,
 					loginSuccess: loginSuccess,
 					loginedUser: loginedUser
