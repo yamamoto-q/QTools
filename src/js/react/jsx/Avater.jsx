@@ -11,15 +11,11 @@ module.exports = React.createClass({
 	},
 
 	componentDidMount: function() {
-		var qUserId = this.props.quser_id;
-
 		var self = this;
+		
 		_QApi.Store.addOnGetAvaterListener(this.state.qUserId, function(){
-			//console.log(18, "addOnGetAvaterListener");
 			if (self.isMounted()) {
 				var avaterBlob = _QApi.Store.getAvater(self.state.qUserId);
-				//console.log(18, avaterBlob);
-
 				self.setState({
 					blob:avaterBlob
 				});

@@ -94,7 +94,7 @@ var Store = assign({}, EventEmitter.prototype, {
     			break;
 
     		case "logout":
-    			console.log("logout");
+    			// ログアウト
     			_state.changeAuth = true;
     			Store.emitChangeState();
     			break;

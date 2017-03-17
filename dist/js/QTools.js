@@ -21103,15 +21103,11 @@ module.exports = React.createClass({
 	},
 
 	componentDidMount: function componentDidMount() {
-		var qUserId = this.props.quser_id;
-
 		var self = this;
+
 		_QApi.Store.addOnGetAvaterListener(this.state.qUserId, function () {
-			//console.log(18, "addOnGetAvaterListener");
 			if (self.isMounted()) {
 				var avaterBlob = _QApi.Store.getAvater(self.state.qUserId);
-				//console.log(18, avaterBlob);
-
 				self.setState({
 					blob: avaterBlob
 				});
@@ -21428,7 +21424,7 @@ var Store = assign({}, EventEmitter.prototype, {
     			break;
 
     		case "logout":
-    			console.log("logout");
+    			// ログアウト
     			_state.changeAuth = true;
     			Store.emitChangeState();
     			break;
@@ -21550,7 +21546,9 @@ var Action = {
                 }
             });
         }else{
-            Store.emitOnGetAvater('avater-' + qUserId);
+            setTimeout(function(){
+                Store.emitOnGetAvater('avater-' + qUserId);
+            }, 100);
         }
     }
 };
@@ -21800,8 +21798,8 @@ module.exports = React.createClass({
 		var isValidAuthParam = _Login.Store.isValidAuthParam();
 		var isChallengeLogin = _Login.Store.isChallengeLogin();
 		var loginSuccess = _Login.Store.loginSuccess();
-		var loginedUser = _Login.Store.getLoginedUser();
 		var changeAuth = _Login.Store.changeAuth();
+		var loginedUser = _Login.Store.getLoginedUser();
 
 		return {
 			showSplash: isWaitingStrage,
@@ -21821,8 +21819,8 @@ module.exports = React.createClass({
 				var isValidAuthParam = _Login.Store.isValidAuthParam();
 				var isChallengeLogin = _Login.Store.isChallengeLogin();
 				var loginSuccess = _Login.Store.loginSuccess();
-				var loginedUser = _Login.Store.getLoginedUser();
 				var changeAuth = _Login.Store.changeAuth();
+				var loginedUser = _Login.Store.getLoginedUser();
 
 				self.setState({
 					showSplash: isWaitingStrage,

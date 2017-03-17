@@ -34,7 +34,9 @@ var Action = {
                 }
             });
         }else{
-            Store.emitOnGetAvater('avater-' + qUserId);
+            setTimeout(function(){
+                Store.emitOnGetAvater('avater-' + qUserId);
+            }, 100);
         }
     }
 };

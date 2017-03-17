@@ -10,8 +10,8 @@ module.exports = React.createClass({
 		var isValidAuthParam = _Login.Store.isValidAuthParam();
 		var isChallengeLogin = _Login.Store.isChallengeLogin();
 		var loginSuccess = _Login.Store.loginSuccess();
-		var loginedUser = _Login.Store.getLoginedUser();
 		var changeAuth = _Login.Store.changeAuth();
+		var loginedUser = _Login.Store.getLoginedUser();
 		
 
 		return {
@@ -32,8 +32,8 @@ module.exports = React.createClass({
 				var isValidAuthParam = _Login.Store.isValidAuthParam();
 				var isChallengeLogin = _Login.Store.isChallengeLogin();
 				var loginSuccess = _Login.Store.loginSuccess();
-				var loginedUser = _Login.Store.getLoginedUser();
 				var changeAuth = _Login.Store.changeAuth();
+				var loginedUser = _Login.Store.getLoginedUser();
 
 				self.setState({
 					showSplash:isWaitingStrage,
