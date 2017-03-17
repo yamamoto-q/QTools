@@ -21507,8 +21507,11 @@ var Store = assign({}, EventEmitter.prototype, {
     			console.log(47, "challengLogin");
 
     			_API.API.setAuth(_state.auth.context_path, _state.auth.email, _state.auth.api_password);
-    			_API.API.userQuserSelf(function(){
+    			_API.API.userQuserSelf(function(data){
     				// Success
+                    console.log(data);
+                    Store.emitLoginSuccess();
+
     			}, function(jqXHR, textStatus){
     				// fail
     				console.log(jqXHR, textStatus);
