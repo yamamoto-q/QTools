@@ -21659,22 +21659,14 @@ module.exports = React.createClass({
 			name: loginedUser.name
 		};
 	},
-
-	componentDidMount: function componentDidMount() {
-		var self = this;
-		_QApi.Store.addOnGetAvaterListener(this.state.id, function () {
-			console.log("addOnGetAvaterListener");
-			var avaterBlob = _QApi.Store.getAvater(self.state.id);
-			console.log(avaterBlob);
-		});
-	},
-
 	render: function render() {
 		return React.createElement(
 			'div',
 			null,
 			'header ',
-			this.state.name
+			this.state.name,
+			' ',
+			React.createElement(Avater, { quser_id: this.state.id })
 		);
 	}
 });

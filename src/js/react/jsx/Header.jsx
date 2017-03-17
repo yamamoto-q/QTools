@@ -14,19 +14,8 @@ module.exports = React.createClass({
 			mail:loginedUser.mail,
 			name:loginedUser.name
 		}
-	},
-
-	componentDidMount: function() {
-		var self = this;
-		_QApi.Store.addOnGetAvaterListener(this.state.id, function(){
-			console.log("addOnGetAvaterListener");
-			var avaterBlob = _QApi.Store.getAvater(self.state.id);
-			console.log(avaterBlob);
-		});
-	},
-	
-
+	},	
 	render: function() {
-		return (<div>header {this.state.name}</div>);
+		return (<div>header {this.state.name} <Avater quser_id={this.state.id} /></div>);
 	}
 });
