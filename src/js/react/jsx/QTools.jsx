@@ -13,6 +13,8 @@ module.exports = React.createClass({
 		var changeAuth = _Login.Store.changeAuth();
 		var loginedUser = _Login.Store.getLoginedUser();
 
+		console.log(16, isValidAuthParam, loginSuccess, changeAuth);
+
 		return {
 			showSplash:isWaitingStrage,
 			showAuthInput:isValidAuthParam == false || loginSuccess == false || changeAuth == true,
@@ -55,16 +57,17 @@ module.exports = React.createClass({
 		}else if(this.state.showAuthInput){
 			return (<InputAuthForm />);
 
-		}else if(this.state.showLogining){
-			return (<div>Login...</div>);
-
 		}else if(this.state.loginSuccess){
 			return (
 				<div>
 					<Header/>
 					<pre>{JSON.stringify(this.state.loginedUser, null, 2)}</pre>
 				</div>
-				);
+			);
+
+		}else if(this.state.showLogining){
+			return (<div>Login...</div>);
+
 		}
 		return (<div>QTools</div>);
 	}

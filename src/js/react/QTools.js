@@ -17,6 +17,8 @@ module.exports = React.createClass({
 		var changeAuth = _Login.Store.changeAuth();
 		var loginedUser = _Login.Store.getLoginedUser();
 
+		console.log(16, isValidAuthParam, loginSuccess, changeAuth);
+
 		return {
 			showSplash: isWaitingStrage,
 			showAuthInput: isValidAuthParam == false || loginSuccess == false || changeAuth == true,
@@ -59,12 +61,6 @@ module.exports = React.createClass({
 			);
 		} else if (this.state.showAuthInput) {
 			return React.createElement(InputAuthForm, null);
-		} else if (this.state.showLogining) {
-			return React.createElement(
-				'div',
-				null,
-				'Login...'
-			);
 		} else if (this.state.loginSuccess) {
 			return React.createElement(
 				'div',
@@ -75,6 +71,12 @@ module.exports = React.createClass({
 					null,
 					JSON.stringify(this.state.loginedUser, null, 2)
 				)
+			);
+		} else if (this.state.showLogining) {
+			return React.createElement(
+				'div',
+				null,
+				'Login...'
 			);
 		}
 		return React.createElement(
