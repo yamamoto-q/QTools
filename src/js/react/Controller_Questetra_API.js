@@ -69,7 +69,7 @@ var Store = assign({}, EventEmitter.prototype, {
     			break;
 
     		case "challengLogin":
-    			console.log(47, "challengLogin");
+    			//console.log(47, "challengLogin");
                 _state.userQuserSelf = null;
 
     			_API.API.setAuth(_state.auth.context_path, _state.auth.email, _state.auth.api_password);
@@ -80,7 +80,7 @@ var Store = assign({}, EventEmitter.prototype, {
                         email : data.quser.email,
                         name : data.quser.name
                     }
-                    
+
                     Store.emitLoginSuccess();
 
     			}, function(jqXHR, textStatus){

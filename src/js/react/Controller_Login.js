@@ -62,7 +62,7 @@ var Store = assign({}, EventEmitter.prototype, {
         this.on(EVENT.CHANGE_STATE, callback);
     },
     emitChangeState:function(){
-    	console.log("emitChangeState");
+    	//console.log("emitChangeState");
         this.emit(EVENT.CHANGE_STATE);
     },
     // Dispacher
@@ -134,7 +134,7 @@ var _challengeLogin = function(){
 	_QApi.Action.challengLogin();
 };
 
-//
+// 5a. ログインに成功した
 _QApi.Store.addLoginSuccessListener(function(){
 	_state.loginedUser = _QApi.Store.getLoginedUser();
 	_state.isChallengeLogin = false;
@@ -145,6 +145,7 @@ _QApi.Store.addLoginSuccessListener(function(){
 	}, 250);
 });
 
+// 5ｂ. ログインに失敗した
 _QApi.Store.addLoginErrorListener(function () {
 	_state.loginedUser = null;
 	_state.isChallengeLogin = false;
@@ -155,6 +156,7 @@ _QApi.Store.addLoginErrorListener(function () {
 	}, 250);
 });
 
+// 0. 認証情報を取得する
 setTimeout(function(){
 	_Strage.Action.getAuthentication();
 }, 1000);

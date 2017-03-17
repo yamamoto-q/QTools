@@ -21085,7 +21085,7 @@ var QTools = require('./QTools.js');
 	};
 })(window.jQuery);
 
-},{"./QTools.js":186,"react":180,"react-dom":29}],182:[function(require,module,exports){
+},{"./QTools.js":187,"react":180,"react-dom":29}],182:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -21218,7 +21218,7 @@ var Store = assign({}, EventEmitter.prototype, {
         return state;
     },
     getAuthState : function(){
-        console.log(133, _state);
+        //console.log(133, _state);
         if(_state && _state.auth){
             return _state.auth;
         }
@@ -21241,7 +21241,7 @@ var Store = assign({}, EventEmitter.prototype, {
             case "getAuthentication":
                 var state = QIStrage.get();
 
-                console.log(state);
+                //console.log(state);
 
                 if(state){
                     _state = state;
@@ -21251,7 +21251,7 @@ var Store = assign({}, EventEmitter.prototype, {
                     };
                 }
 
-                console.log(166,_state);
+                //console.log(166,_state);
 
                 Store.emitGetAuthentication();
                 break;
@@ -21348,7 +21348,7 @@ var Store = assign({}, EventEmitter.prototype, {
         this.on(EVENT.CHANGE_STATE, callback);
     },
     emitChangeState:function(){
-    	console.log("emitChangeState");
+    	//console.log("emitChangeState");
         this.emit(EVENT.CHANGE_STATE);
     },
     // Dispacher
@@ -21420,7 +21420,7 @@ var _challengeLogin = function(){
 	_QApi.Action.challengLogin();
 };
 
-//
+// 5a. ログインに成功した
 _QApi.Store.addLoginSuccessListener(function(){
 	_state.loginedUser = _QApi.Store.getLoginedUser();
 	_state.isChallengeLogin = false;
@@ -21431,6 +21431,7 @@ _QApi.Store.addLoginSuccessListener(function(){
 	}, 250);
 });
 
+// 5ｂ. ログインに失敗した
 _QApi.Store.addLoginErrorListener(function () {
 	_state.loginedUser = null;
 	_state.isChallengeLogin = false;
@@ -21441,6 +21442,7 @@ _QApi.Store.addLoginErrorListener(function () {
 	}, 250);
 });
 
+// 0. 認証情報を取得する
 setTimeout(function(){
 	_Strage.Action.getAuthentication();
 }, 1000);
@@ -21516,7 +21518,7 @@ var Store = assign({}, EventEmitter.prototype, {
     			break;
 
     		case "challengLogin":
-    			console.log(47, "challengLogin");
+    			//console.log(47, "challengLogin");
                 _state.userQuserSelf = null;
 
     			_API.API.setAuth(_state.auth.context_path, _state.auth.email, _state.auth.api_password);
@@ -21527,7 +21529,7 @@ var Store = assign({}, EventEmitter.prototype, {
                         email : data.quser.email,
                         name : data.quser.name
                     }
-                    
+
                     Store.emitLoginSuccess();
 
     			}, function(jqXHR, textStatus){
@@ -21546,7 +21548,34 @@ module.exports = {
     Store: Store
 }
 
-},{"./Questetra_API.js":187,"events":1,"flux":25,"object-assign":27}],185:[function(require,module,exports){
+},{"./Questetra_API.js":188,"events":1,"flux":25,"object-assign":27}],185:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var _Login = require('./Controller_Login.js');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+		var loginedUser = _Login.Store.getLoginedUser();
+		return {
+			id: loginedUser.id,
+			mail: loginedUser.mail,
+			name: loginedUser.name
+		};
+	},
+	render: function render() {
+		return React.createElement(
+			'div',
+			null,
+			'header ',
+			this.state.name
+		);
+	}
+});
+
+},{"./Controller_Login.js":183,"react":180}],186:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -21611,13 +21640,13 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Login.js":183,"react":180}],186:[function(require,module,exports){
+},{"./Controller_Login.js":183,"react":180}],187:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-//var _Strage = require('./Contloller_Strage.js');
 var _Login = require('./Controller_Login.js');
 var InputAuthForm = require('./InputAuthForm.js');
+var Header = require('./Header.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -21642,7 +21671,7 @@ module.exports = React.createClass({
 	componentDidMount: function componentDidMount() {
 		var self = this;
 		_Login.Store.addChangeStateListener(function () {
-			console.log("addChangeStateListener");
+			//console.log("addChangeStateListener");
 			if (self.isMounted()) {
 				var isWaitingStrage = _Login.Store.isWaitingStrage();
 				var isValidAuthParam = _Login.Store.isValidAuthParam();
@@ -21679,7 +21708,7 @@ module.exports = React.createClass({
 			return React.createElement(
 				'div',
 				null,
-				'Login Success',
+				React.createElement(Header, null),
 				React.createElement(
 					'pre',
 					null,
@@ -21695,7 +21724,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Login.js":183,"./InputAuthForm.js":185,"react":180}],187:[function(require,module,exports){
+},{"./Controller_Login.js":183,"./Header.js":185,"./InputAuthForm.js":186,"react":180}],188:[function(require,module,exports){
 
 
 var QuestetraAPI = function(){
@@ -21744,7 +21773,7 @@ var QuestetraAPI = function(){
             _apiPassword = apiPassword;
             _credentials = btoa(unescape(encodeURIComponent(email + ":" + apiPassword)));
 
-            console.log(_credentials);
+            // console.log(_credentials);
 		},
 		userQuserSelf:function(success, fail){
 			_UserQuserSelf(success, fail);

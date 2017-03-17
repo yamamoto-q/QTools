@@ -1,7 +1,7 @@
 var React = require('react');
-//var _Strage = require('./Contloller_Strage.js');
 var _Login = require('./Controller_Login.js');
 var InputAuthForm = require('./InputAuthForm.js');
+var Header = require('./Header.js');
 
 module.exports = React.createClass({
 
@@ -24,7 +24,7 @@ module.exports = React.createClass({
 	componentDidMount: function() {
 		var self = this;
 		_Login.Store.addChangeStateListener(function () {
-			console.log("addChangeStateListener");
+			//console.log("addChangeStateListener");
 			if (self.isMounted()) {
 				var isWaitingStrage = _Login.Store.isWaitingStrage();
 				var isValidAuthParam = _Login.Store.isValidAuthParam();
@@ -55,7 +55,7 @@ module.exports = React.createClass({
 		}else if(this.state.loginSuccess){
 			return (
 				<div>
-					Login Success
+					<Header/>
 					<pre>{JSON.stringify(this.state.loginedUser, null, 2)}</pre>
 				</div>
 				);

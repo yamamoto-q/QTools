@@ -46,7 +46,7 @@ var QuestetraAPI = function(){
             _apiPassword = apiPassword;
             _credentials = btoa(unescape(encodeURIComponent(email + ":" + apiPassword)));
 
-            console.log(_credentials);
+            // console.log(_credentials);
 		},
 		userQuserSelf:function(success, fail){
 			_UserQuserSelf(success, fail);

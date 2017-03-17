@@ -1,9 +1,9 @@
 'use strict';
 
 var React = require('react');
-//var _Strage = require('./Contloller_Strage.js');
 var _Login = require('./Controller_Login.js');
 var InputAuthForm = require('./InputAuthForm.js');
+var Header = require('./Header.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -28,7 +28,7 @@ module.exports = React.createClass({
 	componentDidMount: function componentDidMount() {
 		var self = this;
 		_Login.Store.addChangeStateListener(function () {
-			console.log("addChangeStateListener");
+			//console.log("addChangeStateListener");
 			if (self.isMounted()) {
 				var isWaitingStrage = _Login.Store.isWaitingStrage();
 				var isValidAuthParam = _Login.Store.isValidAuthParam();
@@ -65,7 +65,7 @@ module.exports = React.createClass({
 			return React.createElement(
 				'div',
 				null,
-				'Login Success',
+				React.createElement(Header, null),
 				React.createElement(
 					'pre',
 					null,

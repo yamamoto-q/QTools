@@ -130,7 +130,7 @@ var Store = assign({}, EventEmitter.prototype, {
         return state;
     },
     getAuthState : function(){
-        console.log(133, _state);
+        //console.log(133, _state);
         if(_state && _state.auth){
             return _state.auth;
         }
@@ -153,7 +153,7 @@ var Store = assign({}, EventEmitter.prototype, {
             case "getAuthentication":
                 var state = QIStrage.get();
 
-                console.log(state);
+                //console.log(state);
 
                 if(state){
                     _state = state;
@@ -163,7 +163,7 @@ var Store = assign({}, EventEmitter.prototype, {
                     };
                 }
 
-                console.log(166,_state);
+                //console.log(166,_state);
 
                 Store.emitGetAuthentication();
                 break;
