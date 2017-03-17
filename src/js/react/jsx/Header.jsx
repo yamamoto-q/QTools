@@ -20,8 +20,13 @@ module.exports = React.createClass({
 			<div id="header">
 				<div className="bar-left"></div>
 				<div className="bar-right">
-					<div className="bar-item">
-						{this.state.name} <Avater quser_id={this.state.id} />
+					<div className="bar-item dropdown">
+						<div data-toggle="dropdown"><Avater quser_id={this.state.id} /></div>
+						<div className="dropdown-menu dropdown-menu-right">
+							<h6 className="dropdown-header">{this.state.name}</h6>
+							<div className="dropdown-divider"></div>
+							<a className="dropdown-item" href="#" >Logout</a>
+						</div>
 					</div>
 				</div>
 			</div>

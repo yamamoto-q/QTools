@@ -29,10 +29,27 @@ module.exports = React.createClass({
 				{ className: 'bar-right' },
 				React.createElement(
 					'div',
-					{ className: 'bar-item' },
-					this.state.name,
-					' ',
-					React.createElement(Avater, { quser_id: this.state.id })
+					{ className: 'bar-item dropdown' },
+					React.createElement(
+						'div',
+						{ 'data-toggle': 'dropdown' },
+						React.createElement(Avater, { quser_id: this.state.id })
+					),
+					React.createElement(
+						'div',
+						{ className: 'dropdown-menu dropdown-menu-right' },
+						React.createElement(
+							'h6',
+							{ className: 'dropdown-header' },
+							this.state.name
+						),
+						React.createElement('div', { className: 'dropdown-divider' }),
+						React.createElement(
+							'a',
+							{ className: 'dropdown-item', href: '#' },
+							'Logout'
+						)
+					)
 				)
 			)
 		);
