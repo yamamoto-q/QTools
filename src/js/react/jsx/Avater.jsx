@@ -28,9 +28,12 @@ module.exports = React.createClass({
 	
 	render: function() {
 		if(this.state.blob){
-			return (<div className="avater" style={{backgroundImage:this.state.blob}}></div>);
+			var style = {
+				backgroundImage:this.state.blob
+			};
+			return (<div className="avater" style={style} />);
 		}else{
-			return (<div className="avater" >?</div>);
+			return (<div className="avater" />);
 		}
 		
 	}
