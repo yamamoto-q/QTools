@@ -75,10 +75,12 @@ var Store = assign({}, EventEmitter.prototype, {
     			_API.API.setAuth(_state.auth.context_path, _state.auth.email, _state.auth.api_password);
     			_API.API.userQuserSelf(function(data){
     				// Success
-                    _state.userQuserSelf.id = data.quser.id;
-                    _state.userQuserSelf.email = data.quser.email;
-                    _state.userQuserSelf.name = data.quser.name;
-
+                    _state.userQuserSelf = {
+                        id : data.quser.id,
+                        email : data.quser.email,
+                        name : data.quser.name
+                    }
+                    
                     Store.emitLoginSuccess();
 
     			}, function(jqXHR, textStatus){
