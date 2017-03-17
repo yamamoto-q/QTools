@@ -54,9 +54,6 @@ module.exports = React.createClass({
 		if(this.state.showSplash){
 			return (<div>splash</div>);
 
-		}else if(this.state.showAuthInput){
-			return (<InputAuthForm />);
-
 		}else if(this.state.loginSuccess){
 			return (
 				<div>
@@ -65,6 +62,9 @@ module.exports = React.createClass({
 				</div>
 			);
 
+		}else if(this.state.showAuthInput){
+			return (<InputAuthForm />);
+			
 		}else if(this.state.showLogining){
 			return (<div>Login...</div>);
 

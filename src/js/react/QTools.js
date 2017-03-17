@@ -59,8 +59,6 @@ module.exports = React.createClass({
 				null,
 				'splash'
 			);
-		} else if (this.state.showAuthInput) {
-			return React.createElement(InputAuthForm, null);
 		} else if (this.state.loginSuccess) {
 			return React.createElement(
 				'div',
@@ -72,6 +70,8 @@ module.exports = React.createClass({
 					JSON.stringify(this.state.loginedUser, null, 2)
 				)
 			);
+		} else if (this.state.showAuthInput) {
+			return React.createElement(InputAuthForm, null);
 		} else if (this.state.showLogining) {
 			return React.createElement(
 				'div',
