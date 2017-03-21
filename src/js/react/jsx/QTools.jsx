@@ -2,6 +2,8 @@ var React = require('react');
 var _Login = require('./Controller_Login.js');
 var InputAuthForm = require('./InputAuthForm.js');
 var Header = require('./Header.js');
+var Bootstrap_Container = require('./Bootstrap_Container.js');
+var Bootstrap_Row = require('./Bootstrap_Row.js');
 
 module.exports = React.createClass({
 
@@ -56,11 +58,13 @@ module.exports = React.createClass({
 
 		}else if(this.state.showAuthInput){
 			return (
-				<div className="container-fluid">
-					<div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-						<InputAuthForm />
-					</div>
-				</div>
+				<Bootstrap_Container>
+					<Bootstrap_Row>
+						<div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+							<InputAuthForm />
+						</div>
+					</Bootstrap_Row>
+				</Bootstrap_Container>
 			);
 
 		}else if(this.state.showLogining){

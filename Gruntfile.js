@@ -35,6 +35,8 @@ module.exports = function(grunt) {
                     { 'src/js/react/Header.js': 'src/js/react/jsx/Header.jsx' },
                     { 'src/js/react/Avater.js': 'src/js/react/jsx/Avater.jsx' },
                     // Bootstrap
+                    { 'src/js/react/Bootstrap_Row.js': 'src/js/react/jsx/Bootstrap/row.jsx' },
+                    { 'src/js/react/Bootstrap_Container.js': 'src/js/react/jsx/Bootstrap/container.jsx' },
                     { 'src/js/react/Bootstrap_FormGroup.js': 'src/js/react/jsx/Bootstrap/formGroup.jsx' },
                     { 'src/js/react/Bootstrap_FormLabel.js': 'src/js/react/jsx/Bootstrap/formLabel.jsx' },
                     { 'src/js/react/Bootstrap_FormInput.js': 'src/js/react/jsx/Bootstrap/formInput.jsx' },

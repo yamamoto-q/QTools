@@ -4,6 +4,8 @@ var React = require('react');
 var _Login = require('./Controller_Login.js');
 var InputAuthForm = require('./InputAuthForm.js');
 var Header = require('./Header.js');
+var Bootstrap_Container = require('./Bootstrap_Container.js');
+var Bootstrap_Row = require('./Bootstrap_Row.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -61,12 +63,16 @@ module.exports = React.createClass({
 			);
 		} else if (this.state.showAuthInput) {
 			return React.createElement(
-				'div',
-				{ className: 'container-fluid' },
+				Bootstrap_Container,
+				null,
 				React.createElement(
-					'div',
-					{ className: 'col-sm-12 col-md-12 col-lg-12 col-xl-12' },
-					React.createElement(InputAuthForm, null)
+					Bootstrap_Row,
+					null,
+					React.createElement(
+						'div',
+						{ className: 'col-sm-12 col-md-12 col-lg-12 col-xl-12' },
+						React.createElement(InputAuthForm, null)
+					)
 				)
 			);
 		} else if (this.state.showLogining) {
