@@ -6,6 +6,7 @@ var Bootstrap_FormGroup = require('./Bootstrap_FormGroup.js');
 var Bootstrap_FormLabel = require('./Bootstrap_FormLabel.js');
 var Bootstrap_FormInput = require('./Bootstrap_FormInput.js');
 var Bootstrap_Button = require('./Bootstrap_Button.js');
+var Bootstrap_InputGroup = require('./Bootstrap_InputGroup.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -46,18 +47,27 @@ module.exports = React.createClass({
 		});
 	},
 	onClickLoginBtn: function onClickLoginBtn(e) {
-		//console.log(this.state);
+		e.preventDefault();
 		_Login.Action.setAuth(this.state.context_path, this.state.email, this.state.api_password);
 	},
 	render: function render() {
 		return React.createElement(
-			'div',
+			'form',
 			null,
 			React.createElement(
 				Bootstrap_FormGroup,
 				null,
 				React.createElement(Bootstrap_FormLabel, { htmlFor: 'inputContextPath', label: 'Context Path' }),
-				React.createElement(Bootstrap_FormInput, { name: 'inputContextPath', type: 'text', value: this.state.context_path, on_change: this.onChangeContext })
+				React.createElement(
+					Bootstrap_InputGroup,
+					null,
+					React.createElement(Bootstrap_FormInput, { name: 'inputContextPath', type: 'text', value: this.state.context_path, on_change: this.onChangeContext }),
+					React.createElement(
+						'div',
+						{ className: 'input-group-addon' },
+						'Login_show'
+					)
+				)
 			),
 			React.createElement(
 				Bootstrap_FormGroup,

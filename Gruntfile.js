@@ -39,6 +39,7 @@ module.exports = function(grunt) {
                     { 'src/js/react/Bootstrap_FormLabel.js': 'src/js/react/jsx/Bootstrap/formLabel.jsx' },
                     { 'src/js/react/Bootstrap_FormInput.js': 'src/js/react/jsx/Bootstrap/formInput.jsx' },
                     { 'src/js/react/Bootstrap_Button.js': 'src/js/react/jsx/Bootstrap/button.jsx' },
+                    { 'src/js/react/Bootstrap_InputGroup.js': 'src/js/react/jsx/Bootstrap/inputGroup.jsx' },
                 ]
             }
         },

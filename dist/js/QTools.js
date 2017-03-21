@@ -21085,7 +21085,7 @@ var QTools = require('./QTools.js');
 	};
 })(window.jQuery);
 
-},{"./QTools.js":192,"react":180,"react-dom":29}],182:[function(require,module,exports){
+},{"./QTools.js":193,"react":180,"react-dom":29}],182:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -21129,7 +21129,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Questetra_API.js":189,"react":180}],183:[function(require,module,exports){
+},{"./Controller_Questetra_API.js":190,"react":180}],183:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -21211,6 +21211,27 @@ module.exports = React.createClass({
 });
 
 },{"react":180}],187:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+module.exports = React.createClass({
+	displayName: "exports",
+
+	render: function render() {
+		var classes = ["input-group"];
+		if (this.props.className) {
+			classes = classes.concat(this.props.className.split(" "));
+		}
+
+		return React.createElement(
+			"div",
+			{ className: classes.join(" ") },
+			this.props.children
+		);
+	}
+});
+
+},{"react":180}],188:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -21408,7 +21429,7 @@ module.exports = {
     Store: Store
 }
 
-},{"events":1,"flux":25,"object-assign":27}],188:[function(require,module,exports){
+},{"events":1,"flux":25,"object-assign":27}],189:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -21591,7 +21612,7 @@ _QApi.Store.addLoginErrorListener(function () {
 setTimeout(function(){
 	_Strage.Action.getAuthentication();
 }, 1000);
-},{"./Contloller_Strage.js":187,"./Controller_Questetra_API.js":189,"events":1,"flux":25,"object-assign":27}],189:[function(require,module,exports){
+},{"./Contloller_Strage.js":188,"./Controller_Questetra_API.js":190,"events":1,"flux":25,"object-assign":27}],190:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -21736,7 +21757,7 @@ module.exports = {
     Store: Store
 }
 
-},{"./Questetra_API.js":193,"events":1,"flux":25,"object-assign":27}],190:[function(require,module,exports){
+},{"./Questetra_API.js":194,"events":1,"flux":25,"object-assign":27}],191:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -21798,7 +21819,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Avater.js":182,"./Controller_Login.js":188,"./Controller_Questetra_API.js":189,"react":180}],191:[function(require,module,exports){
+},{"./Avater.js":182,"./Controller_Login.js":189,"./Controller_Questetra_API.js":190,"react":180}],192:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -21807,6 +21828,7 @@ var Bootstrap_FormGroup = require('./Bootstrap_FormGroup.js');
 var Bootstrap_FormLabel = require('./Bootstrap_FormLabel.js');
 var Bootstrap_FormInput = require('./Bootstrap_FormInput.js');
 var Bootstrap_Button = require('./Bootstrap_Button.js');
+var Bootstrap_InputGroup = require('./Bootstrap_InputGroup.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -21847,18 +21869,27 @@ module.exports = React.createClass({
 		});
 	},
 	onClickLoginBtn: function onClickLoginBtn(e) {
-		//console.log(this.state);
+		e.preventDefault();
 		_Login.Action.setAuth(this.state.context_path, this.state.email, this.state.api_password);
 	},
 	render: function render() {
 		return React.createElement(
-			'div',
+			'form',
 			null,
 			React.createElement(
 				Bootstrap_FormGroup,
 				null,
 				React.createElement(Bootstrap_FormLabel, { htmlFor: 'inputContextPath', label: 'Context Path' }),
-				React.createElement(Bootstrap_FormInput, { name: 'inputContextPath', type: 'text', value: this.state.context_path, on_change: this.onChangeContext })
+				React.createElement(
+					Bootstrap_InputGroup,
+					null,
+					React.createElement(Bootstrap_FormInput, { name: 'inputContextPath', type: 'text', value: this.state.context_path, on_change: this.onChangeContext }),
+					React.createElement(
+						'div',
+						{ className: 'input-group-addon' },
+						'Login_show'
+					)
+				)
 			),
 			React.createElement(
 				Bootstrap_FormGroup,
@@ -21877,7 +21908,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Button.js":183,"./Bootstrap_FormGroup.js":184,"./Bootstrap_FormInput.js":185,"./Bootstrap_FormLabel.js":186,"./Controller_Login.js":188,"react":180}],192:[function(require,module,exports){
+},{"./Bootstrap_Button.js":183,"./Bootstrap_FormGroup.js":184,"./Bootstrap_FormInput.js":185,"./Bootstrap_FormLabel.js":186,"./Bootstrap_InputGroup.js":187,"./Controller_Login.js":189,"react":180}],193:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -21967,7 +21998,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Login.js":188,"./Header.js":190,"./InputAuthForm.js":191,"react":180}],193:[function(require,module,exports){
+},{"./Controller_Login.js":189,"./Header.js":191,"./InputAuthForm.js":192,"react":180}],194:[function(require,module,exports){
 
 
 var QuestetraAPI = function(){

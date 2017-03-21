@@ -4,6 +4,7 @@ var Bootstrap_FormGroup = require('./Bootstrap_FormGroup.js');
 var Bootstrap_FormLabel = require('./Bootstrap_FormLabel.js');
 var Bootstrap_FormInput = require('./Bootstrap_FormInput.js');
 var Bootstrap_Button = require('./Bootstrap_Button.js');
+var Bootstrap_InputGroup = require('./Bootstrap_InputGroup.js');
 
 
 module.exports = React.createClass({
@@ -43,15 +44,18 @@ module.exports = React.createClass({
 		});
 	},
 	onClickLoginBtn:function(e){
-		//console.log(this.state);
+		e.preventDefault();
 		_Login.Action.setAuth(this.state.context_path, this.state.email, this.state.api_password);
 	},
 	render: function() {
 		return (
-			<div>
+			<form>
 				<Bootstrap_FormGroup>
 					<Bootstrap_FormLabel htmlFor="inputContextPath" label="Context Path" />
-					<Bootstrap_FormInput name="inputContextPath" type="text" value={this.state.context_path} on_change={this.onChangeContext}/>
+					<Bootstrap_InputGroup>
+						<Bootstrap_FormInput name="inputContextPath" type="text" value={this.state.context_path} on_change={this.onChangeContext}/>
+						<div className="input-group-addon">Login_show</div>
+					</Bootstrap_InputGroup>
 				</Bootstrap_FormGroup>
 				<Bootstrap_FormGroup>
 					<Bootstrap_FormLabel htmlFor="inputEmail" label="Email" />
@@ -62,7 +66,7 @@ module.exports = React.createClass({
 					<Bootstrap_FormInput name="inputPwd" type="password" value={this.state.api_password} on_change={this.onChangePassword}/>
 				</Bootstrap_FormGroup>
 				<Bootstrap_Button on_click={this.onClickLoginBtn} label="Login" />
-			</div>
+			</form>
 		)
 	}
 });
