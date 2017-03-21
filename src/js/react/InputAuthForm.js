@@ -2,6 +2,7 @@
 
 var React = require('react');
 var _Login = require('./Controller_Login.js');
+var Bootstrap_FormGroup = require('./Bootstrap_FormGroup.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -49,7 +50,16 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			null,
-			React.createElement('input', { type: 'text', value: this.state.context_path, onChange: this.onChangeContext }),
+			React.createElement(
+				Bootstrap_FormGroup,
+				null,
+				React.createElement(
+					'label',
+					{ htmlFor: 'inpurContextPath' },
+					'Context Path'
+				),
+				React.createElement('input', { id: 'inpurContextPath', type: 'text', value: this.state.context_path, onChange: this.onChangeContext })
+			),
 			React.createElement('input', { type: 'email', value: this.state.email, onChange: this.onChangeEmail }),
 			React.createElement('input', { type: 'password', value: this.state.api_password, onChange: this.onChangePassword }),
 			React.createElement(

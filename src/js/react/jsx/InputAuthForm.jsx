@@ -1,5 +1,7 @@
 var React = require('react');
 var _Login = require('./Controller_Login.js');
+var Bootstrap_FormGroup = require('./Bootstrap_FormGroup.js');
+
 
 module.exports = React.createClass({
 	getInitialState: function() {
@@ -44,7 +46,10 @@ module.exports = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<input type="text" value={this.state.context_path} onChange={this.onChangeContext} />
+				<Bootstrap_FormGroup>
+					<label htmlFor="inpurContextPath">Context Path</label>
+					<input id="inpurContextPath" type="text" value={this.state.context_path} onChange={this.onChangeContext} />
+				</Bootstrap_FormGroup>
 				<input type="email" value={this.state.email} onChange={this.onChangeEmail} />
 				<input type="password" value={this.state.api_password} onChange={this.onChangePassword} />
 				<button type="button" onClick={this.onClickLoginBtn}>Login</button>
