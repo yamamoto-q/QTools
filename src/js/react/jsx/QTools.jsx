@@ -59,13 +59,17 @@ module.exports = React.createClass({
 
 		}else if(this.state.showAuthInput){
 			return (
-				<Bootstrap_Container className="height-fix">
-					<Bootstrap_Row className="height-fix">
-						<Bootstrap_Col className="height-fix">
-							<InputAuthForm />
-						</Bootstrap_Col>
-					</Bootstrap_Row>
-				</Bootstrap_Container>
+				<div className="height-fix" style={{display:"table"}}>
+					<div className="height-fix" style={{display:"table-cell"}}>
+						<Bootstrap_Container>
+							<Bootstrap_Row>
+								<Bootstrap_Col>
+									<InputAuthForm />
+								</Bootstrap_Col>
+							</Bootstrap_Row>
+						</Bootstrap_Container>
+					</div>
+				</div>
 			);
 
 		}else if(this.state.showLogining){

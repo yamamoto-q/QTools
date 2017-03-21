@@ -64,15 +64,23 @@ module.exports = React.createClass({
 			);
 		} else if (this.state.showAuthInput) {
 			return React.createElement(
-				Bootstrap_Container,
-				{ className: 'height-fix' },
+				'div',
+				{ className: 'height-fix', style: { display: "table" } },
 				React.createElement(
-					Bootstrap_Row,
-					{ className: 'height-fix' },
+					'div',
+					{ className: 'height-fix', style: { display: "table-cell" } },
 					React.createElement(
-						Bootstrap_Col,
-						{ className: 'height-fix' },
-						React.createElement(InputAuthForm, null)
+						Bootstrap_Container,
+						null,
+						React.createElement(
+							Bootstrap_Row,
+							null,
+							React.createElement(
+								Bootstrap_Col,
+								null,
+								React.createElement(InputAuthForm, null)
+							)
+						)
 					)
 				)
 			);
