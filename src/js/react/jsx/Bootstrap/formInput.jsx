@@ -6,7 +6,7 @@ module.exports = React.createClass({
 			classes = classes.concat(this.props.className.split(" "));
 		}
 
-		console.log(this.props.on_change);
+		console.log(9, this.props.on_change);
 
 		return (
 			<input name={this.props.name} type={this.props.type} value={this.props.value} onChange={this.props.on_change} className={classes.join(" ")}/>

@@ -3,6 +3,7 @@ var _Login = require('./Controller_Login.js');
 var Bootstrap_FormGroup = require('./Bootstrap_FormGroup.js');
 var Bootstrap_FormLabel = require('./Bootstrap_FormLabel.js');
 var Bootstrap_FormInput = require('./Bootstrap_FormInput.js');
+var Bootstrap_Button = require('./Bootstrap_Button.js');
 
 
 module.exports = React.createClass({
@@ -60,7 +61,7 @@ module.exports = React.createClass({
 					<Bootstrap_FormLabel htmlFor="inputPwd" label="API Password" />
 					<Bootstrap_FormInput name="inputPwd" type="password" value={this.state.api_password} on_change={this.onChangePassword}/>
 				</Bootstrap_FormGroup>
-				<button type="button" onClick={this.onClickLoginBtn}>Login</button>
+				<Bootstrap_Button on_click={this.onClickLoginBtn} label="Login" />
 			</div>
 		)
 	}
