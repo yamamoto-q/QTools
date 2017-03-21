@@ -21077,6 +21077,8 @@ var QTools = require('./QTools.js');
 
 	function fireRender() {
 		isFiredRender = true;
+		$("#APP").addClass('height-fix');
+
 		ReactDOM.render(React.createElement(
 			QTools,
 			null,
@@ -21932,7 +21934,6 @@ module.exports = React.createClass({
 
 	getInitialState: function getInitialState() {
 		var auth = _Login.Store.getAuth();
-
 		if (auth) {
 			return {
 				context_path: auth.context_path || "",
