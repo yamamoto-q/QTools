@@ -50,13 +50,16 @@ module.exports = React.createClass({
 			<div>
 				<Bootstrap_FormGroup>
 					<Bootstrap_FormLabel htmlFor="inputContextPath" label="Context Path" />
-					<Bootstrap_FormInput name="inputContextPath" type="text" value={this.state.context_path} onChange={this.onChangeContext}/>
+					<Bootstrap_FormInput name="inputContextPath" type="text" value={this.state.context_path} on_change={this.onChangeContext}/>
 				</Bootstrap_FormGroup>
 				<Bootstrap_FormGroup>
 					<Bootstrap_FormLabel htmlFor="inputEmail" label="Email" />
-					<Bootstrap_FormInput name="inputEmail" type="email" value={this.state.email} onChange={this.onChangeEmail}/>
+					<Bootstrap_FormInput name="inputEmail" type="email" value={this.state.email} on_change={this.onChangeEmail}/>
 				</Bootstrap_FormGroup>
-				<input type="password" value={this.state.api_password} onChange={this.onChangePassword} />
+				<Bootstrap_FormGroup>
+					<Bootstrap_FormLabel htmlFor="inputPwd" label="API Password" />
+					<Bootstrap_FormInput name="inputPwd" type="password" value={this.state.api_password} on_change={this.onChangePassword}/>
+				</Bootstrap_FormGroup>
 				<button type="button" onClick={this.onClickLoginBtn}>Login</button>
 			</div>
 		)

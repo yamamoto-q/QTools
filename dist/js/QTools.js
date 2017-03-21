@@ -21162,9 +21162,9 @@ module.exports = React.createClass({
 			classes = classes.concat(this.props.className.split(" "));
 		}
 
-		console.log(this.props.onChenge);
+		console.log(this.props.on_change);
 
-		return React.createElement("input", { name: this.props.name, type: this.props.type, value: this.props.value, onChange: this.props.onChenge, className: classes.join(" ") });
+		return React.createElement("input", { name: this.props.name, type: this.props.type, value: this.props.value, onChange: this.props.on_change, className: classes.join(" ") });
 	}
 });
 
@@ -21836,15 +21836,20 @@ module.exports = React.createClass({
 				Bootstrap_FormGroup,
 				null,
 				React.createElement(Bootstrap_FormLabel, { htmlFor: 'inputContextPath', label: 'Context Path' }),
-				React.createElement(Bootstrap_FormInput, { name: 'inputContextPath', type: 'text', value: this.state.context_path, onChange: this.onChangeContext })
+				React.createElement(Bootstrap_FormInput, { name: 'inputContextPath', type: 'text', value: this.state.context_path, on_change: this.onChangeContext })
 			),
 			React.createElement(
 				Bootstrap_FormGroup,
 				null,
 				React.createElement(Bootstrap_FormLabel, { htmlFor: 'inputEmail', label: 'Email' }),
-				React.createElement(Bootstrap_FormInput, { name: 'inputEmail', type: 'email', value: this.state.email, onChange: this.onChangeEmail })
+				React.createElement(Bootstrap_FormInput, { name: 'inputEmail', type: 'email', value: this.state.email, on_change: this.onChangeEmail })
 			),
-			React.createElement('input', { type: 'password', value: this.state.api_password, onChange: this.onChangePassword }),
+			React.createElement(
+				Bootstrap_FormGroup,
+				null,
+				React.createElement(Bootstrap_FormLabel, { htmlFor: 'inputPwd', label: 'API Password' }),
+				React.createElement(Bootstrap_FormInput, { name: 'inputPwd', type: 'password', value: this.state.api_password, on_change: this.onChangePassword })
+			),
 			React.createElement(
 				'button',
 				{ type: 'button', onClick: this.onClickLoginBtn },
