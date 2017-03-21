@@ -55,7 +55,13 @@ module.exports = React.createClass({
 			return (<div>splash</div>);
 
 		}else if(this.state.showAuthInput){
-			return (<InputAuthForm />);
+			return (
+				<div className="container-fluid">
+					<div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+						<InputAuthForm />
+					</div>
+				</div>
+			);
 
 		}else if(this.state.showLogining){
 			return (<div>Login...</div>);

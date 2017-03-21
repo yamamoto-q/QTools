@@ -21971,7 +21971,15 @@ module.exports = React.createClass({
 				'splash'
 			);
 		} else if (this.state.showAuthInput) {
-			return React.createElement(InputAuthForm, null);
+			return React.createElement(
+				'div',
+				{ className: 'container-fluid' },
+				React.createElement(
+					'div',
+					{ className: 'col-sm-12 col-md-12 col-lg-12 col-xl-12' },
+					React.createElement(InputAuthForm, null)
+				)
+			);
 		} else if (this.state.showLogining) {
 			return React.createElement(
 				'div',
