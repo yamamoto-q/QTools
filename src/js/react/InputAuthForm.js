@@ -3,6 +3,7 @@
 var React = require('react');
 var _Login = require('./Controller_Login.js');
 var Bootstrap_FormGroup = require('./Bootstrap_FormGroup.js');
+var Bootstrap_FormLabel = require('./Bootstrap_FormLabel.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -53,12 +54,8 @@ module.exports = React.createClass({
 			React.createElement(
 				Bootstrap_FormGroup,
 				null,
-				React.createElement(
-					'label',
-					{ htmlFor: 'inpurContextPath' },
-					'Context Path'
-				),
-				React.createElement('input', { id: 'inpurContextPath', type: 'text', value: this.state.context_path, onChange: this.onChangeContext })
+				React.createElement(Bootstrap_FormLabel, { htmlFor: 'inputContextPath', label: 'Context Path' }),
+				React.createElement('input', { id: 'inputContextPath', type: 'text', value: this.state.context_path, onChange: this.onChangeContext })
 			),
 			React.createElement('input', { type: 'email', value: this.state.email, onChange: this.onChangeEmail }),
 			React.createElement('input', { type: 'password', value: this.state.api_password, onChange: this.onChangePassword }),
