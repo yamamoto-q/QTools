@@ -52,7 +52,10 @@ module.exports = React.createClass({
 					<Bootstrap_FormLabel htmlFor="inputContextPath" label="Context Path" />
 					<Bootstrap_FormInput name="inputContextPath" type="text" value={this.state.context_path} onChange={this.onChangeContext}/>
 				</Bootstrap_FormGroup>
-				<input type="email" value={this.state.email} onChange={this.onChangeEmail} />
+				<Bootstrap_FormGroup>
+					<Bootstrap_FormLabel htmlFor="inputEmail" label="Email" />
+					<Bootstrap_FormInput name="inputEmail" type="email" value={this.state.email} onChange={this.onChangeEmail}/>
+				</Bootstrap_FormGroup>
 				<input type="password" value={this.state.api_password} onChange={this.onChangePassword} />
 				<button type="button" onClick={this.onClickLoginBtn}>Login</button>
 			</div>

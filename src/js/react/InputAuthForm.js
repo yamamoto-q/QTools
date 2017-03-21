@@ -58,7 +58,12 @@ module.exports = React.createClass({
 				React.createElement(Bootstrap_FormLabel, { htmlFor: 'inputContextPath', label: 'Context Path' }),
 				React.createElement(Bootstrap_FormInput, { name: 'inputContextPath', type: 'text', value: this.state.context_path, onChange: this.onChangeContext })
 			),
-			React.createElement('input', { type: 'email', value: this.state.email, onChange: this.onChangeEmail }),
+			React.createElement(
+				Bootstrap_FormGroup,
+				null,
+				React.createElement(Bootstrap_FormLabel, { htmlFor: 'inputEmail', label: 'Email' }),
+				React.createElement(Bootstrap_FormInput, { name: 'inputEmail', type: 'email', value: this.state.email, onChange: this.onChangeEmail })
+			),
 			React.createElement('input', { type: 'password', value: this.state.api_password, onChange: this.onChangePassword }),
 			React.createElement(
 				'button',
