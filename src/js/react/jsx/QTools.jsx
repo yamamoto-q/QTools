@@ -59,8 +59,8 @@ module.exports = React.createClass({
 
 		}else if(this.state.showAuthInput){
 			return (
-				<div className="height-fix" style={{display:"table"}}>
-					<div className="height-fix" style={{display:"table-cell"}}>
+				<div className="height-fix" style={{display:"table", width:"100%"}}>
+					<div className="height-fix" style={{display:"table-cell", verticalAlign:"middle"}}>
 						<Bootstrap_Container>
 							<Bootstrap_Row>
 								<Bootstrap_Col>

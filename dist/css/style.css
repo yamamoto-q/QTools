@@ -1,5 +1,6 @@
 html,
 body,
+#App,
 .height-fix {
   height: 100%;
 }

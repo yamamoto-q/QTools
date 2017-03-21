@@ -38,7 +38,6 @@ var QTools = require('./QTools.js');
 
 	function fireRender() {
 		isFiredRender = true;
-		$("#APP").addClass('height-fix');
 
 		ReactDOM.render(React.createElement(
 			QTools,
