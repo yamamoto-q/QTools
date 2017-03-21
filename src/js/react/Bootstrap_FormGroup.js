@@ -6,7 +6,7 @@ module.exports = React.createClass({
 
 	render: function render() {
 		var classes = ["form-group"];
-		if (this.ptops.className) {
+		if (typeof this.ptops.className !== "undefined") {
 			classes = classes.concat(this.ptops.className.split(" "));
 		}
 		return React.createElement(
