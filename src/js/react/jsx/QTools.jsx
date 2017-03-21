@@ -4,6 +4,7 @@ var InputAuthForm = require('./InputAuthForm.js');
 var Header = require('./Header.js');
 var Bootstrap_Container = require('./Bootstrap_Container.js');
 var Bootstrap_Row = require('./Bootstrap_Row.js');
+var Bootstrap_Col = require('./Bootstrap_Col.js');
 
 module.exports = React.createClass({
 
@@ -58,11 +59,11 @@ module.exports = React.createClass({
 
 		}else if(this.state.showAuthInput){
 			return (
-				<Bootstrap_Container>
-					<Bootstrap_Row>
-						<div className="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+				<Bootstrap_Container className="height-fix">
+					<Bootstrap_Row className="height-fix">
+						<Bootstrap_Col className="height-fix">
 							<InputAuthForm />
-						</div>
+						</Bootstrap_Col>
 					</Bootstrap_Row>
 				</Bootstrap_Container>
 			);

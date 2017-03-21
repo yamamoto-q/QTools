@@ -21085,7 +21085,7 @@ var QTools = require('./QTools.js');
 	};
 })(window.jQuery);
 
-},{"./QTools.js":195,"react":180,"react-dom":29}],182:[function(require,module,exports){
+},{"./QTools.js":196,"react":180,"react-dom":29}],182:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -21129,7 +21129,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Questetra_API.js":192,"react":180}],183:[function(require,module,exports){
+},{"./Controller_Questetra_API.js":193,"react":180}],183:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -21161,10 +21161,28 @@ module.exports = React.createClass({
 
 		var classes = [];
 
-		if (typeof this.props.fluid !== "undefined" && !this.props.fluid && this.props.fluid == "false") {
-			classes.push("container");
+		if (typeof this.props.sm !== "undefined") {
+			classes.push("col-sm-" + this.props.sm);
 		} else {
-			classes.push("container-fluid");
+			classes.push("col-sm-12");
+		}
+
+		if (typeof this.props.md !== "undefined") {
+			classes.push("col-md-" + this.props.md);
+		} else {
+			classes.push("col-md-12");
+		}
+
+		if (typeof this.props.lg !== "undefined") {
+			classes.push("col-lg-" + this.props.lg);
+		} else {
+			classes.push("col-lg-12");
+		}
+
+		if (typeof this.props.xl !== "undefined") {
+			classes.push("col-xl-" + this.props.xl);
+		} else {
+			classes.push("col-xl-12");
 		}
 
 		if (this.props.className) {
@@ -21187,6 +21205,35 @@ module.exports = React.createClass({
 	displayName: "exports",
 
 	render: function render() {
+
+		var classes = [];
+
+		if (typeof this.props.fluid !== "undefined" && !this.props.fluid && this.props.fluid == "false") {
+			classes.push("container");
+		} else {
+			classes.push("container-fluid");
+		}
+
+		if (this.props.className) {
+			classes = classes.concat(this.props.className.split(" "));
+		}
+
+		return React.createElement(
+			"div",
+			{ className: classes.join(" ") },
+			this.props.children
+		);
+	}
+});
+
+},{"react":180}],186:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+module.exports = React.createClass({
+	displayName: "exports",
+
+	render: function render() {
 		var classes = ["form-group"];
 		if (this.props.className) {
 			classes = classes.concat(this.props.className.split(" "));
@@ -21199,7 +21246,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":180}],186:[function(require,module,exports){
+},{"react":180}],187:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -21218,7 +21265,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":180}],187:[function(require,module,exports){
+},{"react":180}],188:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -21239,7 +21286,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":180}],188:[function(require,module,exports){
+},{"react":180}],189:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -21260,7 +21307,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":180}],189:[function(require,module,exports){
+},{"react":180}],190:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -21281,7 +21328,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":180}],190:[function(require,module,exports){
+},{"react":180}],191:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -21479,7 +21526,7 @@ module.exports = {
     Store: Store
 }
 
-},{"events":1,"flux":25,"object-assign":27}],191:[function(require,module,exports){
+},{"events":1,"flux":25,"object-assign":27}],192:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -21662,7 +21709,7 @@ _QApi.Store.addLoginErrorListener(function () {
 setTimeout(function(){
 	_Strage.Action.getAuthentication();
 }, 1000);
-},{"./Contloller_Strage.js":190,"./Controller_Questetra_API.js":192,"events":1,"flux":25,"object-assign":27}],192:[function(require,module,exports){
+},{"./Contloller_Strage.js":191,"./Controller_Questetra_API.js":193,"events":1,"flux":25,"object-assign":27}],193:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -21807,7 +21854,7 @@ module.exports = {
     Store: Store
 }
 
-},{"./Questetra_API.js":196,"events":1,"flux":25,"object-assign":27}],193:[function(require,module,exports){
+},{"./Questetra_API.js":197,"events":1,"flux":25,"object-assign":27}],194:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -21869,7 +21916,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Avater.js":182,"./Controller_Login.js":191,"./Controller_Questetra_API.js":192,"react":180}],194:[function(require,module,exports){
+},{"./Avater.js":182,"./Controller_Login.js":192,"./Controller_Questetra_API.js":193,"react":180}],195:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -21958,7 +22005,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Button.js":183,"./Bootstrap_FormGroup.js":185,"./Bootstrap_FormInput.js":186,"./Bootstrap_FormLabel.js":187,"./Bootstrap_InputGroup.js":188,"./Controller_Login.js":191,"react":180}],195:[function(require,module,exports){
+},{"./Bootstrap_Button.js":183,"./Bootstrap_FormGroup.js":186,"./Bootstrap_FormInput.js":187,"./Bootstrap_FormLabel.js":188,"./Bootstrap_InputGroup.js":189,"./Controller_Login.js":192,"react":180}],196:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -21967,6 +22014,7 @@ var InputAuthForm = require('./InputAuthForm.js');
 var Header = require('./Header.js');
 var Bootstrap_Container = require('./Bootstrap_Container.js');
 var Bootstrap_Row = require('./Bootstrap_Row.js');
+var Bootstrap_Col = require('./Bootstrap_Col.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -22025,13 +22073,13 @@ module.exports = React.createClass({
 		} else if (this.state.showAuthInput) {
 			return React.createElement(
 				Bootstrap_Container,
-				null,
+				{ className: 'height-fix' },
 				React.createElement(
 					Bootstrap_Row,
-					null,
+					{ className: 'height-fix' },
 					React.createElement(
-						'div',
-						{ className: 'col-sm-12 col-md-12 col-lg-12 col-xl-12' },
+						Bootstrap_Col,
+						{ className: 'height-fix' },
 						React.createElement(InputAuthForm, null)
 					)
 				)
@@ -22062,7 +22110,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Container.js":184,"./Bootstrap_Row.js":189,"./Controller_Login.js":191,"./Header.js":193,"./InputAuthForm.js":194,"react":180}],196:[function(require,module,exports){
+},{"./Bootstrap_Col.js":184,"./Bootstrap_Container.js":185,"./Bootstrap_Row.js":190,"./Controller_Login.js":192,"./Header.js":194,"./InputAuthForm.js":195,"react":180}],197:[function(require,module,exports){
 
 
 var QuestetraAPI = function(){
