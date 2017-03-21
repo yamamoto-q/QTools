@@ -7,7 +7,7 @@ module.exports = React.createClass({
 		}
 
 		return (
-			<input name={this.props.name} type={this.props.type} value={this.props.value} onChange={this.props.onChenge} />
+			<input name={this.props.name} type={this.props.type} value={this.props.value} onChange={this.props.onChenge} className={classes.join(" ")}/>
 		);
 	}
 });

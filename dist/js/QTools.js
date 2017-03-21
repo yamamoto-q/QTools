@@ -21162,7 +21162,7 @@ module.exports = React.createClass({
 			classes = classes.concat(this.props.className.split(" "));
 		}
 
-		return React.createElement("input", { name: this.props.name, type: this.props.type, value: this.props.value, onChange: this.props.onChenge });
+		return React.createElement("input", { name: this.props.name, type: this.props.type, value: this.props.value, onChange: this.props.onChenge, className: classes.join(" ") });
 	}
 });
 
