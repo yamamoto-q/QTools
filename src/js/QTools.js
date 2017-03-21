@@ -21138,8 +21138,8 @@ module.exports = React.createClass({
 
 	render: function render() {
 		var classes = ["form-group"];
-		if (typeof this.ptops.className !== "undefined") {
-			classes = classes.concat(this.ptops.className.split(" "));
+		if (this.props.className) {
+			classes = classes.concat(this.props.className.split(" "));
 		}
 		return React.createElement(
 			"div",
