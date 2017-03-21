@@ -22065,7 +22065,7 @@ module.exports = React.createClass({
 	},
 	render: function render() {
 		if (this.state.showSplash) {
-			$("#App").addClass('splash');
+			$("body").removeClass('authentication').removeClass('logining').removeClass('logined').addClass('splash');
 
 			return React.createElement(
 				'div',
@@ -22073,7 +22073,7 @@ module.exports = React.createClass({
 				'splash'
 			);
 		} else if (this.state.showAuthInput) {
-			$("#App").addClass('authentication');
+			$("body").removeClass('logining').removeClass('logined').removeClass('splash').addClass('authentication');
 
 			return React.createElement(
 				'div',
@@ -22097,7 +22097,7 @@ module.exports = React.createClass({
 				)
 			);
 		} else if (this.state.showLogining) {
-			$("#App").addClass('logining');
+			$("body").removeClass('authentication').removeClass('logined').removeClass('splash').addClass('logining');
 
 			return React.createElement(
 				'div',
@@ -22105,7 +22105,7 @@ module.exports = React.createClass({
 				'Login...'
 			);
 		} else if (this.state.loginSuccess) {
-			$("#App").addClass('logined');
+			$("body").removeClass('authentication').removeClass('logining').removeClass('splash').addClass('logined');
 
 			return React.createElement(
 				'div',

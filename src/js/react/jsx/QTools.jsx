@@ -55,12 +55,20 @@ module.exports = React.createClass({
 	},
 	render: function() {
 		if(this.state.showSplash){
-			$("#App").addClass('splash');
+			$("body")
+				.removeClass('authentication')
+				.removeClass('logining')
+				.removeClass('logined')
+				.addClass('splash');
 
 			return (<div>splash</div>);
 
 		}else if(this.state.showAuthInput){
-			$("#App").addClass('authentication');
+			$("body")
+				.removeClass('logining')
+				.removeClass('logined')
+				.removeClass('splash')
+				.addClass('authentication');
 
 			return (
 				<div className="height-fix" style={{display:"table", width:"100%"}}>
@@ -77,12 +85,20 @@ module.exports = React.createClass({
 			);
 
 		}else if(this.state.showLogining){
-			$("#App").addClass('logining');
+			$("body")
+				.removeClass('authentication')
+				.removeClass('logined')
+				.removeClass('splash')
+				.addClass('logining');
 
 			return (<div>Login...</div>);
 
 		}else if(this.state.loginSuccess){
-			$("#App").addClass('logined');
+			$("body")
+				.removeClass('authentication')
+				.removeClass('logining')
+				.removeClass('splash')
+				.addClass('logined');
 
 			return (
 				<div>
