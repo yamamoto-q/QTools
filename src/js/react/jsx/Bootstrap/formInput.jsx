@@ -1,13 +1,13 @@
 var React = require('react');
 module.exports = React.createClass({
 	render: function() {
-		var classes = [];
+		var classes = ["form-control"];
 		if(this.props.className){
 			classes = classes.concat(this.props.className.split(" "));
 		}
 
 		return (
-			<label className={classes} htmlFor={this.props.htmlFor}>{this.props.label}</label>
+			<input name={this.props.name} type={this.props.type} value={this.props.value} onChange={this.props.onChenge} />
 		);
 	}
 });
