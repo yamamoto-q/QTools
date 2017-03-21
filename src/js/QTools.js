@@ -22065,12 +22065,16 @@ module.exports = React.createClass({
 	},
 	render: function render() {
 		if (this.state.showSplash) {
+			$("#App").addClass('splash');
+
 			return React.createElement(
 				'div',
 				null,
 				'splash'
 			);
 		} else if (this.state.showAuthInput) {
+			$("#App").addClass('authentication');
+
 			return React.createElement(
 				'div',
 				{ className: 'height-fix', style: { display: "table", width: "100%" } },
@@ -22093,12 +22097,16 @@ module.exports = React.createClass({
 				)
 			);
 		} else if (this.state.showLogining) {
+			$("#App").addClass('logining');
+
 			return React.createElement(
 				'div',
 				null,
 				'Login...'
 			);
 		} else if (this.state.loginSuccess) {
+			$("#App").addClass('logined');
+
 			return React.createElement(
 				'div',
 				null,

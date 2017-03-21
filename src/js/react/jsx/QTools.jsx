@@ -55,9 +55,13 @@ module.exports = React.createClass({
 	},
 	render: function() {
 		if(this.state.showSplash){
+			$("#App").addClass('splash');
+
 			return (<div>splash</div>);
 
 		}else if(this.state.showAuthInput){
+			$("#App").addClass('authentication');
+
 			return (
 				<div className="height-fix" style={{display:"table", width:"100%"}}>
 					<div className="height-fix" style={{display:"table-cell", verticalAlign:"middle"}}>
@@ -73,9 +77,13 @@ module.exports = React.createClass({
 			);
 
 		}else if(this.state.showLogining){
+			$("#App").addClass('logining');
+
 			return (<div>Login...</div>);
 
 		}else if(this.state.loginSuccess){
+			$("#App").addClass('logined');
+
 			return (
 				<div>
 					<Header/>
