@@ -22073,10 +22073,10 @@ module.exports = React.createClass({
 		} else if (this.state.showAuthInput) {
 			return React.createElement(
 				'div',
-				{ className: 'height-fix', style: { display: "table" } },
+				{ className: 'height-fix', style: { display: "table", width: "100%" } },
 				React.createElement(
 					'div',
-					{ className: 'height-fix', style: { display: "table-cell" } },
+					{ className: 'height-fix', style: { display: "table-cell", verticalAlign: "middle" } },
 					React.createElement(
 						Bootstrap_Container,
 						null,
