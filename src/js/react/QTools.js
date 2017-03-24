@@ -101,12 +101,26 @@ module.exports = React.createClass({
 
 			return React.createElement(
 				'div',
-				null,
+				{ className: 'height-fix' },
 				React.createElement(Header, null),
 				React.createElement(
 					'pre',
 					null,
 					JSON.stringify(this.state.loginedUser, null, 2)
+				),
+				React.createElement(
+					'div',
+					{ style: { position: absolute, backgroundColor: "white" } },
+					'hoge'
+				),
+				React.createElement(
+					'div',
+					{ style: { position: "absolute", backgroundColor: "rgba(0,0,0,0.5)", right: "0", top: "0", left: "0", bottom: "0", zIndex: "999" } },
+					React.createElement(
+						'div',
+						{ style: { position: "absolute", backgroundColor: "white", width: "300px", top: "0", left: "0", bottom: "0" } },
+						'hoge'
+					)
 				)
 			);
 		}

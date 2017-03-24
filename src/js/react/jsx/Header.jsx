@@ -15,6 +15,9 @@ module.exports = React.createClass({
 			name:loginedUser.name
 		}
 	},
+	onClickMenuIcon:function(e){
+		e.preventDefault();
+	},
 	onClickLogout:function(){
 		_Login.Action.logout();
 	},
@@ -22,7 +25,7 @@ module.exports = React.createClass({
 		return (
 			<div id="header">
 				<div className="bar-left">
-					<div className="bar-item"><span className="icon icon-menu"></span></div>
+					<div className="bar-item"><span className="icon icon-menu" onClick={this.onClickMenuIcon}></span></div>
 				</div>
 				<div className="bar-right">
 					<div className="bar-item dropdown">
