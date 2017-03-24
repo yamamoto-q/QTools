@@ -32,7 +32,7 @@ module.exports = React.createClass({
 				<div id="sideMenu" className={modalClasses.join(" ")} style={modalStyle}>
 					<div style={{position:"absolute", backgroundColor:"white", width:"300px", top:"0", left:"0", bottom:"0"}}>
 						hoge
-						{JSON.stringify(this.state, null, 2)}
+						35:{JSON.stringify(this.state, null, 2)}
 					</div>
 				</div>
 			</div>
