@@ -44,6 +44,16 @@ body.logining {
   height: 32px;
   width: 32px;
 }
+#sideMenu.sideMenu-modal {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+  transition: background-color 1s linear 0;
+}
 #sideMenu.sideMenu-modal.sideMenu-modal-show {
   display: block;
 }

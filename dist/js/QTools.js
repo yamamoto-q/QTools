@@ -22053,9 +22053,6 @@ module.exports = React.createClass({
 		} else {
 			modalClasses.push("sideMenu-modal-hide");
 		}
-		var modalStyle = {
-			position: "absolute", backgroundColor: "rgba(0,0,0,0.5)", right: "0", top: "0", left: "0", bottom: "0", zIndex: "999"
-		};
 
 		return React.createElement(
 			'div',
@@ -22068,7 +22065,7 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ id: 'sideMenu', className: modalClasses.join(" "), style: modalStyle },
+				{ id: 'sideMenu', className: modalClasses.join(" ") },
 				React.createElement(
 					'div',
 					{ style: { position: "absolute", backgroundColor: "white", width: "300px", top: "0", left: "0", bottom: "0" } },
