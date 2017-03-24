@@ -8,10 +8,10 @@ module.exports = React.createClass({
 	displayName: 'exports',
 
 	onClickMenuIcon: function onClickMenuIcon() {
-		$("#sideMenu.sideMenu-modal").addClass("sideMenu-modal-show").removeClass("sideMenu-modal-hide");
+		$("#sideMenu.sideMenu-modal").show(); //.addClass("sideMenu-modal-show").removeClass("sideMenu-modal-hide");
 	},
 	hideSideMenu: function hideSideMenu() {
-		$("#sideMenu.sideMenu-modal").removeClass("sideMenu-modal-show").addClass("sideMenu-modal-hide");
+		$("#sideMenu.sideMenu-modal").hide(); //removeClass("sideMenu-modal-show").addClass("sideMenu-modal-hide");
 	},
 	render: function render() {
 		return React.createElement(

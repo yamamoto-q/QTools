@@ -4,10 +4,10 @@ var BuildInfo = require('./BuildInfo.js');
 
 module.exports = React.createClass({
 	onClickMenuIcon:function(){
-		$("#sideMenu.sideMenu-modal").addClass("sideMenu-modal-show").removeClass("sideMenu-modal-hide");
+		$("#sideMenu.sideMenu-modal").show();//.addClass("sideMenu-modal-show").removeClass("sideMenu-modal-hide");
 	},
 	hideSideMenu:function(){
-		$("#sideMenu.sideMenu-modal").removeClass("sideMenu-modal-show").addClass("sideMenu-modal-hide");
+		$("#sideMenu.sideMenu-modal").hide();//removeClass("sideMenu-modal-show").addClass("sideMenu-modal-hide");
 	},
 	render: function() {
 		return (
