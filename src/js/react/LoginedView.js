@@ -2,6 +2,7 @@
 
 var React = require('react');
 var Header = require('./Header.js');
+var BuildInfo = require('./BuildInfo.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -42,7 +43,8 @@ module.exports = React.createClass({
 					'div',
 					{ style: { position: "absolute", backgroundColor: "white", width: "300px", top: "0", left: "0", bottom: "0" } },
 					'hoge 35:',
-					JSON.stringify(this.state, null, 2)
+					JSON.stringify(this.state, null, 2),
+					BuildInfo.VERSION
 				)
 			)
 		);

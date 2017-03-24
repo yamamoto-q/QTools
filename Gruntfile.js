@@ -1,5 +1,16 @@
 module.exports = function(grunt) {
     grunt.initConfig({
+        replace: {
+            version: {
+                src: ['src/js/react/_Template_BuildInfo.js'],
+                dest: 'src/js/react/BuildInfo.js',
+                overwrite: false,
+                replacements: [{
+                    from: "{version}",
+                    to: "<%= grunt.template.today('yyyy.mm.dd HH:MM') %>"
+                }]
+            }
+        },
         copy: {
             html: {
                 files: [
@@ -61,6 +72,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-contrib-less");
     grunt.loadNpmTasks('grunt-babel');
     grunt.loadNpmTasks('grunt-browserify');
+    grunt.loadNpmTasks("grunt-text-replace");
 
     grunt.registerTask('_Dev', ['copy:html', 'less', 'babel', 'browserify', 'copy:js']);
 };

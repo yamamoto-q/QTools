@@ -21094,7 +21094,7 @@ var QTools = require('./QTools.js');
 	};
 })(window.jQuery);
 
-},{"./QTools.js":197,"react":180,"react-dom":29}],182:[function(require,module,exports){
+},{"./QTools.js":198,"react":180,"react-dom":29}],182:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -21138,7 +21138,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Questetra_API.js":193,"react":180}],183:[function(require,module,exports){
+},{"./Controller_Questetra_API.js":194,"react":180}],183:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -21338,6 +21338,10 @@ module.exports = React.createClass({
 });
 
 },{"react":180}],191:[function(require,module,exports){
+module.exports = {
+    VERSION: "2017.03.24 17:04"
+}
+},{}],192:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -21535,7 +21539,7 @@ module.exports = {
     Store: Store
 }
 
-},{"events":1,"flux":25,"object-assign":27}],192:[function(require,module,exports){
+},{"events":1,"flux":25,"object-assign":27}],193:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -21718,7 +21722,7 @@ _QApi.Store.addLoginErrorListener(function () {
 setTimeout(function(){
 	_Strage.Action.getAuthentication();
 }, 1000);
-},{"./Contloller_Strage.js":191,"./Controller_Questetra_API.js":193,"events":1,"flux":25,"object-assign":27}],193:[function(require,module,exports){
+},{"./Contloller_Strage.js":192,"./Controller_Questetra_API.js":194,"events":1,"flux":25,"object-assign":27}],194:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -21863,7 +21867,7 @@ module.exports = {
     Store: Store
 }
 
-},{"./Questetra_API.js":198,"events":1,"flux":25,"object-assign":27}],194:[function(require,module,exports){
+},{"./Questetra_API.js":199,"events":1,"flux":25,"object-assign":27}],195:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -21937,7 +21941,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Avater.js":182,"./Controller_Login.js":192,"./Controller_Questetra_API.js":193,"react":180}],195:[function(require,module,exports){
+},{"./Avater.js":182,"./Controller_Login.js":193,"./Controller_Questetra_API.js":194,"react":180}],196:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -22025,11 +22029,12 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Button.js":183,"./Bootstrap_FormGroup.js":186,"./Bootstrap_FormInput.js":187,"./Bootstrap_FormLabel.js":188,"./Bootstrap_InputGroup.js":189,"./Controller_Login.js":192,"react":180}],196:[function(require,module,exports){
+},{"./Bootstrap_Button.js":183,"./Bootstrap_FormGroup.js":186,"./Bootstrap_FormInput.js":187,"./Bootstrap_FormLabel.js":188,"./Bootstrap_InputGroup.js":189,"./Controller_Login.js":193,"react":180}],197:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var Header = require('./Header.js');
+var BuildInfo = require('./BuildInfo.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -22070,14 +22075,15 @@ module.exports = React.createClass({
 					'div',
 					{ style: { position: "absolute", backgroundColor: "white", width: "300px", top: "0", left: "0", bottom: "0" } },
 					'hoge 35:',
-					JSON.stringify(this.state, null, 2)
+					JSON.stringify(this.state, null, 2),
+					BuildInfo.VERSION
 				)
 			)
 		);
 	}
 });
 
-},{"./Header.js":194,"react":180}],197:[function(require,module,exports){
+},{"./BuildInfo.js":191,"./Header.js":195,"react":180}],198:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -22189,7 +22195,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Col.js":184,"./Bootstrap_Container.js":185,"./Bootstrap_Row.js":190,"./Controller_Login.js":192,"./InputAuthForm.js":195,"./LoginedView.js":196,"react":180}],198:[function(require,module,exports){
+},{"./Bootstrap_Col.js":184,"./Bootstrap_Container.js":185,"./Bootstrap_Row.js":190,"./Controller_Login.js":193,"./InputAuthForm.js":196,"./LoginedView.js":197,"react":180}],199:[function(require,module,exports){
 
 
 var QuestetraAPI = function(){
