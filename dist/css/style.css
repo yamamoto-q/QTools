@@ -44,6 +44,12 @@ body.logining {
   height: 32px;
   width: 32px;
 }
+#sideMenu.sideMenu-modal.sideMenu-modal-show {
+  display: block;
+}
+#sideMenu.sideMenu-modal.sideMenu-modal-hide {
+  display: none;
+}
 @font-face {
   font-family: 'quater-inch';
   src: url('quater-inch.ttf') format('truetype');

@@ -22066,7 +22066,7 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ id: 'sideMenu', 'class': modalClasses.join(), style: modalStyle },
+				{ id: 'sideMenu', className: modalClasses.join(), style: modalStyle },
 				React.createElement(
 					'div',
 					{ style: { position: "absolute", backgroundColor: "white", width: "300px", top: "0", left: "0", bottom: "0" } },
