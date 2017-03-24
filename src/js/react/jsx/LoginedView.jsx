@@ -4,11 +4,12 @@ var BuildInfo = require('./BuildInfo.js');
 
 module.exports = React.createClass({
 	onClickMenuIcon:function(){
-		$("#sideMenu.sideMenu-modal").show(0,function(){
+		$("#sideMenu.sideMenu-modal").show(50,function(){
+			console.log("showed");
 			$(this).animate({
 				backgroundColor: "rgba(0,0,0,0.5)",
 			},1000, function() {
-
+				console.log("bg");
 			});
 		})
 	},
