@@ -21,6 +21,7 @@ module.exports = React.createClass({
 	},
 	onClickMenuIcon: function onClickMenuIcon(e) {
 		e.preventDefault();
+		this.props.on_click_menu_icon();
 	},
 	onClickLogout: function onClickLogout() {
 		_Login.Action.logout();

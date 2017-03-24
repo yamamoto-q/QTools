@@ -21094,51 +21094,7 @@ var QTools = require('./QTools.js');
 	};
 })(window.jQuery);
 
-},{"./QTools.js":196,"react":180,"react-dom":29}],182:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var _QApi = require('./Controller_Questetra_API.js');
-
-module.exports = React.createClass({
-	displayName: 'exports',
-
-	getInitialState: function getInitialState() {
-		var qUserId = this.props.quser_id;
-		return {
-			qUserId: qUserId,
-			blob: null
-		};
-	},
-
-	componentDidMount: function componentDidMount() {
-		var self = this;
-
-		_QApi.Store.addOnGetAvaterListener(this.state.qUserId, function () {
-			if (self.isMounted()) {
-				var avaterBlob = _QApi.Store.getAvater(self.state.qUserId);
-				self.setState({
-					blob: avaterBlob
-				});
-			}
-		});
-
-		_QApi.Action.getAvater(this.state.qUserId);
-	},
-
-	render: function render() {
-		if (this.state.blob) {
-			var style = {
-				backgroundImage: "url(" + this.state.blob + ")"
-			};
-			return React.createElement('div', { className: 'avater', style: style });
-		} else {
-			return React.createElement('div', { className: 'avater' });
-		}
-	}
-});
-
-},{"./Controller_Questetra_API.js":193,"react":180}],183:[function(require,module,exports){
+},{"./QTools.js":195,"react":180,"react-dom":29}],182:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -21159,7 +21115,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":180}],184:[function(require,module,exports){
+},{"react":180}],183:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -21206,7 +21162,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":180}],185:[function(require,module,exports){
+},{"react":180}],184:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -21235,7 +21191,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":180}],186:[function(require,module,exports){
+},{"react":180}],185:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -21255,7 +21211,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":180}],187:[function(require,module,exports){
+},{"react":180}],186:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -21274,7 +21230,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":180}],188:[function(require,module,exports){
+},{"react":180}],187:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -21295,7 +21251,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":180}],189:[function(require,module,exports){
+},{"react":180}],188:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -21316,7 +21272,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":180}],190:[function(require,module,exports){
+},{"react":180}],189:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -21337,7 +21293,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":180}],191:[function(require,module,exports){
+},{"react":180}],190:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -21535,7 +21491,7 @@ module.exports = {
     Store: Store
 }
 
-},{"events":1,"flux":25,"object-assign":27}],192:[function(require,module,exports){
+},{"events":1,"flux":25,"object-assign":27}],191:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -21718,7 +21674,7 @@ _QApi.Store.addLoginErrorListener(function () {
 setTimeout(function(){
 	_Strage.Action.getAuthentication();
 }, 1000);
-},{"./Contloller_Strage.js":191,"./Controller_Questetra_API.js":193,"events":1,"flux":25,"object-assign":27}],193:[function(require,module,exports){
+},{"./Contloller_Strage.js":190,"./Controller_Questetra_API.js":192,"events":1,"flux":25,"object-assign":27}],192:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -21863,80 +21819,7 @@ module.exports = {
     Store: Store
 }
 
-},{"./Questetra_API.js":197,"events":1,"flux":25,"object-assign":27}],194:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var _Login = require('./Controller_Login.js');
-var _QApi = require('./Controller_Questetra_API.js');
-var Avater = require('./Avater.js');
-
-module.exports = React.createClass({
-	displayName: 'exports',
-
-	getInitialState: function getInitialState() {
-		var loginedUser = _Login.Store.getLoginedUser();
-
-		_QApi.Action.getAvater(loginedUser.id);
-
-		return {
-			id: loginedUser.id,
-			mail: loginedUser.mail,
-			name: loginedUser.name
-		};
-	},
-	onClickMenuIcon: function onClickMenuIcon(e) {
-		e.preventDefault();
-	},
-	onClickLogout: function onClickLogout() {
-		_Login.Action.logout();
-	},
-	render: function render() {
-		return React.createElement(
-			'div',
-			{ id: 'header' },
-			React.createElement(
-				'div',
-				{ className: 'bar-left' },
-				React.createElement(
-					'div',
-					{ className: 'bar-item' },
-					React.createElement('span', { className: 'icon icon-menu', onClick: this.onClickMenuIcon })
-				)
-			),
-			React.createElement(
-				'div',
-				{ className: 'bar-right' },
-				React.createElement(
-					'div',
-					{ className: 'bar-item dropdown' },
-					React.createElement(
-						'div',
-						{ 'data-toggle': 'dropdown' },
-						React.createElement(Avater, { quser_id: this.state.id })
-					),
-					React.createElement(
-						'div',
-						{ className: 'dropdown-menu dropdown-menu-right' },
-						React.createElement(
-							'h6',
-							{ className: 'dropdown-header' },
-							this.state.name
-						),
-						React.createElement('div', { className: 'dropdown-divider' }),
-						React.createElement(
-							'a',
-							{ className: 'dropdown-item', onClick: this.onClickLogout },
-							'Logout'
-						)
-					)
-				)
-			)
-		);
-	}
-});
-
-},{"./Avater.js":182,"./Controller_Login.js":192,"./Controller_Questetra_API.js":193,"react":180}],195:[function(require,module,exports){
+},{"./Questetra_API.js":196,"events":1,"flux":25,"object-assign":27}],193:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -22024,13 +21907,64 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Button.js":183,"./Bootstrap_FormGroup.js":186,"./Bootstrap_FormInput.js":187,"./Bootstrap_FormLabel.js":188,"./Bootstrap_InputGroup.js":189,"./Controller_Login.js":192,"react":180}],196:[function(require,module,exports){
+},{"./Bootstrap_Button.js":182,"./Bootstrap_FormGroup.js":185,"./Bootstrap_FormInput.js":186,"./Bootstrap_FormLabel.js":187,"./Bootstrap_InputGroup.js":188,"./Controller_Login.js":191,"react":180}],194:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+
+module.exports = React.createClass({
+	displayName: "exports",
+
+	getInitialState: function getInitialState() {
+		return {
+			sidemenuIsVisible: false
+		};
+	},
+	onClickMenuIcon: function onClickMenuIcon() {
+		this.setState({
+			sidemenuIsVisible: true
+		});
+	},
+	render: function render() {
+		var modalClasses = ["sideMenu-modal"];
+		if (this.state.sidemenuIsVisible) {
+			modalClasses.push("sideMenu-modal-show");
+		} else {
+			modalClasses.push("sideMenu-modal-hide");
+		}
+		var modalStyle = {
+			position: "absolute", backgroundColor: "rgba(0,0,0,0.5)", right: "0", top: "0", left: "0", bottom: "0", zIndex: "999"
+		};
+
+		return React.createElement(
+			"div",
+			{ className: "height-fix" },
+			React.createElement(Header, { on_click_menu_icon: this.onClickMenuIcon }),
+			React.createElement(
+				"pre",
+				null,
+				"Logined"
+			),
+			React.createElement(
+				"div",
+				{ id: "sideMenu", "class": modalClasses.join(), style: modalStyle },
+				React.createElement(
+					"div",
+					{ style: { position: "absolute", backgroundColor: "white", width: "300px", top: "0", left: "0", bottom: "0" } },
+					"hoge"
+				)
+			)
+		);
+	}
+});
+
+},{"react":180}],195:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var _Login = require('./Controller_Login.js');
 var InputAuthForm = require('./InputAuthForm.js');
-var Header = require('./Header.js');
+var LoginedView = require('./LoginedView.js');
 var Bootstrap_Container = require('./Bootstrap_Container.js');
 var Bootstrap_Row = require('./Bootstrap_Row.js');
 var Bootstrap_Col = require('./Bootstrap_Col.js');
@@ -22126,25 +22060,7 @@ module.exports = React.createClass({
 		} else if (this.state.loginSuccess) {
 			$("body").removeClass('authentication').removeClass('logining').removeClass('splash').addClass('logined');
 
-			return React.createElement(
-				'div',
-				{ className: 'height-fix' },
-				React.createElement(Header, null),
-				React.createElement(
-					'pre',
-					null,
-					JSON.stringify(this.state.loginedUser, null, 2)
-				),
-				React.createElement(
-					'div',
-					{ style: { position: "absolute", backgroundColor: "rgba(0,0,0,0.5)", right: "0", top: "0", left: "0", bottom: "0", zIndex: "999" } },
-					React.createElement(
-						'div',
-						{ style: { position: "absolute", backgroundColor: "white", width: "300px", top: "0", left: "0", bottom: "0" } },
-						'hoge'
-					)
-				)
-			);
+			return React.createElement(LoginedView, { className: 'height-fix' });
 		}
 		return React.createElement(
 			'div',
@@ -22154,7 +22070,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Col.js":184,"./Bootstrap_Container.js":185,"./Bootstrap_Row.js":190,"./Controller_Login.js":192,"./Header.js":194,"./InputAuthForm.js":195,"react":180}],197:[function(require,module,exports){
+},{"./Bootstrap_Col.js":183,"./Bootstrap_Container.js":184,"./Bootstrap_Row.js":189,"./Controller_Login.js":191,"./InputAuthForm.js":193,"./LoginedView.js":194,"react":180}],196:[function(require,module,exports){
 
 
 var QuestetraAPI = function(){

@@ -3,7 +3,7 @@
 var React = require('react');
 var _Login = require('./Controller_Login.js');
 var InputAuthForm = require('./InputAuthForm.js');
-var Header = require('./Header.js');
+var LoginedView = require('./LoginedView.js');
 var Bootstrap_Container = require('./Bootstrap_Container.js');
 var Bootstrap_Row = require('./Bootstrap_Row.js');
 var Bootstrap_Col = require('./Bootstrap_Col.js');
@@ -99,25 +99,7 @@ module.exports = React.createClass({
 		} else if (this.state.loginSuccess) {
 			$("body").removeClass('authentication').removeClass('logining').removeClass('splash').addClass('logined');
 
-			return React.createElement(
-				'div',
-				{ className: 'height-fix' },
-				React.createElement(Header, null),
-				React.createElement(
-					'pre',
-					null,
-					JSON.stringify(this.state.loginedUser, null, 2)
-				),
-				React.createElement(
-					'div',
-					{ style: { position: "absolute", backgroundColor: "rgba(0,0,0,0.5)", right: "0", top: "0", left: "0", bottom: "0", zIndex: "999" } },
-					React.createElement(
-						'div',
-						{ style: { position: "absolute", backgroundColor: "white", width: "300px", top: "0", left: "0", bottom: "0" } },
-						'hoge'
-					)
-				)
-			);
+			return React.createElement(LoginedView, { className: 'height-fix' });
 		}
 		return React.createElement(
 			'div',
