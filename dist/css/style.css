@@ -50,6 +50,9 @@ body.logining {
 #sideMenu.sideMenu-modal.sideMenu-modal-hide {
   display: none;
 }
+/**
+ * ICONS
+**/
 @font-face {
   font-family: 'quater-inch';
   src: url('quater-inch.ttf') format('truetype');
