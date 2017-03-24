@@ -21,7 +21,9 @@ module.exports = React.createClass({
 	render: function() {
 		return (
 			<div id="header">
-				<div className="bar-left"></div>
+				<div className="bar-left">
+					<div className="bar-item"><span className="icon icon-menu"></span></div>
+				</div>
 				<div className="bar-right">
 					<div className="bar-item dropdown">
 						<div data-toggle="dropdown"><Avater quser_id={this.state.id} /></div>

@@ -3,7 +3,8 @@ module.exports = function(grunt) {
         copy: {
             html: {
                 files: [
-                    { expand: true, cwd: 'src/html/', src: ['index.html'], dest: 'dist/', filter: 'isFile' }
+                    { expand: true, cwd: 'src/html/', src: ['index.html'], dest: 'dist/', filter: 'isFile' },
+                    { expand: true, cwd: 'src/binaly/', src: ['quater-inch.ttf'], dest: 'dist/css/', filter: 'isFile' }
                 ]
             },
             js: {

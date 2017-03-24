@@ -26,7 +26,15 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			{ id: 'header' },
-			React.createElement('div', { className: 'bar-left' }),
+			React.createElement(
+				'div',
+				{ className: 'bar-left' },
+				React.createElement(
+					'div',
+					{ className: 'bar-item' },
+					React.createElement('span', { className: 'icon icon-menu' })
+				)
+			),
 			React.createElement(
 				'div',
 				{ className: 'bar-right' },
