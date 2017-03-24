@@ -12,10 +12,12 @@ module.exports = React.createClass({
 		};
 	},
 	onClickMenuIcon: function onClickMenuIcon() {
+		console.log("onClickMenuIcon");
 		this.setState({
 			sidemenuIsVisible: true
 		});
 	},
+
 	render: function render() {
 		var modalClasses = ["sideMenu-modal"];
 		if (this.state.sidemenuIsVisible) {
@@ -42,7 +44,8 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ style: { position: "absolute", backgroundColor: "white", width: "300px", top: "0", left: "0", bottom: "0" } },
-					'hoge'
+					'hoge',
+					JSON.stringify(this.state, null, 2)
 				)
 			)
 		);
