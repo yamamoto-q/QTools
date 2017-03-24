@@ -21339,7 +21339,7 @@ module.exports = React.createClass({
 
 },{"react":180}],191:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.24 17:21"
+    VERSION: "2017.03.24 17:31"
 }
 },{}],192:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -22039,16 +22039,8 @@ var BuildInfo = require('./BuildInfo.js');
 module.exports = React.createClass({
 	displayName: 'exports',
 
-	getInitialState: function getInitialState() {
-		return {
-			sidemenuIsVisible: false
-		};
-	},
 	onClickMenuIcon: function onClickMenuIcon() {
-		console.log("onClickMenuIcon");
-		this.setState({
-			sidemenuIsVisible: true
-		});
+		$("#sideMenu.sideMenu-modal").addClass("sideMenu-modal-show").removeClass("sideMenu-modal-hide");
 	},
 
 	render: function render() {
@@ -22070,7 +22062,7 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ id: 'sideMenu', className: modalClasses.join(" ") },
+				{ id: 'sideMenu', className: 'sideMenu-modal sideMenu-modal-hide' },
 				React.createElement(
 					'div',
 					{ style: { position: "absolute", backgroundColor: "white", width: "300px", top: "0", left: "0", bottom: "0" } },
