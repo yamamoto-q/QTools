@@ -74,5 +74,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks("grunt-text-replace");
 
-    grunt.registerTask('_Dev', ['copy:html', 'less', 'babel', 'browserify', 'copy:js']);
+    grunt.registerTask('_Dev', ['replace:version', 'copy:html', 'less', 'babel', 'browserify', 'copy:js']);
 };
