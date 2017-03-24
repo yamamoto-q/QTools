@@ -12,13 +12,6 @@ module.exports = React.createClass({
 	},
 
 	render: function render() {
-		var modalClasses = ["sideMenu-modal"];
-		if (this.state.sidemenuIsVisible) {
-			modalClasses.push("sideMenu-modal-show");
-		} else {
-			modalClasses.push("sideMenu-modal-hide");
-		}
-
 		return React.createElement(
 			'div',
 			{ className: 'height-fix' },

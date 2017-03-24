@@ -21339,7 +21339,7 @@ module.exports = React.createClass({
 
 },{"react":180}],191:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.24 17:31"
+    VERSION: "2017.03.24 17:32"
 }
 },{}],192:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -22044,13 +22044,6 @@ module.exports = React.createClass({
 	},
 
 	render: function render() {
-		var modalClasses = ["sideMenu-modal"];
-		if (this.state.sidemenuIsVisible) {
-			modalClasses.push("sideMenu-modal-show");
-		} else {
-			modalClasses.push("sideMenu-modal-hide");
-		}
-
 		return React.createElement(
 			'div',
 			{ className: 'height-fix' },

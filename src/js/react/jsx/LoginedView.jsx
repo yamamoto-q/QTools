@@ -8,13 +8,6 @@ module.exports = React.createClass({
 	},
 
 	render: function() {
-		var modalClasses = ["sideMenu-modal"];
-		if(this.state.sidemenuIsVisible){
-			modalClasses.push("sideMenu-modal-show");
-		}else{
-			modalClasses.push("sideMenu-modal-hide");
-		}
-
 		return (
 			<div className="height-fix">
 				<Header on_click_menu_icon={this.onClickMenuIcon}/>
