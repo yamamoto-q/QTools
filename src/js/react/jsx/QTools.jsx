@@ -5,6 +5,7 @@ var LoginedView = require('./LoginedView.js');
 var Bootstrap_Container = require('./Bootstrap_Container.js');
 var Bootstrap_Row = require('./Bootstrap_Row.js');
 var Bootstrap_Col = require('./Bootstrap_Col.js');
+var BuildInfo = require('./BuildInfo.js');
 
 module.exports = React.createClass({
 
@@ -61,7 +62,11 @@ module.exports = React.createClass({
 				.removeClass('logined')
 				.addClass('splash');
 
-			return (<div>splash</div>);
+			return (
+				<div>splash
+					<div>ver.{BuildInfo.VERSION}</div>
+				</div>
+			);
 
 		}else if(this.state.showAuthInput){
 			$("body")
@@ -77,6 +82,11 @@ module.exports = React.createClass({
 							<Bootstrap_Row>
 								<Bootstrap_Col>
 									<InputAuthForm />
+								</Bootstrap_Col>
+							</Bootstrap_Row>
+							<Bootstrap_Row>
+								<Bootstrap_Col>
+									<div>ver.{BuildInfo.VERSION}</div>
 								</Bootstrap_Col>
 							</Bootstrap_Row>
 						</Bootstrap_Container>

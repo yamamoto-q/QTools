@@ -7,6 +7,7 @@ var LoginedView = require('./LoginedView.js');
 var Bootstrap_Container = require('./Bootstrap_Container.js');
 var Bootstrap_Row = require('./Bootstrap_Row.js');
 var Bootstrap_Col = require('./Bootstrap_Col.js');
+var BuildInfo = require('./BuildInfo.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -62,7 +63,13 @@ module.exports = React.createClass({
 			return React.createElement(
 				'div',
 				null,
-				'splash'
+				'splash',
+				React.createElement(
+					'div',
+					null,
+					'ver.',
+					BuildInfo.VERSION
+				)
 			);
 		} else if (this.state.showAuthInput) {
 			$("body").removeClass('logining').removeClass('logined').removeClass('splash').addClass('authentication');
@@ -83,6 +90,20 @@ module.exports = React.createClass({
 								Bootstrap_Col,
 								null,
 								React.createElement(InputAuthForm, null)
+							)
+						),
+						React.createElement(
+							Bootstrap_Row,
+							null,
+							React.createElement(
+								Bootstrap_Col,
+								null,
+								React.createElement(
+									'div',
+									null,
+									'ver.',
+									BuildInfo.VERSION
+								)
 							)
 						)
 					)
