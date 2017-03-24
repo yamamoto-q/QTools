@@ -47,7 +47,6 @@ body.splash,body.splash, body.authentication, body.logining{
 #sideMenu{
 	&.sideMenu-modal{
 		position:absolute;
-		background-color:rgba(0,0,0,0.5);
 		right:0;
 		top:0;
 		left:0;
@@ -57,9 +56,11 @@ body.splash,body.splash, body.authentication, body.logining{
 
 		&.sideMenu-modal-show{
 			display:block;
+			background-color:rgba(0,0,0,0.5);
 		}
 		&.sideMenu-modal-hide{
 			display:none;
+			background-color:rgba(0,0,0,0);
 		}
 	}
 }
