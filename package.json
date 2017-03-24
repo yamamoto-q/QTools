@@ -1,0 +1,34 @@
+{
+  "name": "qtools",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "June YAMAMOTO",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-plugin-transform-react-jsx": "^6.23.0",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "event": "^1.0.0",
+    "flux": "^3.1.2",
+    "grunt": "^1.0.1",
+    "grunt-babel": "^6.0.0",
+    "grunt-browserify": "^5.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-less": "^1.4.1",
+    "object-assign": "^4.1.1",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://yamamoto-q:p1490062@github.com/yamamoto-q/QTools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yamamoto-q/QTools/issues"
+  },
+  "homepage": "https://github.com/yamamoto-q/QTools#readme",
+  "description": ""
+}
