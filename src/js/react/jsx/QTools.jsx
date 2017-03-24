@@ -104,7 +104,6 @@ module.exports = React.createClass({
 				<div className="height-fix" >
 					<Header/>
 					<pre>{JSON.stringify(this.state.loginedUser, null, 2)}</pre>
-					<div style={{position:absolute, backgroundColor:"white"}}>hoge</div>
 					<div style={{position:"absolute", backgroundColor:"rgba(0,0,0,0.5)", right:"0", top:"0", left:"0", bottom:"0", zIndex:"999"}}>
 						<div style={{position:"absolute", backgroundColor:"white", width:"300px", top:"0", left:"0", bottom:"0"}}>
 							hoge

@@ -22137,11 +22137,6 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					'div',
-					{ style: { position: absolute, backgroundColor: "white" } },
-					'hoge'
-				),
-				React.createElement(
-					'div',
 					{ style: { position: "absolute", backgroundColor: "rgba(0,0,0,0.5)", right: "0", top: "0", left: "0", bottom: "0", zIndex: "999" } },
 					React.createElement(
 						'div',
