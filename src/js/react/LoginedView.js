@@ -1,9 +1,10 @@
-"use strict";
+'use strict';
 
 var React = require('react');
+var Header = require('./Header.js');
 
 module.exports = React.createClass({
-	displayName: "exports",
+	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
 		return {
@@ -27,21 +28,21 @@ module.exports = React.createClass({
 		};
 
 		return React.createElement(
-			"div",
-			{ className: "height-fix" },
+			'div',
+			{ className: 'height-fix' },
 			React.createElement(Header, { on_click_menu_icon: this.onClickMenuIcon }),
 			React.createElement(
-				"pre",
+				'pre',
 				null,
-				"Logined"
+				'Logined'
 			),
 			React.createElement(
-				"div",
-				{ id: "sideMenu", "class": modalClasses.join(), style: modalStyle },
+				'div',
+				{ id: 'sideMenu', 'class': modalClasses.join(), style: modalStyle },
 				React.createElement(
-					"div",
+					'div',
 					{ style: { position: "absolute", backgroundColor: "white", width: "300px", top: "0", left: "0", bottom: "0" } },
-					"hoge"
+					'hoge'
 				)
 			)
 		);
