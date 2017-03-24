@@ -21339,7 +21339,7 @@ module.exports = React.createClass({
 
 },{"react":180}],191:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.24 17:32"
+    VERSION: "2017.03.24 17:45"
 }
 },{}],192:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -22042,7 +22042,9 @@ module.exports = React.createClass({
 	onClickMenuIcon: function onClickMenuIcon() {
 		$("#sideMenu.sideMenu-modal").addClass("sideMenu-modal-show").removeClass("sideMenu-modal-hide");
 	},
-
+	hideSideMenu: function hideSideMenu() {
+		$("#sideMenu.sideMenu-modal").removeClass("sideMenu-modal-show").addClass("sideMenu-modal-hide");
+	},
 	render: function render() {
 		return React.createElement(
 			'div',
@@ -22055,13 +22057,17 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ id: 'sideMenu', className: 'sideMenu-modal sideMenu-modal-hide' },
+				{ id: 'sideMenu', className: 'sideMenu-modal sideMenu-modal-hide', onClick: this.hideSideMenu },
 				React.createElement(
 					'div',
 					{ style: { position: "absolute", backgroundColor: "white", width: "300px", top: "0", left: "0", bottom: "0" } },
 					'hoge 35:',
 					JSON.stringify(this.state, null, 2),
-					BuildInfo.VERSION
+					React.createElement(
+						'div',
+						null,
+						BuildInfo.VERSION
+					)
 				)
 			)
 		);
