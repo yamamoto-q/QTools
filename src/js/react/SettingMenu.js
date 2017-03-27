@@ -9,7 +9,7 @@ module.exports = React.createClass({
 
 	conClick: function conClick(e) {
 		var viewName = e.target.getAttribute('data-viewname');
-		console.log(viewName);
+		Controller_View.Action.setView(viewName);
 	},
 	render: function render() {
 		return React.createElement(

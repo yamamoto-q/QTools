@@ -24,7 +24,7 @@ module.exports = React.createClass({
 		Controller_View.Store.addChangeViewListener(function () {
 			if (self.isMounted()) {
 				var viewName = Controller_View.Store.getViewNane();
-				console.log(viewName);
+				console.log("event:" + viewName);
 				/*
     self.setState({
     	showSplash:isWaitingStrage,
@@ -67,7 +67,9 @@ module.exports = React.createClass({
 			case Controller_View.ViewNames.DASHBOARD:
 				viewBody = React.createElement(Dashboard, null);
 				break;
-
+			case Controller_View.ViewNames.ADMIN_TOOLS:
+				viewBody = React.createElement(AdminTools, null);
+				break;
 		}
 
 		return React.createElement(

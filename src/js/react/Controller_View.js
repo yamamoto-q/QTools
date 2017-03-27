@@ -14,9 +14,7 @@ var Action = {
     }
 };
 
-_state = {
-	viewName : "DashBoard"
-}
+
 
 var EVENT = {
 	CHANGE_VIEW:"change_view"
@@ -25,6 +23,10 @@ var EVENT = {
 var VIEW_NAMES = {
 	DASHBOARD:"dashboard",
 	ADMIN_TOOLS:"admin_tools"
+}
+
+var _state = {
+	viewName : VIEW_NAMES.DASHBOARD
 }
 
 var Store = assign({}, EventEmitter.prototype, {

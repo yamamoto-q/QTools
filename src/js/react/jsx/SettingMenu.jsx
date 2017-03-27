@@ -5,7 +5,7 @@ var Controller_View = require('./Controller_View.js');
 module.exports = React.createClass({
 	conClick:function(e){
 		var viewName = e.target.getAttribute('data-viewname');
-		console.log(viewName);
+		Controller_View.Action.setView(viewName);
 	},
 	render: function() {
 		return (

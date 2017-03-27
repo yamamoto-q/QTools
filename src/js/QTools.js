@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.27 16:41"
+    VERSION: "2017.03.27 16:46"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27224,9 +27224,7 @@ var Action = {
     }
 };
 
-_state = {
-	viewName : "DashBoard"
-}
+
 
 var EVENT = {
 	CHANGE_VIEW:"change_view"
@@ -27235,6 +27233,10 @@ var EVENT = {
 var VIEW_NAMES = {
 	DASHBOARD:"dashboard",
 	ADMIN_TOOLS:"admin_tools"
+}
+
+var _state = {
+	viewName : VIEW_NAMES.DASHBOARD
 }
 
 var Store = assign({}, EventEmitter.prototype, {
@@ -27469,7 +27471,7 @@ module.exports = React.createClass({
 		Controller_View.Store.addChangeViewListener(function () {
 			if (self.isMounted()) {
 				var viewName = Controller_View.Store.getViewNane();
-				console.log(viewName);
+				console.log("event:" + viewName);
 				/*
     self.setState({
     	showSplash:isWaitingStrage,
@@ -27512,7 +27514,9 @@ module.exports = React.createClass({
 			case Controller_View.ViewNames.DASHBOARD:
 				viewBody = React.createElement(Dashboard, null);
 				break;
-
+			case Controller_View.ViewNames.ADMIN_TOOLS:
+				viewBody = React.createElement(AdminTools, null);
+				break;
 		}
 
 		return React.createElement(
@@ -27773,7 +27777,7 @@ module.exports = React.createClass({
 
 	conClick: function conClick(e) {
 		var viewName = e.target.getAttribute('data-viewname');
-		console.log(viewName);
+		Controller_View.Action.setView(viewName);
 	},
 	render: function render() {
 		return React.createElement(
