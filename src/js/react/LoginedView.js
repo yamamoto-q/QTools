@@ -1,9 +1,6 @@
 'use strict';
 
 var React = require('react');
-
-var BuildInfo = require('./BuildInfo.js');
-var SettingMenu = require('./SettingMenu.js');
 var Controller_View = require('./Controller_View.js');
 
 var Dashboard = require('./View_Dashboard.js');

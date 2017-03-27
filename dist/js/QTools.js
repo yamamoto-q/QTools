@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.27 17:41"
+    VERSION: "2017.03.27 17:44"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27454,9 +27454,6 @@ module.exports = React.createClass({
 'use strict';
 
 var React = require('react');
-
-var BuildInfo = require('./BuildInfo.js');
-var SettingMenu = require('./SettingMenu.js');
 var Controller_View = require('./Controller_View.js');
 
 var Dashboard = require('./View_Dashboard.js');
@@ -27502,7 +27499,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./BuildInfo.js":254,"./Controller_View.js":258,"./SettingMenu.js":264,"./View_AdminTools.js":265,"./View_Dashboard.js":266,"./View_ToDo.js":267,"react":242}],262:[function(require,module,exports){
+},{"./Controller_View.js":258,"./View_AdminTools.js":265,"./View_Dashboard.js":266,"./View_ToDo.js":267,"react":242}],262:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27813,6 +27810,8 @@ module.exports = React.createClass({
 
 var React = require('react');
 var Header = require('./Header.js');
+var SettingMenu = require('./SettingMenu.js');
+var BuildInfo = require('./BuildInfo.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -27865,7 +27864,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Header.js":259,"react":242}],267:[function(require,module,exports){
+},{"./BuildInfo.js":254,"./Header.js":259,"./SettingMenu.js":264,"react":242}],267:[function(require,module,exports){
 'use strict';
 
 var React = require('react');

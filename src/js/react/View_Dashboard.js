@@ -2,6 +2,8 @@
 
 var React = require('react');
 var Header = require('./Header.js');
+var SettingMenu = require('./SettingMenu.js');
+var BuildInfo = require('./BuildInfo.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
