@@ -20,16 +20,9 @@ module.exports = React.createClass({
 		Controller_View.Store.addChangeViewListener(function () {
 			if (self.isMounted()) {
 				var viewName = Controller_View.Store.getViewNane();
-				console.log("event:" + viewName);
-				/*
 				self.setState({
-					showSplash:isWaitingStrage,
-					showAuthInput:isValidAuthParam == false || loginSuccess == false || changeAuth == true,
-					showLogining:isChallengeLogin == true,
-					loginSuccess:loginSuccess,
-					loginedUser:loginedUser
+					viewName:viewName
 				});
-				*/
 			};
 		});
 	},
@@ -73,7 +66,6 @@ module.exports = React.createClass({
 				break;
 		}
 
-		
 		return (
 			<div className="height-fix">
 				<Header on_click_menu_icon={this.onClickMenuIcon}/>

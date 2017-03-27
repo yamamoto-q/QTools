@@ -24,16 +24,9 @@ module.exports = React.createClass({
 		Controller_View.Store.addChangeViewListener(function () {
 			if (self.isMounted()) {
 				var viewName = Controller_View.Store.getViewNane();
-				console.log("event:" + viewName);
-				/*
-    self.setState({
-    	showSplash:isWaitingStrage,
-    	showAuthInput:isValidAuthParam == false || loginSuccess == false || changeAuth == true,
-    	showLogining:isChallengeLogin == true,
-    	loginSuccess:loginSuccess,
-    	loginedUser:loginedUser
-    });
-    */
+				self.setState({
+					viewName: viewName
+				});
 			};
 		});
 	},

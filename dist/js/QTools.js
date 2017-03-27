@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.27 16:46"
+    VERSION: "2017.03.27 16:48"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27471,16 +27471,9 @@ module.exports = React.createClass({
 		Controller_View.Store.addChangeViewListener(function () {
 			if (self.isMounted()) {
 				var viewName = Controller_View.Store.getViewNane();
-				console.log("event:" + viewName);
-				/*
-    self.setState({
-    	showSplash:isWaitingStrage,
-    	showAuthInput:isValidAuthParam == false || loginSuccess == false || changeAuth == true,
-    	showLogining:isChallengeLogin == true,
-    	loginSuccess:loginSuccess,
-    	loginedUser:loginedUser
-    });
-    */
+				self.setState({
+					viewName: viewName
+				});
 			};
 		});
 	},
