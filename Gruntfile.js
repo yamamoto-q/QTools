@@ -48,8 +48,8 @@ module.exports = function(grunt) {
                     { 'src/js/react/Avater.js': 'src/js/react/jsx/Avater.jsx' },
                     { 'src/js/react/LoginedView.js': 'src/js/react/jsx/LoginedView.jsx' },
                     { 'src/js/react/SettingMenu.js': 'src/js/react/jsx/SettingMenu.jsx' },
-                    { 'src/js/react/ToDo.js': 'src/js/react/jsx/ToDo.jsx' },
-                    { 'src/js/react/Dashboard.js': 'src/js/react/jsx/Dashboard.jsx' },
+                    { 'src/js/react/View_ToDo.js': 'src/js/react/jsx/Views/View_ToDo.jsx' },
+                    { 'src/js/react/View_Dashboard.js': 'src/js/react/jsx/Views/View_Dashboard.jsx' },
                     { 'src/js/react/View_AdminTools.js': 'src/js/react/jsx/Views/View_AdminTools.jsx' },
                     // Bootstrap
                     { 'src/js/react/Bootstrap_Row.js': 'src/js/react/jsx/Bootstrap/row.jsx' },

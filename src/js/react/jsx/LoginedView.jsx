@@ -4,9 +4,9 @@ var BuildInfo = require('./BuildInfo.js');
 var SettingMenu = require('./SettingMenu.js');
 var Controller_View = require('./Controller_View.js');
 
-var Dashboard = require('./Dashboard.js');
+var Dashboard = require('./View_Dashboard.js');
 var AdminTools = require('./View_AdminTools.js');
-var ToDo = require('./ToDo.js');
+var ToDo = require('./View_ToDo.js');
 
 module.exports = React.createClass({
 	getInitialState: function() {
