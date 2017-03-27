@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.27 17:19"
+    VERSION: "2017.03.27 17:36"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27230,8 +27230,6 @@ var Action = {
     }
 };
 
-
-
 var EVENT = {
 	CHANGE_VIEW:"change_view"
 }
@@ -27266,9 +27264,6 @@ var Store = assign({}, EventEmitter.prototype, {
         }
 
     	_state.viewName = viewName;
-
-        console.log("histoly:" + _state.history.join(","));
-
     	Store.emitChangeView();
     },
     // Dispacher
@@ -27459,7 +27454,7 @@ module.exports = React.createClass({
 'use strict';
 
 var React = require('react');
-var Header = require('./Header.js');
+
 var BuildInfo = require('./BuildInfo.js');
 var SettingMenu = require('./SettingMenu.js');
 var Controller_View = require('./Controller_View.js');
@@ -27526,7 +27521,6 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			{ className: 'height-fix' },
-			React.createElement(Header, { on_click_menu_icon: this.onClickMenuIcon }),
 			viewBody,
 			React.createElement(
 				'div',
@@ -27546,7 +27540,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./BuildInfo.js":254,"./Controller_View.js":258,"./Header.js":259,"./SettingMenu.js":264,"./View_AdminTools.js":265,"./View_Dashboard.js":266,"./View_ToDo.js":267,"react":242}],262:[function(require,module,exports){
+},{"./BuildInfo.js":254,"./Controller_View.js":258,"./SettingMenu.js":264,"./View_AdminTools.js":265,"./View_Dashboard.js":266,"./View_ToDo.js":267,"react":242}],262:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27856,6 +27850,8 @@ module.exports = React.createClass({
 'use strict';
 
 var React = require('react');
+var Header = require('./Header.js');
+
 module.exports = React.createClass({
 	displayName: 'exports',
 
@@ -27863,12 +27859,13 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			null,
+			React.createElement(Header, { on_click_menu_icon: this.onClickMenuIcon }),
 			'Dashboard'
 		);
 	}
 });
 
-},{"react":242}],267:[function(require,module,exports){
+},{"./Header.js":259,"react":242}],267:[function(require,module,exports){
 'use strict';
 
 var React = require('react');

@@ -20,8 +20,6 @@ var Action = {
     }
 };
 
-
-
 var EVENT = {
 	CHANGE_VIEW:"change_view"
 }
@@ -56,9 +54,6 @@ var Store = assign({}, EventEmitter.prototype, {
         }
 
     	_state.viewName = viewName;
-
-        console.log("histoly:" + _state.history.join(","));
-
     	Store.emitChangeView();
     },
     // Dispacher

@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-var Header = require('./Header.js');
+
 var BuildInfo = require('./BuildInfo.js');
 var SettingMenu = require('./SettingMenu.js');
 var Controller_View = require('./Controller_View.js');
@@ -68,7 +68,6 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			{ className: 'height-fix' },
-			React.createElement(Header, { on_click_menu_icon: this.onClickMenuIcon }),
 			viewBody,
 			React.createElement(
 				'div',

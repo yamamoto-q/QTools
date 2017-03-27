@@ -1,5 +1,5 @@
 var React = require('react');
-var Header = require('./Header.js');
+
 var BuildInfo = require('./BuildInfo.js');
 var SettingMenu = require('./SettingMenu.js');
 var Controller_View = require('./Controller_View.js');
@@ -68,7 +68,6 @@ module.exports = React.createClass({
 
 		return (
 			<div className="height-fix">
-				<Header on_click_menu_icon={this.onClickMenuIcon}/>
 				{viewBody}
 				<div id="sideMenu" className="sideMenu-modal sideMenu-modal-hide" onClick={this.hideSideMenu}>
 					<div id="sideMenu-box" style={{position:"absolute", backgroundColor:"white", width:"300px", top:"0", bottom:"0"}}>
