@@ -23287,7 +23287,7 @@ module.exports = React.createClass({
 
 },{"react":197}],211:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.27 14:49"
+    VERSION: "2017.03.27 14:57"
 }
 },{}],212:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -23980,10 +23980,6 @@ module.exports = React.createClass({
 },{"./Bootstrap_Button.js":203,"./Bootstrap_FormGroup.js":206,"./Bootstrap_FormInput.js":207,"./Bootstrap_FormLabel.js":208,"./Bootstrap_InputGroup.js":209,"./Controller_Login.js":213,"react":197}],217:[function(require,module,exports){
 'use strict';
 
-var _React$createElement;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 var React = require('react');
 var Header = require('./Header.js');
 var BuildInfo = require('./BuildInfo.js');
@@ -23995,6 +23991,12 @@ var ReactRouter = require('react-router');
 var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
+var routes = React.createElement(
+	Router,
+	null,
+	React.createElement(Route, { path: '/', component: ToDo }),
+	React.createElement(Route, { path: '*', component: ToDo })
+);
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -24046,13 +24048,6 @@ module.exports = React.createClass({
 		);
 	}
 });
-
-var routes = React.createElement(
-	Route,
-	(_React$createElement = { path: 'app' }, _defineProperty(_React$createElement, 'path', '/'), _defineProperty(_React$createElement, 'component', ToDo), _React$createElement),
-	React.createElement(Route, { path: 'inbox', component: ToDo }),
-	React.createElement(Route, { path: '*', component: ToDo })
-);
 
 },{"./BuildInfo.js":211,"./Header.js":215,"./SettingMenu.js":220,"./ToDo.js":221,"react":197,"react-router":170}],218:[function(require,module,exports){
 'use strict';
