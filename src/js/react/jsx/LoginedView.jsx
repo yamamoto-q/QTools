@@ -8,21 +8,9 @@ var SettingMenu = require('./SettingMenu.js');
 var ToDo = require('./ToDo.js');
 
 var Router = require('react-router'); 
-var DefaultRoute = Router.DefaultRoute;
-var Link = Router.Link;
-var Route = Router.Route;
-var RouteHandler = Router.RouteHandler;
-var routes = (
-  <Route name="app" path="/" handler={ToDo}>
-    <Route name="inbox" handler={ToDo}/>
-    <Route name="calendar" handler={ToDo}/>
-    <DefaultRoute handler={ToDo}/>
-  </Route>
-);
-Router.run(routes, function (Handler) {
-  React.render(<Handler/>, document.body);
-});
-
+var Router = ReactRouter.Router;
+var Route = ReactRouter.Route;
+var IndexRoute = ReactRouter.IndexRoute;
 
 module.exports = React.createClass({
 	onClickMenuIcon:function(){
@@ -69,3 +57,11 @@ module.exports = React.createClass({
 		);
 	}
 });
+
+var routes = (
+  <Route path="app" path="/" component={ToDo}>
+    <Route path="inbox" component={ToDo}/>
+    <Route path="calendar" component={ToDo}/>
+    <DefaultRoute component={ToDo}/>
+  </Route>
+);
