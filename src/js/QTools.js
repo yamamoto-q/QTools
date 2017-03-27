@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.27 15:43"
+    VERSION: "2017.03.27 15:47"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27431,7 +27431,45 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ id: 'sideMenu-box', style: { position: "absolute", backgroundColor: "white", width: "300px", top: "0", bottom: "0" } },
-					React.createElement(SettingMenu, null),
+					React.createElement(
+						'div',
+						{ className: 'list-group' },
+						React.createElement(
+							Link,
+							{ to: '/', className: 'list-group-item list-group-item-action' },
+							'index'
+						),
+						React.createElement(
+							Link,
+							{ to: '/ToDo', className: 'list-group-item list-group-item-action' },
+							'ToDo'
+						),
+						React.createElement(
+							'a',
+							{ href: '#', className: 'list-group-item active' },
+							'Cras justo odio'
+						),
+						React.createElement(
+							'a',
+							{ href: '#', className: 'list-group-item list-group-item-action' },
+							'Dapibus ac facilisis in'
+						),
+						React.createElement(
+							'a',
+							{ href: '#', className: 'list-group-item list-group-item-action' },
+							'Morbi leo risus'
+						),
+						React.createElement(
+							'a',
+							{ href: '#', className: 'list-group-item list-group-item-action' },
+							'Porta ac consectetur ac'
+						),
+						React.createElement(
+							'a',
+							{ href: '#', className: 'list-group-item list-group-item-action disabled' },
+							'Vestibulum at eros'
+						)
+					),
 					React.createElement(
 						'div',
 						null,
@@ -27671,6 +27709,12 @@ module.exports = {
 
 var React = require('react');
 var ReactRouter = require('react-router');
+var Link = ReactRouter.Link;
+
+var ReactRouter = require('react-router');
+var Router = ReactRouter.Router;
+var Route = ReactRouter.Route;
+var hashHistory = ReactRouter.hashHistory;
 var Link = ReactRouter.Link;
 
 module.exports = React.createClass({

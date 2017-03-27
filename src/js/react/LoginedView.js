@@ -59,7 +59,45 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ id: 'sideMenu-box', style: { position: "absolute", backgroundColor: "white", width: "300px", top: "0", bottom: "0" } },
-					React.createElement(SettingMenu, null),
+					React.createElement(
+						'div',
+						{ className: 'list-group' },
+						React.createElement(
+							Link,
+							{ to: '/', className: 'list-group-item list-group-item-action' },
+							'index'
+						),
+						React.createElement(
+							Link,
+							{ to: '/ToDo', className: 'list-group-item list-group-item-action' },
+							'ToDo'
+						),
+						React.createElement(
+							'a',
+							{ href: '#', className: 'list-group-item active' },
+							'Cras justo odio'
+						),
+						React.createElement(
+							'a',
+							{ href: '#', className: 'list-group-item list-group-item-action' },
+							'Dapibus ac facilisis in'
+						),
+						React.createElement(
+							'a',
+							{ href: '#', className: 'list-group-item list-group-item-action' },
+							'Morbi leo risus'
+						),
+						React.createElement(
+							'a',
+							{ href: '#', className: 'list-group-item list-group-item-action' },
+							'Porta ac consectetur ac'
+						),
+						React.createElement(
+							'a',
+							{ href: '#', className: 'list-group-item list-group-item-action disabled' },
+							'Vestibulum at eros'
+						)
+					),
 					React.createElement(
 						'div',
 						null,

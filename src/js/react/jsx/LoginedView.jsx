@@ -57,7 +57,15 @@ module.exports = React.createClass({
 				{routes}
 				<div id="sideMenu" className="sideMenu-modal sideMenu-modal-hide" onClick={this.hideSideMenu}>
 					<div id="sideMenu-box" style={{position:"absolute", backgroundColor:"white", width:"300px", top:"0", bottom:"0"}}>
-						<SettingMenu />
+						<div className="list-group">
+							<Link to="/" className="list-group-item list-group-item-action">index</Link>
+							<Link to="/ToDo" className="list-group-item list-group-item-action">ToDo</Link>
+							<a href="#" className="list-group-item active">Cras justo odio</a>
+							<a href="#" className="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+							<a href="#" className="list-group-item list-group-item-action">Morbi leo risus</a>
+							<a href="#" className="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+							<a href="#" className="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+						</div>
 						<div>{BuildInfo.VERSION}</div>
 					</div>
 				</div>

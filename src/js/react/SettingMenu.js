@@ -4,6 +4,12 @@ var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
 
+var ReactRouter = require('react-router');
+var Router = ReactRouter.Router;
+var Route = ReactRouter.Route;
+var hashHistory = ReactRouter.hashHistory;
+var Link = ReactRouter.Link;
+
 module.exports = React.createClass({
 	displayName: 'exports',
 
