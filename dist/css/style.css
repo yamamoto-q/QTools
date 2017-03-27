@@ -48,21 +48,11 @@ body.logining {
   position: absolute;
   right: 0;
   top: 0;
-  left: 0;
+  left: -300;
   bottom: 0;
   z-index: 999;
-  /*
-		transition: all 1s ease;
-
-		&.sideMenu-modal-show{
-			display:block;
-			background-color:rgba(0,0,0,0.5);
-		}
-		&.sideMenu-modal-hide{
-			display:none;
-			background-color:rgba(0,0,0,0);
-		}
-		*/
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
 }
 /**
  * ICONS
