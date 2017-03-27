@@ -3,11 +3,13 @@
 var React = require('react');
 var Header = require('./Header.js');
 var BuildInfo = require('./BuildInfo.js');
+var SettingMenu = require('./SettingMenu.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
 
 	onClickMenuIcon: function onClickMenuIcon() {
+		$("#sideMenu #sideMenu-modal-box").css("left");
 		$("#sideMenu.sideMenu-modal").css("opacity", "0").show().animate({
 			opacity: 1
 		}, 500, function () {
@@ -45,8 +47,7 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ id: 'sideMenu-modal-box', style: { position: "absolute", backgroundColor: "white", width: "300px", top: "0", left: "0", bottom: "0" } },
-					'hoge 35:',
-					JSON.stringify(this.state, null, 2),
+					React.createElement(SettingMenu, null),
 					React.createElement(
 						'div',
 						null,

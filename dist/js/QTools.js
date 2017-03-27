@@ -21339,7 +21339,7 @@ module.exports = React.createClass({
 
 },{"react":180}],191:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.27 11:09"
+    VERSION: "2017.03.27 11:20"
 }
 },{}],192:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -22035,11 +22035,13 @@ module.exports = React.createClass({
 var React = require('react');
 var Header = require('./Header.js');
 var BuildInfo = require('./BuildInfo.js');
+var SettingMenu = require('./SettingMenu.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
 
 	onClickMenuIcon: function onClickMenuIcon() {
+		$("#sideMenu #sideMenu-modal-box").css("left");
 		$("#sideMenu.sideMenu-modal").css("opacity", "0").show().animate({
 			opacity: 1
 		}, 500, function () {
@@ -22077,8 +22079,7 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ id: 'sideMenu-modal-box', style: { position: "absolute", backgroundColor: "white", width: "300px", top: "0", left: "0", bottom: "0" } },
-					'hoge 35:',
-					JSON.stringify(this.state, null, 2),
+					React.createElement(SettingMenu, null),
 					React.createElement(
 						'div',
 						null,
@@ -22090,7 +22091,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./BuildInfo.js":191,"./Header.js":195,"react":180}],198:[function(require,module,exports){
+},{"./BuildInfo.js":191,"./Header.js":195,"./SettingMenu.js":200,"react":180}],198:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -22313,4 +22314,44 @@ module.exports = {
     API:_QuestetraAPI
 }
 
-},{}]},{},[181]);
+},{}],200:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+module.exports = React.createClass({
+	displayName: "exports",
+
+	render: function render() {
+		return React.createElement(
+			"ul",
+			{ className: "list-group" },
+			React.createElement(
+				"li",
+				{ className: "list-group-item" },
+				"Cras justo odio"
+			),
+			React.createElement(
+				"li",
+				{ className: "list-group-item" },
+				"Dapibus ac facilisis in"
+			),
+			React.createElement(
+				"li",
+				{ className: "list-group-item" },
+				"Morbi leo risus"
+			),
+			React.createElement(
+				"li",
+				{ className: "list-group-item" },
+				"Porta ac consectetur ac"
+			),
+			React.createElement(
+				"li",
+				{ className: "list-group-item" },
+				"Vestibulum at eros"
+			)
+		);
+	}
+});
+
+},{"react":180}]},{},[181]);

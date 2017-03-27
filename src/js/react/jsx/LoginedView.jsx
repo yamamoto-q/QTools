@@ -1,9 +1,12 @@
 var React = require('react');
 var Header = require('./Header.js');
 var BuildInfo = require('./BuildInfo.js');
+var SettingMenu = require('./SettingMenu.js');
 
 module.exports = React.createClass({
 	onClickMenuIcon:function(){
+		$("#sideMenu #sideMenu-modal-box")
+			.css("left":"-300px");
 		$("#sideMenu.sideMenu-modal")
 			.css("opacity", "0")
 			.show()
@@ -36,8 +39,7 @@ module.exports = React.createClass({
 				<pre>Logined</pre>
 				<div id="sideMenu" className="sideMenu-modal sideMenu-modal-hide" onClick={this.hideSideMenu}>
 					<div id="sideMenu-modal-box" style={{position:"absolute", backgroundColor:"white", width:"300px", top:"0", left:"0", bottom:"0"}}>
-						hoge
-						35:{JSON.stringify(this.state, null, 2)}
+						<SettingMenu />
 						<div>{BuildInfo.VERSION}</div>
 					</div>
 				</div>
