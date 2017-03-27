@@ -25623,7 +25623,7 @@ module.exports = React.createClass({
 
 },{"react":225}],237:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.27 15:16"
+    VERSION: "2017.03.27 15:18"
 }
 },{}],238:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -26339,7 +26339,7 @@ module.exports = React.createClass({
 	displayName: 'exports',
 
 	onClickMenuIcon: function onClickMenuIcon() {
-		$("#sideMenu #sideMenu-box").css("left");
+		$("#sideMenu #sideMenu-box").css("left", "-300px");
 		$("#sideMenu.sideMenu-modal").css("opacity", "0").show().animate({
 			opacity: 1
 		}, 250, function () {

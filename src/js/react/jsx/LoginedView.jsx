@@ -22,7 +22,7 @@ var routes = (
 module.exports = React.createClass({
 	onClickMenuIcon:function(){
 		$("#sideMenu #sideMenu-box")
-			.css("left":"-300px");
+			.css("left","-300px");
 		$("#sideMenu.sideMenu-modal")
 			.css("opacity", "0")
 			.show()
