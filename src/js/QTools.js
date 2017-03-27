@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.27 17:02"
+    VERSION: "2017.03.27 17:16"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27221,6 +27221,12 @@ var Action = {
                 viewName:viewName
             }
         });
+    },
+    historyBack:function(){
+        dispatcher.dispatch({
+            actionType: "historyBack",
+            value: {}
+        });
     }
 };
 
@@ -27236,7 +27242,8 @@ var VIEW_NAMES = {
 }
 
 var _state = {
-	viewName : VIEW_NAMES.DASHBOARD
+	viewName : VIEW_NAMES.DASHBOARD,
+    history:[]
 }
 
 var Store = assign({}, EventEmitter.prototype, {
@@ -27252,17 +27259,30 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     // func
     _setView:function(viewName){
+        _state.history.push({
+            viewName:_state.viewName
+        });
+
     	_state.viewName = viewName;
-    	history.pushState(null,null,"/" + viewName);
+
+        console.log("histoly:" + _state.history.join(","));
+
     	Store.emitChangeView();
     },
     // Dispacher
     dispatcherIndex: dispatcher.register(function(payload) {
         switch (payload.actionType) {
     		case "setView":
-    			_state.viewName = payload.value.viewName;
-    			Store._setView(_state.viewName);
+    			Store._setView(payload.value.viewName);
     			break;
+            case "historyBack":
+                var before = _state.history.pop();
+                var viewName = before.viewName;
+                if(typeof viewName !== "undefined"){
+                    Store._setView(viewName);
+                }
+                
+                break;
         };
     })
 });
@@ -27798,19 +27818,40 @@ module.exports = React.createClass({
 'use strict';
 
 var React = require('react');
+var Bootstrap_Container = require('./Bootstrap_Container.js');
+var Bootstrap_Row = require('./Bootstrap_Row.js');
+var Bootstrap_Col = require('./Bootstrap_Col.js');
+
+var Controller_View = require('./Controller_View.js');
+
 module.exports = React.createClass({
 	displayName: 'exports',
 
+	onclickBack: function onclickBack() {
+		Controller_View.Action.historyBack();
+	},
 	render: function render() {
 		return React.createElement(
-			'div',
+			Bootstrap_Container,
 			null,
-			'Admin Tools'
+			React.createElement(
+				Bootstrap_Row,
+				null,
+				React.createElement(
+					Bootstrap_Col,
+					null,
+					React.createElement(
+						'a',
+						{ onClick: this.onclickBack },
+						'Back'
+					)
+				)
+			)
 		);
 	}
 });
 
-},{"react":242}],266:[function(require,module,exports){
+},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./Controller_View.js":258,"react":242}],266:[function(require,module,exports){
 'use strict';
 
 var React = require('react');

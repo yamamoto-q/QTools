@@ -11,6 +11,12 @@ var Action = {
                 viewName:viewName
             }
         });
+    },
+    historyBack:function(){
+        dispatcher.dispatch({
+            actionType: "historyBack",
+            value: {}
+        });
     }
 };
 
@@ -26,7 +32,8 @@ var VIEW_NAMES = {
 }
 
 var _state = {
-	viewName : VIEW_NAMES.DASHBOARD
+	viewName : VIEW_NAMES.DASHBOARD,
+    history:[]
 }
 
 var Store = assign({}, EventEmitter.prototype, {
@@ -42,17 +49,30 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     // func
     _setView:function(viewName){
+        _state.history.push({
+            viewName:_state.viewName
+        });
+
     	_state.viewName = viewName;
-    	history.pushState(null,null,"/" + viewName);
+
+        console.log("histoly:" + _state.history.join(","));
+
     	Store.emitChangeView();
     },
     // Dispacher
     dispatcherIndex: dispatcher.register(function(payload) {
         switch (payload.actionType) {
     		case "setView":
-    			_state.viewName = payload.value.viewName;
-    			Store._setView(_state.viewName);
+    			Store._setView(payload.value.viewName);
     			break;
+            case "historyBack":
+                var before = _state.history.pop();
+                var viewName = before.viewName;
+                if(typeof viewName !== "undefined"){
+                    Store._setView(viewName);
+                }
+                
+                break;
         };
     })
 });
