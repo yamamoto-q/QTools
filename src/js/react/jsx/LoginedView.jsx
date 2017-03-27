@@ -3,6 +3,27 @@ var Header = require('./Header.js');
 var BuildInfo = require('./BuildInfo.js');
 var SettingMenu = require('./SettingMenu.js');
 
+
+
+var ToDo = require('./ToDo.js');
+
+var Router = require('react-router'); 
+var DefaultRoute = Router.DefaultRoute;
+var Link = Router.Link;
+var Route = Router.Route;
+var RouteHandler = Router.RouteHandler;
+var routes = (
+  <Route name="app" path="/" handler={ToDo}>
+    <Route name="inbox" handler={ToDo}/>
+    <Route name="calendar" handler={ToDo}/>
+    <DefaultRoute handler={ToDo}/>
+  </Route>
+);
+Router.run(routes, function (Handler) {
+  React.render(<Handler/>, document.body);
+});
+
+
 module.exports = React.createClass({
 	onClickMenuIcon:function(){
 		$("#sideMenu #sideMenu-box")
@@ -37,7 +58,7 @@ module.exports = React.createClass({
 		return (
 			<div className="height-fix">
 				<Header on_click_menu_icon={this.onClickMenuIcon}/>
-				<pre>Logined</pre>
+				<RouteHandler/>
 				<div id="sideMenu" className="sideMenu-modal sideMenu-modal-hide" onClick={this.hideSideMenu}>
 					<div id="sideMenu-box" style={{position:"absolute", backgroundColor:"white", width:"300px", top:"0", bottom:"0"}}>
 						<SettingMenu />

@@ -5,6 +5,24 @@ var Header = require('./Header.js');
 var BuildInfo = require('./BuildInfo.js');
 var SettingMenu = require('./SettingMenu.js');
 
+var ToDo = require('./ToDo.js');
+
+var Router = require('react-router');
+var DefaultRoute = Router.DefaultRoute;
+var Link = Router.Link;
+var Route = Router.Route;
+var RouteHandler = Router.RouteHandler;
+var routes = React.createElement(
+	Route,
+	{ name: 'app', path: '/', handler: ToDo },
+	React.createElement(Route, { name: 'inbox', handler: ToDo }),
+	React.createElement(Route, { name: 'calendar', handler: ToDo }),
+	React.createElement(DefaultRoute, { handler: ToDo })
+);
+Router.run(routes, function (Handler) {
+	React.render(React.createElement(Handler, null), document.body);
+});
+
 module.exports = React.createClass({
 	displayName: 'exports',
 
@@ -12,21 +30,22 @@ module.exports = React.createClass({
 		$("#sideMenu #sideMenu-box").css("left");
 		$("#sideMenu.sideMenu-modal").css("opacity", "0").show().animate({
 			opacity: 1
-		}, 500, function () {
+		}, 250, function () {
 			$("#sideMenu #sideMenu-box").animate({
 				left: "0"
-			}, 500, function () {
+			}, 250, function () {
 				/* stuff to do after animation is complete */
 			});
 		});
 	},
-	hideSideMenu: function hideSideMenu() {
+	hideSideMenu: function hideSideMenu(e) {
+		e.preventDefault();
 		$("#sideMenu #sideMenu-box").animate({
 			left: "-300px"
-		}, 500, function () {
+		}, 250, function () {
 			$("#sideMenu.sideMenu-modal").animate({
 				opacity: "0"
-			}, 500, function () {
+			}, 250, function () {
 				$("#sideMenu.sideMenu-modal").css('display', 'none');
 			});
 		});
@@ -36,11 +55,7 @@ module.exports = React.createClass({
 			'div',
 			{ className: 'height-fix' },
 			React.createElement(Header, { on_click_menu_icon: this.onClickMenuIcon }),
-			React.createElement(
-				'pre',
-				null,
-				'Logined'
-			),
+			React.createElement(RouteHandler, null),
 			React.createElement(
 				'div',
 				{ id: 'sideMenu', className: 'sideMenu-modal sideMenu-modal-hide', onClick: this.hideSideMenu },
