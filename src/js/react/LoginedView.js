@@ -51,7 +51,11 @@ module.exports = React.createClass({
 			'div',
 			{ className: 'height-fix' },
 			React.createElement(Header, { on_click_menu_icon: this.onClickMenuIcon }),
-			React.createElement('routes', null),
+			React.createElement(
+				Router,
+				null,
+				routes
+			),
 			React.createElement(
 				'div',
 				{ id: 'sideMenu', className: 'sideMenu-modal sideMenu-modal-hide', onClick: this.hideSideMenu },

@@ -25623,7 +25623,7 @@ module.exports = React.createClass({
 
 },{"react":225}],237:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.27 15:13"
+    VERSION: "2017.03.27 15:16"
 }
 },{}],238:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -26367,7 +26367,11 @@ module.exports = React.createClass({
 			'div',
 			{ className: 'height-fix' },
 			React.createElement(Header, { on_click_menu_icon: this.onClickMenuIcon }),
-			React.createElement('routes', null),
+			React.createElement(
+				Router,
+				null,
+				routes
+			),
 			React.createElement(
 				'div',
 				{ id: 'sideMenu', className: 'sideMenu-modal sideMenu-modal-hide', onClick: this.hideSideMenu },
