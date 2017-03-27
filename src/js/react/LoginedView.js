@@ -4,12 +4,20 @@ var React = require('react');
 var Header = require('./Header.js');
 var BuildInfo = require('./BuildInfo.js');
 var SettingMenu = require('./SettingMenu.js');
+var Controller_View = require('./Controller_View.js');
 
 var ToDo = require('./ToDo.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
 
+	getInitialState: function getInitialState() {
+		var viewName = Controller_View.Store.getViewNane();
+		console.log(viewName);
+		return {
+			viewName: 'ToDo'
+		};
+	},
 	onClickMenuIcon: function onClickMenuIcon() {
 		$("#sideMenu #sideMenu-box").css("left", "-300px");
 		$("#sideMenu.sideMenu-modal").css("opacity", "0").show().animate({
@@ -35,7 +43,13 @@ module.exports = React.createClass({
 		});
 	},
 	render: function render() {
-		var viewBody = React.createElement(Todo, null);
+		var viewBody;
+		switch (this.state.viewName) {
+			case "ToDo":
+				viewBody = React.createElement(Todo, null);
+				break;
+		}
+
 		return React.createElement(
 			'div',
 			{ className: 'height-fix' },
