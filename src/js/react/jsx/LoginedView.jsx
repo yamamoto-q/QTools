@@ -5,13 +5,13 @@ var BuildInfo = require('./BuildInfo.js');
 module.exports = React.createClass({
 	onClickMenuIcon:function(){
 		$("#sideMenu.sideMenu-modal")
-			.css("opacity", 0)
-			.css("display", "box")
+			.css("opacity", "0")
+			.show()
 			.animate({
 				opacity: 1,
 				},500, function() {
 					$("#sideMenu #sideMenu-modal-box").animate({
-						left: 0
+						left: "0"
 					},500, function() {
 						/* stuff to do after animation is complete */
 					});
@@ -23,7 +23,7 @@ module.exports = React.createClass({
 				left:"-300px"
 			},500, function() {
 				$("#sideMenu.sideMenu-modal").animate({
-					opacity: 0
+					opacity: "0"
 				},500, function() {
 					$("#sideMenu.sideMenu-modal").css('display', 'none');
 				});

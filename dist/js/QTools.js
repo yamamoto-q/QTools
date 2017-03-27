@@ -21339,7 +21339,7 @@ module.exports = React.createClass({
 
 },{"react":180}],191:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.27 10:55"
+    VERSION: "2017.03.27 11:09"
 }
 },{}],192:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -22040,11 +22040,11 @@ module.exports = React.createClass({
 	displayName: 'exports',
 
 	onClickMenuIcon: function onClickMenuIcon() {
-		$("#sideMenu.sideMenu-modal").css("opacity", 0).css("display", "box").animate({
+		$("#sideMenu.sideMenu-modal").css("opacity", "0").show().animate({
 			opacity: 1
 		}, 500, function () {
 			$("#sideMenu #sideMenu-modal-box").animate({
-				left: 0
+				left: "0"
 			}, 500, function () {
 				/* stuff to do after animation is complete */
 			});
@@ -22055,7 +22055,7 @@ module.exports = React.createClass({
 			left: "-300px"
 		}, 500, function () {
 			$("#sideMenu.sideMenu-modal").animate({
-				opacity: 0
+				opacity: "0"
 			}, 500, function () {
 				$("#sideMenu.sideMenu-modal").css('display', 'none');
 			});
