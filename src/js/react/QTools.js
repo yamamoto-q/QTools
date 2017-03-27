@@ -119,7 +119,6 @@ module.exports = React.createClass({
 			);
 		} else if (this.state.loginSuccess) {
 			$("body").removeClass('authentication').removeClass('logining').removeClass('splash').addClass('logined');
-
 			return React.createElement(LoginedView, { className: 'height-fix' });
 		}
 		return React.createElement(

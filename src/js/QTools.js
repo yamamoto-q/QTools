@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.27 16:53"
+    VERSION: "2017.03.27 17:02"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27250,12 +27250,18 @@ var Store = assign({}, EventEmitter.prototype, {
     emitChangeView:function(){
         this.emit(EVENT.CHANGE_VIEW);
     },
+    // func
+    _setView:function(viewName){
+    	_state.viewName = viewName;
+    	history.pushState(null,null,"/" + viewName);
+    	Store.emitChangeView();
+    },
     // Dispacher
     dispatcherIndex: dispatcher.register(function(payload) {
         switch (payload.actionType) {
     		case "setView":
     			_state.viewName = payload.value.viewName;
-    			Store.emitChangeView();
+    			Store._setView(_state.viewName);
     			break;
         };
     })
@@ -27641,7 +27647,6 @@ module.exports = React.createClass({
 			);
 		} else if (this.state.loginSuccess) {
 			$("body").removeClass('authentication').removeClass('logining').removeClass('splash').addClass('logined');
-
 			return React.createElement(LoginedView, { className: 'height-fix' });
 		}
 		return React.createElement(

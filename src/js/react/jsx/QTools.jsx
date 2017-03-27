@@ -49,8 +49,6 @@ module.exports = React.createClass({
 					loginSuccess:loginSuccess,
 					loginedUser:loginedUser
 				});
-
-
 			};
 		});
 	},
@@ -109,7 +107,6 @@ module.exports = React.createClass({
 				.removeClass('logining')
 				.removeClass('splash')
 				.addClass('logined');
-
 			return (
 				<LoginedView className="height-fix" />
 				);
