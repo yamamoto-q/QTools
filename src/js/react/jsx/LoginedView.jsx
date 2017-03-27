@@ -36,8 +36,7 @@ module.exports = React.createClass({
 			});
 	},
 	render: function() {
-		var viewBody = ToDo;
-
+		var viewBody = (<Todo />);
 		return (
 			<div className="height-fix">
 				<Header on_click_menu_icon={this.onClickMenuIcon}/>

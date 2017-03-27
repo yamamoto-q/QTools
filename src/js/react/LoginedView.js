@@ -35,8 +35,7 @@ module.exports = React.createClass({
 		});
 	},
 	render: function render() {
-		var viewBody = ToDo;
-
+		var viewBody = React.createElement(Todo, null);
 		return React.createElement(
 			'div',
 			{ className: 'height-fix' },
