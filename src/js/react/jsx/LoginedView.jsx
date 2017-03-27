@@ -7,16 +7,16 @@ var SettingMenu = require('./SettingMenu.js');
 
 var ToDo = require('./ToDo.js');
 
-var ReactRouter = require('react-router-dom'); 
-//import { HashRouter as Router, Route } from 'react-router-dom'; 
+var ReactRouter = require('react-router'); 
 var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
+
 var routes = (
-	<Router>
-		<Route path="/" component={ToDo} />
-		<Route path="*" component={ToDo} />
-	</Router>
+  <Route path="/" component={ToDo}>
+    <IndexRoute component={ToDo}/>
+    <Route path="*" component={ToDo}/>
+  </Route>
 );
 
 module.exports = React.createClass({
