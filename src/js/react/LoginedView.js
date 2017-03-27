@@ -71,6 +71,5 @@ var routes = React.createElement(
 	Route,
 	(_React$createElement = { path: 'app' }, _defineProperty(_React$createElement, 'path', '/'), _defineProperty(_React$createElement, 'component', ToDo), _React$createElement),
 	React.createElement(Route, { path: 'inbox', component: ToDo }),
-	React.createElement(Route, { path: 'calendar', component: ToDo }),
-	React.createElement(DefaultRoute, { component: ToDo })
+	React.createElement(Route, { path: '*', component: ToDo })
 );

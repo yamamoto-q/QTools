@@ -23287,7 +23287,7 @@ module.exports = React.createClass({
 
 },{"react":197}],211:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.27 13:46"
+    VERSION: "2017.03.27 13:58"
 }
 },{}],212:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -24051,8 +24051,7 @@ var routes = React.createElement(
 	Route,
 	(_React$createElement = { path: 'app' }, _defineProperty(_React$createElement, 'path', '/'), _defineProperty(_React$createElement, 'component', ToDo), _React$createElement),
 	React.createElement(Route, { path: 'inbox', component: ToDo }),
-	React.createElement(Route, { path: 'calendar', component: ToDo }),
-	React.createElement(DefaultRoute, { component: ToDo })
+	React.createElement(Route, { path: '*', component: ToDo })
 );
 
 },{"./BuildInfo.js":211,"./Header.js":215,"./SettingMenu.js":220,"./ToDo.js":221,"react":197,"react-router":170}],218:[function(require,module,exports){

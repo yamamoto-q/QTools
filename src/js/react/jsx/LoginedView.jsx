@@ -61,7 +61,6 @@ module.exports = React.createClass({
 var routes = (
   <Route path="app" path="/" component={ToDo}>
     <Route path="inbox" component={ToDo}/>
-    <Route path="calendar" component={ToDo}/>
-    <DefaultRoute component={ToDo}/>
+    <Route path="*" component={ToDo}/>
   </Route>
 );
