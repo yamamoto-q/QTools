@@ -22997,9 +22997,10 @@ module.exports = warning;
 var React = require('react');
 var ReactDOM = require('react-dom');
 var QTools = require('./QTools.js');
+var BuildInfo = require('./BuildInfo.js');
 
 (function ($) {
-
+	console.log("ver." + BuildInfo.VERSION);
 	// cordova 判定
 	/*
  if(typeof cordova !== "undefined"){
@@ -23041,7 +23042,7 @@ var QTools = require('./QTools.js');
 	};
 })(window.jQuery);
 
-},{"./QTools.js":218,"react":197,"react-dom":36}],202:[function(require,module,exports){
+},{"./BuildInfo.js":211,"./QTools.js":218,"react":197,"react-dom":36}],202:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -23286,7 +23287,7 @@ module.exports = React.createClass({
 
 },{"react":197}],211:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.27 13:42"
+    VERSION: "2017.03.27 13:44"
 }
 },{}],212:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;

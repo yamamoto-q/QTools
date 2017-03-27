@@ -1,10 +1,11 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var QTools = require('./QTools.js');
+var BuildInfo = require('./BuildInfo.js');
 
 
 (function($) {
-
+	console.log("ver." + BuildInfo.VERSION)
 	// cordova 判定
 	/*
 	if(typeof cordova !== "undefined"){
