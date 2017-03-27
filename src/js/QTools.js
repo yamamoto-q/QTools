@@ -23287,7 +23287,7 @@ module.exports = React.createClass({
 
 },{"react":197}],211:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.27 13:44"
+    VERSION: "2017.03.27 13:46"
 }
 },{}],212:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -23991,7 +23991,7 @@ var SettingMenu = require('./SettingMenu.js');
 
 var ToDo = require('./ToDo.js');
 
-var Router = require('react-router');
+var ReactRouter = require('react-router');
 var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
