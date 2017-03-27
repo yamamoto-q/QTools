@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.27 16:12"
+    VERSION: "2017.03.27 16:15"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27458,7 +27458,7 @@ module.exports = React.createClass({
 		var viewBody;
 		switch (this.state.viewName) {
 			case "ToDo":
-				viewBody = React.createElement(Todo, null);
+				viewBody = React.createElement(ToDo, null);
 				break;
 		}
 

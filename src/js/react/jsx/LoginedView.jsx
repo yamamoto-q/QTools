@@ -47,8 +47,8 @@ module.exports = React.createClass({
 		var viewBody;
 		switch (this.state.viewName){
 			case "ToDo":
-				viewBody = (<Todo />);
-			break;
+				viewBody = (<ToDo />);
+				break;
 		}
 
 		

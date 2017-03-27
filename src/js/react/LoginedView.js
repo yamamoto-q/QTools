@@ -46,7 +46,7 @@ module.exports = React.createClass({
 		var viewBody;
 		switch (this.state.viewName) {
 			case "ToDo":
-				viewBody = React.createElement(Todo, null);
+				viewBody = React.createElement(ToDo, null);
 				break;
 		}
 
