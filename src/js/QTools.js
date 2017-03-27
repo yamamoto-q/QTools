@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.27 17:16"
+    VERSION: "2017.03.27 17:19"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27258,10 +27258,12 @@ var Store = assign({}, EventEmitter.prototype, {
         this.emit(EVENT.CHANGE_VIEW);
     },
     // func
-    _setView:function(viewName){
-        _state.history.push({
-            viewName:_state.viewName
-        });
+    _setView:function(viewName, addHistry){
+        if(addHistry){
+            _state.history.push({
+                viewName:_state.viewName
+            });
+        }
 
     	_state.viewName = viewName;
 
@@ -27273,15 +27275,14 @@ var Store = assign({}, EventEmitter.prototype, {
     dispatcherIndex: dispatcher.register(function(payload) {
         switch (payload.actionType) {
     		case "setView":
-    			Store._setView(payload.value.viewName);
+    			Store._setView(payload.value.viewName, true);
     			break;
             case "historyBack":
                 var before = _state.history.pop();
                 var viewName = before.viewName;
                 if(typeof viewName !== "undefined"){
-                    Store._setView(viewName);
+                    Store._setView(viewName, false);
                 }
-                
                 break;
         };
     })
