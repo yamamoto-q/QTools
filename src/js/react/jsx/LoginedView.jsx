@@ -6,19 +6,25 @@ module.exports = React.createClass({
 	onClickMenuIcon:function(){
 
 
-		$("#sideMenu.sideMenu-modal").show(50,function(){
-			console.log("showed:" + this);
-			$(this).animate({
-				backgroundColor: "rgba(0,0,0,0.5)",
-			},1000, function() {
-				console.log("bg");
+		$("#sideMenu.sideMenu-modal")
+			.css({
+				display: 'box',
+				opacity: 0
+			})
+			.animate({
+				opacity: 1,
+				},500, function() {
+					$("#sideMenu #sideMenu-modal-box").animate({
+						left: 0
+					},500, function() {
+						/* stuff to do after animation is complete */
+					});
 			});
-		})
 	},
 	hideSideMenu:function(){
 		$("#sideMenu #sideMenu-modal-box")
 			.animate({
-				left:"-300px";
+				left:"-300px"
 			},500, function() {
 				$("#sideMenu.sideMenu-modal").animate({
 					opacity: 0

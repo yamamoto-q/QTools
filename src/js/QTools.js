@@ -21339,7 +21339,7 @@ module.exports = React.createClass({
 
 },{"react":180}],191:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.24 19:18"
+    VERSION: "2017.03.27 10:36"
 }
 },{}],192:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -22040,17 +22040,30 @@ module.exports = React.createClass({
 	displayName: 'exports',
 
 	onClickMenuIcon: function onClickMenuIcon() {
-		$("#sideMenu.sideMenu-modal").show(50, function () {
-			console.log("showed:" + this);
-			$(this).animate({
-				backgroundColor: "rgba(0,0,0,0.5)"
-			}, 1000, function () {
-				console.log("bg");
+
+		$("#sideMenu.sideMenu-modal").css({
+			display: 'box',
+			opacity: 0
+		}).animate({
+			opacity: 1
+		}, 500, function () {
+			$("#sideMenu #sideMenu-modal-box").animate({
+				left: 0
+			}, 500, function () {
+				/* stuff to do after animation is complete */
 			});
 		});
 	},
 	hideSideMenu: function hideSideMenu() {
-		$("#sideMenu.sideMenu-modal").hide(1000).removeClass("sideMenu-modal-show").addClass("sideMenu-modal-hide");
+		$("#sideMenu #sideMenu-modal-box").animate({
+			left: "-300px"
+		}, 500, function () {
+			$("#sideMenu.sideMenu-modal").animate({
+				opacity: 0
+			}, 500, function () {
+				$("#sideMenu.sideMenu-modal").css('display', 'none');
+			});
+		});
 	},
 	render: function render() {
 		return React.createElement(
@@ -22067,7 +22080,7 @@ module.exports = React.createClass({
 				{ id: 'sideMenu', className: 'sideMenu-modal sideMenu-modal-hide', onClick: this.hideSideMenu },
 				React.createElement(
 					'div',
-					{ style: { position: "absolute", backgroundColor: "white", width: "300px", top: "0", left: "0", bottom: "0" } },
+					{ id: 'sideMenu-modal-box', style: { position: "absolute", backgroundColor: "white", width: "300px", top: "0", left: "0", bottom: "0" } },
 					'hoge 35:',
 					JSON.stringify(this.state, null, 2),
 					React.createElement(
