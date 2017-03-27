@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.27 16:15"
+    VERSION: "2017.03.27 16:30"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27228,16 +27228,31 @@ _state = {
 	viewName : "DashBoard"
 }
 
+var EVENT = {
+	CHANGE_VIEW:"change_view"
+}
+
+var VIEW_NAMES = {
+	ADMIN_VIEW:"admin_view"
+}
+
 var Store = assign({}, EventEmitter.prototype, {
 	getViewNane:function(){
 		return _state.viewName;
 	},
+	//
+	addChangeViewListener:function(callback){
+        this.on(EVENT.CHANGE_VIEW, callback);
+    },
+    emitChangeView:function(){
+        this.emit(EVENT.CHANGE_VIEW);
+    },
     // Dispacher
     dispatcherIndex: dispatcher.register(function(payload) {
         switch (payload.actionType) {
     		case "setView":
-    			var viewNam = payload.value.viewName;
-
+    			_state.viewName = payload.value.viewName;
+    			Store.emitChangeView();
     			break;
         };
     })
@@ -27245,7 +27260,8 @@ var Store = assign({}, EventEmitter.prototype, {
 
 module.exports = {
     Action: Action,
-    Store: Store
+    Store: Store,
+    ViewNames:VIEW_NAMES
 }
 },{"events":4,"flux":28,"object-assign":32}],259:[function(require,module,exports){
 'use strict';
@@ -27429,6 +27445,24 @@ module.exports = React.createClass({
 		return {
 			viewName: 'ToDo'
 		};
+	},
+	componentDidMount: function componentDidMount() {
+		var self = this;
+		Controller_View.Store.addChangeViewListener(function () {
+			if (self.isMounted()) {
+				var viewName = Controller_View.Store.getViewNane();
+				console.log(viewName);
+				/*
+    self.setState({
+    	showSplash:isWaitingStrage,
+    	showAuthInput:isValidAuthParam == false || loginSuccess == false || changeAuth == true,
+    	showLogining:isChallengeLogin == true,
+    	loginSuccess:loginSuccess,
+    	loginedUser:loginedUser
+    });
+    */
+			};
+		});
 	},
 	onClickMenuIcon: function onClickMenuIcon() {
 		$("#sideMenu #sideMenu-box").css("left", "-300px");
@@ -27713,19 +27747,23 @@ module.exports = {
 
 var React = require('react');
 var ReactRouter = require('react-router');
-var Link = ReactRouter.Link;
+var Controller_View = require('./Controller_View.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
 
+	conClick: function conClick(e) {
+		var viewName = e.target.getAttribute('data-viewname');
+		console.log(viewName);
+	},
 	render: function render() {
 		return React.createElement(
 			'div',
 			{ className: 'list-group' },
 			React.createElement(
 				'a',
-				{ href: '#', className: 'list-group-item active' },
-				'Cras justo odio'
+				{ href: '#', className: 'list-group-item list-group-item-action', 'data-viewname': Controller_View.ViewNames.ADMIN_VIEW, onClick: this.conClick },
+				'Admin Tools'
 			),
 			React.createElement(
 				'a',
@@ -27751,7 +27789,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":242,"react-router":191}],265:[function(require,module,exports){
+},{"./Controller_View.js":258,"react":242,"react-router":191}],265:[function(require,module,exports){
 'use strict';
 
 var React = require('react');

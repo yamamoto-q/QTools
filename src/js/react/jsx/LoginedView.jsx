@@ -14,6 +14,24 @@ module.exports = React.createClass({
 			viewName:'ToDo'
 		};
 	},
+	componentDidMount: function() {
+		var self = this;
+		Controller_View.Store.addChangeViewListener(function () {
+			if (self.isMounted()) {
+				var viewName = Controller_View.Store.getViewNane();
+				console.log(viewName);
+				/*
+				self.setState({
+					showSplash:isWaitingStrage,
+					showAuthInput:isValidAuthParam == false || loginSuccess == false || changeAuth == true,
+					showLogining:isChallengeLogin == true,
+					loginSuccess:loginSuccess,
+					loginedUser:loginedUser
+				});
+				*/
+			};
+		});
+	},
 	onClickMenuIcon:function(){
 		$("#sideMenu #sideMenu-box")
 			.css("left","-300px");
