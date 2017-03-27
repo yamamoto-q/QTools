@@ -4,13 +4,9 @@ var BuildInfo = require('./BuildInfo.js');
 
 module.exports = React.createClass({
 	onClickMenuIcon:function(){
-
-
 		$("#sideMenu.sideMenu-modal")
-			.css({
-				display: 'box',
-				opacity: 0
-			})
+			.css("opacity", 0)
+			.css("display", "box")
 			.animate({
 				opacity: 1,
 				},500, function() {

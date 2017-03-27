@@ -8,11 +8,7 @@ module.exports = React.createClass({
 	displayName: 'exports',
 
 	onClickMenuIcon: function onClickMenuIcon() {
-
-		$("#sideMenu.sideMenu-modal").css({
-			display: 'box',
-			opacity: 0
-		}).animate({
+		$("#sideMenu.sideMenu-modal").css("opacity", 0).css("display", "box").animate({
 			opacity: 1
 		}, 500, function () {
 			$("#sideMenu #sideMenu-modal-box").animate({
