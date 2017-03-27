@@ -10,14 +10,14 @@ var ToDo = require('./ToDo.js');
 var ReactRouter = require('react-router'); 
 var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
-var IndexRoute = ReactRouter.IndexRoute;
 var hashHistory = ReactRouter.hashHistory;
+var Link = ReactRouter.Link;
 
 var routes = (
 	<Router history={hashHistory}>
-  <Route path="/" component={ToDo}/>
-  <Route path="*" component={ToDo}/>
-  </Router>
+		<Route path="/" component={ToDo}/>
+		<Route path="*" component={ToDo}/>
+	</Router>
 );
 
 module.exports = React.createClass({
