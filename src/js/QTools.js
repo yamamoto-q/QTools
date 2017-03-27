@@ -26434,7 +26434,7 @@ var BuildInfo = require('./BuildInfo.js');
 	};
 })(window.jQuery);
 
-},{"./BuildInfo.js":254,"./QTools.js":262,"react":242,"react-dom":35}],245:[function(require,module,exports){
+},{"./BuildInfo.js":254,"./QTools.js":263,"react":242,"react-dom":35}],245:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.27 16:30"
+    VERSION: "2017.03.27 16:36"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27207,7 +27207,7 @@ module.exports = {
     Store: Store
 }
 
-},{"./Questetra_API.js":263,"events":4,"flux":28,"object-assign":32}],258:[function(require,module,exports){
+},{"./Questetra_API.js":264,"events":4,"flux":28,"object-assign":32}],258:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -27233,6 +27233,7 @@ var EVENT = {
 }
 
 var VIEW_NAMES = {
+	DASHBOARD:"dashboard",
 	ADMIN_VIEW:"admin_view"
 }
 
@@ -27264,6 +27265,22 @@ module.exports = {
     ViewNames:VIEW_NAMES
 }
 },{"events":4,"flux":28,"object-assign":32}],259:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	render: function render() {
+		return React.createElement(
+			'div',
+			null,
+			'Dashboard'
+		);
+	}
+});
+
+},{"react":242}],260:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27337,7 +27354,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Avater.js":245,"./Controller_Login.js":256,"./Controller_Questetra_API.js":257,"react":242}],260:[function(require,module,exports){
+},{"./Avater.js":245,"./Controller_Login.js":256,"./Controller_Questetra_API.js":257,"react":242}],261:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27425,7 +27442,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Button.js":246,"./Bootstrap_FormGroup.js":249,"./Bootstrap_FormInput.js":250,"./Bootstrap_FormLabel.js":251,"./Bootstrap_InputGroup.js":252,"./Controller_Login.js":256,"react":242}],261:[function(require,module,exports){
+},{"./Bootstrap_Button.js":246,"./Bootstrap_FormGroup.js":249,"./Bootstrap_FormInput.js":250,"./Bootstrap_FormLabel.js":251,"./Bootstrap_InputGroup.js":252,"./Controller_Login.js":256,"react":242}],262:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27434,6 +27451,7 @@ var BuildInfo = require('./BuildInfo.js');
 var SettingMenu = require('./SettingMenu.js');
 var Controller_View = require('./Controller_View.js');
 
+var Dashboard = require('./Dashboard.js');
 var ToDo = require('./ToDo.js');
 
 module.exports = React.createClass({
@@ -27441,9 +27459,8 @@ module.exports = React.createClass({
 
 	getInitialState: function getInitialState() {
 		var viewName = Controller_View.Store.getViewNane();
-		console.log(viewName);
 		return {
-			viewName: 'ToDo'
+			viewName: viewName
 		};
 	},
 	componentDidMount: function componentDidMount() {
@@ -27491,9 +27508,10 @@ module.exports = React.createClass({
 	render: function render() {
 		var viewBody;
 		switch (this.state.viewName) {
-			case "ToDo":
-				viewBody = React.createElement(ToDo, null);
+			case Controller_View.ViewNames.DASHBOARD:
+				viewBody = React.createElement(Dashboard, null);
 				break;
+
 		}
 
 		return React.createElement(
@@ -27519,7 +27537,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./BuildInfo.js":254,"./Controller_View.js":258,"./Header.js":259,"./SettingMenu.js":264,"./ToDo.js":265,"react":242}],262:[function(require,module,exports){
+},{"./BuildInfo.js":254,"./Controller_View.js":258,"./Dashboard.js":259,"./Header.js":260,"./SettingMenu.js":265,"./ToDo.js":266,"react":242}],263:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27652,7 +27670,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./BuildInfo.js":254,"./Controller_Login.js":256,"./InputAuthForm.js":260,"./LoginedView.js":261,"react":242}],263:[function(require,module,exports){
+},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./BuildInfo.js":254,"./Controller_Login.js":256,"./InputAuthForm.js":261,"./LoginedView.js":262,"react":242}],264:[function(require,module,exports){
 
 
 var QuestetraAPI = function(){
@@ -27742,7 +27760,7 @@ module.exports = {
     API:_QuestetraAPI
 }
 
-},{}],264:[function(require,module,exports){
+},{}],265:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27789,7 +27807,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"react":242,"react-router":191}],265:[function(require,module,exports){
+},{"./Controller_View.js":258,"react":242,"react-router":191}],266:[function(require,module,exports){
 'use strict';
 
 var React = require('react');

@@ -6,6 +6,7 @@ var BuildInfo = require('./BuildInfo.js');
 var SettingMenu = require('./SettingMenu.js');
 var Controller_View = require('./Controller_View.js');
 
+var Dashboard = require('./Dashboard.js');
 var ToDo = require('./ToDo.js');
 
 module.exports = React.createClass({
@@ -13,9 +14,8 @@ module.exports = React.createClass({
 
 	getInitialState: function getInitialState() {
 		var viewName = Controller_View.Store.getViewNane();
-		console.log(viewName);
 		return {
-			viewName: 'ToDo'
+			viewName: viewName
 		};
 	},
 	componentDidMount: function componentDidMount() {
@@ -63,9 +63,10 @@ module.exports = React.createClass({
 	render: function render() {
 		var viewBody;
 		switch (this.state.viewName) {
-			case "ToDo":
-				viewBody = React.createElement(ToDo, null);
+			case Controller_View.ViewNames.DASHBOARD:
+				viewBody = React.createElement(Dashboard, null);
 				break;
+
 		}
 
 		return React.createElement(

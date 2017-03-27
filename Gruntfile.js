@@ -49,6 +49,7 @@ module.exports = function(grunt) {
                     { 'src/js/react/LoginedView.js': 'src/js/react/jsx/LoginedView.jsx' },
                     { 'src/js/react/SettingMenu.js': 'src/js/react/jsx/SettingMenu.jsx' },
                     { 'src/js/react/ToDo.js': 'src/js/react/jsx/ToDo.jsx' },
+                    { 'src/js/react/Dashboard.js': 'src/js/react/jsx/Dashboard.jsx' },
                     // Bootstrap
                     { 'src/js/react/Bootstrap_Row.js': 'src/js/react/jsx/Bootstrap/row.jsx' },
                     { 'src/js/react/Bootstrap_Container.js': 'src/js/react/jsx/Bootstrap/container.jsx' },

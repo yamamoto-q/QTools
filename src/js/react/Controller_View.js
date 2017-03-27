@@ -23,6 +23,7 @@ var EVENT = {
 }
 
 var VIEW_NAMES = {
+	DASHBOARD:"dashboard",
 	ADMIN_VIEW:"admin_view"
 }
 
