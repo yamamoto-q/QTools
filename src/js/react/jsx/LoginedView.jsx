@@ -11,12 +11,13 @@ var ReactRouter = require('react-router');
 var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
+var hashHistory = ReactRouter.hashHistory;
 
 var routes = (
-  <Route path="/" component={ToDo}>
-    <IndexRoute component={ToDo}/>
-    <Route path="*" component={ToDo}/>
-  </Route>
+	<Router history={hashHistory}>
+  <Route path="/" component={ToDo}/>
+  <Route path="*" component={ToDo}/>
+  </Router>
 );
 
 module.exports = React.createClass({
@@ -53,7 +54,7 @@ module.exports = React.createClass({
 		return (
 			<div className="height-fix">
 				<Header on_click_menu_icon={this.onClickMenuIcon}/>
-				<Router>{routes}</Router>
+				{routes}
 				<div id="sideMenu" className="sideMenu-modal sideMenu-modal-hide" onClick={this.hideSideMenu}>
 					<div id="sideMenu-box" style={{position:"absolute", backgroundColor:"white", width:"300px", top:"0", bottom:"0"}}>
 						<SettingMenu />
