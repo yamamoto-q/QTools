@@ -46,7 +46,10 @@ module.exports = React.createClass({
 		return (
 			<div className="height-fix">
 				<Header on_click_menu_icon={this.onClickMenuIcon}/>
-				<RouteHandler/>
+				  <Route path="app" path="/" component={ToDo}>
+				    <Route path="inbox" component={ToDo}/>
+				    <Route path="*" component={ToDo}/>
+				  </Route>
 				<div id="sideMenu" className="sideMenu-modal sideMenu-modal-hide" onClick={this.hideSideMenu}>
 					<div id="sideMenu-box" style={{position:"absolute", backgroundColor:"white", width:"300px", top:"0", bottom:"0"}}>
 						<SettingMenu />
@@ -57,10 +60,3 @@ module.exports = React.createClass({
 		);
 	}
 });
-
-var routes = (
-  <Route path="app" path="/" component={ToDo}>
-    <Route path="inbox" component={ToDo}/>
-    <Route path="*" component={ToDo}/>
-  </Route>
-);

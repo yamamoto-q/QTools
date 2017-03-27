@@ -1,7 +1,5 @@
 'use strict';
 
-var _React$createElement;
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var React = require('react');
@@ -44,11 +42,18 @@ module.exports = React.createClass({
 		});
 	},
 	render: function render() {
+		var _React$createElement;
+
 		return React.createElement(
 			'div',
 			{ className: 'height-fix' },
 			React.createElement(Header, { on_click_menu_icon: this.onClickMenuIcon }),
-			React.createElement(RouteHandler, null),
+			React.createElement(
+				Route,
+				(_React$createElement = { path: 'app' }, _defineProperty(_React$createElement, 'path', '/'), _defineProperty(_React$createElement, 'component', ToDo), _React$createElement),
+				React.createElement(Route, { path: 'inbox', component: ToDo }),
+				React.createElement(Route, { path: '*', component: ToDo })
+			),
 			React.createElement(
 				'div',
 				{ id: 'sideMenu', className: 'sideMenu-modal sideMenu-modal-hide', onClick: this.hideSideMenu },
@@ -66,10 +71,3 @@ module.exports = React.createClass({
 		);
 	}
 });
-
-var routes = React.createElement(
-	Route,
-	(_React$createElement = { path: 'app' }, _defineProperty(_React$createElement, 'path', '/'), _defineProperty(_React$createElement, 'component', ToDo), _React$createElement),
-	React.createElement(Route, { path: 'inbox', component: ToDo }),
-	React.createElement(Route, { path: '*', component: ToDo })
-);
