@@ -6,31 +6,31 @@ module.exports = React.createClass({
 
 	render: function render() {
 		return React.createElement(
-			"ul",
+			"div",
 			{ className: "list-group" },
 			React.createElement(
-				"li",
-				{ className: "list-group-item" },
+				"a",
+				{ href: "#", className: "list-group-item active" },
 				"Cras justo odio"
 			),
 			React.createElement(
-				"li",
-				{ className: "list-group-item" },
+				"a",
+				{ href: "#", className: "list-group-item list-group-item-action" },
 				"Dapibus ac facilisis in"
 			),
 			React.createElement(
-				"li",
-				{ className: "list-group-item" },
+				"a",
+				{ href: "#", className: "list-group-item list-group-item-action" },
 				"Morbi leo risus"
 			),
 			React.createElement(
-				"li",
-				{ className: "list-group-item" },
+				"a",
+				{ href: "#", className: "list-group-item list-group-item-action" },
 				"Porta ac consectetur ac"
 			),
 			React.createElement(
-				"li",
-				{ className: "list-group-item" },
+				"a",
+				{ href: "#", className: "list-group-item list-group-item-action disabled" },
 				"Vestibulum at eros"
 			)
 		);

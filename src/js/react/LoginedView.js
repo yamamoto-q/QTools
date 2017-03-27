@@ -9,11 +9,11 @@ module.exports = React.createClass({
 	displayName: 'exports',
 
 	onClickMenuIcon: function onClickMenuIcon() {
-		$("#sideMenu #sideMenu-modal-box").css("left");
+		$("#sideMenu #sideMenu-box").css("left");
 		$("#sideMenu.sideMenu-modal").css("opacity", "0").show().animate({
 			opacity: 1
 		}, 500, function () {
-			$("#sideMenu #sideMenu-modal-box").animate({
+			$("#sideMenu #sideMenu-box").animate({
 				left: "0"
 			}, 500, function () {
 				/* stuff to do after animation is complete */
@@ -21,7 +21,7 @@ module.exports = React.createClass({
 		});
 	},
 	hideSideMenu: function hideSideMenu() {
-		$("#sideMenu #sideMenu-modal-box").animate({
+		$("#sideMenu #sideMenu-box").animate({
 			left: "-300px"
 		}, 500, function () {
 			$("#sideMenu.sideMenu-modal").animate({
@@ -46,7 +46,7 @@ module.exports = React.createClass({
 				{ id: 'sideMenu', className: 'sideMenu-modal sideMenu-modal-hide', onClick: this.hideSideMenu },
 				React.createElement(
 					'div',
-					{ id: 'sideMenu-modal-box', style: { position: "absolute", backgroundColor: "white", width: "300px", top: "0", left: "0", bottom: "0" } },
+					{ id: 'sideMenu-box', style: { position: "absolute", backgroundColor: "white", width: "300px", top: "0", bottom: "0" } },
 					React.createElement(SettingMenu, null),
 					React.createElement(
 						'div',

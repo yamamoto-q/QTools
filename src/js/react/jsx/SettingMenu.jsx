@@ -2,13 +2,13 @@ var React = require('react');
 module.exports = React.createClass({
 	render: function() {
 		return (
-			<ul className="list-group">
-			  <li className="list-group-item">Cras justo odio</li>
-			  <li className="list-group-item">Dapibus ac facilisis in</li>
-			  <li className="list-group-item">Morbi leo risus</li>
-			  <li className="list-group-item">Porta ac consectetur ac</li>
-			  <li className="list-group-item">Vestibulum at eros</li>
-			</ul>
+			<div className="list-group">
+				<a href="#" className="list-group-item active">Cras justo odio</a>
+				<a href="#" className="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+				<a href="#" className="list-group-item list-group-item-action">Morbi leo risus</a>
+				<a href="#" className="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+				<a href="#" className="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+			</div>
 		);
 	}
 });

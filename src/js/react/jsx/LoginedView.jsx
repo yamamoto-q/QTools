@@ -5,29 +5,30 @@ var SettingMenu = require('./SettingMenu.js');
 
 module.exports = React.createClass({
 	onClickMenuIcon:function(){
-		$("#sideMenu #sideMenu-modal-box")
+		$("#sideMenu #sideMenu-box")
 			.css("left":"-300px");
 		$("#sideMenu.sideMenu-modal")
 			.css("opacity", "0")
 			.show()
 			.animate({
 				opacity: 1,
-				},500, function() {
-					$("#sideMenu #sideMenu-modal-box").animate({
+				},250, function() {
+					$("#sideMenu #sideMenu-box").animate({
 						left: "0"
-					},500, function() {
+					},250, function() {
 						/* stuff to do after animation is complete */
 					});
 			});
 	},
-	hideSideMenu:function(){
-		$("#sideMenu #sideMenu-modal-box")
+	hideSideMenu:function(e){
+		e.preventDefault();
+		$("#sideMenu #sideMenu-box")
 			.animate({
 				left:"-300px"
-			},500, function() {
+			},250, function() {
 				$("#sideMenu.sideMenu-modal").animate({
 					opacity: "0"
-				},500, function() {
+				},250, function() {
 					$("#sideMenu.sideMenu-modal").css('display', 'none');
 				});
 			});
@@ -38,7 +39,7 @@ module.exports = React.createClass({
 				<Header on_click_menu_icon={this.onClickMenuIcon}/>
 				<pre>Logined</pre>
 				<div id="sideMenu" className="sideMenu-modal sideMenu-modal-hide" onClick={this.hideSideMenu}>
-					<div id="sideMenu-modal-box" style={{position:"absolute", backgroundColor:"white", width:"300px", top:"0", left:"0", bottom:"0"}}>
+					<div id="sideMenu-box" style={{position:"absolute", backgroundColor:"white", width:"300px", top:"0", bottom:"0"}}>
 						<SettingMenu />
 						<div>{BuildInfo.VERSION}</div>
 					</div>
