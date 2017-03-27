@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.27 16:36"
+    VERSION: "2017.03.27 16:41"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27234,7 +27234,7 @@ var EVENT = {
 
 var VIEW_NAMES = {
 	DASHBOARD:"dashboard",
-	ADMIN_VIEW:"admin_view"
+	ADMIN_TOOLS:"admin_tools"
 }
 
 var Store = assign({}, EventEmitter.prototype, {
@@ -27452,6 +27452,7 @@ var SettingMenu = require('./SettingMenu.js');
 var Controller_View = require('./Controller_View.js');
 
 var Dashboard = require('./Dashboard.js');
+var AdminTools = require('./View_AdminTools.js');
 var ToDo = require('./ToDo.js');
 
 module.exports = React.createClass({
@@ -27537,7 +27538,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./BuildInfo.js":254,"./Controller_View.js":258,"./Dashboard.js":259,"./Header.js":260,"./SettingMenu.js":265,"./ToDo.js":266,"react":242}],263:[function(require,module,exports){
+},{"./BuildInfo.js":254,"./Controller_View.js":258,"./Dashboard.js":259,"./Header.js":260,"./SettingMenu.js":265,"./ToDo.js":266,"./View_AdminTools.js":267,"react":242}],263:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27780,7 +27781,7 @@ module.exports = React.createClass({
 			{ className: 'list-group' },
 			React.createElement(
 				'a',
-				{ href: '#', className: 'list-group-item list-group-item-action', 'data-viewname': Controller_View.ViewNames.ADMIN_VIEW, onClick: this.conClick },
+				{ href: '#', className: 'list-group-item list-group-item-action', 'data-viewname': Controller_View.ViewNames.ADMIN_TOOLS, onClick: this.conClick },
 				'Admin Tools'
 			),
 			React.createElement(
@@ -27819,6 +27820,22 @@ module.exports = React.createClass({
 			'div',
 			null,
 			'Todo'
+		);
+	}
+});
+
+},{"react":242}],267:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	render: function render() {
+		return React.createElement(
+			'div',
+			null,
+			'Admin Tools'
 		);
 	}
 });

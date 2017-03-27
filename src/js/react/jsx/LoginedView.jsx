@@ -5,6 +5,7 @@ var SettingMenu = require('./SettingMenu.js');
 var Controller_View = require('./Controller_View.js');
 
 var Dashboard = require('./Dashboard.js');
+var AdminTools = require('./View_AdminTools.js');
 var ToDo = require('./ToDo.js');
 
 module.exports = React.createClass({
@@ -67,7 +68,7 @@ module.exports = React.createClass({
 			case Controller_View.ViewNames.DASHBOARD:
 				viewBody = (<Dashboard />);
 				break;
-			
+
 		}
 
 		

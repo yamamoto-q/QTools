@@ -17,7 +17,7 @@ module.exports = React.createClass({
 			{ className: 'list-group' },
 			React.createElement(
 				'a',
-				{ href: '#', className: 'list-group-item list-group-item-action', 'data-viewname': Controller_View.ViewNames.ADMIN_VIEW, onClick: this.conClick },
+				{ href: '#', className: 'list-group-item list-group-item-action', 'data-viewname': Controller_View.ViewNames.ADMIN_TOOLS, onClick: this.conClick },
 				'Admin Tools'
 			),
 			React.createElement(

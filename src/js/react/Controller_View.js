@@ -24,7 +24,7 @@ var EVENT = {
 
 var VIEW_NAMES = {
 	DASHBOARD:"dashboard",
-	ADMIN_VIEW:"admin_view"
+	ADMIN_TOOLS:"admin_tools"
 }
 
 var Store = assign({}, EventEmitter.prototype, {
