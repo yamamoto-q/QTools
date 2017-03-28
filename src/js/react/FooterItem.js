@@ -10,7 +10,15 @@ module.exports = React.createClass({
         return React.createElement(
             'div',
             { className: 'footer-item' },
-            this.props.children
+            React.createElement(
+                'div',
+                { style: { display: "table" } },
+                React.createElement(
+                    'div',
+                    { style: { display: "table-cell" } },
+                    this.props.children
+                )
+            )
         );
     }
 });

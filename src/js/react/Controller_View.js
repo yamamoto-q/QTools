@@ -42,7 +42,7 @@ var EVENT = {
 
 var VIEW_NAMES = {
 	DASHBOARD:"dashboard",
-	ADMIN_TOOLS:"admin_tools"
+	ADMIN_TOOLS:"admin-tools"
 }
 
 var _state = {
@@ -80,6 +80,7 @@ var Store = assign({}, EventEmitter.prototype, {
     		case "setView":
     			Store._setView(payload.value.viewName, true);
     			break;
+                
             case "historyBack":
                 var before = _state.history.pop();
                 var viewName = before.viewName;

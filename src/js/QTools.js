@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.28 15:08"
+    VERSION: "2017.03.28 15:17"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27398,7 +27398,7 @@ var EVENT = {
 
 var VIEW_NAMES = {
 	DASHBOARD:"dashboard",
-	ADMIN_TOOLS:"admin_tools"
+	ADMIN_TOOLS:"admin-tools"
 }
 
 var _state = {
@@ -27436,6 +27436,7 @@ var Store = assign({}, EventEmitter.prototype, {
     		case "setView":
     			Store._setView(payload.value.viewName, true);
     			break;
+                
             case "historyBack":
                 var before = _state.history.pop();
                 var viewName = before.viewName;
@@ -27511,7 +27512,15 @@ module.exports = React.createClass({
         return React.createElement(
             'div',
             { className: 'footer-item' },
-            this.props.children
+            React.createElement(
+                'div',
+                { style: { display: "table" } },
+                React.createElement(
+                    'div',
+                    { style: { display: "table-cell" } },
+                    this.props.children
+                )
+            )
         );
     }
 });
