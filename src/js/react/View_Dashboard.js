@@ -45,7 +45,21 @@ module.exports = React.createClass({
 			React.createElement(
 				Header,
 				{ on_click_menu_icon: this.onClickMenuIcon },
-				'test'
+				React.createElement(
+					FooterItem,
+					null,
+					'A'
+				),
+				React.createElement(
+					FooterItem,
+					null,
+					'B'
+				),
+				React.createElement(
+					FooterItem,
+					null,
+					'C'
+				)
 			),
 			React.createElement(
 				'div',

@@ -55,6 +55,15 @@ body.logining {
   height: 32px;
   width: 32px;
 }
+#header .bar-center {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+  align-content: center;
+  height: 100%;
+}
 #footer {
   height: 50px;
   font-size: 1rem;

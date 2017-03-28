@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.28 15:38"
+    VERSION: "2017.03.28 15:42"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28186,7 +28186,21 @@ module.exports = React.createClass({
 			React.createElement(
 				Header,
 				{ on_click_menu_icon: this.onClickMenuIcon },
-				'test'
+				React.createElement(
+					FooterItem,
+					null,
+					'A'
+				),
+				React.createElement(
+					FooterItem,
+					null,
+					'B'
+				),
+				React.createElement(
+					FooterItem,
+					null,
+					'C'
+				)
 			),
 			React.createElement(
 				'div',

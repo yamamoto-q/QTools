@@ -42,7 +42,11 @@ module.exports = React.createClass({
 	render: function() {
 		return(
 			<div className="height-fix">
-				<Header on_click_menu_icon={this.onClickMenuIcon}>test</Header>
+				<Header on_click_menu_icon={this.onClickMenuIcon}>
+					<FooterItem>A</FooterItem>
+					<FooterItem>B</FooterItem>
+					<FooterItem>C</FooterItem>
+				</Header>
 				<div className="height-fix">
 					<Bootstrap_Container>
 						<Bootstrap_Row>
