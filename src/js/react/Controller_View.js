@@ -17,6 +17,14 @@ var Action = {
             actionType: "historyBack",
             value: {}
         });
+    },
+    setHasHeader:function(bool){
+        dispatcher.dispatch({
+            actionType: "setHasHeader",
+            value: {
+                flag:bool
+            }
+        });
     }
 };
 
@@ -31,7 +39,8 @@ var VIEW_NAMES = {
 
 var _state = {
 	viewName : VIEW_NAMES.DASHBOARD,
-    history:[]
+    history:[],
+    hasHeader: false
 }
 
 var Store = assign({}, EventEmitter.prototype, {
@@ -67,6 +76,16 @@ var Store = assign({}, EventEmitter.prototype, {
                 var viewName = before.viewName;
                 if(typeof viewName !== "undefined"){
                     Store._setView(viewName, false);
+                }
+                break;
+
+            case "setHasHeader":
+                var flag = payload.value.flag;
+                _state.hasHeader = flag;
+                if(flag){
+                    $("body").addClass('has-header');
+                }else{
+                    $("body").removeClass('has-header')
                 }
                 break;
         };

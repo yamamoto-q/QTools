@@ -3,6 +3,7 @@
 var React = require('react');
 var _Login = require('./Controller_Login.js');
 var _QApi = require('./Controller_Questetra_API.js');
+var Controller_View = require('./Controller_View.js');
 var Avater = require('./Avater.js');
 
 module.exports = React.createClass({
@@ -18,6 +19,14 @@ module.exports = React.createClass({
 			mail: loginedUser.mail,
 			name: loginedUser.name
 		};
+	},
+	componentDidMount: function componentDidMount() {
+		// マウントされたとき
+		Controller_View.Action.setHasHeader(true);
+	},
+	componentWillUnMount: function componentWillUnMount() {
+		// アンマウントされるとき
+		Controller_View.Action.setHasHeader(false);
 	},
 	onClickMenuIcon: function onClickMenuIcon(e) {
 		e.preventDefault();

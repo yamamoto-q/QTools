@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.28 12:27"
+    VERSION: "2017.03.28 14:21"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27373,6 +27373,14 @@ var Action = {
             actionType: "historyBack",
             value: {}
         });
+    },
+    setHasHeader:function(bool){
+        dispatcher.dispatch({
+            actionType: "setHasHeader",
+            value: {
+                flag:bool
+            }
+        });
     }
 };
 
@@ -27387,7 +27395,8 @@ var VIEW_NAMES = {
 
 var _state = {
 	viewName : VIEW_NAMES.DASHBOARD,
-    history:[]
+    history:[],
+    hasHeader: false
 }
 
 var Store = assign({}, EventEmitter.prototype, {
@@ -27425,6 +27434,16 @@ var Store = assign({}, EventEmitter.prototype, {
                     Store._setView(viewName, false);
                 }
                 break;
+
+            case "setHasHeader":
+                var flag = payload.value.flag;
+                _state.hasHeader = flag;
+                if(flag){
+                    $("body").addClass('has-header');
+                }else{
+                    $("body").removeClass('has-header')
+                }
+                break;
         };
     })
 });
@@ -27440,6 +27459,7 @@ module.exports = {
 var React = require('react');
 var _Login = require('./Controller_Login.js');
 var _QApi = require('./Controller_Questetra_API.js');
+var Controller_View = require('./Controller_View.js');
 var Avater = require('./Avater.js');
 
 module.exports = React.createClass({
@@ -27455,6 +27475,14 @@ module.exports = React.createClass({
 			mail: loginedUser.mail,
 			name: loginedUser.name
 		};
+	},
+	componentDidMount: function componentDidMount() {
+		// マウントされたとき
+		Controller_View.Action.setHasHeader(true);
+	},
+	componentWillUnMount: function componentWillUnMount() {
+		// アンマウントされるとき
+		Controller_View.Action.setHasHeader(false);
 	},
 	onClickMenuIcon: function onClickMenuIcon(e) {
 		e.preventDefault();
@@ -27508,7 +27536,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Avater.js":245,"./Controller_Login.js":256,"./Controller_Questetra_API.js":257,"react":242}],260:[function(require,module,exports){
+},{"./Avater.js":245,"./Controller_Login.js":256,"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"react":242}],260:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
