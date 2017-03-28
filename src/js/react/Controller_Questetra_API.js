@@ -161,14 +161,14 @@ var Store = assign({}, EventEmitter.prototype, {
                         _state.permission.isUserManager = true;
                         fase++;
                         if(fase == 3){
-                            emitPermissionChecked();
+                            Store.emitPermissionChecked();
                         }
                     }, function(){
                         // fail
                         _state.permission.isUserManager = false;
                         fase++;
                         if(fase == 3){
-                            emitPermissionChecked();
+                            Store.emitPermissionChecked();
                         }
                     })
 
@@ -177,7 +177,7 @@ var Store = assign({}, EventEmitter.prototype, {
                     console.log(jqXHR, textStatus);
                     fase++;
                     if(fase == 3){
-                        emitPermissionChecked();
+                        Store.emitPermissionChecked();
                     }
                 });
 
@@ -187,7 +187,7 @@ var Store = assign({}, EventEmitter.prototype, {
                     _state.permission.isSystemAdmin = true;
                     fase++;
                     if(fase == 3){
-                        emitPermissionChecked();
+                        Store.emitPermissionChecked();
                     }
 
                 }, function(jqXHR, textStatus){
@@ -195,7 +195,7 @@ var Store = assign({}, EventEmitter.prototype, {
                     _state.permission.isSystemAdmin = false;
                     fase++;
                     if(fase == 3){
-                        emitPermissionChecked();
+                        Store.emitPermissionChecked();
                     }
                 });
 
@@ -213,7 +213,7 @@ var Store = assign({}, EventEmitter.prototype, {
                     _state.permission.isProcessModelCreator = true;
                     fase++;
                     if(fase == 3){
-                        emitPermissionChecked();
+                        Store.emitPermissionChecked();
                     }
                 })
                 .fail(function(jqXHR, textStatus) {
@@ -221,7 +221,7 @@ var Store = assign({}, EventEmitter.prototype, {
                     _state.permission.isProcessModelCreator = false;
                     fase++;
                     if(fase == 3){
-                        emitPermissionChecked();
+                        Store.emitPermissionChecked();
                     }
                 });
 
