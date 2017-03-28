@@ -37,6 +37,7 @@ module.exports = React.createClass({
 				<div className="bar-left">
 					<div className="bar-item"><span className="icon icon-menu" onClick={this.onClickMenuIcon}></span></div>
 				</div>
+				<div className="bar-center">{this.props.children}</div>
 				<div className="bar-right">
 					<div className="bar-item dropdown">
 						<div data-toggle="dropdown"><Avater quser_id={this.state.id} /></div>

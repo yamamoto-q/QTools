@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.28 15:30"
+    VERSION: "2017.03.28 15:38"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27586,6 +27586,11 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				'div',
+				{ className: 'bar-center' },
+				this.props.children
+			),
+			React.createElement(
+				'div',
 				{ className: 'bar-right' },
 				React.createElement(
 					'div',
@@ -28178,7 +28183,11 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			{ className: 'height-fix' },
-			React.createElement(Header, { on_click_menu_icon: this.onClickMenuIcon }),
+			React.createElement(
+				Header,
+				{ on_click_menu_icon: this.onClickMenuIcon },
+				'test'
+			),
 			React.createElement(
 				'div',
 				{ className: 'height-fix' },

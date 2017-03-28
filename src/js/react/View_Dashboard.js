@@ -42,7 +42,11 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			{ className: 'height-fix' },
-			React.createElement(Header, { on_click_menu_icon: this.onClickMenuIcon }),
+			React.createElement(
+				Header,
+				{ on_click_menu_icon: this.onClickMenuIcon },
+				'test'
+			),
 			React.createElement(
 				'div',
 				{ className: 'height-fix' },
