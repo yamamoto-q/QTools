@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.28 15:24"
+    VERSION: "2017.03.28 15:27"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27511,19 +27511,23 @@ module.exports = React.createClass({
     render: function render() {
         return React.createElement(
             'div',
-            { className: 'footer-item', style: {
-                    display: "table",
-                    width: "100%",
-                    height: "100%"
-                } },
+            { className: 'footer-item' },
             React.createElement(
                 'div',
                 { style: {
-                        display: "table-cell",
-                        verticalAlign: "middle",
-                        textAlign: "center"
+                        display: "table",
+                        width: "100%",
+                        height: "100%"
                     } },
-                this.props.children
+                React.createElement(
+                    'div',
+                    { style: {
+                            display: "table-cell",
+                            verticalAlign: "middle",
+                            textAlign: "center"
+                        } },
+                    this.props.children
+                )
             )
         );
     }
