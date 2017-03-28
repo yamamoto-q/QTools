@@ -182,6 +182,10 @@ _QApi.Store.addLoginErrorListener(function () {
 	}, 250);
 });
 
+_QApi.Store.addPermissionCheckedListener(function(){
+	console.log(_QApi.Store.getPermission());
+});
+
 // 0. 認証情報を取得する
 setTimeout(function(){
 	_Strage.Action.getAuthentication();

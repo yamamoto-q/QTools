@@ -53,6 +53,7 @@ var Action = {
 var EVENT = {
     LOGIN_ERROR: "login_error",
     LOGIN_SUCCESS: "login_success",
+    CHECKED_PERMISSION:"checked_permission",
     ON_GET_AVATER: "on_get_avater"
 }
 
@@ -62,6 +63,11 @@ var _state = {
 		context_path : null,
 		email : null
 	},
+    permission:{
+        isSystemAdmin:false,
+        isUserManager:false,
+        isProcessModelCreator:false
+    },
     userQuserSelf:null,
     resopnses:{}
 };
@@ -72,6 +78,9 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     getAvater:function(qUserId){
         return _state.resopnses['avater-' + qUserId];
+    },
+    getPermission:function(){
+        return _state.permission;
     },
 	// Event
     addLoginSuccessListener:function(callback){
@@ -85,6 +94,12 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     emitLoginError:function(){
         this.emit(EVENT.LOGIN_ERROR);
+    },
+    addPermissionCheckedListener:function(callback){
+        this.on(EVENT.CHECKED_PERMISSION, callback);
+    },
+    emitPermissionChecked:function(){
+        this.emit(EVENT.CHECKED_PERMISSION);
     },
     addOnGetAvaterListener:function(qUserId, callback){
         this.on(EVENT.ON_GET_AVATER + "-avater-" + qUserId, callback);
@@ -127,6 +142,13 @@ var Store = assign({}, EventEmitter.prototype, {
 
             case "checkPermission":
                 // ログインしたユーザーの権限を調査する
+                var fase = 0;
+                _state.permission = {
+                    isSystemAdmin:false,
+                    isUserManager:false,
+                    isProcessModelCreator:false
+                }
+
                 // ユーザ管理権限 - - - - - - - - - - - - - - - -
                 _API.API.UserQgroupList(function(data){
                     // Success（ログインしていれば成功するはず）
@@ -136,45 +158,72 @@ var Store = assign({}, EventEmitter.prototype, {
                     // グループに所属するメンバを取得する（ユーザ管理権限が無ければ失敗する）
                     _API.API.UserMembershipListByQgroup(sampleGroup.id, function(memberships){
                         // Success
-                        console.log(memberships);
-
+                        _state.permission.isUserManager = true;
+                        fase++;
+                        if(fase == 3){
+                            emitPermissionChecked();
+                        }
                     }, function(){
                         // fail
-                        console.log(jqXHR, textStatus);
+                        _state.permission.isUserManager = false;
+                        fase++;
+                        if(fase == 3){
+                            emitPermissionChecked();
+                        }
                     })
 
                 },function(jqXHR, textStatus){
                     // fail
                     console.log(jqXHR, textStatus);
+                    fase++;
+                    if(fase == 3){
+                        emitPermissionChecked();
+                    }
                 });
 
                 // システム権限の一覧を取得する（システム管理権限が無ければ失敗する）
                 _API.API.AdminSystemAuthorityList(TYPE_OF_SYSTEM_AUTHORIZATION.SYSTEM_ADMIN, function(authority){
                     // Success
-                    console.log(authority);
+                    _state.permission.isSystemAdmin = true;
+                    fase++;
+                    if(fase == 3){
+                        emitPermissionChecked();
+                    }
 
                 }, function(jqXHR, textStatus){
                     // fail
-                    console.log(jqXHR, textStatus);
-
+                    _state.permission.isSystemAdmin = false;
+                    fase++;
+                    if(fase == 3){
+                        emitPermissionChecked();
+                    }
                 });
 
                 // ログインユーザがプロセスモデル作成権限を持っているか
                 $.ajax({
-                        url: _API.API.getContextPath() + "PMM/ProcessModel/list",
-                        type: "GET",
-                        dataType: "text",
-                        headers: {
-                            "Authorization": "Basic " + _API.API.getCredentials()
-                        }
-                    })
-                    .done(function(htmlText) {
-                        console.log(htmlText);
-                    })
-                    .fail(function(jqXHR, textStatus) {
-                        // fail
-                        console.log(jqXHR, textStatus);
-                    });
+                    url: _API.API.getContextPath() + "PMM/ProcessModel/list",
+                    type: "GET",
+                    dataType: "text",
+                    headers: {
+                        "Authorization": "Basic " + _API.API.getCredentials()
+                    }
+                })
+                .done(function(htmlText) {
+                    console.log(htmlText);
+                    _state.permission.isProcessModelCreator = true;
+                    fase++;
+                    if(fase == 3){
+                        emitPermissionChecked();
+                    }
+                })
+                .fail(function(jqXHR, textStatus) {
+                    // fail
+                    _state.permission.isProcessModelCreator = false;
+                    fase++;
+                    if(fase == 3){
+                        emitPermissionChecked();
+                    }
+                });
 
                 break;
 
