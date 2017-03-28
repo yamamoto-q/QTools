@@ -104,6 +104,12 @@ var QuestetraAPI = function(){
 
             // console.log(_credentials);
 		},
+        getContextPath:function(){
+            return _contextPath;
+        },
+        getCredentials:function(){
+            return _credentials;
+        },
 		userQuserSelf:function(success, fail){
 			_UserQuserSelf(success, fail);
 		},
@@ -122,6 +128,7 @@ var QuestetraAPI = function(){
             // システム権限の一覧を取得する : システム管理権限
             _AdminSystemAuthorityList(authorityType, success, fail);
         }
+
 	};
 }
 

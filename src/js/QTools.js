@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.28 11:20"
+    VERSION: "2017.03.28 11:43"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27204,22 +27204,9 @@ var Store = assign({}, EventEmitter.prototype, {
                     console.log(data);
 
                     // グループに所属するメンバを取得する（ユーザ管理権限が無ければ失敗する）
-                    var sampleGroup = data.qgroups[0];
                     _API.API.UserMembershipListByQgroup(sampleGroup.id, function(memberships){
                         // Success
-                        console.log(membershipss);
-
-                        // システム権限の一覧を取得する（システム管理権限が無ければ失敗する）
-                        _API.API.AdminSystemAuthorityList(TYPE_OF_SYSTEM_AUTHORIZATION.SYSTEM_ADMIN, function(authority){
-                            // Success
-                            console.log(authority);
-
-
-                        }, function(jqXHR, textStatus){
-                            // fail
-                            console.log(jqXHR, textStatus);
-                            
-                        });
+                        console.log(memberships);
 
                     }, function(){
                         // fail
@@ -27230,6 +27217,36 @@ var Store = assign({}, EventEmitter.prototype, {
                     // fail
                     console.log(jqXHR, textStatus);
                 });
+
+                // システム権限の一覧を取得する（システム管理権限が無ければ失敗する）
+                _API.API.AdminSystemAuthorityList(TYPE_OF_SYSTEM_AUTHORIZATION.SYSTEM_ADMIN, function(authority){
+                    // Success
+                    console.log(authority);
+
+                }, function(jqXHR, textStatus){
+                    // fail
+                    console.log(jqXHR, textStatus);
+
+                });
+
+                // ログインユーザがプロセスモデル作成権限を持っているか
+                // ほかに良い方法があるだろうか？
+                $.ajax({
+                        url: _API.API.getContextPath + "PMM/ProcessModel/list",
+                        type: "GET",
+                        dataType: "text",
+                        headers: {
+                            "Authorization": "Basic " + _API.API.getCredentials
+                        }
+                    })
+                    .done(function(htmlText) {
+                        console.log(htmlText);
+                    })
+                    .fail(function(jqXHR, textStatus) {
+                        // fail
+                        console.log(jqXHR, textStatus);
+                    });
+
                 break;
 
             case "getAvater":
@@ -27794,6 +27811,12 @@ var QuestetraAPI = function(){
 
             // console.log(_credentials);
 		},
+        getContextPath:function(){
+            return _contextPath;
+        },
+        getCredentials:function(){
+            return _credentials;
+        },
 		userQuserSelf:function(success, fail){
 			_UserQuserSelf(success, fail);
 		},
@@ -27812,6 +27835,7 @@ var QuestetraAPI = function(){
             // システム権限の一覧を取得する : システム管理権限
             _AdminSystemAuthorityList(authorityType, success, fail);
         }
+
 	};
 }
 
