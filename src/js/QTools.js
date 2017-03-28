@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.28 11:05"
+    VERSION: "2017.03.28 11:20"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27198,16 +27198,28 @@ var Store = assign({}, EventEmitter.prototype, {
 
             case "checkPermission":
                 // ログインしたユーザーの権限を調査する
-                // ユーザ管理権限
+                // ユーザ管理権限 - - - - - - - - - - - - - - - -
                 _API.API.UserQgroupList(function(data){
                     // Success（ログインしていれば成功するはず）
                     console.log(data);
 
                     // グループに所属するメンバを取得する（ユーザ管理権限が無ければ失敗する）
                     var sampleGroup = data.qgroups[0];
-                    _API.API.UserMembershipListByQgroup(sampleGroup.id, function(groups){
+                    _API.API.UserMembershipListByQgroup(sampleGroup.id, function(memberships){
                         // Success
-                        console.log(groups);
+                        console.log(membershipss);
+
+                        // システム権限の一覧を取得する（システム管理権限が無ければ失敗する）
+                        _API.API.AdminSystemAuthorityList(TYPE_OF_SYSTEM_AUTHORIZATION.SYSTEM_ADMIN, function(authority){
+                            // Success
+                            console.log(authority);
+
+
+                        }, function(jqXHR, textStatus){
+                            // fail
+                            console.log(jqXHR, textStatus);
+                            
+                        });
 
                     }, function(){
                         // fail
@@ -27240,9 +27252,16 @@ var Store = assign({}, EventEmitter.prototype, {
     })
 });
 
+var TYPE_OF_SYSTEM_AUTHORIZATION = {
+    SYSTEM_ADMIN:0,
+    USER_MANAGER:1,
+    PROCESS_MODEL_CREATOR:2
+};
+
 module.exports = {
     Action: Action,
-    Store: Store
+    Store: Store,
+    TypeOfSystemAuthorization:TYPE_OF_SYSTEM_AUTHORIZATION
 }
 
 },{"./Questetra_API.js":263,"events":4,"flux":28,"object-assign":32}],258:[function(require,module,exports){
@@ -27731,6 +27750,17 @@ var QuestetraAPI = function(){
         },sendData);
     }
 
+    function _AdminSystemAuthorityList(authorityType, success, fail){
+        var sendData = {
+            type:authorityType
+        };
+        _request("API/Admin/SystemAuthority/list", function(data){
+            success(data);
+        },function(jqXHR, textStatus){
+            fail(jqXHR, textStatus);
+        },sendData);
+    }
+
     function _UserIconView(qUserId, success, fail){
         var oReq = new XMLHttpRequest();
         oReq.open("GET", _contextPath + "User/Icon/view?name=usericon%2f" + qUserId, true);
@@ -27777,6 +27807,10 @@ var QuestetraAPI = function(){
         UserMembershipListByQgroup:function(qGroupId, success, fail){
             // 組織に所属するメンバ一覧を取得する : ユーザ管理権限
             _UserMembershipListByQgroup(qGroupId, success, fail);
+        },
+        AdminSystemAuthorityList:function(authorityType, success, fail){
+            // システム権限の一覧を取得する : システム管理権限
+            _AdminSystemAuthorityList(authorityType, success, fail);
         }
 	};
 }

@@ -60,6 +60,17 @@ var QuestetraAPI = function(){
         },sendData);
     }
 
+    function _AdminSystemAuthorityList(authorityType, success, fail){
+        var sendData = {
+            type:authorityType
+        };
+        _request("API/Admin/SystemAuthority/list", function(data){
+            success(data);
+        },function(jqXHR, textStatus){
+            fail(jqXHR, textStatus);
+        },sendData);
+    }
+
     function _UserIconView(qUserId, success, fail){
         var oReq = new XMLHttpRequest();
         oReq.open("GET", _contextPath + "User/Icon/view?name=usericon%2f" + qUserId, true);
@@ -106,6 +117,10 @@ var QuestetraAPI = function(){
         UserMembershipListByQgroup:function(qGroupId, success, fail){
             // 組織に所属するメンバ一覧を取得する : ユーザ管理権限
             _UserMembershipListByQgroup(qGroupId, success, fail);
+        },
+        AdminSystemAuthorityList:function(authorityType, success, fail){
+            // システム権限の一覧を取得する : システム管理権限
+            _AdminSystemAuthorityList(authorityType, success, fail);
         }
 	};
 }
