@@ -2,6 +2,9 @@ var React = require('react');
 var Header = require('./Header.js');
 var Footer = require('./Footer.js');
 var FooterItem = require('./FooterItem.js');
+var Bootstrap_Container = require('./Bootstrap_Container.js');
+var Bootstrap_Row = require('./Bootstrap_Row.js');
+var Bootstrap_Col = require('./Bootstrap_Col.js');
 
 var SettingMenu = require('./SettingMenu.js');
 var BuildInfo = require('./BuildInfo.js');
@@ -41,7 +44,13 @@ module.exports = React.createClass({
 			<div className="height-fix">
 				<Header on_click_menu_icon={this.onClickMenuIcon}/>
 				<div className="height-fix">
-					Dashboard
+					<Bootstrap_Container>
+						<Bootstrap_Row>
+							<Bootstrap_Col>
+								Dashboard
+							</Bootstrap_Col>
+						</Bootstrap_Row>
+					</Bootstrap_Container>
 				</div>
 				<Footer>
 					<FooterItem>A</FooterItem>

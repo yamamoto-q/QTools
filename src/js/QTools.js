@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.28 15:27"
+    VERSION: "2017.03.28 15:30"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28140,6 +28140,9 @@ var React = require('react');
 var Header = require('./Header.js');
 var Footer = require('./Footer.js');
 var FooterItem = require('./FooterItem.js');
+var Bootstrap_Container = require('./Bootstrap_Container.js');
+var Bootstrap_Row = require('./Bootstrap_Row.js');
+var Bootstrap_Col = require('./Bootstrap_Col.js');
 
 var SettingMenu = require('./SettingMenu.js');
 var BuildInfo = require('./BuildInfo.js');
@@ -28179,7 +28182,19 @@ module.exports = React.createClass({
 			React.createElement(
 				'div',
 				{ className: 'height-fix' },
-				'Dashboard'
+				React.createElement(
+					Bootstrap_Container,
+					null,
+					React.createElement(
+						Bootstrap_Row,
+						null,
+						React.createElement(
+							Bootstrap_Col,
+							null,
+							'Dashboard'
+						)
+					)
+				)
 			),
 			React.createElement(
 				Footer,
@@ -28218,7 +28233,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./BuildInfo.js":254,"./Footer.js":259,"./FooterItem.js":260,"./Header.js":261,"./SettingMenu.js":266,"react":242}],269:[function(require,module,exports){
+},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./BuildInfo.js":254,"./Footer.js":259,"./FooterItem.js":260,"./Header.js":261,"./SettingMenu.js":266,"react":242}],269:[function(require,module,exports){
 'use strict';
 
 var React = require('react');

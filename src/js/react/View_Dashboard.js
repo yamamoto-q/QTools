@@ -4,6 +4,9 @@ var React = require('react');
 var Header = require('./Header.js');
 var Footer = require('./Footer.js');
 var FooterItem = require('./FooterItem.js');
+var Bootstrap_Container = require('./Bootstrap_Container.js');
+var Bootstrap_Row = require('./Bootstrap_Row.js');
+var Bootstrap_Col = require('./Bootstrap_Col.js');
 
 var SettingMenu = require('./SettingMenu.js');
 var BuildInfo = require('./BuildInfo.js');
@@ -43,7 +46,19 @@ module.exports = React.createClass({
 			React.createElement(
 				'div',
 				{ className: 'height-fix' },
-				'Dashboard'
+				React.createElement(
+					Bootstrap_Container,
+					null,
+					React.createElement(
+						Bootstrap_Row,
+						null,
+						React.createElement(
+							Bootstrap_Col,
+							null,
+							'Dashboard'
+						)
+					)
+				)
 			),
 			React.createElement(
 				Footer,
