@@ -46,6 +46,7 @@ module.exports = function(grunt) {
                     { 'src/js/react/InputAuthForm.js': 'src/js/react/jsx/InputAuthForm.jsx' },
                     { 'src/js/react/Header.js': 'src/js/react/jsx/Header.jsx' },
                     { 'src/js/react/Footer.js': 'src/js/react/jsx/Footer.jsx' },
+                    { 'src/js/react/FooterItem.js': 'src/js/react/jsx/FooterItem.jsx' },
                     { 'src/js/react/Avater.js': 'src/js/react/jsx/Avater.jsx' },
                     { 'src/js/react/LoginedView.js': 'src/js/react/jsx/LoginedView.jsx' },
                     { 'src/js/react/SettingMenu.js': 'src/js/react/jsx/SettingMenu.jsx' },

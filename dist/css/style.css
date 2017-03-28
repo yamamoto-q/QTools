@@ -5,7 +5,7 @@ body,
   height: 100%;
 }
 body {
-  transition: all 1s ease;
+  transition: all 0.25s ease;
 }
 body.has-header {
   padding-top: 50px;
@@ -71,6 +71,14 @@ body.logining {
   right: 0;
   left: 0;
   z-index: 1030;
+}
+#footer .footer-item {
+  width: 100%;
+  order: 0;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  align-self: auto;
 }
 #sideMenu.sideMenu-modal {
   position: absolute;

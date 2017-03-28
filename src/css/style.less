@@ -6,7 +6,7 @@ html, body, #App, .height-fix{
 }
 
 body{
-	transition: all 1s ease;
+	transition: all 0.25s ease;
 	&.has-header{
 		padding-top: @headerHeight;
 	}
@@ -75,6 +75,14 @@ body.splash,body.splash, body.authentication, body.logining{
     right: 0;
     left: 0;
     z-index: 1030;
+    .footer-item{
+	    width: 100%;
+	    order: 0;
+	    flex-grow: 0;
+	    flex-shrink: 1;
+	    flex-basis: auto;
+	    align-self: auto;
+    }
 }
 
 #sideMenu{
