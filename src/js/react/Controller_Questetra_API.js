@@ -25,6 +25,7 @@ var Action = {
         });
     },
     checkPermission:function(){
+        // ログインしているユーザーの権限を調査する
         dispatcher.dispatch({
             actionType: "checkPermission",
             value: {
@@ -126,10 +127,21 @@ var Store = assign({}, EventEmitter.prototype, {
 
             case "checkPermission":
                 // ログインしたユーザーの権限を調査する
-                //  ユーザ管理権限
+                // ユーザ管理権限 - - - - - - - - - - - - - - - -
                 _API.API.UserQgroupList(function(data){
-                    // Success
+                    // Success（ログインしていれば成功するはず）
                     console.log(data);
+
+                    // グループに所属するメンバを取得する（ユーザ管理権限が無ければ失敗する）
+                    var sampleGroup = data.qgroups[0];
+                    _API.API.UserMembershipListByQgroup(sampleGroup.id, function(groups){
+                        // Success
+                        console.log(groups);
+
+                    }, function(){
+                        // fail
+                        console.log(jqXHR, textStatus);
+                    })
 
                 },function(jqXHR, textStatus){
                     // fail

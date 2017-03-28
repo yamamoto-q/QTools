@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.28 10:50"
+    VERSION: "2017.03.28 11:05"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27096,6 +27096,7 @@ var Action = {
         });
     },
     checkPermission:function(){
+        // ログインしているユーザーの権限を調査する
         dispatcher.dispatch({
             actionType: "checkPermission",
             value: {
@@ -27197,10 +27198,21 @@ var Store = assign({}, EventEmitter.prototype, {
 
             case "checkPermission":
                 // ログインしたユーザーの権限を調査する
-                //  ユーザ管理権限
+                // ユーザ管理権限
                 _API.API.UserQgroupList(function(data){
-                    // Success
+                    // Success（ログインしていれば成功するはず）
                     console.log(data);
+
+                    // グループに所属するメンバを取得する（ユーザ管理権限が無ければ失敗する）
+                    var sampleGroup = data.qgroups[0];
+                    _API.API.UserMembershipListByQgroup(sampleGroup.id, function(groups){
+                        // Success
+                        console.log(groups);
+
+                    }, function(){
+                        // fail
+                        console.log(jqXHR, textStatus);
+                    })
 
                 },function(jqXHR, textStatus){
                     // fail
@@ -27707,6 +27719,18 @@ var QuestetraAPI = function(){
         });
     }
 
+    // 組織に所属するメンバ一覧を取得する
+    function _UserMembershipListByQgroup(qGroupId, success, fail){
+        var sendData = {
+            id:qGroupId
+        };
+        _request("API/UGA/Membership/listByQgroup", function(data){
+            success(data);
+        },function(jqXHR, textStatus){
+            fail(jqXHR, textStatus);
+        },sendData);
+    }
+
     function _UserIconView(qUserId, success, fail){
         var oReq = new XMLHttpRequest();
         oReq.open("GET", _contextPath + "User/Icon/view?name=usericon%2f" + qUserId, true);
@@ -27749,6 +27773,10 @@ var QuestetraAPI = function(){
         UserQgroupList:function(success, fail){
             // 組織一覧を取得する : 全ログインユーザ
             _UserQgroupList(success, fail);
+        },
+        UserMembershipListByQgroup:function(qGroupId, success, fail){
+            // 組織に所属するメンバ一覧を取得する : ユーザ管理権限
+            _UserMembershipListByQgroup(qGroupId, success, fail);
         }
 	};
 }
