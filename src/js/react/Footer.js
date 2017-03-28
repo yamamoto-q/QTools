@@ -18,7 +18,7 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			{ id: 'footer' },
-			'Footer'
+			this.props.children
 		);
 	}
 });

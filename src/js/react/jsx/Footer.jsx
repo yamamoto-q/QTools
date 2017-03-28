@@ -12,7 +12,7 @@ module.exports = React.createClass({
 	},
 	render: function() {
 		return (
-			<div id="footer">Footer</div>
+			<div id="footer">{this.props.children}</div>
 		);
 	}
 });
