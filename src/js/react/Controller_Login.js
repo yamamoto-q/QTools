@@ -8,6 +8,9 @@ var _QApi = require('./Controller_Questetra_API.js');
 
 var Action = {
     setAuth:function(context, email, api_password){
+    	// ストレージに認証情報を保存する
+    	// 保存が完了したら、ログインにチャレンジする
+    	// ログインに成功しても、失敗しても、変更イベントが発火する（ステートは変わる）
         dispatcher.dispatch({
             actionType: "setAuth",
             value: {
@@ -90,7 +93,6 @@ var Store = assign({}, EventEmitter.prototype, {
 
                 // 保存
                 _Strage.Action.setAuthentication(context_path, email, api_password);
-
     			break;
 
     		case "logout":
@@ -98,6 +100,7 @@ var Store = assign({}, EventEmitter.prototype, {
     			_state.changeAuth = true;
     			Store.emitChangeState();
     			break;
+
 
         };
     })
@@ -162,6 +165,9 @@ _QApi.Store.addLoginSuccessListener(function(){
 
 	setTimeout(function(){
 		Store.emitChangeState();
+
+		// ログインユーザの権限を調査する
+		_QApi.Action.checkPermission();
 	}, 250);
 });
 

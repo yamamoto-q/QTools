@@ -37,7 +37,6 @@ module.exports = React.createClass({
 				viewBody = React.createElement(AdminTools, null);
 				break;
 		}
-
 		return React.createElement(
 			'div',
 			{ className: 'height-fix' },

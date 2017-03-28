@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.27 17:44"
+    VERSION: "2017.03.28 10:50"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -26890,6 +26890,9 @@ var _QApi = require('./Controller_Questetra_API.js');
 
 var Action = {
     setAuth:function(context, email, api_password){
+    	// ストレージに認証情報を保存する
+    	// 保存が完了したら、ログインにチャレンジする
+    	// ログインに成功しても、失敗しても、変更イベントが発火する（ステートは変わる）
         dispatcher.dispatch({
             actionType: "setAuth",
             value: {
@@ -26972,7 +26975,6 @@ var Store = assign({}, EventEmitter.prototype, {
 
                 // 保存
                 _Strage.Action.setAuthentication(context_path, email, api_password);
-
     			break;
 
     		case "logout":
@@ -26980,6 +26982,7 @@ var Store = assign({}, EventEmitter.prototype, {
     			_state.changeAuth = true;
     			Store.emitChangeState();
     			break;
+
 
         };
     })
@@ -27044,6 +27047,9 @@ _QApi.Store.addLoginSuccessListener(function(){
 
 	setTimeout(function(){
 		Store.emitChangeState();
+
+		// ログインユーザの権限を調査する
+		_QApi.Action.checkPermission();
 	}, 250);
 });
 
@@ -27085,6 +27091,13 @@ var Action = {
     challengLogin:function(){
         dispatcher.dispatch({
             actionType: "challengLogin",
+            value: {
+            }
+        });
+    },
+    checkPermission:function(){
+        dispatcher.dispatch({
+            actionType: "checkPermission",
             value: {
             }
         });
@@ -27181,6 +27194,19 @@ var Store = assign({}, EventEmitter.prototype, {
     			});
 
     			break;
+
+            case "checkPermission":
+                // ログインしたユーザーの権限を調査する
+                //  ユーザ管理権限
+                _API.API.UserQgroupList(function(data){
+                    // Success
+                    console.log(data);
+
+                },function(jqXHR, textStatus){
+                    // fail
+                    console.log(jqXHR, textStatus);
+                });
+                break;
 
             case "getAvater":
                 var qUserId = payload.value.qUserId;
@@ -27490,7 +27516,6 @@ module.exports = React.createClass({
 				viewBody = React.createElement(AdminTools, null);
 				break;
 		}
-
 		return React.createElement(
 			'div',
 			{ className: 'height-fix' },
@@ -27673,6 +27698,15 @@ var QuestetraAPI = function(){
         });
     }
 
+    // 組織一覧を取得する
+    function _UserQgroupList(success, fail) {
+         _request("API/User/Qgroup/list", function(data){
+            success(data);
+        },function(jqXHR, textStatus){
+            fail(jqXHR, textStatus);
+        });
+    }
+
     function _UserIconView(qUserId, success, fail){
         var oReq = new XMLHttpRequest();
         oReq.open("GET", _contextPath + "User/Icon/view?name=usericon%2f" + qUserId, true);
@@ -27711,6 +27745,10 @@ var QuestetraAPI = function(){
 		},
         UserIconView:function(qUserId, success, fail){
             _UserIconView(qUserId, success, fail);
+        },
+        UserQgroupList:function(success, fail){
+            // 組織一覧を取得する : 全ログインユーザ
+            _UserQgroupList(success, fail);
         }
 	};
 }

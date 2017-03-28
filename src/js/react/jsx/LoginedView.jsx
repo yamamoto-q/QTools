@@ -32,8 +32,7 @@ module.exports = React.createClass({
 			case Controller_View.ViewNames.ADMIN_TOOLS:
 				viewBody = (<AdminTools />);
 				break;
-		}
-
+		} 
 		return (
 			<div className="height-fix">
 				{viewBody}

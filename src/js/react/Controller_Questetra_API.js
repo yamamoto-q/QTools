@@ -24,6 +24,13 @@ var Action = {
             }
         });
     },
+    checkPermission:function(){
+        dispatcher.dispatch({
+            actionType: "checkPermission",
+            value: {
+            }
+        });
+    },
     getAvater:function(qUserId){
         if(typeof _state.resopnses['avater-' + qUserId] === "undefined"){
             dispatcher.dispatch({
@@ -116,6 +123,19 @@ var Store = assign({}, EventEmitter.prototype, {
     			});
 
     			break;
+
+            case "checkPermission":
+                // ログインしたユーザーの権限を調査する
+                //  ユーザ管理権限
+                _API.API.UserQgroupList(function(data){
+                    // Success
+                    console.log(data);
+
+                },function(jqXHR, textStatus){
+                    // fail
+                    console.log(jqXHR, textStatus);
+                });
+                break;
 
             case "getAvater":
                 var qUserId = payload.value.qUserId;

@@ -39,6 +39,15 @@ var QuestetraAPI = function(){
         });
     }
 
+    // 組織一覧を取得する
+    function _UserQgroupList(success, fail) {
+         _request("API/User/Qgroup/list", function(data){
+            success(data);
+        },function(jqXHR, textStatus){
+            fail(jqXHR, textStatus);
+        });
+    }
+
     function _UserIconView(qUserId, success, fail){
         var oReq = new XMLHttpRequest();
         oReq.open("GET", _contextPath + "User/Icon/view?name=usericon%2f" + qUserId, true);
@@ -77,6 +86,10 @@ var QuestetraAPI = function(){
 		},
         UserIconView:function(qUserId, success, fail){
             _UserIconView(qUserId, success, fail);
+        },
+        UserQgroupList:function(success, fail){
+            // 組織一覧を取得する : 全ログインユーザ
+            _UserQgroupList(success, fail);
         }
 	};
 }
