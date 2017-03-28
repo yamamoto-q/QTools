@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.28 15:02"
+    VERSION: "2017.03.28 15:08"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27510,7 +27510,7 @@ module.exports = React.createClass({
     render: function render() {
         return React.createElement(
             'div',
-            { 'class': 'footer-item' },
+            { className: 'footer-item' },
             this.props.children
         );
     }
