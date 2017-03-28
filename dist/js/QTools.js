@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.28 11:43"
+    VERSION: "2017.03.28 11:48"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27203,6 +27203,7 @@ var Store = assign({}, EventEmitter.prototype, {
                     // Success（ログインしていれば成功するはず）
                     console.log(data);
 
+                    var sampleGroup = data.qgroups[0]
                     // グループに所属するメンバを取得する（ユーザ管理権限が無ければ失敗する）
                     _API.API.UserMembershipListByQgroup(sampleGroup.id, function(memberships){
                         // Success
@@ -27230,13 +27231,12 @@ var Store = assign({}, EventEmitter.prototype, {
                 });
 
                 // ログインユーザがプロセスモデル作成権限を持っているか
-                // ほかに良い方法があるだろうか？
                 $.ajax({
-                        url: _API.API.getContextPath + "PMM/ProcessModel/list",
+                        url: _API.API.getContextPath() + "PMM/ProcessModel/list",
                         type: "GET",
                         dataType: "text",
                         headers: {
-                            "Authorization": "Basic " + _API.API.getCredentials
+                            "Authorization": "Basic " + _API.API.getCredentials()
                         }
                     })
                     .done(function(htmlText) {
