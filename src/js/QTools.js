@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.28 14:36"
+    VERSION: "2017.03.28 14:41"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27473,12 +27473,13 @@ module.exports = {
     ViewNames:VIEW_NAMES
 }
 },{"events":4,"flux":28,"object-assign":32}],259:[function(require,module,exports){
-"use strict";
+'use strict';
 
 var React = require('react');
+var Controller_View = require('./Controller_View.js');
 
 module.exports = React.createClass({
-	displayName: "exports",
+	displayName: 'exports',
 
 	componentDidMount: function componentDidMount() {
 		// マウントされたとき
@@ -27490,14 +27491,14 @@ module.exports = React.createClass({
 	},
 	render: function render() {
 		return React.createElement(
-			"div",
-			{ id: "footer" },
-			"Footer"
+			'div',
+			{ id: 'footer' },
+			'Footer'
 		);
 	}
 });
 
-},{"react":242}],260:[function(require,module,exports){
+},{"./Controller_View.js":258,"react":242}],260:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
