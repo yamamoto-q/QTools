@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.28 12:09"
+    VERSION: "2017.03.28 12:27"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -26922,13 +26922,19 @@ var _state = {
 		context_path : null,
 		email : null
 	},
+	permission:{
+        isSystemAdmin:false,
+        isUserManager:false,
+        isProcessModelCreator:false
+	},
 	loginedUser:null
 }
 
 
 // Store
 var EVENT = {
-    CHANGE_STATE: "change_state"
+    CHANGE_STATE: "change_state",
+    CHANGE_PERMISSION: "change_permission"
 }
 
 var Store = assign({}, EventEmitter.prototype, {
@@ -26950,6 +26956,9 @@ var Store = assign({}, EventEmitter.prototype, {
 	getLoginedUser:function(){
 		return _state.loginedUser;
 	},
+	getPermission:function(){
+		return _state.permission;
+	},
 	getAuth:function(){
 		return _state.auth;
 	},
@@ -26960,6 +26969,13 @@ var Store = assign({}, EventEmitter.prototype, {
     emitChangeState:function(){
     	//console.log("emitChangeState");
         this.emit(EVENT.CHANGE_STATE);
+    },
+    addChangePermissionListener:function(callback){
+        this.on(EVENT.CHANGE_PERMISSION, callback);
+    },
+    emitChangePermission:function(){
+    	//console.log("emitChangeState");
+        this.emit(EVENT.CHANGE_PERMISSION);
     },
     // Dispacher
     dispatcherIndex: dispatcher.register(function(payload) {
@@ -27065,7 +27081,10 @@ _QApi.Store.addLoginErrorListener(function () {
 });
 
 _QApi.Store.addPermissionCheckedListener(function(){
-	console.log(_QApi.Store.getPermission());
+	_state.permission = _QApi.Store.getPermission();
+	setTimeout(function(){
+		Store.emitChangePermission();
+	}, 250);
 });
 
 // 0. 認証情報を取得する
@@ -27224,7 +27243,7 @@ var Store = assign({}, EventEmitter.prototype, {
                     isProcessModelCreator:false
                 }
 
-                // ユーザ管理権限 - - - - - - - - - - - - - - - -
+                // ユーザ管理権限 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                 _API.API.UserQgroupList(function(data){
                     // Success（ログインしていれば成功するはず）
                     console.log(data);
@@ -27256,7 +27275,7 @@ var Store = assign({}, EventEmitter.prototype, {
                     }
                 });
 
-                // システム権限の一覧を取得する（システム管理権限が無ければ失敗する）
+                // システム権限の一覧を取得する（システム管理権限が無ければ失敗する）- - - - - - - - - - - - - - - -
                 _API.API.AdminSystemAuthorityList(TYPE_OF_SYSTEM_AUTHORIZATION.SYSTEM_ADMIN, function(authority){
                     // Success
                     _state.permission.isSystemAdmin = true;
@@ -27274,7 +27293,7 @@ var Store = assign({}, EventEmitter.prototype, {
                     }
                 });
 
-                // ログインユーザがプロセスモデル作成権限を持っているか
+                // ログインユーザがプロセスモデル作成権限を持っているか- - - - - - - - - - - - - - - -
                 $.ajax({
                     url: _API.API.getContextPath() + "PMM/ProcessModel/list",
                     type: "GET",
@@ -27903,11 +27922,30 @@ module.exports = {
 
 var React = require('react');
 var ReactRouter = require('react-router');
+
+var _Login = require('./Controller_Login.js');
 var Controller_View = require('./Controller_View.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
 
+	getInitialState: function getInitialState() {
+		var permission = _Login.Store.getPermission();
+		return {
+			permission: permission
+		};
+	},
+	componentDidMount: function componentDidMount() {
+		var self = this;
+		_Login.Store.addChangePermissionListener(function () {
+			if (self.isMounted()) {
+				var permission = _Login.Store.getPermission();
+				self.setState({
+					permission: permission
+				});
+			}
+		});
+	},
 	conClick: function conClick(e) {
 		var viewName = e.target.getAttribute('data-viewname');
 		Controller_View.Action.setView(viewName);
@@ -27940,12 +27978,17 @@ module.exports = React.createClass({
 				'a',
 				{ href: '#', className: 'list-group-item list-group-item-action disabled' },
 				'Vestibulum at eros'
+			),
+			React.createElement(
+				'pre',
+				null,
+				JSON.stringify(this.state.permission, null, 2)
 			)
 		);
 	}
 });
 
-},{"./Controller_View.js":258,"react":242,"react-router":191}],265:[function(require,module,exports){
+},{"./Controller_Login.js":256,"./Controller_View.js":258,"react":242,"react-router":191}],265:[function(require,module,exports){
 'use strict';
 
 var React = require('react');

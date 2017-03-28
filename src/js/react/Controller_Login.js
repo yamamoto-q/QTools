@@ -40,13 +40,19 @@ var _state = {
 		context_path : null,
 		email : null
 	},
+	permission:{
+        isSystemAdmin:false,
+        isUserManager:false,
+        isProcessModelCreator:false
+	},
 	loginedUser:null
 }
 
 
 // Store
 var EVENT = {
-    CHANGE_STATE: "change_state"
+    CHANGE_STATE: "change_state",
+    CHANGE_PERMISSION: "change_permission"
 }
 
 var Store = assign({}, EventEmitter.prototype, {
@@ -68,6 +74,9 @@ var Store = assign({}, EventEmitter.prototype, {
 	getLoginedUser:function(){
 		return _state.loginedUser;
 	},
+	getPermission:function(){
+		return _state.permission;
+	},
 	getAuth:function(){
 		return _state.auth;
 	},
@@ -78,6 +87,13 @@ var Store = assign({}, EventEmitter.prototype, {
     emitChangeState:function(){
     	//console.log("emitChangeState");
         this.emit(EVENT.CHANGE_STATE);
+    },
+    addChangePermissionListener:function(callback){
+        this.on(EVENT.CHANGE_PERMISSION, callback);
+    },
+    emitChangePermission:function(){
+    	//console.log("emitChangeState");
+        this.emit(EVENT.CHANGE_PERMISSION);
     },
     // Dispacher
     dispatcherIndex: dispatcher.register(function(payload) {
@@ -183,7 +199,10 @@ _QApi.Store.addLoginErrorListener(function () {
 });
 
 _QApi.Store.addPermissionCheckedListener(function(){
-	console.log(_QApi.Store.getPermission());
+	_state.permission = _QApi.Store.getPermission();
+	setTimeout(function(){
+		Store.emitChangePermission();
+	}, 250);
 });
 
 // 0. 認証情報を取得する

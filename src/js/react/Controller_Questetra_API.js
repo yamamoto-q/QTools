@@ -149,7 +149,7 @@ var Store = assign({}, EventEmitter.prototype, {
                     isProcessModelCreator:false
                 }
 
-                // ユーザ管理権限 - - - - - - - - - - - - - - - -
+                // ユーザ管理権限 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                 _API.API.UserQgroupList(function(data){
                     // Success（ログインしていれば成功するはず）
                     console.log(data);
@@ -181,7 +181,7 @@ var Store = assign({}, EventEmitter.prototype, {
                     }
                 });
 
-                // システム権限の一覧を取得する（システム管理権限が無ければ失敗する）
+                // システム権限の一覧を取得する（システム管理権限が無ければ失敗する）- - - - - - - - - - - - - - - -
                 _API.API.AdminSystemAuthorityList(TYPE_OF_SYSTEM_AUTHORIZATION.SYSTEM_ADMIN, function(authority){
                     // Success
                     _state.permission.isSystemAdmin = true;
@@ -199,7 +199,7 @@ var Store = assign({}, EventEmitter.prototype, {
                     }
                 });
 
-                // ログインユーザがプロセスモデル作成権限を持っているか
+                // ログインユーザがプロセスモデル作成権限を持っているか- - - - - - - - - - - - - - - -
                 $.ajax({
                     url: _API.API.getContextPath() + "PMM/ProcessModel/list",
                     type: "GET",
