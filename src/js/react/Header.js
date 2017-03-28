@@ -24,7 +24,7 @@ module.exports = React.createClass({
 		// マウントされたとき
 		Controller_View.Action.setHasHeader(true);
 	},
-	componentWillUnMount: function componentWillUnMount() {
+	componentWillUnmount: function componentWillUnmount() {
 		// アンマウントされるとき
 		Controller_View.Action.setHasHeader(false);
 	},

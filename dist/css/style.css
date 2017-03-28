@@ -10,6 +10,9 @@ body {
 body.has-header {
   padding-top: 50px;
 }
+body.has-footer {
+  padding-bottom: 50px;
+}
 body.splash,
 body.splash,
 body.authentication,
@@ -63,6 +66,11 @@ body.logining {
   justify-content: space-between;
   align-items: center;
   align-content: center;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
 }
 #sideMenu.sideMenu-modal {
   position: absolute;

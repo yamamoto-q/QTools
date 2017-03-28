@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.28 14:41"
+    VERSION: "2017.03.28 14:49"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27485,7 +27485,7 @@ module.exports = React.createClass({
 		// マウントされたとき
 		Controller_View.Action.setHasFooter(true);
 	},
-	componentWillUnMount: function componentWillUnMount() {
+	componentWillUnmount: function componentWillUnmount() {
 		// アンマウントされるとき
 		Controller_View.Action.setHasFooter(false);
 	},
@@ -27525,7 +27525,7 @@ module.exports = React.createClass({
 		// マウントされたとき
 		Controller_View.Action.setHasHeader(true);
 	},
-	componentWillUnMount: function componentWillUnMount() {
+	componentWillUnmount: function componentWillUnmount() {
 		// アンマウントされるとき
 		Controller_View.Action.setHasHeader(false);
 	},
