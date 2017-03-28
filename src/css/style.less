@@ -1,18 +1,23 @@
+@headerHeight: 50px;
+@footerHeight: 50px;
+
 html, body, #App, .height-fix{
 	height: 100%;
 }
 
 body{
 	transition: all 1s ease;
+	&.has-header{
+		padding-top: @headerHeight;
+	}
 }
 
 body.splash,body.splash, body.authentication, body.logining{
-
 	background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
 }
 
 #header{
-	height: 50px;
+	height: @headerHeight;
     font-size: 1rem;
     background-color: rgba(0, 0, 0, 0.0625);
     padding: 0 15px 0 15px;
@@ -49,6 +54,19 @@ body.splash,body.splash, body.authentication, body.logining{
 			}
 	    }
 	}
+}
+
+#footer{
+	height: @footerHeight;
+    font-size: 1rem;
+    background-color: rgba(0, 0, 0, 0.0625);
+    padding: 0 15px 0 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
 }
 
 #sideMenu{

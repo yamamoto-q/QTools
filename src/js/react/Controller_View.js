@@ -25,7 +25,15 @@ var Action = {
                 flag:bool
             }
         });
-    }
+    },
+    setHasFooter:function(bool){
+        dispatcher.dispatch({
+            actionType: "setHasFooter",
+            value: {
+                flag:bool
+            }
+        });
+    },
 };
 
 var EVENT = {
@@ -40,7 +48,8 @@ var VIEW_NAMES = {
 var _state = {
 	viewName : VIEW_NAMES.DASHBOARD,
     history:[],
-    hasHeader: false
+    hasHeader: false,
+    hasFooter:false
 }
 
 var Store = assign({}, EventEmitter.prototype, {
@@ -86,6 +95,16 @@ var Store = assign({}, EventEmitter.prototype, {
                     $("body").addClass('has-header');
                 }else{
                     $("body").removeClass('has-header')
+                }
+                break;
+
+            case "setHasFooter":
+                var flag = payload.value.flag;
+                _state.hasFooter = flag;
+                if(flag){
+                    $("body").addClass('has-footer');
+                }else{
+                    $("body").removeClass('has-footer')
                 }
                 break;
         };

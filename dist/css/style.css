@@ -7,6 +7,9 @@ body,
 body {
   transition: all 1s ease;
 }
+body.has-header {
+  padding-top: 50px;
+}
 body.splash,
 body.splash,
 body.authentication,
@@ -48,6 +51,18 @@ body.logining {
   display: block;
   height: 32px;
   width: 32px;
+}
+#footer {
+  height: 50px;
+  font-size: 1rem;
+  background-color: rgba(0, 0, 0, 0.0625);
+  padding: 0 15px 0 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
 }
 #sideMenu.sideMenu-modal {
   position: absolute;

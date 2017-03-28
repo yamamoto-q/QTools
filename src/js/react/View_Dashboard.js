@@ -2,6 +2,8 @@
 
 var React = require('react');
 var Header = require('./Header.js');
+var Footer = require('./Footer.js');
+
 var SettingMenu = require('./SettingMenu.js');
 var BuildInfo = require('./BuildInfo.js');
 
@@ -37,7 +39,12 @@ module.exports = React.createClass({
 			'div',
 			{ className: 'height-fix' },
 			React.createElement(Header, { on_click_menu_icon: this.onClickMenuIcon }),
-			'Dashboard',
+			React.createElement(
+				'div',
+				{ className: 'height-fix' },
+				'Dashboard'
+			),
+			React.createElement(Footer, null),
 			React.createElement(
 				'div',
 				{ id: 'sideMenu', className: 'sideMenu-modal sideMenu-modal-hide', onClick: this.hideSideMenu },
