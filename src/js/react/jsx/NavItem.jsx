@@ -4,7 +4,7 @@ var Controller_View = require('./Controller_View.js');
 module.exports = React.createClass({
     render: function() {
         return (
-            <div className="footer-item">
+            <div className="nav-item">
                 <div style={{
                     display:"table",
                     width:"100%",

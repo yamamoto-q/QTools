@@ -9,7 +9,7 @@ module.exports = React.createClass({
     render: function render() {
         return React.createElement(
             'div',
-            { className: 'footer-item' },
+            { className: 'nav-item' },
             React.createElement(
                 'div',
                 { style: {

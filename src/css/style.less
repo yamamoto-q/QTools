@@ -57,15 +57,6 @@ body.splash,body.splash, body.authentication, body.logining{
 			}
 	    }
 	}
-	.bar-center {
-		display: flex;
-	    flex-direction: row;
-	    flex-wrap: nowrap;
-	    justify-content: space-between;
-	    align-items: stretch;
-	    align-content: center;
-	    height: 100%;
-	}
 }
 
 #footer{
@@ -73,18 +64,21 @@ body.splash,body.splash, body.authentication, body.logining{
     font-size: 1rem;
     background-color: rgba(0, 0, 0, 0.0625);
     padding: 0 15px 0 15px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: stretch;
-    align-content: center;
     position: fixed;
     bottom: 0;
     right: 0;
     left: 0;
     z-index: 1030;
-    .footer-item{
+}
+
+.nav-items{
+	display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: center;
+    .nav-item{
 	    width: 100%;
 	    order: 0;
 	    flex-grow: 0;
