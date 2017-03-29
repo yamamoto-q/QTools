@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.29 10:50"
+    VERSION: "2017.03.29 10:52"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28213,7 +28213,7 @@ module.exports = React.createClass({
 						null,
 						React.createElement(
 							Bootstrap_Col,
-							{ classNam: 'hidden-xs-down', md: '2', lg: '2', xl: '2' },
+							{ className: 'hidden-xs-down', md: '2', lg: '2', xl: '2' },
 							'side'
 						),
 						React.createElement(
