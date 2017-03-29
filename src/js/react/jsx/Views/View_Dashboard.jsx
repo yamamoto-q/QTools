@@ -50,8 +50,11 @@ module.exports = React.createClass({
 				<div className="height-fix">
 					<Bootstrap_Container>
 						<Bootstrap_Row>
-							<Bootstrap_Col>
-								Dashboard
+							<Bootstrap_Col classNam="hidden-xs-down" md="2" lg="2" xl="2">
+								side
+							</Bootstrap_Col>
+							<Bootstrap_Col sm="12" md="10" lg="10" xl="10">
+								mein
 							</Bootstrap_Col>
 						</Bootstrap_Row>
 					</Bootstrap_Container>

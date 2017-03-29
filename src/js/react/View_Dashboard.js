@@ -72,8 +72,13 @@ module.exports = React.createClass({
 						null,
 						React.createElement(
 							Bootstrap_Col,
-							null,
-							'Dashboard'
+							{ classNam: 'hidden-xs-down', md: '2', lg: '2', xl: '2' },
+							'side'
+						),
+						React.createElement(
+							Bootstrap_Col,
+							{ sm: '12', md: '10', lg: '10', xl: '10' },
+							'mein'
 						)
 					)
 				)
