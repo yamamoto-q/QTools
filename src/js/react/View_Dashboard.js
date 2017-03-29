@@ -3,7 +3,7 @@
 var React = require('react');
 var Header = require('./Header.js');
 var Footer = require('./Footer.js');
-var FooterItem = require('./FooterItem.js');
+var NavItem = require('./NavItem.js');
 var Bootstrap_Container = require('./Bootstrap_Container.js');
 var Bootstrap_Row = require('./Bootstrap_Row.js');
 var Bootstrap_Col = require('./Bootstrap_Col.js');
@@ -46,17 +46,17 @@ module.exports = React.createClass({
 				Header,
 				{ on_click_menu_icon: this.onClickMenuIcon },
 				React.createElement(
-					FooterItem,
+					NavItem,
 					null,
 					'A'
 				),
 				React.createElement(
-					FooterItem,
+					NavItem,
 					null,
 					'B'
 				),
 				React.createElement(
-					FooterItem,
+					NavItem,
 					null,
 					'C'
 				)
@@ -82,17 +82,17 @@ module.exports = React.createClass({
 				Footer,
 				null,
 				React.createElement(
-					FooterItem,
+					NavItem,
 					null,
 					'A'
 				),
 				React.createElement(
-					FooterItem,
+					NavItem,
 					null,
 					'B'
 				),
 				React.createElement(
-					FooterItem,
+					NavItem,
 					null,
 					'C'
 				)

@@ -1,7 +1,7 @@
 var React = require('react');
 var Header = require('./Header.js');
 var Footer = require('./Footer.js');
-var FooterItem = require('./FooterItem.js');
+var NavItem = require('./NavItem.js');
 var Bootstrap_Container = require('./Bootstrap_Container.js');
 var Bootstrap_Row = require('./Bootstrap_Row.js');
 var Bootstrap_Col = require('./Bootstrap_Col.js');
@@ -43,9 +43,9 @@ module.exports = React.createClass({
 		return(
 			<div className="height-fix">
 				<Header on_click_menu_icon={this.onClickMenuIcon}>
-					<FooterItem>A</FooterItem>
-					<FooterItem>B</FooterItem>
-					<FooterItem>C</FooterItem>
+					<NavItem>A</NavItem>
+					<NavItem>B</NavItem>
+					<NavItem>C</NavItem>
 				</Header>
 				<div className="height-fix">
 					<Bootstrap_Container>
@@ -57,9 +57,9 @@ module.exports = React.createClass({
 					</Bootstrap_Container>
 				</div>
 				<Footer>
-					<FooterItem>A</FooterItem>
-					<FooterItem>B</FooterItem>
-					<FooterItem>C</FooterItem>
+					<NavItem>A</NavItem>
+					<NavItem>B</NavItem>
+					<NavItem>C</NavItem>
 				</Footer>
 				<div id="sideMenu" className="sideMenu-modal sideMenu-modal-hide" onClick={this.hideSideMenu}>
 					<div id="sideMenu-box" style={{position:"absolute", backgroundColor:"white", width:"300px", top:"0", bottom:"0"}}>

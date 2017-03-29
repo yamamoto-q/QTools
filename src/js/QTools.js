@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.28 15:42"
+    VERSION: "2017.03.29 09:28"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27493,47 +27493,13 @@ module.exports = React.createClass({
 	render: function render() {
 		return React.createElement(
 			'div',
-			{ id: 'footer' },
+			{ id: 'footer', className: 'nav-items' },
 			this.props.children
 		);
 	}
 });
 
 },{"./Controller_View.js":258,"react":242}],260:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var Controller_View = require('./Controller_View.js');
-
-module.exports = React.createClass({
-    displayName: 'exports',
-
-    render: function render() {
-        return React.createElement(
-            'div',
-            { className: 'footer-item' },
-            React.createElement(
-                'div',
-                { style: {
-                        display: "table",
-                        width: "100%",
-                        height: "100%"
-                    } },
-                React.createElement(
-                    'div',
-                    { style: {
-                            display: "table-cell",
-                            verticalAlign: "middle",
-                            textAlign: "center"
-                        } },
-                    this.props.children
-                )
-            )
-        );
-    }
-});
-
-},{"./Controller_View.js":258,"react":242}],261:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27586,7 +27552,7 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'bar-center' },
+				{ className: 'bar-center nav-items' },
 				this.props.children
 			),
 			React.createElement(
@@ -27621,7 +27587,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Avater.js":245,"./Controller_Login.js":256,"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"react":242}],262:[function(require,module,exports){
+},{"./Avater.js":245,"./Controller_Login.js":256,"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"react":242}],261:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27709,7 +27675,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Button.js":246,"./Bootstrap_FormGroup.js":249,"./Bootstrap_FormInput.js":250,"./Bootstrap_FormLabel.js":251,"./Bootstrap_InputGroup.js":252,"./Controller_Login.js":256,"react":242}],263:[function(require,module,exports){
+},{"./Bootstrap_Button.js":246,"./Bootstrap_FormGroup.js":249,"./Bootstrap_FormInput.js":250,"./Bootstrap_FormLabel.js":251,"./Bootstrap_InputGroup.js":252,"./Controller_Login.js":256,"react":242}],262:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27757,7 +27723,41 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./View_AdminTools.js":267,"./View_Dashboard.js":268,"./View_ToDo.js":269,"react":242}],264:[function(require,module,exports){
+},{"./Controller_View.js":258,"./View_AdminTools.js":267,"./View_Dashboard.js":268,"./View_ToDo.js":269,"react":242}],263:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var Controller_View = require('./Controller_View.js');
+
+module.exports = React.createClass({
+    displayName: 'exports',
+
+    render: function render() {
+        return React.createElement(
+            'div',
+            { className: 'footer-item' },
+            React.createElement(
+                'div',
+                { style: {
+                        display: "table",
+                        width: "100%",
+                        height: "100%"
+                    } },
+                React.createElement(
+                    'div',
+                    { style: {
+                            display: "table-cell",
+                            verticalAlign: "middle",
+                            textAlign: "center"
+                        } },
+                    this.props.children
+                )
+            )
+        );
+    }
+});
+
+},{"./Controller_View.js":258,"react":242}],264:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27889,7 +27889,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./BuildInfo.js":254,"./Controller_Login.js":256,"./InputAuthForm.js":262,"./LoginedView.js":263,"react":242}],265:[function(require,module,exports){
+},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./BuildInfo.js":254,"./Controller_Login.js":256,"./InputAuthForm.js":261,"./LoginedView.js":262,"react":242}],265:[function(require,module,exports){
 
 
 var QuestetraAPI = function(){
@@ -28144,7 +28144,7 @@ module.exports = React.createClass({
 var React = require('react');
 var Header = require('./Header.js');
 var Footer = require('./Footer.js');
-var FooterItem = require('./FooterItem.js');
+var NavItem = require('./NavItem.js');
 var Bootstrap_Container = require('./Bootstrap_Container.js');
 var Bootstrap_Row = require('./Bootstrap_Row.js');
 var Bootstrap_Col = require('./Bootstrap_Col.js');
@@ -28187,17 +28187,17 @@ module.exports = React.createClass({
 				Header,
 				{ on_click_menu_icon: this.onClickMenuIcon },
 				React.createElement(
-					FooterItem,
+					NavItem,
 					null,
 					'A'
 				),
 				React.createElement(
-					FooterItem,
+					NavItem,
 					null,
 					'B'
 				),
 				React.createElement(
-					FooterItem,
+					NavItem,
 					null,
 					'C'
 				)
@@ -28223,17 +28223,17 @@ module.exports = React.createClass({
 				Footer,
 				null,
 				React.createElement(
-					FooterItem,
+					NavItem,
 					null,
 					'A'
 				),
 				React.createElement(
-					FooterItem,
+					NavItem,
 					null,
 					'B'
 				),
 				React.createElement(
-					FooterItem,
+					NavItem,
 					null,
 					'C'
 				)
@@ -28256,7 +28256,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./BuildInfo.js":254,"./Footer.js":259,"./FooterItem.js":260,"./Header.js":261,"./SettingMenu.js":266,"react":242}],269:[function(require,module,exports){
+},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./BuildInfo.js":254,"./Footer.js":259,"./Header.js":260,"./NavItem.js":263,"./SettingMenu.js":266,"react":242}],269:[function(require,module,exports){
 'use strict';
 
 var React = require('react');

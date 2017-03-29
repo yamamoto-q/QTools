@@ -50,7 +50,7 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'bar-center' },
+				{ className: 'bar-center nav-items' },
 				this.props.children
 			),
 			React.createElement(

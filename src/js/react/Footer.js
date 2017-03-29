@@ -17,7 +17,7 @@ module.exports = React.createClass({
 	render: function render() {
 		return React.createElement(
 			'div',
-			{ id: 'footer' },
+			{ id: 'footer', className: 'nav-items' },
 			this.props.children
 		);
 	}
