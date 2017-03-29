@@ -38,7 +38,7 @@ body.logining {
   left: 0;
   z-index: 1030;
 }
-#header .var-left {
+#header .bar-left {
   display: flex;
   flex-direction: row-reverse;
   flex-wrap: nowrap;
@@ -47,7 +47,7 @@ body.logining {
   align-content: center;
   height: 100%;
 }
-#header .var-left .bar-item {
+#header .bar-left .bar-item {
   padding: 0 15px 0 0;
   white-space: nowrap;
 }
