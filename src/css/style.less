@@ -1,6 +1,29 @@
 @headerHeight: 3.125rem;
 @footerHeight: 3.125rem;
 
+.scrollBar(){
+	&::-webkit-scrollbar-track
+	{
+		-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+		border-radius: 10px;
+		background-color: #F5F5F5;
+	}
+
+	&::-webkit-scrollbar
+	{
+		width: 12px;
+		background-color: #F5F5F5;
+	}
+
+	&::-webkit-scrollbar-thumb
+	{
+		border-radius: 10px;
+		-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+		background-color: #555;
+	}
+}
+
+
 html, body, #App, .height-fix{
 	height: 100%;
 }
@@ -108,8 +131,8 @@ body.splash,body.splash, body.authentication, body.logining{
 }
 
 
-#sideMenu{
-	&.sideMenu-modal{
+#SettingMenu{
+	&.SettingMenu-modal{
 		position:absolute;
 		right:0;
 		top:0;
@@ -119,6 +142,11 @@ body.splash,body.splash, body.authentication, body.logining{
 		background-color:rgba(0,0,0,0.5);
 		display:none;
 	}
+	#sideMenu-box{
+		overflow: auto;
+		.scrollBar();
+	}
+	
 }
 
 @import "font_quarterinch.less";

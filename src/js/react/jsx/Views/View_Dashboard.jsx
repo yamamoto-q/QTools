@@ -11,31 +11,31 @@ var BuildInfo = require('./BuildInfo.js');
 
 module.exports = React.createClass({
 	onClickMenuIcon:function(){
-		$("#sideMenu #sideMenu-box")
+		$("#SettingMenu #SettingMenu-box")
 			.css("left","-300px");
-		$("#sideMenu.sideMenu-modal")
+		$("#SettingMenu.SettingMenu-modal")
 			.css("opacity", "0")
 			.show()
 			.animate({
 				opacity: 1,
 				},250, function() {
-					$("#sideMenu #sideMenu-box").animate({
+					$("#SettingMenu #SettingMenu-box").animate({
 						left: "0"
 					},250, function() {
 						/* stuff to do after animation is complete */
 					});
 			});
 	},
-	hideSideMenu:function(e){
+	hideSettingMenu:function(e){
 		e.preventDefault();
-		$("#sideMenu #sideMenu-box")
+		$("#SettingMenu #SettingMenu-box")
 			.animate({
 				left:"-300px"
 			},250, function() {
-				$("#sideMenu.sideMenu-modal").animate({
+				$("#SettingMenu.SettingMenu-modal").animate({
 					opacity: "0"
 				},250, function() {
-					$("#sideMenu.sideMenu-modal").css('display', 'none');
+					$("#SettingMenu.SettingMenu-modal").css('display', 'none');
 				});
 			});
 	},
@@ -62,8 +62,8 @@ module.exports = React.createClass({
 					<NavItem>B</NavItem>
 					<NavItem>C</NavItem>
 				</Footer>
-				<div id="sideMenu" className="sideMenu-modal sideMenu-modal-hide" onClick={this.hideSideMenu}>
-					<div id="sideMenu-box" style={{position:"absolute", backgroundColor:"white", width:"300px", top:"0", bottom:"0"}}>
+				<div id="SettingMenu" className="SettingMenu-modal SettingMenu-modal-hide" onClick={this.hideSettingMenu}>
+					<div id="SettingMenu-box" style={{position:"absolute", backgroundColor:"white", width:"300px", top:"0", bottom:"0"}}>
 						<SettingMenu />
 						<div>{BuildInfo.VERSION}</div>
 					</div>
