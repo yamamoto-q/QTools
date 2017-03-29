@@ -83,13 +83,13 @@ body.logining {
   flex-direction: row;
 }
 .nav-items.nav-items-h .nav-item {
-  text-align: "center";
+  text-align: center;
 }
 .nav-items.nav-items-v {
   flex-direction: column;
 }
 .nav-items.nav-items-v .nav-item {
-  text-align: "left";
+  text-align: left;
 }
 .nav-items .nav-item {
   width: 100%;
