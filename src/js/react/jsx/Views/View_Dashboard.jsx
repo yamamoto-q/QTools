@@ -64,7 +64,7 @@ module.exports = React.createClass({
 				</Footer>
 				<div id="SettingMenu" className="SettingMenu-modal SettingMenu-modal-hide" onClick={this.hideSettingMenu}>
 					<div id="SettingMenu-box" style={{position:"absolute", backgroundColor:"white", width:"300px", top:"0", bottom:"0"}}>
-						<div className="scroll">
+						<div className="scroll-v">
 							<SettingMenu />
 							<div>{BuildInfo.VERSION}</div>
 						</div>
