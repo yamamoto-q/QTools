@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.29 12:32"
+    VERSION: "2017.03.29 12:40"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28244,11 +28244,15 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ id: 'SettingMenu-box', style: { position: "absolute", backgroundColor: "white", width: "300px", top: "0", bottom: "0" } },
-					React.createElement(SettingMenu, null),
 					React.createElement(
 						'div',
-						null,
-						BuildInfo.VERSION
+						{ className: 'scroll' },
+						React.createElement(SettingMenu, null),
+						React.createElement(
+							'div',
+							null,
+							BuildInfo.VERSION
+						)
 					)
 				)
 			)

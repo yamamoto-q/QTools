@@ -104,11 +104,15 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ id: 'SettingMenu-box', style: { position: "absolute", backgroundColor: "white", width: "300px", top: "0", bottom: "0" } },
-					React.createElement(SettingMenu, null),
 					React.createElement(
 						'div',
-						null,
-						BuildInfo.VERSION
+						{ className: 'scroll' },
+						React.createElement(SettingMenu, null),
+						React.createElement(
+							'div',
+							null,
+							BuildInfo.VERSION
+						)
 					)
 				)
 			)
