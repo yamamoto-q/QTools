@@ -1,5 +1,5 @@
-@headerHeight: 50px;
-@footerHeight: 50px;
+@headerHeight: 3.125rem;
+@footerHeight: 3.125rem;
 
 html, body, #App, .height-fix{
 	height: 100%;
@@ -12,6 +12,7 @@ body{
 	}
 }
 @media (max-width: 575px){
+	// 幅575px以下（スマフォ）ではフッターが表示される
 	body{
 		&.has-footer{
 			padding-bottom: @footerHeight;
