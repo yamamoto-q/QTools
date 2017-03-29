@@ -18,10 +18,10 @@ module.exports = React.createClass({
 		$("#SettingMenu #SettingMenu-box").css("left", "-300px");
 		$("#SettingMenu.SettingMenu-modal").css("opacity", "0").show().animate({
 			opacity: 1
-		}, 250, function () {
+		}, 125, function () {
 			$("#SettingMenu #SettingMenu-box").animate({
 				left: "0"
-			}, 250, function () {
+			}, 125, function () {
 				/* stuff to do after animation is complete */
 			});
 		});
@@ -30,10 +30,10 @@ module.exports = React.createClass({
 		e.preventDefault();
 		$("#SettingMenu #SettingMenu-box").animate({
 			left: "-300px"
-		}, 250, function () {
+		}, 125, function () {
 			$("#SettingMenu.SettingMenu-modal").animate({
 				opacity: "0"
-			}, 250, function () {
+			}, 125, function () {
 				$("#SettingMenu.SettingMenu-modal").css('display', 'none');
 			});
 		});
@@ -42,7 +42,7 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			{ className: 'height-fix' },
-			React.createElement(Header, { on_click_menu_icon: this.onClickMenuIcon }),
+			React.createElement(Header, { on_click_menu_icon: this.onClickMenuIcon, label: 'Dash Board' }),
 			React.createElement(
 				'div',
 				{ className: 'height-fix' },

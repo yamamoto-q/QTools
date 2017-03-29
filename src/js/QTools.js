@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.29 13:35"
+    VERSION: "2017.03.29 13:45"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27538,6 +27538,14 @@ module.exports = React.createClass({
 		_Login.Action.logout();
 	},
 	render: function render() {
+		var label = null;
+		if (this.props.label) {
+			label = React.createElement(
+				'div',
+				{ className: 'bar-item' },
+				this.props.label
+			);
+		}
 		return React.createElement(
 			'div',
 			{ id: 'header' },
@@ -27548,7 +27556,8 @@ module.exports = React.createClass({
 					'div',
 					{ className: 'bar-item' },
 					React.createElement('span', { className: 'icon icon-menu', onClick: this.onClickMenuIcon })
-				)
+				),
+				label
 			),
 			React.createElement(
 				'div',
@@ -28158,10 +28167,10 @@ module.exports = React.createClass({
 		$("#SettingMenu #SettingMenu-box").css("left", "-300px");
 		$("#SettingMenu.SettingMenu-modal").css("opacity", "0").show().animate({
 			opacity: 1
-		}, 250, function () {
+		}, 125, function () {
 			$("#SettingMenu #SettingMenu-box").animate({
 				left: "0"
-			}, 250, function () {
+			}, 125, function () {
 				/* stuff to do after animation is complete */
 			});
 		});
@@ -28170,10 +28179,10 @@ module.exports = React.createClass({
 		e.preventDefault();
 		$("#SettingMenu #SettingMenu-box").animate({
 			left: "-300px"
-		}, 250, function () {
+		}, 125, function () {
 			$("#SettingMenu.SettingMenu-modal").animate({
 				opacity: "0"
-			}, 250, function () {
+			}, 125, function () {
 				$("#SettingMenu.SettingMenu-modal").css('display', 'none');
 			});
 		});
@@ -28182,7 +28191,7 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			{ className: 'height-fix' },
-			React.createElement(Header, { on_click_menu_icon: this.onClickMenuIcon }),
+			React.createElement(Header, { on_click_menu_icon: this.onClickMenuIcon, label: 'Dash Board' }),
 			React.createElement(
 				'div',
 				{ className: 'height-fix' },

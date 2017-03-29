@@ -18,10 +18,10 @@ module.exports = React.createClass({
 			.show()
 			.animate({
 				opacity: 1,
-				},250, function() {
+				},125, function() {
 					$("#SettingMenu #SettingMenu-box").animate({
 						left: "0"
-					},250, function() {
+					},125, function() {
 						/* stuff to do after animation is complete */
 					});
 			});
@@ -31,10 +31,10 @@ module.exports = React.createClass({
 		$("#SettingMenu #SettingMenu-box")
 			.animate({
 				left:"-300px"
-			},250, function() {
+			},125, function() {
 				$("#SettingMenu.SettingMenu-modal").animate({
 					opacity: "0"
-				},250, function() {
+				},125, function() {
 					$("#SettingMenu.SettingMenu-modal").css('display', 'none');
 				});
 			});
@@ -42,7 +42,7 @@ module.exports = React.createClass({
 	render: function() {
 		return(
 			<div className="height-fix">
-				<Header on_click_menu_icon={this.onClickMenuIcon}/>
+				<Header on_click_menu_icon={this.onClickMenuIcon} label="Dash Board"/>
 				<div className="height-fix">
 					<Bootstrap_Container>
 						<Bootstrap_Row>

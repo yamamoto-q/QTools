@@ -36,6 +36,14 @@ module.exports = React.createClass({
 		_Login.Action.logout();
 	},
 	render: function render() {
+		var label = null;
+		if (this.props.label) {
+			label = React.createElement(
+				'div',
+				{ className: 'bar-item' },
+				this.props.label
+			);
+		}
 		return React.createElement(
 			'div',
 			{ id: 'header' },
@@ -46,7 +54,8 @@ module.exports = React.createClass({
 					'div',
 					{ className: 'bar-item' },
 					React.createElement('span', { className: 'icon icon-menu', onClick: this.onClickMenuIcon })
-				)
+				),
+				label
 			),
 			React.createElement(
 				'div',

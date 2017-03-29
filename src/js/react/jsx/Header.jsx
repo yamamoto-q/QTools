@@ -32,10 +32,17 @@ module.exports = React.createClass({
 		_Login.Action.logout();
 	},
 	render: function() {
+		var label = null;
+		if(this.props.label){
+			label = (
+				<div className="bar-item">{this.props.label}</div>
+			);
+		}
 		return (
 			<div id="header">
 				<div className="bar-left">
 					<div className="bar-item"><span className="icon icon-menu" onClick={this.onClickMenuIcon}></span></div>
+					{label}
 				</div>
 				<div className="bar-center nav-items hidden-xs-down">{this.props.children}</div>
 				<div className="bar-right">
