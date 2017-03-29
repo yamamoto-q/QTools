@@ -55,6 +55,9 @@ body.logining {
   height: 32px;
   width: 32px;
 }
+#header .bar-center {
+  padding: 0, 15px, 0, 15px;
+}
 #footer {
   height: 50px;
   font-size: 1rem;
