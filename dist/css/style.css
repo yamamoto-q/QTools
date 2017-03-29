@@ -38,6 +38,19 @@ body.logining {
   left: 0;
   z-index: 1030;
 }
+#header .var-left {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  height: 100%;
+}
+#header .var-left .bar-item {
+  padding: 0 15px 0 0;
+  white-space: nowrap;
+}
 #header .bar-right {
   display: flex;
   flex-direction: row-reverse;
@@ -49,6 +62,7 @@ body.logining {
 }
 #header .bar-right .bar-item {
   padding: 0 0 0 15px;
+  white-space: nowrap;
 }
 #header .bar-right .bar-item .avater {
   border-radius: 50%;
