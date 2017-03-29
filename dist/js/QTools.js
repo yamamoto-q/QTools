@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.29 11:41"
+    VERSION: "2017.03.29 11:48"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28183,25 +28183,7 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			{ className: 'height-fix' },
-			React.createElement(
-				Header,
-				{ on_click_menu_icon: this.onClickMenuIcon },
-				React.createElement(
-					NavItem,
-					null,
-					'A'
-				),
-				React.createElement(
-					NavItem,
-					null,
-					'B'
-				),
-				React.createElement(
-					NavItem,
-					null,
-					'C'
-				)
-			),
+			React.createElement(Header, { on_click_menu_icon: this.onClickMenuIcon }),
 			React.createElement(
 				'div',
 				{ className: 'height-fix' },
@@ -28213,8 +28195,22 @@ module.exports = React.createClass({
 						null,
 						React.createElement(
 							'div',
-							{ className: 'col hidden-xs-down', style: { flexBasis: "210px", flexGrow: "0" } },
-							'side'
+							{ className: 'col nav-items hidden-xs-down', style: { flexBasis: "210px", flexGrow: "0" } },
+							React.createElement(
+								NavItem,
+								null,
+								'A'
+							),
+							React.createElement(
+								NavItem,
+								null,
+								'B'
+							),
+							React.createElement(
+								NavItem,
+								null,
+								'C'
+							)
 						),
 						React.createElement(
 							'div',

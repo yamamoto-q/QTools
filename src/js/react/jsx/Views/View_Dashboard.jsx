@@ -42,16 +42,14 @@ module.exports = React.createClass({
 	render: function() {
 		return(
 			<div className="height-fix">
-				<Header on_click_menu_icon={this.onClickMenuIcon}>
-					<NavItem>A</NavItem>
-					<NavItem>B</NavItem>
-					<NavItem>C</NavItem>
-				</Header>
+				<Header on_click_menu_icon={this.onClickMenuIcon}/>
 				<div className="height-fix">
 					<Bootstrap_Container>
 						<Bootstrap_Row>
-							<div className="col hidden-xs-down" style={{flexBasis:"210px", flexGrow: "0"}}>
-								side
+							<div className="col nav-items hidden-xs-down" style={{flexBasis:"210px", flexGrow: "0"}}>
+								<NavItem>A</NavItem>
+								<NavItem>B</NavItem>
+								<NavItem>C</NavItem>
 							</div>
 							<div className="col">
 								main
