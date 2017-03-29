@@ -80,6 +80,9 @@ body.logining {
   align-items: stretch;
   align-content: center;
 }
+.nav-items.nav-items-v {
+  flex-direction: column;
+}
 .nav-items .nav-item {
   width: 100%;
   order: 0;

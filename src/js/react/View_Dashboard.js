@@ -54,7 +54,7 @@ module.exports = React.createClass({
 						null,
 						React.createElement(
 							'div',
-							{ className: 'col nav-items hidden-xs-down', style: { flexBasis: "210px", flexGrow: "0" } },
+							{ className: 'col nav-items nav-items-v hidden-xs-down', style: { flexBasis: "210px", flexGrow: "0" } },
 							React.createElement(
 								NavItem,
 								null,

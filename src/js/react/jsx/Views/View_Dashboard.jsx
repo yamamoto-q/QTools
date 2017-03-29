@@ -46,7 +46,7 @@ module.exports = React.createClass({
 				<div className="height-fix">
 					<Bootstrap_Container>
 						<Bootstrap_Row>
-							<div className="col nav-items hidden-xs-down" style={{flexBasis:"210px", flexGrow: "0"}}>
+							<div className="col nav-items nav-items-v hidden-xs-down" style={{flexBasis:"210px", flexGrow: "0"}}>
 								<NavItem>A</NavItem>
 								<NavItem>B</NavItem>
 								<NavItem>C</NavItem>
