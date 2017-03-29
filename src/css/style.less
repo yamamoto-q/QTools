@@ -81,13 +81,21 @@ body.splash,body.splash, body.authentication, body.logining{
 // .nav-items, .nav-item
 .nav-items{
 	display: flex;
-    flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: stretch;
     align-content: center;
-    &.nav-items-v{
+    &.nav-items-h{
+	    flex-direction: row;
+	    .nav-item{
+	    	text-align: "center"
+	    }
+	}
+	&.nav-items-v{
 	    flex-direction: column;
+	    .nav-item{
+	    	text-align: "left"
+	    }
 	}
     .nav-item{
 	    width: 100%;

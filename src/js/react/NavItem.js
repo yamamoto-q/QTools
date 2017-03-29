@@ -21,8 +21,7 @@ module.exports = React.createClass({
                     'div',
                     { style: {
                             display: "table-cell",
-                            verticalAlign: "middle",
-                            textAlign: "center"
+                            verticalAlign: "middle"
                         } },
                     this.props.children
                 )

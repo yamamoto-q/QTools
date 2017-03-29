@@ -74,14 +74,22 @@ body.logining {
 }
 .nav-items {
   display: flex;
-  flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: stretch;
   align-content: center;
 }
+.nav-items.nav-items-h {
+  flex-direction: row;
+}
+.nav-items.nav-items-h .nav-item {
+  text-align: "center";
+}
 .nav-items.nav-items-v {
   flex-direction: column;
+}
+.nav-items.nav-items-v .nav-item {
+  text-align: "left";
 }
 .nav-items .nav-item {
   width: 100%;
