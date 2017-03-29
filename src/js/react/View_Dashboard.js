@@ -72,7 +72,7 @@ module.exports = React.createClass({
 						null,
 						React.createElement(
 							Bootstrap_Col,
-							{ className: 'hidden-xs-down', md: '2', lg: '2', xl: '2' },
+							{ className: 'hidden-xs-down', sm: '2', md: '2', lg: '2', xl: '2' },
 							'side'
 						),
 						React.createElement(
