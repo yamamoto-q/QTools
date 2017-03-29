@@ -10,8 +10,12 @@ body{
 	&.has-header{
 		padding-top: @headerHeight;
 	}
-	&.has-footer{
-		padding-bottom: @footerHeight;
+}
+@media (max-width: 575px){
+	body{
+		&.has-footer{
+			padding-bottom: @footerHeight;
+		}
 	}
 }
 
@@ -57,7 +61,8 @@ body.splash,body.splash, body.authentication, body.logining{
 	    }
 	}
 	.bar-center{
-		padding: 0, 15px, 0, 15px;
+		padding: 0 15px 0 15px;
+		width: 100%;
 	}
 }
 
