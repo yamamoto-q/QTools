@@ -3,8 +3,8 @@
 var React = require('react');
 var Controller_View = require('./Controller_View.js');
 
-var Dashboard = require('./View_Dashboard.js');
-var AdminTools = require('./View_AdminTools.js');
+var vHome = require('./View_Home.js');
+var vAdminTools = require('./View_AdminTools.js');
 var ToDo = require('./View_ToDo.js');
 
 module.exports = React.createClass({
@@ -30,11 +30,11 @@ module.exports = React.createClass({
 	render: function render() {
 		var viewBody;
 		switch (this.state.viewName) {
-			case Controller_View.ViewNames.DASHBOARD:
-				viewBody = React.createElement(Dashboard, null);
+			case Controller_View.ViewNames.HOME:
+				viewBody = React.createElement('vHome', null);
 				break;
 			case Controller_View.ViewNames.ADMIN_TOOLS:
-				viewBody = React.createElement(AdminTools, null);
+				viewBody = React.createElement('vAdminTools', null);
 				break;
 		}
 		return React.createElement(

@@ -1,8 +1,8 @@
 var React = require('react');
 var Controller_View = require('./Controller_View.js');
 
-var Dashboard = require('./View_Dashboard.js');
-var AdminTools = require('./View_AdminTools.js');
+var vHome = require('./View_Home.js');
+var vAdminTools = require('./View_AdminTools.js');
 var ToDo = require('./View_ToDo.js');
 
 module.exports = React.createClass({
@@ -26,11 +26,11 @@ module.exports = React.createClass({
 	render: function() {
 		var viewBody;
 		switch (this.state.viewName){
-			case Controller_View.ViewNames.DASHBOARD:
-				viewBody = (<Dashboard />);
+			case Controller_View.ViewNames.HOME:
+				viewBody = (<vHome />);
 				break;
 			case Controller_View.ViewNames.ADMIN_TOOLS:
-				viewBody = (<AdminTools />);
+				viewBody = (<vAdminTools />);
 				break;
 		} 
 		return (

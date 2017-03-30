@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.30 11:40"
+    VERSION: "2017.03.30 11:45"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27397,12 +27397,12 @@ var EVENT = {
 }
 
 var VIEW_NAMES = {
-	DASHBOARD:"dashboard",
+	HOME:"home",
 	ADMIN_TOOLS:"admin-tools"
 }
 
 var _state = {
-	viewName : VIEW_NAMES.DASHBOARD,
+	viewName : VIEW_NAMES.HOME,
     history:[],
     hasHeader: false,
     hasFooter:false
@@ -27690,8 +27690,8 @@ module.exports = React.createClass({
 var React = require('react');
 var Controller_View = require('./Controller_View.js');
 
-var Dashboard = require('./View_Dashboard.js');
-var AdminTools = require('./View_AdminTools.js');
+var vHome = require('./View_Home.js');
+var vAdminTools = require('./View_AdminTools.js');
 var ToDo = require('./View_ToDo.js');
 
 module.exports = React.createClass({
@@ -27717,11 +27717,11 @@ module.exports = React.createClass({
 	render: function render() {
 		var viewBody;
 		switch (this.state.viewName) {
-			case Controller_View.ViewNames.DASHBOARD:
-				viewBody = React.createElement(Dashboard, null);
+			case Controller_View.ViewNames.HOME:
+				viewBody = React.createElement('vHome', null);
 				break;
 			case Controller_View.ViewNames.ADMIN_TOOLS:
-				viewBody = React.createElement(AdminTools, null);
+				viewBody = React.createElement('vAdminTools', null);
 				break;
 		}
 		return React.createElement(
@@ -27732,7 +27732,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./View_AdminTools.js":267,"./View_Dashboard.js":268,"./View_ToDo.js":269,"react":242}],263:[function(require,module,exports){
+},{"./Controller_View.js":258,"./View_AdminTools.js":267,"./View_Home.js":268,"./View_ToDo.js":269,"react":242}],263:[function(require,module,exports){
 'use strict';
 
 var React = require('react');

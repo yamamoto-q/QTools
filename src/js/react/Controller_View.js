@@ -41,12 +41,12 @@ var EVENT = {
 }
 
 var VIEW_NAMES = {
-	DASHBOARD:"dashboard",
+	HOME:"home",
 	ADMIN_TOOLS:"admin-tools"
 }
 
 var _state = {
-	viewName : VIEW_NAMES.DASHBOARD,
+	viewName : VIEW_NAMES.HOME,
     history:[],
     hasHeader: false,
     hasFooter:false
