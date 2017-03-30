@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.30 11:45"
+    VERSION: "2017.03.30 11:48"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27690,8 +27690,8 @@ module.exports = React.createClass({
 var React = require('react');
 var Controller_View = require('./Controller_View.js');
 
-var vHome = require('./View_Home.js');
-var vAdminTools = require('./View_AdminTools.js');
+var Home = require('./View_Home.js');
+var AdminTools = require('./View_AdminTools.js');
 var ToDo = require('./View_ToDo.js');
 
 module.exports = React.createClass({
@@ -27718,10 +27718,10 @@ module.exports = React.createClass({
 		var viewBody;
 		switch (this.state.viewName) {
 			case Controller_View.ViewNames.HOME:
-				viewBody = React.createElement('vHome', null);
+				viewBody = React.createElement(Home, null);
 				break;
 			case Controller_View.ViewNames.ADMIN_TOOLS:
-				viewBody = React.createElement('vAdminTools', null);
+				viewBody = React.createElement(AdminTools, null);
 				break;
 		}
 		return React.createElement(
