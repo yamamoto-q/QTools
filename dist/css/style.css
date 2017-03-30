@@ -98,6 +98,10 @@ body.logining {
 }
 .nav-items.nav-items-h .nav-item {
   text-align: center;
+  line-height: 1rem;
+}
+.nav-items.nav-items-h .nav-item .icon {
+  display: block;
 }
 .nav-items.nav-items-v {
   flex-direction: column;

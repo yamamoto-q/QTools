@@ -8,13 +8,17 @@ module.exports = React.createClass({
 
 
     render: function render() {
+        var classes = ["nav-item"];
+
         var icon = null;
         if (this.props.icon) {
             icon = React.createElement('span', { className: "icon icon-" + this.props.icon });
+            classes.push("nav-item-has-icon");
         }
+
         return React.createElement(
             'div',
-            { className: 'nav-item' },
+            { className: classes.join(" ") },
             React.createElement(
                 'div',
                 { style: {
@@ -24,7 +28,7 @@ module.exports = React.createClass({
                     } },
                 React.createElement(
                     'div',
-                    { style: {
+                    { className: 'label-wrapper', style: {
                             display: "table-cell",
                             verticalAlign: "middle"
                         } },

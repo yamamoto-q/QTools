@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.30 10:52"
+    VERSION: "2017.03.30 11:05"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27743,13 +27743,17 @@ module.exports = React.createClass({
 
 
     render: function render() {
+        var classes = ["nav-item"];
+
         var icon = null;
         if (this.props.icon) {
             icon = React.createElement('span', { className: "icon icon-" + this.props.icon });
+            classes.push("nav-item-has-icon");
         }
+
         return React.createElement(
             'div',
-            { className: 'nav-item' },
+            { className: classes.join(" ") },
             React.createElement(
                 'div',
                 { style: {
@@ -27759,7 +27763,7 @@ module.exports = React.createClass({
                     } },
                 React.createElement(
                     'div',
-                    { style: {
+                    { className: 'label-wrapper', style: {
                             display: "table-cell",
                             verticalAlign: "middle"
                         } },
