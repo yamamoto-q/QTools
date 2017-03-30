@@ -19,6 +19,7 @@ module.exports = React.createClass({
 				self.setState({
 					allocatedWorkitems:allocatedWorkitems
 				});
+				
 			}
 		});
 

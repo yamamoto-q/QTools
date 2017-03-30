@@ -1,9 +1,8 @@
 html,
 body,
-#App {
-  height: 100%;
-}
+#App,
 .height-fix {
+  height: 100%;
   min-height: 100%;
 }
 html,
