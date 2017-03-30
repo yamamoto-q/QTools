@@ -103,11 +103,11 @@ body.logining {
 .nav-items.nav-items-h .nav-item .label {
   display: block;
 }
-.nav-items.nav-items-h.nav-item-has-icon .nav-item .icon {
+.nav-items.nav-items-h .nav-item.nav-item-has-icon .icon {
   display: block;
   font-size: 1.5rem;
 }
-.nav-items.nav-items-h.nav-item-has-icon .nav-item .label {
+.nav-items.nav-items-h .nav-item.nav-item-has-icon .label {
   font-size: .5rem;
 }
 .nav-items.nav-items-v {
