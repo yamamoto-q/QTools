@@ -126,10 +126,21 @@ body.splash,body.splash, body.authentication, body.logining{
 	    flex-direction: row;
 	    .nav-item{
 	    	text-align: center;
-	    	line-height: 1rem;
-	    	.icon{
+	    	line-height: 1em;
+	    	.label{
 	    		display:block;
 	    	}
+	    }
+	    &.nav-item-has-icon{
+	    	.nav-item{
+		    	.icon{
+		    		display:block;
+		    		font-size: 1.5rem;
+		    	}
+		    	.label{
+		    		font-size: .5rem;
+		    	}
+		    }
 	    }
 	}
 	&.nav-items-v{

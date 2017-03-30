@@ -98,10 +98,17 @@ body.logining {
 }
 .nav-items.nav-items-h .nav-item {
   text-align: center;
-  line-height: 1rem;
+  line-height: 1em;
 }
-.nav-items.nav-items-h .nav-item .icon {
+.nav-items.nav-items-h .nav-item .label {
   display: block;
+}
+.nav-items.nav-items-h.nav-item-has-icon .nav-item .icon {
+  display: block;
+  font-size: 1.5rem;
+}
+.nav-items.nav-items-h.nav-item-has-icon .nav-item .label {
+  font-size: .5rem;
 }
 .nav-items.nav-items-v {
   flex-direction: column;
