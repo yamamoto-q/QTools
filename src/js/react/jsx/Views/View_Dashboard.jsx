@@ -58,7 +58,7 @@ module.exports = React.createClass({
 					</Bootstrap_Container>
 				</div>
 				<Footer>
-					<NavItem>A</NavItem>
+					<NavItem><span className="icon icon-home"></span>Home</NavItem>
 					<NavItem>B</NavItem>
 					<NavItem>C</NavItem>
 				</Footer>
