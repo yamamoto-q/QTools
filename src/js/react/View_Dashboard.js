@@ -84,8 +84,7 @@ module.exports = React.createClass({
 				null,
 				React.createElement(
 					NavItem,
-					null,
-					React.createElement('span', { className: 'icon icon-home' }),
+					{ icon: 'home' },
 					'Home'
 				),
 				React.createElement(

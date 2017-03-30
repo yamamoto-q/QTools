@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.30 10:39"
+    VERSION: "2017.03.30 10:50"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27741,7 +27741,12 @@ var Controller_View = require('./Controller_View.js');
 module.exports = React.createClass({
     displayName: 'exports',
 
+
     render: function render() {
+        var icon = null;
+        if (this.props.icon) {
+            icon = React.createElement('span', { className: "icon icon-" + this.props.icon });
+        }
         return React.createElement(
             'div',
             { className: 'nav-item' },
@@ -27758,7 +27763,12 @@ module.exports = React.createClass({
                             display: "table-cell",
                             verticalAlign: "middle"
                         } },
-                    this.props.children
+                    { icon: icon },
+                    React.createElement(
+                        'span',
+                        { className: 'label' },
+                        this.props.children
+                    )
                 )
             )
         );
@@ -28233,8 +28243,7 @@ module.exports = React.createClass({
 				null,
 				React.createElement(
 					NavItem,
-					null,
-					React.createElement('span', { className: 'icon icon-home' }),
+					{ icon: 'home' },
 					'Home'
 				),
 				React.createElement(
