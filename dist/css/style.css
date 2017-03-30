@@ -40,7 +40,7 @@ body.logining {
 }
 #header .bar-left {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: center;
