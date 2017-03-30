@@ -48,8 +48,8 @@ module.exports = React.createClass({
 						<Bootstrap_Row>
 							<div className="col nav-items nav-items-v hidden-xs-down" style={{flexBasis:"210px", flexGrow: "0"}}>
 								<NavItem icon="home">Home</NavItem>
-								<NavItem>B</NavItem>
-								<NavItem>C</NavItem>
+								<NavItem icon="inbox">B</NavItem>
+								<NavItem icon="chat_bubble">C</NavItem>
 							</div>
 							<div className="col">
 								main
@@ -59,8 +59,8 @@ module.exports = React.createClass({
 				</div>
 				<Footer>
 					<NavItem icon="home">Home</NavItem>
-					<NavItem>B</NavItem>
-					<NavItem>C</NavItem>
+					<NavItem icon="inbox">B</NavItem>
+					<NavItem icon="chat_bubble">C</NavItem>
 				</Footer>
 				<div id="SettingMenu" className="SettingMenu-modal SettingMenu-modal-hide" onClick={this.hideSettingMenu}>
 					<div id="SettingMenu-box" style={{position:"absolute", backgroundColor:"white", width:"300px", top:"0", bottom:"0"}}>

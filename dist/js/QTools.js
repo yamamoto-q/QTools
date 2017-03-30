@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.30 11:25"
+    VERSION: "2017.03.30 11:40"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28225,12 +28225,12 @@ module.exports = React.createClass({
 							),
 							React.createElement(
 								NavItem,
-								null,
+								{ icon: 'inbox' },
 								'B'
 							),
 							React.createElement(
 								NavItem,
-								null,
+								{ icon: 'chat_bubble' },
 								'C'
 							)
 						),
@@ -28252,12 +28252,12 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					NavItem,
-					null,
+					{ icon: 'inbox' },
 					'B'
 				),
 				React.createElement(
 					NavItem,
-					null,
+					{ icon: 'chat_bubble' },
 					'C'
 				)
 			),

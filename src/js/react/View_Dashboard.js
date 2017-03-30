@@ -62,12 +62,12 @@ module.exports = React.createClass({
 							),
 							React.createElement(
 								NavItem,
-								null,
+								{ icon: 'inbox' },
 								'B'
 							),
 							React.createElement(
 								NavItem,
-								null,
+								{ icon: 'chat_bubble' },
 								'C'
 							)
 						),
@@ -89,12 +89,12 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					NavItem,
-					null,
+					{ icon: 'inbox' },
 					'B'
 				),
 				React.createElement(
 					NavItem,
-					null,
+					{ icon: 'chat_bubble' },
 					'C'
 				)
 			),
