@@ -35,7 +35,7 @@ var Action = {
     getAllocatedTasks:function(){
         // マイタスクの一覧を取得する
         dispatcher.dispatch({
-            actionType: "getAllocatedTask",
+            actionType: "getAllocatedTasks",
             value: {
             }
         });
@@ -235,8 +235,8 @@ var Store = assign({}, EventEmitter.prototype, {
 
                 break;
 
-            case "getAllocatedTask":
-                _API.API.UserIconView(function(tasks){
+            case "getAllocatedTasks":
+                _API.API.PEWorkitemListAllocated(function(tasks){
                     console.log(tasks);
                     
                 }, function(jqXHR, textStatus){

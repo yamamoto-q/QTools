@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.30 17:43"
+    VERSION: "2017.03.30 17:47"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27129,7 +27129,7 @@ var Action = {
     getAllocatedTasks:function(){
         // マイタスクの一覧を取得する
         dispatcher.dispatch({
-            actionType: "getAllocatedTask",
+            actionType: "getAllocatedTasks",
             value: {
             }
         });
@@ -27329,8 +27329,8 @@ var Store = assign({}, EventEmitter.prototype, {
 
                 break;
 
-            case "getAllocatedTask":
-                _API.API.UserIconView(function(tasks){
+            case "getAllocatedTasks":
+                _API.API.PEWorkitemListAllocated(function(tasks){
                     console.log(tasks);
                     
                 }, function(jqXHR, textStatus){
