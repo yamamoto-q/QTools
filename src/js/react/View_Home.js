@@ -79,6 +79,8 @@ module.exports = React.createClass({
 							React.createElement(
 								'div',
 								{ className: 'card-group' },
+								React.createElement(TaskSummary, null),
+								React.createElement(TaskSummary, null),
 								React.createElement(TaskSummary, null)
 							)
 						)

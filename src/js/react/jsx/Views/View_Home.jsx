@@ -56,6 +56,8 @@ module.exports = React.createClass({
 							<div className="col">
 								<div className="card-group">
 									<TaskSummary />
+									<TaskSummary />
+									<TaskSummary />
 								</div>
 							</div>
 						</Bootstrap_Row>

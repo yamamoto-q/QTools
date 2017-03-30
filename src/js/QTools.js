@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.30 18:19"
+    VERSION: "2017.03.30 18:38"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27180,7 +27180,11 @@ var _state = {
         isUserManager:false,
         isProcessModelCreator:false
     },
-    allocatedWorkitems : [],
+    allocatedWorkitems : {
+        isResultWaiting:false,
+        workitems:[],
+        update:0
+    },
     offeredWorkitems : [],
     userQuserSelf:null,
     resopnses:{}
@@ -27194,7 +27198,7 @@ var Store = assign({}, EventEmitter.prototype, {
         return _state.resopnses['avater-' + qUserId];
     },
     getAllocatedWorkitems:function(){
-        return _state.allocatedWorkitems;
+        return _state.allocatedWorkitems.workitems;
     },
     getOfferedWorkitems:function(){
         return _state.offeredWorkitems;
@@ -27238,6 +27242,11 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     emitChangeOfferedWorkitems(){
         this.emit(EVENT.CHANGE_OFFERED_WORKITEMS);
+    },
+    // function
+    getTimestamp(){
+        var date = new Date() ;
+        return Math.floor( date.getTime() / 1000 ) ;
     },
     // Dispacher
     dispatcherIndex: dispatcher.register(function(payload) {
@@ -27360,13 +27369,27 @@ var Store = assign({}, EventEmitter.prototype, {
                 break;
 
             case "getAllocatedWorkitems":
+                if(_state.allocatedWorkitems.isResultWaiting || Store.getTimestamp() - _state.allocatedWorkitems.update < 30){
+                    console.log("Cancel");
+                    return;
+                }
+
+                _state.allocatedWorkitems.isResultWaiting = true;
                 _API.API.PEWorkitemListAllocated(function(data){
-                    _state.allocatedWorkitems = data.workitems;
+                    _state.allocatedWorkitems = {
+                        isResultWaiting : false,
+                        workitems : data.workitems,
+                        update : Store.getTimestamp()
+                    }
+
                     Store.emitChangeAllocatedWorkitems();
 
                 }, function(jqXHR, textStatus){
                     // fail
                     console.log(jqXHR, textStatus);
+                    _state.allocatedWorkitems = {
+                        isResultWaiting : false
+                    }
                 });
                 break;
 
@@ -28325,6 +28348,8 @@ module.exports = React.createClass({
 							React.createElement(
 								'div',
 								{ className: 'card-group' },
+								React.createElement(TaskSummary, null),
+								React.createElement(TaskSummary, null),
 								React.createElement(TaskSummary, null)
 							)
 						)
