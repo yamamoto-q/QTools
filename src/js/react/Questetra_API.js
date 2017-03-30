@@ -39,6 +39,15 @@ var QuestetraAPI = function(){
         });
     }
 
+    // マイタスクの一覧を取得する
+    function _PEWorkitemListAllocated(success, fail){
+        _request("API/PE/Workitem/listAllocated", function(data){
+            success(data);
+        },function(jqXHR, textStatus){
+            fail(jqXHR, textStatus);
+        });
+    }
+
     // 組織一覧を取得する
     function _UserQgroupList(success, fail) {
          _request("API/User/Qgroup/list", function(data){
@@ -113,6 +122,9 @@ var QuestetraAPI = function(){
 		userQuserSelf:function(success, fail){
 			_UserQuserSelf(success, fail);
 		},
+        PEWorkitemListAllocated:function(success, fail){
+            _PEWorkitemListAllocated(success, fail);
+        },
         UserIconView:function(qUserId, success, fail){
             _UserIconView(qUserId, success, fail);
         },

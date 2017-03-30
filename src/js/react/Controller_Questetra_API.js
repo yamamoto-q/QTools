@@ -32,6 +32,14 @@ var Action = {
             }
         });
     },
+    getAllocatedTasks:function(){
+        // マイタスクの一覧を取得する
+        dispatcher.dispatch({
+            actionType: "getAllocatedTask",
+            value: {
+            }
+        });
+    },
     getAvater:function(qUserId){
         if(typeof _state.resopnses['avater-' + qUserId] === "undefined"){
             dispatcher.dispatch({
@@ -225,6 +233,16 @@ var Store = assign({}, EventEmitter.prototype, {
                     }
                 });
 
+                break;
+
+            case "getAllocatedTask":
+                _API.API.UserIconView(function(tasks){
+                    console.log(tasks);
+                    
+                }, function(jqXHR, textStatus){
+                    // fail
+                    console.log(jqXHR, textStatus);
+                });
                 break;
 
             case "getAvater":

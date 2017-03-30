@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.30 17:33"
+    VERSION: "2017.03.30 17:43"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27126,6 +27126,14 @@ var Action = {
             }
         });
     },
+    getAllocatedTasks:function(){
+        // マイタスクの一覧を取得する
+        dispatcher.dispatch({
+            actionType: "getAllocatedTask",
+            value: {
+            }
+        });
+    },
     getAvater:function(qUserId){
         if(typeof _state.resopnses['avater-' + qUserId] === "undefined"){
             dispatcher.dispatch({
@@ -27319,6 +27327,16 @@ var Store = assign({}, EventEmitter.prototype, {
                     }
                 });
 
+                break;
+
+            case "getAllocatedTask":
+                _API.API.UserIconView(function(tasks){
+                    console.log(tasks);
+                    
+                }, function(jqXHR, textStatus){
+                    // fail
+                    console.log(jqXHR, textStatus);
+                });
                 break;
 
             case "getAvater":
@@ -27953,6 +27971,15 @@ var QuestetraAPI = function(){
         });
     }
 
+    // マイタスクの一覧を取得する
+    function _PEWorkitemListAllocated(success, fail){
+        _request("API/PE/Workitem/listAllocated", function(data){
+            success(data);
+        },function(jqXHR, textStatus){
+            fail(jqXHR, textStatus);
+        });
+    }
+
     // 組織一覧を取得する
     function _UserQgroupList(success, fail) {
          _request("API/User/Qgroup/list", function(data){
@@ -28027,6 +28054,9 @@ var QuestetraAPI = function(){
 		userQuserSelf:function(success, fail){
 			_UserQuserSelf(success, fail);
 		},
+        PEWorkitemListAllocated:function(success, fail){
+            _PEWorkitemListAllocated(success, fail);
+        },
         UserIconView:function(qUserId, success, fail){
             _UserIconView(qUserId, success, fail);
         },
@@ -28290,40 +28320,56 @@ module.exports = React.createClass({
 });
 
 },{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./BuildInfo.js":254,"./Footer.js":259,"./Header.js":260,"./NavItem.js":263,"./SettingMenu.js":266,"./View_Task_Summary.js":269,"react":242}],269:[function(require,module,exports){
-"use strict";
+'use strict';
 
 var React = require('react');
-module.exports = React.createClass({
-	displayName: "exports",
+var _QApi = require('./Controller_Questetra_API.js');
 
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	componentDidMount: function componentDidMount() {
+		var self = this;
+		/*
+  Controller_View.Store.addChangeViewListener(function () {
+  	if (self.isMounted()) {
+  		var viewName = Controller_View.Store.getViewNane();
+  		self.setState({
+  			viewName:viewName
+  		});
+  	};
+  });
+  */
+		_QApi.Action.getAllocatedTasks();
+	},
 	render: function render() {
 		return React.createElement(
-			"div",
-			{ className: "card" },
+			'div',
+			{ className: 'card' },
 			React.createElement(
-				"div",
-				{ className: "card-block" },
+				'div',
+				{ className: 'card-block' },
 				React.createElement(
-					"h4",
-					{ className: "card-title" },
-					"View_Task_Summar"
+					'h4',
+					{ className: 'card-title' },
+					'View_Task_Summar'
 				),
 				React.createElement(
-					"p",
-					{ className: "card-text" },
-					"Some quick example text to build on the card title and make up the bulk of the card's content."
+					'p',
+					{ className: 'card-text' },
+					'Some quick example text to build on the card title and make up the bulk of the card\'s content.'
 				),
 				React.createElement(
-					"a",
-					{ href: "#", className: "btn btn-primary" },
-					"Go somewhere"
+					'a',
+					{ href: '#', className: 'btn btn-primary' },
+					'Go somewhere'
 				)
 			)
 		);
 	}
 });
 
-},{"react":242}],270:[function(require,module,exports){
+},{"./Controller_Questetra_API.js":257,"react":242}],270:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
