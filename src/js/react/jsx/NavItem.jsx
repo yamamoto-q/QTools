@@ -21,8 +21,7 @@ module.exports = React.createClass({
                         display:"table-cell",
                         verticalAlign: "middle"
                     }}>
-                        {{icon}}
-                        <span className="label">{this.props.children}</span>
+                        {icon}<span className="label">{this.props.children}</span>
                     </div>
                 </div>
             </div>

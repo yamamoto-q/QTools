@@ -28,7 +28,7 @@ module.exports = React.createClass({
                             display: "table-cell",
                             verticalAlign: "middle"
                         } },
-                    { icon: icon },
+                    icon,
                     React.createElement(
                         'span',
                         { className: 'label' },
