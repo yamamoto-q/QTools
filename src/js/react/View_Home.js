@@ -8,6 +8,8 @@ var Bootstrap_Container = require('./Bootstrap_Container.js');
 var Bootstrap_Row = require('./Bootstrap_Row.js');
 var Bootstrap_Col = require('./Bootstrap_Col.js');
 
+var TaskSummary = require('./View_Task_Summary.js');
+
 var SettingMenu = require('./SettingMenu.js');
 var BuildInfo = require('./BuildInfo.js');
 
@@ -42,7 +44,7 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			{ className: 'height-fix' },
-			React.createElement(Header, { on_click_menu_icon: this.onClickMenuIcon, label: 'Dash Board' }),
+			React.createElement(Header, { on_click_menu_icon: this.onClickMenuIcon, label: 'Home' }),
 			React.createElement(
 				'div',
 				{ className: 'height-fix' },
@@ -74,7 +76,11 @@ module.exports = React.createClass({
 						React.createElement(
 							'div',
 							{ className: 'col' },
-							'main'
+							React.createElement(
+								'div',
+								{ className: 'card-group' },
+								React.createElement(TaskSummary, null)
+							)
 						)
 					)
 				)

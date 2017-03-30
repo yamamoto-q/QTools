@@ -53,6 +53,7 @@ module.exports = function(grunt) {
                     { 'src/js/react/View_ToDo.js': 'src/js/react/jsx/Views/View_ToDo.jsx' },
                     { 'src/js/react/View_Home.js': 'src/js/react/jsx/Views/View_Home.jsx' },
                     { 'src/js/react/View_AdminTools.js': 'src/js/react/jsx/Views/View_AdminTools.jsx' },
+                    { 'src/js/react/View_Task_Summary.js': 'src/js/react/jsx/Views/View_Task_Summary.jsx' },
                     // Bootstrap
                     { 'src/js/react/Bootstrap_Row.js': 'src/js/react/jsx/Bootstrap/row.jsx' },
                     { 'src/js/react/Bootstrap_Container.js': 'src/js/react/jsx/Bootstrap/container.jsx' },

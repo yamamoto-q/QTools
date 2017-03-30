@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.30 11:48"
+    VERSION: "2017.03.30 17:33"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27732,7 +27732,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./View_AdminTools.js":267,"./View_Home.js":268,"./View_ToDo.js":269,"react":242}],263:[function(require,module,exports){
+},{"./Controller_View.js":258,"./View_AdminTools.js":267,"./View_Home.js":268,"./View_ToDo.js":270,"react":242}],263:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28171,6 +28171,8 @@ var Bootstrap_Container = require('./Bootstrap_Container.js');
 var Bootstrap_Row = require('./Bootstrap_Row.js');
 var Bootstrap_Col = require('./Bootstrap_Col.js');
 
+var TaskSummary = require('./View_Task_Summary.js');
+
 var SettingMenu = require('./SettingMenu.js');
 var BuildInfo = require('./BuildInfo.js');
 
@@ -28205,7 +28207,7 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			{ className: 'height-fix' },
-			React.createElement(Header, { on_click_menu_icon: this.onClickMenuIcon, label: 'Dash Board' }),
+			React.createElement(Header, { on_click_menu_icon: this.onClickMenuIcon, label: 'Home' }),
 			React.createElement(
 				'div',
 				{ className: 'height-fix' },
@@ -28237,7 +28239,11 @@ module.exports = React.createClass({
 						React.createElement(
 							'div',
 							{ className: 'col' },
-							'main'
+							React.createElement(
+								'div',
+								{ className: 'card-group' },
+								React.createElement(TaskSummary, null)
+							)
 						)
 					)
 				)
@@ -28283,7 +28289,41 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./BuildInfo.js":254,"./Footer.js":259,"./Header.js":260,"./NavItem.js":263,"./SettingMenu.js":266,"react":242}],269:[function(require,module,exports){
+},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./BuildInfo.js":254,"./Footer.js":259,"./Header.js":260,"./NavItem.js":263,"./SettingMenu.js":266,"./View_Task_Summary.js":269,"react":242}],269:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+module.exports = React.createClass({
+	displayName: "exports",
+
+	render: function render() {
+		return React.createElement(
+			"div",
+			{ className: "card" },
+			React.createElement(
+				"div",
+				{ className: "card-block" },
+				React.createElement(
+					"h4",
+					{ className: "card-title" },
+					"View_Task_Summar"
+				),
+				React.createElement(
+					"p",
+					{ className: "card-text" },
+					"Some quick example text to build on the card title and make up the bulk of the card's content."
+				),
+				React.createElement(
+					"a",
+					{ href: "#", className: "btn btn-primary" },
+					"Go somewhere"
+				)
+			)
+		);
+	}
+});
+
+},{"react":242}],270:[function(require,module,exports){
 'use strict';
 
 var React = require('react');

@@ -6,6 +6,8 @@ var Bootstrap_Container = require('./Bootstrap_Container.js');
 var Bootstrap_Row = require('./Bootstrap_Row.js');
 var Bootstrap_Col = require('./Bootstrap_Col.js');
 
+var TaskSummary = require('./View_Task_Summary.js');
+
 var SettingMenu = require('./SettingMenu.js');
 var BuildInfo = require('./BuildInfo.js');
 
@@ -42,7 +44,7 @@ module.exports = React.createClass({
 	render: function() {
 		return(
 			<div className="height-fix">
-				<Header on_click_menu_icon={this.onClickMenuIcon} label="Dash Board"/>
+				<Header on_click_menu_icon={this.onClickMenuIcon} label="Home"/>
 				<div className="height-fix">
 					<Bootstrap_Container>
 						<Bootstrap_Row>
@@ -52,7 +54,9 @@ module.exports = React.createClass({
 								<NavItem icon="chat_bubble">C</NavItem>
 							</div>
 							<div className="col">
-								main
+								<div className="card-group">
+									<TaskSummary />
+								</div>
 							</div>
 						</Bootstrap_Row>
 					</Bootstrap_Container>
