@@ -3,7 +3,7 @@ body,
 #App,
 .height-fix {
   height: 100%;
-  overflow: hide;
+  overflow: hidden;
 }
 body {
   transition: all 0.25s ease;

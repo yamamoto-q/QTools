@@ -199,7 +199,7 @@ var Store = assign({}, EventEmitter.prototype, {
                 // ユーザ管理権限 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                 _API.API.UserQgroupList(function(data){
                     // Success（ログインしていれば成功するはず）
-                    console.log(data);
+                    //console.log(data);
 
                     var sampleGroup = data.qgroups[0]
                     // グループに所属するメンバを取得する（ユーザ管理権限が無ければ失敗する）
@@ -221,7 +221,7 @@ var Store = assign({}, EventEmitter.prototype, {
 
                 },function(jqXHR, textStatus){
                     // fail
-                    console.log(jqXHR, textStatus);
+                    //console.log(jqXHR, textStatus);
                     fase++;
                     if(fase == 3){
                         Store.emitPermissionChecked();
@@ -256,7 +256,7 @@ var Store = assign({}, EventEmitter.prototype, {
                     }
                 })
                 .done(function(htmlText) {
-                    console.log(htmlText);
+                    //console.log(htmlText);
                     _state.permission.isProcessModelCreator = true;
                     fase++;
                     if(fase == 3){
