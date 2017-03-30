@@ -3,6 +3,10 @@ body,
 #App,
 .height-fix {
   height: 100%;
+}
+html,
+body,
+#App {
   overflow: hidden;
 }
 body {
