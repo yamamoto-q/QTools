@@ -48,6 +48,14 @@ var QuestetraAPI = function(){
         });
     }
 
+    function _PEWorkitemListOffered(success, fail){
+        _request("API/PE/Workitem/listOffered", function(data){
+            success(data);
+        },function(jqXHR, textStatus){
+            fail(jqXHR, textStatus);
+        });
+    }
+
     // 組織一覧を取得する
     function _UserQgroupList(success, fail) {
          _request("API/User/Qgroup/list", function(data){
@@ -124,6 +132,9 @@ var QuestetraAPI = function(){
 		},
         PEWorkitemListAllocated:function(success, fail){
             _PEWorkitemListAllocated(success, fail);
+        },
+        PEWorkitemListOffered:function(success, fail){
+            _PEWorkitemListOffered(success, fail);
         },
         UserIconView:function(qUserId, success, fail){
             _UserIconView(qUserId, success, fail);

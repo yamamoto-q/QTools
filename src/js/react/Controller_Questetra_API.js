@@ -40,6 +40,14 @@ var Action = {
             }
         });
     },
+    getOfferedWorkitems:function(){
+        // マイタスクの一覧を取得する
+        dispatcher.dispatch({
+            actionType: "getOfferedWorkitems",
+            value: {
+            }
+        });
+    },
     getAvater:function(qUserId){
         if(typeof _state.resopnses['avater-' + qUserId] === "undefined"){
             dispatcher.dispatch({
@@ -63,6 +71,7 @@ var EVENT = {
     LOGIN_SUCCESS: "login_success",
     CHECKED_PERMISSION:"checked_permission",
     CHANGE_ALLOCATED_WORKITEMS:"change_allocated_workitems",
+    CHANGE_OFFERED_WORKITEMS:"change_offered_workitems",
     ON_GET_AVATER: "on_get_avater"
 }
 
@@ -78,6 +87,7 @@ var _state = {
         isProcessModelCreator:false
     },
     allocatedWorkitems : [],
+    offeredWorkitems : [],
     userQuserSelf:null,
     resopnses:{}
 };
@@ -91,6 +101,9 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     getAllocatedWorkitems:function(){
         return _state.allocatedWorkitems;
+    },
+    getOfferedWorkitems:function(){
+        return _state.offeredWorkitems;
     },
     getPermission:function(){
         return _state.permission;
@@ -125,6 +138,12 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     emitChangeAllocatedWorkitems(){
         this.emit(EVENT.CHANGE_ALLOCATED_WORKITEMS);
+    },
+    addChangeOfferedWorkitemsListener:function(callback){
+        this.on(EVENT.CHANGE_OFFERED_WORKITEMS, callback);
+    },
+    emitChangeOfferedWorkitems(){
+        this.emit(EVENT.CHANGE_OFFERED_WORKITEMS);
     },
     // Dispacher
     dispatcherIndex: dispatcher.register(function(payload) {
@@ -250,6 +269,17 @@ var Store = assign({}, EventEmitter.prototype, {
                 _API.API.PEWorkitemListAllocated(function(data){
                     _state.allocatedWorkitems = data.workitems;
                     Store.emitChangeAllocatedWorkitems();
+
+                }, function(jqXHR, textStatus){
+                    // fail
+                    console.log(jqXHR, textStatus);
+                });
+                break;
+
+            case "getOfferedWorkitems":
+                _API.API.PEWorkitemListOffered(function(data){
+                    _state.offeredWorkitems = data.workitems;
+                    Store.emitChangeOfferedWorkitems()();
 
                 }, function(jqXHR, textStatus){
                     // fail

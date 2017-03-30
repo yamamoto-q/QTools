@@ -4,8 +4,10 @@ var _QApi = require('./Controller_Questetra_API.js');
 module.exports = React.createClass({
 	getInitialState: function() {
 		var allocatedWorkitems = _QApi.Store.getAllocatedWorkitems();
+		var offeredWorkitems = _QApi.Store.getOfferedWorkitems();
 		return {
-			allocatedWorkitems:allocatedWorkitems
+			allocatedWorkitems:allocatedWorkitems,
+			offeredWorkitems:offeredWorkitems
 		};
 	},
 	componentDidMount: function() {
@@ -19,7 +21,18 @@ module.exports = React.createClass({
 				});
 			}
 		});
+
+		_QApi.Store.addChangeOfferedWorkitemsListener(function(){
+			if (self.isMounted()) {
+				var offeredWorkitems = _QApi.Store.getOfferedWorkitems();
+				self.setState({
+					offeredWorkitems:offeredWorkitems
+				});
+			}
+		});
+
 		_QApi.Action.getAllocatedWorkitems();
+		_QApi.Action.getOfferedWorkitems();
 	},
 	render: function() {
 		return(
@@ -30,7 +43,8 @@ module.exports = React.createClass({
 					<a href="#" className="btn btn-primary">Go somewhere</a>
 				</div>
 				<ul className="list-group list-group-flush">
-					<li className="list-group-item">Cras justo odio {this.state.allocatedWorkitems.length}</li>
+					<li className="list-group-item">allocatedWorkitems {this.state.allocatedWorkitems.length}</li>
+					<li className="list-group-item">offeredWorkitems {this.state.offeredWorkitems.length}</li>
 				</ul>
 			</div>
 		)

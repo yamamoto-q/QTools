@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.30 18:08"
+    VERSION: "2017.03.30 18:19"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27134,6 +27134,14 @@ var Action = {
             }
         });
     },
+    getOfferedWorkitems:function(){
+        // マイタスクの一覧を取得する
+        dispatcher.dispatch({
+            actionType: "getOfferedWorkitems",
+            value: {
+            }
+        });
+    },
     getAvater:function(qUserId){
         if(typeof _state.resopnses['avater-' + qUserId] === "undefined"){
             dispatcher.dispatch({
@@ -27157,6 +27165,7 @@ var EVENT = {
     LOGIN_SUCCESS: "login_success",
     CHECKED_PERMISSION:"checked_permission",
     CHANGE_ALLOCATED_WORKITEMS:"change_allocated_workitems",
+    CHANGE_OFFERED_WORKITEMS:"change_offered_workitems",
     ON_GET_AVATER: "on_get_avater"
 }
 
@@ -27172,6 +27181,7 @@ var _state = {
         isProcessModelCreator:false
     },
     allocatedWorkitems : [],
+    offeredWorkitems : [],
     userQuserSelf:null,
     resopnses:{}
 };
@@ -27185,6 +27195,9 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     getAllocatedWorkitems:function(){
         return _state.allocatedWorkitems;
+    },
+    getOfferedWorkitems:function(){
+        return _state.offeredWorkitems;
     },
     getPermission:function(){
         return _state.permission;
@@ -27219,6 +27232,12 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     emitChangeAllocatedWorkitems(){
         this.emit(EVENT.CHANGE_ALLOCATED_WORKITEMS);
+    },
+    addChangeOfferedWorkitemsListener:function(callback){
+        this.on(EVENT.CHANGE_OFFERED_WORKITEMS, callback);
+    },
+    emitChangeOfferedWorkitems(){
+        this.emit(EVENT.CHANGE_OFFERED_WORKITEMS);
     },
     // Dispacher
     dispatcherIndex: dispatcher.register(function(payload) {
@@ -27344,6 +27363,17 @@ var Store = assign({}, EventEmitter.prototype, {
                 _API.API.PEWorkitemListAllocated(function(data){
                     _state.allocatedWorkitems = data.workitems;
                     Store.emitChangeAllocatedWorkitems();
+
+                }, function(jqXHR, textStatus){
+                    // fail
+                    console.log(jqXHR, textStatus);
+                });
+                break;
+
+            case "getOfferedWorkitems":
+                _API.API.PEWorkitemListOffered(function(data){
+                    _state.offeredWorkitems = data.workitems;
+                    Store.emitChangeOfferedWorkitems()();
 
                 }, function(jqXHR, textStatus){
                     // fail
@@ -27992,6 +28022,14 @@ var QuestetraAPI = function(){
         });
     }
 
+    function _PEWorkitemListOffered(success, fail){
+        _request("API/PE/Workitem/listOffered", function(data){
+            success(data);
+        },function(jqXHR, textStatus){
+            fail(jqXHR, textStatus);
+        });
+    }
+
     // 組織一覧を取得する
     function _UserQgroupList(success, fail) {
          _request("API/User/Qgroup/list", function(data){
@@ -28068,6 +28106,9 @@ var QuestetraAPI = function(){
 		},
         PEWorkitemListAllocated:function(success, fail){
             _PEWorkitemListAllocated(success, fail);
+        },
+        PEWorkitemListOffered:function(success, fail){
+            _PEWorkitemListOffered(success, fail);
         },
         UserIconView:function(qUserId, success, fail){
             _UserIconView(qUserId, success, fail);
@@ -28342,8 +28383,10 @@ module.exports = React.createClass({
 
 	getInitialState: function getInitialState() {
 		var allocatedWorkitems = _QApi.Store.getAllocatedWorkitems();
+		var offeredWorkitems = _QApi.Store.getOfferedWorkitems();
 		return {
-			allocatedWorkitems: allocatedWorkitems
+			allocatedWorkitems: allocatedWorkitems,
+			offeredWorkitems: offeredWorkitems
 		};
 	},
 	componentDidMount: function componentDidMount() {
@@ -28357,7 +28400,18 @@ module.exports = React.createClass({
 				});
 			}
 		});
+
+		_QApi.Store.addChangeOfferedWorkitemsListener(function () {
+			if (self.isMounted()) {
+				var offeredWorkitems = _QApi.Store.getOfferedWorkitems();
+				self.setState({
+					offeredWorkitems: offeredWorkitems
+				});
+			}
+		});
+
 		_QApi.Action.getAllocatedWorkitems();
+		_QApi.Action.getOfferedWorkitems();
 	},
 	render: function render() {
 		return React.createElement(
@@ -28388,8 +28442,14 @@ module.exports = React.createClass({
 				React.createElement(
 					'li',
 					{ className: 'list-group-item' },
-					'Cras justo odio ',
+					'allocatedWorkitems ',
 					this.state.allocatedWorkitems.length
+				),
+				React.createElement(
+					'li',
+					{ className: 'list-group-item' },
+					'offeredWorkitems ',
+					this.state.offeredWorkitems.length
 				)
 			)
 		);

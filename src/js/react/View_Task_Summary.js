@@ -8,8 +8,10 @@ module.exports = React.createClass({
 
 	getInitialState: function getInitialState() {
 		var allocatedWorkitems = _QApi.Store.getAllocatedWorkitems();
+		var offeredWorkitems = _QApi.Store.getOfferedWorkitems();
 		return {
-			allocatedWorkitems: allocatedWorkitems
+			allocatedWorkitems: allocatedWorkitems,
+			offeredWorkitems: offeredWorkitems
 		};
 	},
 	componentDidMount: function componentDidMount() {
@@ -23,7 +25,18 @@ module.exports = React.createClass({
 				});
 			}
 		});
+
+		_QApi.Store.addChangeOfferedWorkitemsListener(function () {
+			if (self.isMounted()) {
+				var offeredWorkitems = _QApi.Store.getOfferedWorkitems();
+				self.setState({
+					offeredWorkitems: offeredWorkitems
+				});
+			}
+		});
+
 		_QApi.Action.getAllocatedWorkitems();
+		_QApi.Action.getOfferedWorkitems();
 	},
 	render: function render() {
 		return React.createElement(
@@ -54,8 +67,14 @@ module.exports = React.createClass({
 				React.createElement(
 					'li',
 					{ className: 'list-group-item' },
-					'Cras justo odio ',
+					'allocatedWorkitems ',
 					this.state.allocatedWorkitems.length
+				),
+				React.createElement(
+					'li',
+					{ className: 'list-group-item' },
+					'offeredWorkitems ',
+					this.state.offeredWorkitems.length
 				)
 			)
 		);
