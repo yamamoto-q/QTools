@@ -32,10 +32,10 @@ var Action = {
             }
         });
     },
-    getAllocatedTasks:function(){
+    getAllocatedWorkitems:function(){
         // マイタスクの一覧を取得する
         dispatcher.dispatch({
-            actionType: "getAllocatedTasks",
+            actionType: "getAllocatedWorkitems",
             value: {
             }
         });
@@ -62,6 +62,7 @@ var EVENT = {
     LOGIN_ERROR: "login_error",
     LOGIN_SUCCESS: "login_success",
     CHECKED_PERMISSION:"checked_permission",
+    CHANGE_ALLOCATED_WORKITEMS:"change_allocated_workitems",
     ON_GET_AVATER: "on_get_avater"
 }
 
@@ -76,6 +77,7 @@ var _state = {
         isUserManager:false,
         isProcessModelCreator:false
     },
+    allocatedWorkitems : [],
     userQuserSelf:null,
     resopnses:{}
 };
@@ -86,6 +88,9 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     getAvater:function(qUserId){
         return _state.resopnses['avater-' + qUserId];
+    },
+    getAllocatedWorkitems:function(){
+        return _state.allocatedWorkitems;
     },
     getPermission:function(){
         return _state.permission;
@@ -114,6 +119,12 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     emitOnGetAvater:function(requestId){
         this.emit(EVENT.ON_GET_AVATER + "-" + requestId);
+    },
+    addChangeAllocatedWorkitemsListener:function(callback){
+        this.on(EVENT.CHANGE_ALLOCATED_WORKITEMS, callback);
+    },
+    emitChangeAllocatedWorkitems(){
+        this.emit(EVENT.CHANGE_ALLOCATED_WORKITEMS);
     },
     // Dispacher
     dispatcherIndex: dispatcher.register(function(payload) {
@@ -235,10 +246,11 @@ var Store = assign({}, EventEmitter.prototype, {
 
                 break;
 
-            case "getAllocatedTasks":
-                _API.API.PEWorkitemListAllocated(function(tasks){
-                    console.log(tasks);
-                    
+            case "getAllocatedWorkitems":
+                _API.API.PEWorkitemListAllocated(function(data){
+                    _state.allocatedWorkitems = data.workitems;
+                    Store.emitChangeAllocatedWorkitems();
+
                 }, function(jqXHR, textStatus){
                     // fail
                     console.log(jqXHR, textStatus);

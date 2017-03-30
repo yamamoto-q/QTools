@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.30 17:47"
+    VERSION: "2017.03.30 18:08"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27126,10 +27126,10 @@ var Action = {
             }
         });
     },
-    getAllocatedTasks:function(){
+    getAllocatedWorkitems:function(){
         // マイタスクの一覧を取得する
         dispatcher.dispatch({
-            actionType: "getAllocatedTasks",
+            actionType: "getAllocatedWorkitems",
             value: {
             }
         });
@@ -27156,6 +27156,7 @@ var EVENT = {
     LOGIN_ERROR: "login_error",
     LOGIN_SUCCESS: "login_success",
     CHECKED_PERMISSION:"checked_permission",
+    CHANGE_ALLOCATED_WORKITEMS:"change_allocated_workitems",
     ON_GET_AVATER: "on_get_avater"
 }
 
@@ -27170,6 +27171,7 @@ var _state = {
         isUserManager:false,
         isProcessModelCreator:false
     },
+    allocatedWorkitems : [],
     userQuserSelf:null,
     resopnses:{}
 };
@@ -27180,6 +27182,9 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     getAvater:function(qUserId){
         return _state.resopnses['avater-' + qUserId];
+    },
+    getAllocatedWorkitems:function(){
+        return _state.allocatedWorkitems;
     },
     getPermission:function(){
         return _state.permission;
@@ -27208,6 +27213,12 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     emitOnGetAvater:function(requestId){
         this.emit(EVENT.ON_GET_AVATER + "-" + requestId);
+    },
+    addChangeAllocatedWorkitemsListener:function(callback){
+        this.on(EVENT.CHANGE_ALLOCATED_WORKITEMS, callback);
+    },
+    emitChangeAllocatedWorkitems(){
+        this.emit(EVENT.CHANGE_ALLOCATED_WORKITEMS);
     },
     // Dispacher
     dispatcherIndex: dispatcher.register(function(payload) {
@@ -27329,10 +27340,11 @@ var Store = assign({}, EventEmitter.prototype, {
 
                 break;
 
-            case "getAllocatedTasks":
-                _API.API.PEWorkitemListAllocated(function(tasks){
-                    console.log(tasks);
-                    
+            case "getAllocatedWorkitems":
+                _API.API.PEWorkitemListAllocated(function(data){
+                    _state.allocatedWorkitems = data.workitems;
+                    Store.emitChangeAllocatedWorkitems();
+
                 }, function(jqXHR, textStatus){
                     // fail
                     console.log(jqXHR, textStatus);
@@ -28328,19 +28340,24 @@ var _QApi = require('./Controller_Questetra_API.js');
 module.exports = React.createClass({
 	displayName: 'exports',
 
+	getInitialState: function getInitialState() {
+		var allocatedWorkitems = _QApi.Store.getAllocatedWorkitems();
+		return {
+			allocatedWorkitems: allocatedWorkitems
+		};
+	},
 	componentDidMount: function componentDidMount() {
 		var self = this;
-		/*
-  Controller_View.Store.addChangeViewListener(function () {
-  	if (self.isMounted()) {
-  		var viewName = Controller_View.Store.getViewNane();
-  		self.setState({
-  			viewName:viewName
-  		});
-  	};
-  });
-  */
-		_QApi.Action.getAllocatedTasks();
+
+		_QApi.Store.addChangeAllocatedWorkitemsListener(function () {
+			if (self.isMounted()) {
+				var allocatedWorkitems = _QApi.Store.getAllocatedWorkitems();
+				self.setState({
+					allocatedWorkitems: allocatedWorkitems
+				});
+			}
+		});
+		_QApi.Action.getAllocatedWorkitems();
 	},
 	render: function render() {
 		return React.createElement(
@@ -28363,6 +28380,16 @@ module.exports = React.createClass({
 					'a',
 					{ href: '#', className: 'btn btn-primary' },
 					'Go somewhere'
+				)
+			),
+			React.createElement(
+				'ul',
+				{ className: 'list-group list-group-flush' },
+				React.createElement(
+					'li',
+					{ className: 'list-group-item' },
+					'Cras justo odio ',
+					this.state.allocatedWorkitems.length
 				)
 			)
 		);

@@ -6,19 +6,24 @@ var _QApi = require('./Controller_Questetra_API.js');
 module.exports = React.createClass({
 	displayName: 'exports',
 
+	getInitialState: function getInitialState() {
+		var allocatedWorkitems = _QApi.Store.getAllocatedWorkitems();
+		return {
+			allocatedWorkitems: allocatedWorkitems
+		};
+	},
 	componentDidMount: function componentDidMount() {
 		var self = this;
-		/*
-  Controller_View.Store.addChangeViewListener(function () {
-  	if (self.isMounted()) {
-  		var viewName = Controller_View.Store.getViewNane();
-  		self.setState({
-  			viewName:viewName
-  		});
-  	};
-  });
-  */
-		_QApi.Action.getAllocatedTasks();
+
+		_QApi.Store.addChangeAllocatedWorkitemsListener(function () {
+			if (self.isMounted()) {
+				var allocatedWorkitems = _QApi.Store.getAllocatedWorkitems();
+				self.setState({
+					allocatedWorkitems: allocatedWorkitems
+				});
+			}
+		});
+		_QApi.Action.getAllocatedWorkitems();
 	},
 	render: function render() {
 		return React.createElement(
@@ -41,6 +46,16 @@ module.exports = React.createClass({
 					'a',
 					{ href: '#', className: 'btn btn-primary' },
 					'Go somewhere'
+				)
+			),
+			React.createElement(
+				'ul',
+				{ className: 'list-group list-group-flush' },
+				React.createElement(
+					'li',
+					{ className: 'list-group-item' },
+					'Cras justo odio ',
+					this.state.allocatedWorkitems.length
 				)
 			)
 		);
