@@ -25,6 +25,7 @@
 
 html, body, #App, .height-fix{
 	height: 100%;
+	overflow: hide;
 }
 
 body{
@@ -32,6 +33,7 @@ body{
 	&.has-header{
 		padding-top: @headerHeight;
 	}
+	overflow-x: auto;
 }
 @media (max-width: 575px){
 	// 幅575px以下（スマフォ）ではフッターが表示される
@@ -144,6 +146,7 @@ body.splash,body.splash, body.authentication, body.logining{
 	}
 	&.nav-items-v{
 	    flex-direction: column;
+	    justify-content: flex-start;
 	    .nav-item{
 	    	text-align: left
 	    }

@@ -3,9 +3,11 @@ body,
 #App,
 .height-fix {
   height: 100%;
+  overflow: hide;
 }
 body {
   transition: all 0.25s ease;
+  overflow-x: auto;
 }
 body.has-header {
   padding-top: 3.125rem;
@@ -115,6 +117,7 @@ body.logining {
 }
 .nav-items.nav-items-v {
   flex-direction: column;
+  justify-content: flex-start;
 }
 .nav-items.nav-items-v .nav-item {
   text-align: left;

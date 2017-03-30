@@ -302,7 +302,7 @@ var Store = assign({}, EventEmitter.prototype, {
             case "getOfferedWorkitems":
                 _API.API.PEWorkitemListOffered(function(data){
                     _state.offeredWorkitems = data.workitems;
-                    Store.emitChangeOfferedWorkitems()();
+                    Store.emitChangeOfferedWorkitems();
 
                 }, function(jqXHR, textStatus){
                     // fail
