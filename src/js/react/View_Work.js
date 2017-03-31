@@ -14,11 +14,6 @@ var NavItem = require('./NavItem.js');
 module.exports = React.createClass({
 	displayName: 'exports',
 
-	onClickNavItem: function onClickNavItem(e) {
-		var viewName = e.target.getAttribute('data-viewname');
-		console.log("onClickNavItem:" + viewName);
-		Controller_View.Action.setView(viewName);
-	},
 	render: function render() {
 		return React.createElement(
 			LayoutHeader,
@@ -31,7 +26,7 @@ module.exports = React.createClass({
 					null,
 					React.createElement(
 						NavItem,
-						{ icon: 'home', on_click: this.onClickNavItem, view_name: Controller_View.ViewNames.WORK },
+						{ icon: 'home', view_name: Controller_View.ViewNames.WORK },
 						'Home'
 					),
 					React.createElement(
@@ -56,7 +51,7 @@ module.exports = React.createClass({
 				null,
 				React.createElement(
 					NavItem,
-					{ icon: 'home', on_click: this.onClickNavItem, view_name: Controller_View.ViewNames.WORK },
+					{ icon: 'home', view_name: Controller_View.ViewNames.WORK },
 					'Home'
 				),
 				React.createElement(

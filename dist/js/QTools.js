@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.31 17:36"
+    VERSION: "2017.03.31 17:43"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27964,7 +27964,13 @@ var Controller_View = require('./Controller_View.js');
 module.exports = React.createClass({
     displayName: 'exports',
 
-
+    onClick: function onClick(e) {
+        //var viewName = e.target.getAttribute('data-viewname');
+        //console.log("onClickNavItem:" + viewName);
+        console.log(e.target);
+        console.log(e.currentTarget);
+        Controller_View.Action.setView(this.props.view_name);
+    },
     render: function render() {
         var classes = ["nav-item"];
 
@@ -27980,7 +27986,7 @@ module.exports = React.createClass({
 
         return React.createElement(
             'div',
-            { className: classes.join(" "), onClick: this.props.on_click, 'data-viewname': this.props.view_name },
+            { className: classes.join(" "), onClick: this.onClick },
             React.createElement(
                 'div',
                 { style: {
@@ -28445,13 +28451,7 @@ var TaskSummary = require('./View_Task_Summary.js');
 module.exports = React.createClass({
 	displayName: 'exports',
 
-	onClickNavItem: function onClickNavItem(e) {
-		var viewName = e.target.getAttribute('data-viewname');
-		console.log("onClickNavItem:" + viewName);
-		console.log(e.target);
-		console.log(e.currentTarget);
-		//Controller_View.Action.setView(viewName);
-	},
+
 	render: function render() {
 		return React.createElement(
 			LayoutHeader,
@@ -28469,7 +28469,7 @@ module.exports = React.createClass({
 					),
 					React.createElement(
 						NavItem,
-						{ icon: 'inbox', on_click: this.onClickNavItem, view_name: Controller_View.ViewNames.WORK },
+						{ icon: 'inbox', view_name: Controller_View.ViewNames.WORK },
 						'Work'
 					),
 					React.createElement(
@@ -28494,7 +28494,7 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					NavItem,
-					{ icon: 'inbox', on_click: this.onClickNavItem, view_name: Controller_View.ViewNames.WORK },
+					{ icon: 'inbox', view_name: Controller_View.ViewNames.WORK },
 					'Work'
 				),
 				React.createElement(
@@ -28608,11 +28608,6 @@ var NavItem = require('./NavItem.js');
 module.exports = React.createClass({
 	displayName: 'exports',
 
-	onClickNavItem: function onClickNavItem(e) {
-		var viewName = e.target.getAttribute('data-viewname');
-		console.log("onClickNavItem:" + viewName);
-		Controller_View.Action.setView(viewName);
-	},
 	render: function render() {
 		return React.createElement(
 			LayoutHeader,
@@ -28625,7 +28620,7 @@ module.exports = React.createClass({
 					null,
 					React.createElement(
 						NavItem,
-						{ icon: 'home', on_click: this.onClickNavItem, view_name: Controller_View.ViewNames.WORK },
+						{ icon: 'home', view_name: Controller_View.ViewNames.WORK },
 						'Home'
 					),
 					React.createElement(
@@ -28650,7 +28645,7 @@ module.exports = React.createClass({
 				null,
 				React.createElement(
 					NavItem,
-					{ icon: 'home', on_click: this.onClickNavItem, view_name: Controller_View.ViewNames.WORK },
+					{ icon: 'home', view_name: Controller_View.ViewNames.WORK },
 					'Home'
 				),
 				React.createElement(

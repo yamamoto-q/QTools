@@ -16,13 +16,7 @@ var TaskSummary = require('./View_Task_Summary.js');
 module.exports = React.createClass({
 	displayName: 'exports',
 
-	onClickNavItem: function onClickNavItem(e) {
-		var viewName = e.target.getAttribute('data-viewname');
-		console.log("onClickNavItem:" + viewName);
-		console.log(e.target);
-		console.log(e.currentTarget);
-		//Controller_View.Action.setView(viewName);
-	},
+
 	render: function render() {
 		return React.createElement(
 			LayoutHeader,
@@ -40,7 +34,7 @@ module.exports = React.createClass({
 					),
 					React.createElement(
 						NavItem,
-						{ icon: 'inbox', on_click: this.onClickNavItem, view_name: Controller_View.ViewNames.WORK },
+						{ icon: 'inbox', view_name: Controller_View.ViewNames.WORK },
 						'Work'
 					),
 					React.createElement(
@@ -65,7 +59,7 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					NavItem,
-					{ icon: 'inbox', on_click: this.onClickNavItem, view_name: Controller_View.ViewNames.WORK },
+					{ icon: 'inbox', view_name: Controller_View.ViewNames.WORK },
 					'Work'
 				),
 				React.createElement(

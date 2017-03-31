@@ -12,20 +12,14 @@ var NavItem = require('./NavItem.js');
 var TaskSummary = require('./View_Task_Summary.js');
 
 module.exports = React.createClass({
-	onClickNavItem:function(e){
-		var viewName = e.target.getAttribute('data-viewname');
-		console.log("onClickNavItem:" + viewName);
-		console.log(e.target);
-		console.log(e.currentTarget);
-		//Controller_View.Action.setView(viewName);
-	},
+
 	render: function() {
 		return(
 			<LayoutHeader label="Home">
 				<LayoutBody>
 					<LayoutBodyLeft>
 						<NavItem icon="home" active={true}>Home</NavItem>
-						<NavItem icon="inbox" on_click={this.onClickNavItem} view_name={Controller_View.ViewNames.WORK}>Work</NavItem>
+						<NavItem icon="inbox" view_name={Controller_View.ViewNames.WORK}>Work</NavItem>
 						<NavItem icon="chat_bubble">C</NavItem>
 					</LayoutBodyLeft>
 					<LayoutBodyRight>
@@ -34,7 +28,7 @@ module.exports = React.createClass({
 				</LayoutBody>
 				<Footer>
 					<NavItem icon="home" active={true}>Home</NavItem>
-					<NavItem icon="inbox" on_click={this.onClickNavItem} view_name={Controller_View.ViewNames.WORK}>Work</NavItem>
+					<NavItem icon="inbox" view_name={Controller_View.ViewNames.WORK}>Work</NavItem>
 					<NavItem icon="chat_bubble">C</NavItem>
 				</Footer>
 			</LayoutHeader>

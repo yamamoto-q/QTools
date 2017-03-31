@@ -6,7 +6,13 @@ var Controller_View = require('./Controller_View.js');
 module.exports = React.createClass({
     displayName: 'exports',
 
-
+    onClick: function onClick(e) {
+        //var viewName = e.target.getAttribute('data-viewname');
+        //console.log("onClickNavItem:" + viewName);
+        console.log(e.target);
+        console.log(e.currentTarget);
+        Controller_View.Action.setView(this.props.view_name);
+    },
     render: function render() {
         var classes = ["nav-item"];
 
@@ -22,7 +28,7 @@ module.exports = React.createClass({
 
         return React.createElement(
             'div',
-            { className: classes.join(" "), onClick: this.props.on_click, 'data-viewname': this.props.view_name },
+            { className: classes.join(" "), onClick: this.onClick },
             React.createElement(
                 'div',
                 { style: {

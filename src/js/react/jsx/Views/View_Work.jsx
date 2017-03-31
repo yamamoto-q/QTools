@@ -10,17 +10,12 @@ var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
 
 module.exports = React.createClass({
-	onClickNavItem:function(e){
-		var viewName = e.target.getAttribute('data-viewname');
-		console.log("onClickNavItem:" + viewName);
-		Controller_View.Action.setView(viewName);
-	},
 	render: function() {
 		return(
 			<LayoutHeader label="Work">
 				<LayoutBody>
 					<LayoutBodyLeft>
-						<NavItem icon="home" on_click={this.onClickNavItem} view_name={Controller_View.ViewNames.WORK}>Home</NavItem>
+						<NavItem icon="home" view_name={Controller_View.ViewNames.WORK}>Home</NavItem>
 						<NavItem icon="inbox" active={true}>Work</NavItem>
 						<NavItem icon="chat_bubble">C</NavItem>
 					</LayoutBodyLeft>
@@ -29,7 +24,7 @@ module.exports = React.createClass({
 					</LayoutBodyRight>
 				</LayoutBody>
 				<Footer>
-					<NavItem icon="home" on_click={this.onClickNavItem} view_name={Controller_View.ViewNames.WORK}>Home</NavItem>
+					<NavItem icon="home" view_name={Controller_View.ViewNames.WORK}>Home</NavItem>
 					<NavItem icon="inbox" active={true}>Work</NavItem>
 					<NavItem icon="chat_bubble">C</NavItem>
 				</Footer>
