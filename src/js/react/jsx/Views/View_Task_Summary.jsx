@@ -39,6 +39,7 @@ module.exports = React.createClass({
 	onClick:function(e){
 		e.preventDefault();
 		var viewName = e.target.getAttribute('data-viewname');
+		console.log(viewName);
 		Controller_View.Action.setView(viewName);
 	},
 	render: function() {
