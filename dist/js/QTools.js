@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.31 16:56"
+    VERSION: "2017.03.31 17:06"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27485,6 +27485,7 @@ var EVENT = {
 
 var VIEW_NAMES = {
 	HOME:"home",
+    WORK:"work",
 	ADMIN_TOOLS:"admin-tools"
 }
 
@@ -27913,6 +27914,7 @@ var React = require('react');
 var Controller_View = require('./Controller_View.js');
 
 var Home = require('./View_Home.js');
+var Work = require('./View_Work.js');
 var AdminTools = require('./View_AdminTools.js');
 
 module.exports = React.createClass({
@@ -27942,6 +27944,10 @@ module.exports = React.createClass({
 				return React.createElement(Home, null);
 				break;
 
+			case Controller_View.ViewNames.WORK:
+				return React.createElement(Work, null);
+				break;
+
 			case Controller_View.ViewNames.ADMIN_TOOLS:
 				return React.createElement(AdminTools, null);
 				break;
@@ -27949,7 +27955,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./View_AdminTools.js":272,"./View_Home.js":273,"react":242}],267:[function(require,module,exports){
+},{"./Controller_View.js":258,"./View_AdminTools.js":272,"./View_Home.js":273,"./View_Work.js":275,"react":242}],267:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28438,6 +28444,11 @@ var TaskSummary = require('./View_Task_Summary.js');
 module.exports = React.createClass({
 	displayName: 'exports',
 
+	onClickNavItem: function onClickNavItem(e) {
+		var viewName = e.target.getAttribute('data-viewname');
+		console.log("onClickNavItem:" + viewName);
+		Controller_View.Action.setView(viewName);
+	},
 	render: function render() {
 		return React.createElement(
 			LayoutHeader,
@@ -28455,8 +28466,8 @@ module.exports = React.createClass({
 					),
 					React.createElement(
 						NavItem,
-						{ icon: 'inbox' },
-						'B'
+						{ icon: 'inbox', onClick: this.onClickNavItem, 'data-viewname': Controller_View.ViewNames.WORK },
+						'Work'
 					),
 					React.createElement(
 						NavItem,
@@ -28480,8 +28491,8 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					NavItem,
-					{ icon: 'inbox' },
-					'B'
+					{ icon: 'inbox', onClick: this.onClickNavItem, 'data-viewname': Controller_View.ViewNames.WORK },
+					'Work'
 				),
 				React.createElement(
 					NavItem,
@@ -28577,4 +28588,77 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"react":242}]},{},[244]);
+},{"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"react":242}],275:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+
+var LayoutHeader = require('./Layout_Header.js');
+var LayoutBody = require('./Layout_Body.js');
+var LayoutBodyLeft = require('./Layout_BodyLeft.js');
+var LayoutBodyRight = require('./Layout_BodyRight.js');
+
+var Footer = require('./Footer.js');
+var NavItem = require('./NavItem.js');
+
+var TaskSummary = require('./View_Task_Summary.js');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	render: function render() {
+		return React.createElement(
+			LayoutHeader,
+			{ label: 'Work' },
+			React.createElement(
+				LayoutBody,
+				null,
+				React.createElement(
+					LayoutBodyLeft,
+					null,
+					React.createElement(
+						NavItem,
+						{ icon: 'home' },
+						'Home'
+					),
+					React.createElement(
+						NavItem,
+						{ icon: 'inbox', active: true },
+						'Work'
+					),
+					React.createElement(
+						NavItem,
+						{ icon: 'chat_bubble' },
+						'C'
+					)
+				),
+				React.createElement(
+					LayoutBodyRight,
+					null,
+					React.createElement(TaskSummary, null)
+				)
+			),
+			React.createElement(
+				Footer,
+				null,
+				React.createElement(
+					NavItem,
+					{ icon: 'home' },
+					'Home'
+				),
+				React.createElement(
+					NavItem,
+					{ icon: 'inbox', active: true },
+					'Work'
+				),
+				React.createElement(
+					NavItem,
+					{ icon: 'chat_bubble' },
+					'C'
+				)
+			)
+		);
+	}
+});
+
+},{"./Footer.js":259,"./Layout_Body.js":262,"./Layout_BodyLeft.js":263,"./Layout_BodyRight.js":264,"./Layout_Header.js":265,"./NavItem.js":267,"./View_Task_Summary.js":274,"react":242}]},{},[244]);
