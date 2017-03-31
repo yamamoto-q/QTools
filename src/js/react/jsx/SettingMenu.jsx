@@ -23,6 +23,7 @@ module.exports = React.createClass({
 		_Login.Store.addChangePermissionListener(this.onChangePermission);
 	},
 	componentWillUnmount:function(){
+		console.log("componentWillUnmount");
 		_Login.Store.removeChangePermissionListener(this.onChangePermission);
 	},
 	conClick:function(e){

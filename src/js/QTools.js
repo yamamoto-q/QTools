@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.31 18:29"
+    VERSION: "2017.03.31 18:33"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -26975,7 +26975,7 @@ var Store = assign({}, EventEmitter.prototype, {
         this.on(EVENT.CHANGE_PERMISSION, callback);
     },
     removeChangePermissionListener:function(callback){
-        thi.removeListener(EVENT.CHANGE_PERMISSION, callback);
+        this.removeListener(EVENT.CHANGE_PERMISSION, callback);
     },
     emitChangePermission:function(){
     	//console.log("emitChangeState");
@@ -28357,6 +28357,7 @@ module.exports = React.createClass({
 		_Login.Store.addChangePermissionListener(this.onChangePermission);
 	},
 	componentWillUnmount: function componentWillUnmount() {
+		console.log("componentWillUnmount");
 		_Login.Store.removeChangePermissionListener(this.onChangePermission);
 	},
 	conClick: function conClick(e) {
