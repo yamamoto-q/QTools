@@ -44,6 +44,7 @@ module.exports = function(grunt) {
                     { 'src/js/react/AppEntry.js': 'src/js/react/jsx/AppEntry.jsx' },
                     { 'src/js/react/QTools.js': 'src/js/react/jsx/QTools.jsx' },
                     { 'src/js/react/ScrollArea.js': 'src/js/react/jsx/ScrollArea.jsx' },
+                    { 'src/js/react/Layout_Header.js': 'src/js/react/jsx/Layout_Header.jsx' },
                     { 'src/js/react/InputAuthForm.js': 'src/js/react/jsx/InputAuthForm.jsx' },
                     { 'src/js/react/Header.js': 'src/js/react/jsx/Header.jsx' },
                     { 'src/js/react/Footer.js': 'src/js/react/jsx/Footer.jsx' },
