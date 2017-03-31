@@ -5,6 +5,7 @@ var dispatcher = new Dispatcher();
 
 var Action = {
     setView:function(viewName){
+        console.log("setView:" + viewName);
         dispatcher.dispatch({
             actionType: "setView",
             value: {

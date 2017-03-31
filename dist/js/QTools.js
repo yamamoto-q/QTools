@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.31 14:31"
+    VERSION: "2017.03.31 14:34"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27447,6 +27447,7 @@ var dispatcher = new Dispatcher();
 
 var Action = {
     setView:function(viewName){
+        console.log("setView:" + viewName);
         dispatcher.dispatch({
             actionType: "setView",
             value: {
