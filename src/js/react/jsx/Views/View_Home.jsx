@@ -15,7 +15,8 @@ module.exports = React.createClass({
 	onClickNavItem:function(e){
 		var viewName = e.target.getAttribute('data-viewname');
 		console.log("onClickNavItem:" + viewName);
-		Controller_View.Action.setView(viewName);
+		console.log(e.target);
+		//Controller_View.Action.setView(viewName);
 	},
 	render: function() {
 		return(
