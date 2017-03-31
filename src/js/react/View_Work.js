@@ -26,7 +26,7 @@ module.exports = React.createClass({
 					null,
 					React.createElement(
 						NavItem,
-						{ icon: 'home', view_name: Controller_View.ViewNames.WORK },
+						{ icon: 'home', view_name: Controller_View.ViewNames.HOME },
 						'Home'
 					),
 					React.createElement(
@@ -51,7 +51,7 @@ module.exports = React.createClass({
 				null,
 				React.createElement(
 					NavItem,
-					{ icon: 'home', view_name: Controller_View.ViewNames.WORK },
+					{ icon: 'home', view_name: Controller_View.ViewNames.HOME },
 					'Home'
 				),
 				React.createElement(

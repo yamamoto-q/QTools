@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.31 17:43"
+    VERSION: "2017.03.31 17:50"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27965,11 +27965,9 @@ module.exports = React.createClass({
     displayName: 'exports',
 
     onClick: function onClick(e) {
-        //var viewName = e.target.getAttribute('data-viewname');
-        //console.log("onClickNavItem:" + viewName);
-        console.log(e.target);
-        console.log(e.currentTarget);
-        Controller_View.Action.setView(this.props.view_name);
+        if (this.props.view_name && this.props.view_name.length > 0) {
+            Controller_View.Action.setView(this.props.view_name);
+        }
     },
     render: function render() {
         var classes = ["nav-item"];
@@ -28620,7 +28618,7 @@ module.exports = React.createClass({
 					null,
 					React.createElement(
 						NavItem,
-						{ icon: 'home', view_name: Controller_View.ViewNames.WORK },
+						{ icon: 'home', view_name: Controller_View.ViewNames.HOME },
 						'Home'
 					),
 					React.createElement(
@@ -28645,7 +28643,7 @@ module.exports = React.createClass({
 				null,
 				React.createElement(
 					NavItem,
-					{ icon: 'home', view_name: Controller_View.ViewNames.WORK },
+					{ icon: 'home', view_name: Controller_View.ViewNames.HOME },
 					'Home'
 				),
 				React.createElement(

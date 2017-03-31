@@ -7,11 +7,9 @@ module.exports = React.createClass({
     displayName: 'exports',
 
     onClick: function onClick(e) {
-        //var viewName = e.target.getAttribute('data-viewname');
-        //console.log("onClickNavItem:" + viewName);
-        console.log(e.target);
-        console.log(e.currentTarget);
-        Controller_View.Action.setView(this.props.view_name);
+        if (this.props.view_name && this.props.view_name.length > 0) {
+            Controller_View.Action.setView(this.props.view_name);
+        }
     },
     render: function render() {
         var classes = ["nav-item"];
