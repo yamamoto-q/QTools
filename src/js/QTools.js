@@ -26434,7 +26434,7 @@ var BuildInfo = require('./BuildInfo.js');
 	};
 })(window.jQuery);
 
-},{"./BuildInfo.js":254,"./QTools.js":266,"react":242,"react-dom":35}],245:[function(require,module,exports){
+},{"./BuildInfo.js":254,"./QTools.js":268,"react":242,"react-dom":35}],245:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.31 15:26"
+    VERSION: "2017.03.31 15:36"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27439,7 +27439,7 @@ module.exports = {
     TypeOfSystemAuthorization:TYPE_OF_SYSTEM_AUTHORIZATION
 }
 
-},{"./Questetra_API.js":267,"events":4,"flux":28,"object-assign":32}],258:[function(require,module,exports){
+},{"./Questetra_API.js":269,"events":4,"flux":28,"object-assign":32}],258:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -27775,16 +27775,8 @@ module.exports = React.createClass({
 'use strict';
 
 var React = require('react');
-
-var LayoutHeader = require('./Layout_Header.js');
-var Footer = require('./Footer.js');
-var NavItem = require('./NavItem.js');
 var Bootstrap_Container = require('./Bootstrap_Container.js');
 var Bootstrap_Row = require('./Bootstrap_Row.js');
-var Bootstrap_Col = require('./Bootstrap_Col.js');
-var ScrollArea = require('./ScrollArea.js');
-
-var TaskSummary = require('./View_Task_Summary.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -27806,7 +27798,51 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./Footer.js":259,"./Layout_Header.js":263,"./NavItem.js":265,"./ScrollArea.js":268,"./View_Task_Summary.js":272,"react":242}],263:[function(require,module,exports){
+},{"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"react":242}],263:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var ScrollArea = require('./ScrollArea.js');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	render: function render() {
+		return React.createElement(
+			'div',
+			{ className: 'col nav-items nav-items-v hidden-xs-down', style: { flexBasis: "210px", flexGrow: "0" } },
+			React.createElement(
+				ScrollArea,
+				null,
+				this.props.children
+			)
+		);
+	}
+});
+
+},{"./ScrollArea.js":270,"react":242}],264:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var ScrollArea = require('./ScrollArea.js');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	render: function render() {
+		return React.createElement(
+			'div',
+			{ className: 'col' },
+			React.createElement(
+				ScrollArea,
+				null,
+				this.props.children
+			)
+		);
+	}
+});
+
+},{"./ScrollArea.js":270,"react":242}],265:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27870,7 +27906,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./BuildInfo.js":254,"./Header.js":260,"./SettingMenu.js":269,"react":242}],264:[function(require,module,exports){
+},{"./BuildInfo.js":254,"./Header.js":260,"./SettingMenu.js":271,"react":242}],266:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27918,7 +27954,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./View_AdminTools.js":270,"./View_Home.js":271,"./View_ToDo.js":273,"react":242}],265:[function(require,module,exports){
+},{"./Controller_View.js":258,"./View_AdminTools.js":272,"./View_Home.js":273,"./View_ToDo.js":275,"react":242}],267:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27965,7 +28001,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"./Controller_View.js":258,"react":242}],266:[function(require,module,exports){
+},{"./Controller_View.js":258,"react":242}],268:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28097,7 +28133,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./BuildInfo.js":254,"./Controller_Login.js":256,"./InputAuthForm.js":261,"./LoginedView.js":264,"react":242}],267:[function(require,module,exports){
+},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./BuildInfo.js":254,"./Controller_Login.js":256,"./InputAuthForm.js":261,"./LoginedView.js":266,"react":242}],269:[function(require,module,exports){
 
 
 var QuestetraAPI = function(){
@@ -28261,7 +28297,7 @@ module.exports = {
     API:_QuestetraAPI
 }
 
-},{}],268:[function(require,module,exports){
+},{}],270:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -28277,7 +28313,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":242}],269:[function(require,module,exports){
+},{"react":242}],271:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28348,7 +28384,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Login.js":256,"./Controller_View.js":258,"react":242,"react-router":191}],270:[function(require,module,exports){
+},{"./Controller_Login.js":256,"./Controller_View.js":258,"react":242,"react-router":191}],272:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28385,21 +28421,18 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./Controller_View.js":258,"react":242}],271:[function(require,module,exports){
+},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./Controller_View.js":258,"react":242}],273:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 
 var LayoutHeader = require('./Layout_Header.js');
-
 var LayoutBody = require('./Layout_Body.js');
+var LayoutBodyLeft = require('./Layout_BodyLeft.js');
+var LayoutBodyRight = require('./Layout_BodyRight.js');
 
 var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
-var Bootstrap_Container = require('./Bootstrap_Container.js');
-var Bootstrap_Row = require('./Bootstrap_Row.js');
-var Bootstrap_Col = require('./Bootstrap_Col.js');
-var ScrollArea = require('./ScrollArea.js');
 
 var TaskSummary = require('./View_Task_Summary.js');
 
@@ -28414,40 +28447,28 @@ module.exports = React.createClass({
 				LayoutBody,
 				null,
 				React.createElement(
-					'div',
-					{ className: 'col nav-items nav-items-v hidden-xs-down', style: { flexBasis: "210px", flexGrow: "0" } },
+					LayoutBodyLeft,
+					null,
 					React.createElement(
-						ScrollArea,
-						null,
-						React.createElement(
-							NavItem,
-							{ icon: 'home' },
-							'Home'
-						),
-						React.createElement(
-							NavItem,
-							{ icon: 'inbox' },
-							'B'
-						),
-						React.createElement(
-							NavItem,
-							{ icon: 'chat_bubble' },
-							'C'
-						)
+						NavItem,
+						{ icon: 'home' },
+						'Home'
+					),
+					React.createElement(
+						NavItem,
+						{ icon: 'inbox' },
+						'B'
+					),
+					React.createElement(
+						NavItem,
+						{ icon: 'chat_bubble' },
+						'C'
 					)
 				),
 				React.createElement(
-					'div',
-					{ className: 'col' },
-					React.createElement(
-						ScrollArea,
-						null,
-						React.createElement(
-							'div',
-							{ className: 'card-group' },
-							React.createElement(TaskSummary, null)
-						)
-					)
+					LayoutBodyRight,
+					null,
+					React.createElement(TaskSummary, null)
 				)
 			),
 			React.createElement(
@@ -28473,7 +28494,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./Footer.js":259,"./Layout_Body.js":262,"./Layout_Header.js":263,"./NavItem.js":265,"./ScrollArea.js":268,"./View_Task_Summary.js":272,"react":242}],272:[function(require,module,exports){
+},{"./Footer.js":259,"./Layout_Body.js":262,"./Layout_BodyLeft.js":263,"./Layout_BodyRight.js":264,"./Layout_Header.js":265,"./NavItem.js":267,"./View_Task_Summary.js":274,"react":242}],274:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28557,7 +28578,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"react":242}],273:[function(require,module,exports){
+},{"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"react":242}],275:[function(require,module,exports){
 'use strict';
 
 var React = require('react');

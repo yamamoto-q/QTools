@@ -46,6 +46,8 @@ module.exports = function(grunt) {
                     { 'src/js/react/ScrollArea.js': 'src/js/react/jsx/ScrollArea.jsx' },
                     { 'src/js/react/Layout_Header.js': 'src/js/react/jsx/Layout/Layout_Header.jsx' },
                     { 'src/js/react/Layout_Body.js': 'src/js/react/jsx/Layout/Layout_Body.jsx' },
+                    { 'src/js/react/Layout_BodyLeft.js': 'src/js/react/jsx/Layout/Layout_BodyLeft.jsx' },
+                    { 'src/js/react/Layout_BodyRight.js': 'src/js/react/jsx/Layout/Layout_BodyRight.jsx' },
                     { 'src/js/react/InputAuthForm.js': 'src/js/react/jsx/InputAuthForm.jsx' },
                     { 'src/js/react/Header.js': 'src/js/react/jsx/Header.jsx' },
                     { 'src/js/react/Footer.js': 'src/js/react/jsx/Footer.jsx' },
