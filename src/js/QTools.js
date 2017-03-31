@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.31 11:38"
+    VERSION: "2017.03.31 11:46"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27815,7 +27815,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./View_AdminTools.js":267,"./View_Home.js":268,"./View_ToDo.js":270,"react":242}],263:[function(require,module,exports){
+},{"./Controller_View.js":258,"./View_AdminTools.js":268,"./View_Home.js":269,"./View_ToDo.js":271,"react":242}],263:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28159,6 +28159,22 @@ module.exports = {
 }
 
 },{}],266:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+module.exports = React.createClass({
+	displayName: "exports",
+
+	render: function render() {
+		return React.createElement(
+			"div",
+			{ className: "scroll-area" },
+			this.props.children
+		);
+	}
+});
+
+},{"react":242}],267:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28229,7 +28245,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Login.js":256,"./Controller_View.js":258,"react":242,"react-router":191}],267:[function(require,module,exports){
+},{"./Controller_Login.js":256,"./Controller_View.js":258,"react":242,"react-router":191}],268:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28266,7 +28282,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./Controller_View.js":258,"react":242}],268:[function(require,module,exports){
+},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./Controller_View.js":258,"react":242}],269:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28276,6 +28292,7 @@ var NavItem = require('./NavItem.js');
 var Bootstrap_Container = require('./Bootstrap_Container.js');
 var Bootstrap_Row = require('./Bootstrap_Row.js');
 var Bootstrap_Col = require('./Bootstrap_Col.js');
+var ScrollArea = require('./ScrollArea.js');
 
 var TaskSummary = require('./View_Task_Summary.js');
 
@@ -28322,7 +28339,7 @@ module.exports = React.createClass({
 					{ className: 'height-fix' },
 					React.createElement(
 						Bootstrap_Row,
-						null,
+						{ className: 'height-fix' },
 						React.createElement(
 							'div',
 							{ className: 'col nav-items nav-items-v hidden-xs-down', style: { flexBasis: "210px", flexGrow: "0" } },
@@ -28346,11 +28363,15 @@ module.exports = React.createClass({
 							'div',
 							{ className: 'col' },
 							React.createElement(
-								'div',
-								{ className: 'card-group' },
-								React.createElement(TaskSummary, null),
-								React.createElement(TaskSummary, null),
-								React.createElement(TaskSummary, null)
+								ScrollArea,
+								null,
+								React.createElement(
+									'div',
+									{ className: 'card-group' },
+									React.createElement(TaskSummary, null),
+									React.createElement(TaskSummary, null),
+									React.createElement(TaskSummary, null)
+								)
 							)
 						)
 					)
@@ -28397,7 +28418,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./BuildInfo.js":254,"./Footer.js":259,"./Header.js":260,"./NavItem.js":263,"./SettingMenu.js":266,"./View_Task_Summary.js":269,"react":242}],269:[function(require,module,exports){
+},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./BuildInfo.js":254,"./Footer.js":259,"./Header.js":260,"./NavItem.js":263,"./ScrollArea.js":266,"./SettingMenu.js":267,"./View_Task_Summary.js":270,"react":242}],270:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28481,7 +28502,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Questetra_API.js":257,"react":242}],270:[function(require,module,exports){
+},{"./Controller_Questetra_API.js":257,"react":242}],271:[function(require,module,exports){
 'use strict';
 
 var React = require('react');

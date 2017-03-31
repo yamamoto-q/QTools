@@ -7,6 +7,7 @@ var NavItem = require('./NavItem.js');
 var Bootstrap_Container = require('./Bootstrap_Container.js');
 var Bootstrap_Row = require('./Bootstrap_Row.js');
 var Bootstrap_Col = require('./Bootstrap_Col.js');
+var ScrollArea = require('./ScrollArea.js');
 
 var TaskSummary = require('./View_Task_Summary.js');
 
@@ -53,7 +54,7 @@ module.exports = React.createClass({
 					{ className: 'height-fix' },
 					React.createElement(
 						Bootstrap_Row,
-						null,
+						{ className: 'height-fix' },
 						React.createElement(
 							'div',
 							{ className: 'col nav-items nav-items-v hidden-xs-down', style: { flexBasis: "210px", flexGrow: "0" } },
@@ -77,11 +78,15 @@ module.exports = React.createClass({
 							'div',
 							{ className: 'col' },
 							React.createElement(
-								'div',
-								{ className: 'card-group' },
-								React.createElement(TaskSummary, null),
-								React.createElement(TaskSummary, null),
-								React.createElement(TaskSummary, null)
+								ScrollArea,
+								null,
+								React.createElement(
+									'div',
+									{ className: 'card-group' },
+									React.createElement(TaskSummary, null),
+									React.createElement(TaskSummary, null),
+									React.createElement(TaskSummary, null)
+								)
 							)
 						)
 					)
