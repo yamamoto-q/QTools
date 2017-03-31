@@ -131,8 +131,12 @@ var Store = assign({}, EventEmitter.prototype, {
     emitPermissionChecked:function(){
         this.emit(EVENT.CHECKED_PERMISSION);
     },
+    // 
     addOnGetAvaterListener:function(qUserId, callback){
         this.on(EVENT.ON_GET_AVATER + "-avater-" + qUserId, callback);
+    },
+    removeOnGetAvaterListener:function(qUserId, callback){
+        this.removeListener(EVENT.ON_GET_AVATER + "-avater-" + qUserId, callback);
     },
     emitOnGetAvater:function(requestId){
         this.emit(EVENT.ON_GET_AVATER + "-" + requestId);

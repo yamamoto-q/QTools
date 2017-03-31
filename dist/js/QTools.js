@@ -26450,22 +26450,21 @@ module.exports = React.createClass({
 			blob: null
 		};
 	},
-
+	onGetAvater: function onGetAvater() {
+		if (this.isMounted()) {
+			var avaterBlob = _QApi.Store.getAvater(this.state.qUserId);
+			this.setState({
+				blob: avaterBlob
+			});
+		}
+	},
 	componentDidMount: function componentDidMount() {
-		var self = this;
-
-		_QApi.Store.addOnGetAvaterListener(this.state.qUserId, function () {
-			if (self.isMounted()) {
-				var avaterBlob = _QApi.Store.getAvater(self.state.qUserId);
-				self.setState({
-					blob: avaterBlob
-				});
-			}
-		});
-
+		_QApi.Store.addOnGetAvaterListener(this.state.qUserId, this.onGetAvater);
 		_QApi.Action.getAvater(this.state.qUserId);
 	},
-
+	componentWillUnmount: function componentWillUnmount() {
+		_Login.Store.removeOnGetAvaterListener(this.state.qUserId, this.onGetAvater);
+	},
 	render: function render() {
 		if (this.state.blob) {
 			var style = {
@@ -26679,7 +26678,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.31 18:33"
+    VERSION: "2017.03.31 19:34"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -26970,6 +26969,7 @@ var Store = assign({}, EventEmitter.prototype, {
     	//console.log("emitChangeState");
         this.emit(EVENT.CHANGE_STATE);
     },
+    
     // permission - - - - - - - - - - - - - - - - - - -
     addChangePermissionListener:function(callback){
         this.on(EVENT.CHANGE_PERMISSION, callback);
@@ -27230,8 +27230,12 @@ var Store = assign({}, EventEmitter.prototype, {
     emitPermissionChecked:function(){
         this.emit(EVENT.CHECKED_PERMISSION);
     },
+    // 
     addOnGetAvaterListener:function(qUserId, callback){
         this.on(EVENT.ON_GET_AVATER + "-avater-" + qUserId, callback);
+    },
+    removeOnGetAvaterListener:function(qUserId, callback){
+        this.removeListener(EVENT.ON_GET_AVATER + "-avater-" + qUserId, callback);
     },
     emitOnGetAvater:function(requestId){
         this.emit(EVENT.ON_GET_AVATER + "-" + requestId);
@@ -28357,7 +28361,6 @@ module.exports = React.createClass({
 		_Login.Store.addChangePermissionListener(this.onChangePermission);
 	},
 	componentWillUnmount: function componentWillUnmount() {
-		console.log("componentWillUnmount");
 		_Login.Store.removeChangePermissionListener(this.onChangePermission);
 	},
 	conClick: function conClick(e) {

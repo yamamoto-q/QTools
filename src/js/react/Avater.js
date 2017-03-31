@@ -13,22 +13,21 @@ module.exports = React.createClass({
 			blob: null
 		};
 	},
-
+	onGetAvater: function onGetAvater() {
+		if (this.isMounted()) {
+			var avaterBlob = _QApi.Store.getAvater(this.state.qUserId);
+			this.setState({
+				blob: avaterBlob
+			});
+		}
+	},
 	componentDidMount: function componentDidMount() {
-		var self = this;
-
-		_QApi.Store.addOnGetAvaterListener(this.state.qUserId, function () {
-			if (self.isMounted()) {
-				var avaterBlob = _QApi.Store.getAvater(self.state.qUserId);
-				self.setState({
-					blob: avaterBlob
-				});
-			}
-		});
-
+		_QApi.Store.addOnGetAvaterListener(this.state.qUserId, this.onGetAvater);
 		_QApi.Action.getAvater(this.state.qUserId);
 	},
-
+	componentWillUnmount: function componentWillUnmount() {
+		_Login.Store.removeOnGetAvaterListener(this.state.qUserId, this.onGetAvater);
+	},
 	render: function render() {
 		if (this.state.blob) {
 			var style = {
