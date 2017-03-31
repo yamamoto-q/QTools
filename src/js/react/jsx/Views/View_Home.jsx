@@ -23,7 +23,7 @@ module.exports = React.createClass({
 				<LayoutBody>
 					<LayoutBodyLeft>
 						<NavItem icon="home" active={true}>Home</NavItem>
-						<NavItem icon="inbox" onClick={this.onClickNavItem} data-viewname={Controller_View.ViewNames.WORK}>Work</NavItem>
+						<NavItem icon="inbox" on_click={this.onClickNavItem} view_name={Controller_View.ViewNames.WORK}>Work</NavItem>
 						<NavItem icon="chat_bubble">C</NavItem>
 					</LayoutBodyLeft>
 					<LayoutBodyRight>
@@ -32,7 +32,7 @@ module.exports = React.createClass({
 				</LayoutBody>
 				<Footer>
 					<NavItem icon="home" active={true}>Home</NavItem>
-					<NavItem icon="inbox" onClick={this.onClickNavItem} data-viewname={Controller_View.ViewNames.WORK}>Work</NavItem>
+					<NavItem icon="inbox" on_click={this.onClickNavItem} view_name={Controller_View.ViewNames.WORK}>Work</NavItem>
 					<NavItem icon="chat_bubble">C</NavItem>
 				</Footer>
 			</LayoutHeader>

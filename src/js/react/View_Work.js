@@ -11,8 +11,6 @@ var LayoutBodyRight = require('./Layout_BodyRight.js');
 var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
 
-var TaskSummary = require('./View_Task_Summary.js');
-
 module.exports = React.createClass({
 	displayName: 'exports',
 
@@ -33,7 +31,7 @@ module.exports = React.createClass({
 					null,
 					React.createElement(
 						NavItem,
-						{ icon: 'home', onClick: this.onClickNavItem, 'data-viewname': Controller_View.ViewNames.WORK },
+						{ icon: 'home', on_click: this.onClickNavItem, view_name: Controller_View.ViewNames.WORK },
 						'Home'
 					),
 					React.createElement(
@@ -50,7 +48,7 @@ module.exports = React.createClass({
 				React.createElement(
 					LayoutBodyRight,
 					null,
-					React.createElement(TaskSummary, null)
+					'Work'
 				)
 			),
 			React.createElement(
@@ -58,7 +56,7 @@ module.exports = React.createClass({
 				null,
 				React.createElement(
 					NavItem,
-					{ icon: 'home', onClick: this.onClickNavItem, 'data-viewname': Controller_View.ViewNames.WORK },
+					{ icon: 'home', on_click: this.onClickNavItem, view_name: Controller_View.ViewNames.WORK },
 					'Home'
 				),
 				React.createElement(

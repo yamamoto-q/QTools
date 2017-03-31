@@ -22,7 +22,7 @@ module.exports = React.createClass({
 
         return React.createElement(
             'div',
-            { className: classes.join(" ") },
+            { className: classes.join(" "), onClick: this.props.on_click, 'data-viewname': this.props.view_name },
             React.createElement(
                 'div',
                 { style: {

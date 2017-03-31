@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.31 17:11"
+    VERSION: "2017.03.31 17:23"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27980,7 +27980,7 @@ module.exports = React.createClass({
 
         return React.createElement(
             'div',
-            { className: classes.join(" ") },
+            { className: classes.join(" "), onClick: this.props.on_click, 'data-viewname': this.props.view_name },
             React.createElement(
                 'div',
                 { style: {
@@ -28467,7 +28467,7 @@ module.exports = React.createClass({
 					),
 					React.createElement(
 						NavItem,
-						{ icon: 'inbox', onClick: this.onClickNavItem, 'data-viewname': Controller_View.ViewNames.WORK },
+						{ icon: 'inbox', on_click: this.onClickNavItem, view_name: Controller_View.ViewNames.WORK },
 						'Work'
 					),
 					React.createElement(
@@ -28492,7 +28492,7 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					NavItem,
-					{ icon: 'inbox', onClick: this.onClickNavItem, 'data-viewname': Controller_View.ViewNames.WORK },
+					{ icon: 'inbox', on_click: this.onClickNavItem, view_name: Controller_View.ViewNames.WORK },
 					'Work'
 				),
 				React.createElement(
@@ -28603,8 +28603,6 @@ var LayoutBodyRight = require('./Layout_BodyRight.js');
 var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
 
-var TaskSummary = require('./View_Task_Summary.js');
-
 module.exports = React.createClass({
 	displayName: 'exports',
 
@@ -28625,7 +28623,7 @@ module.exports = React.createClass({
 					null,
 					React.createElement(
 						NavItem,
-						{ icon: 'home', onClick: this.onClickNavItem, 'data-viewname': Controller_View.ViewNames.WORK },
+						{ icon: 'home', on_click: this.onClickNavItem, view_name: Controller_View.ViewNames.WORK },
 						'Home'
 					),
 					React.createElement(
@@ -28642,7 +28640,7 @@ module.exports = React.createClass({
 				React.createElement(
 					LayoutBodyRight,
 					null,
-					React.createElement(TaskSummary, null)
+					'Work'
 				)
 			),
 			React.createElement(
@@ -28650,7 +28648,7 @@ module.exports = React.createClass({
 				null,
 				React.createElement(
 					NavItem,
-					{ icon: 'home', onClick: this.onClickNavItem, 'data-viewname': Controller_View.ViewNames.WORK },
+					{ icon: 'home', on_click: this.onClickNavItem, view_name: Controller_View.ViewNames.WORK },
 					'Home'
 				),
 				React.createElement(
@@ -28668,4 +28666,4 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./Footer.js":259,"./Layout_Body.js":262,"./Layout_BodyLeft.js":263,"./Layout_BodyRight.js":264,"./Layout_Header.js":265,"./NavItem.js":267,"./View_Task_Summary.js":274,"react":242}]},{},[244]);
+},{"./Controller_View.js":258,"./Footer.js":259,"./Layout_Body.js":262,"./Layout_BodyLeft.js":263,"./Layout_BodyRight.js":264,"./Layout_Header.js":265,"./NavItem.js":267,"react":242}]},{},[244]);

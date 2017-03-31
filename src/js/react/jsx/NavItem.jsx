@@ -19,7 +19,7 @@ module.exports = React.createClass({
         }
 
         return (
-            <div className={classes.join(" ")}>
+            <div className={classes.join(" ")} onClick={this.props.on_click} data-viewname={this.props.view_name}>
                 <div style={{
                     display:"table",
                     width:"100%",

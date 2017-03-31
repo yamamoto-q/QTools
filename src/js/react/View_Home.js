@@ -38,7 +38,7 @@ module.exports = React.createClass({
 					),
 					React.createElement(
 						NavItem,
-						{ icon: 'inbox', onClick: this.onClickNavItem, 'data-viewname': Controller_View.ViewNames.WORK },
+						{ icon: 'inbox', on_click: this.onClickNavItem, view_name: Controller_View.ViewNames.WORK },
 						'Work'
 					),
 					React.createElement(
@@ -63,7 +63,7 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					NavItem,
-					{ icon: 'inbox', onClick: this.onClickNavItem, 'data-viewname': Controller_View.ViewNames.WORK },
+					{ icon: 'inbox', on_click: this.onClickNavItem, view_name: Controller_View.ViewNames.WORK },
 					'Work'
 				),
 				React.createElement(
