@@ -55,7 +55,6 @@ module.exports = function(grunt) {
                     { 'src/js/react/Avater.js': 'src/js/react/jsx/Avater.jsx' },
                     { 'src/js/react/LoginedView.js': 'src/js/react/jsx/LoginedView.jsx' },
                     { 'src/js/react/SettingMenu.js': 'src/js/react/jsx/SettingMenu.jsx' },
-                    { 'src/js/react/View_ToDo.js': 'src/js/react/jsx/Views/View_ToDo.jsx' },
                     { 'src/js/react/View_Home.js': 'src/js/react/jsx/Views/View_Home.jsx' },
                     { 'src/js/react/View_AdminTools.js': 'src/js/react/jsx/Views/View_AdminTools.jsx' },
                     { 'src/js/react/View_Task_Summary.js': 'src/js/react/jsx/Views/View_Task_Summary.jsx' },

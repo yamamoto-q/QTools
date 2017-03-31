@@ -6,6 +6,10 @@ module.exports = React.createClass({
     render: function() {
         var classes = ["nav-item"];
 
+        if(typeof this.props.active !== "undefined" && this.props.active){
+            classes.push("nav-item-active");
+        }
+
         var icon = null;
         if(this.props.icon){
             icon = (

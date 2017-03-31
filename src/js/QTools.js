@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.31 15:43"
+    VERSION: "2017.03.31 16:52"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27914,7 +27914,6 @@ var Controller_View = require('./Controller_View.js');
 
 var Home = require('./View_Home.js');
 var AdminTools = require('./View_AdminTools.js');
-var ToDo = require('./View_ToDo.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -27942,6 +27941,7 @@ module.exports = React.createClass({
 			case Controller_View.ViewNames.HOME:
 				return React.createElement(Home, null);
 				break;
+
 			case Controller_View.ViewNames.ADMIN_TOOLS:
 				return React.createElement(AdminTools, null);
 				break;
@@ -27949,7 +27949,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./View_AdminTools.js":272,"./View_Home.js":273,"./View_ToDo.js":275,"react":242}],267:[function(require,module,exports){
+},{"./Controller_View.js":258,"./View_AdminTools.js":272,"./View_Home.js":273,"react":242}],267:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27961,6 +27961,10 @@ module.exports = React.createClass({
 
     render: function render() {
         var classes = ["nav-item"];
+
+        if (typeof this.props.active !== "undefined" && this.props.active) {
+            classes.push("nav-item-active");
+        }
 
         var icon = null;
         if (this.props.icon) {
@@ -28446,7 +28450,7 @@ module.exports = React.createClass({
 					null,
 					React.createElement(
 						NavItem,
-						{ icon: 'home' },
+						{ icon: 'home', active: true },
 						'Home'
 					),
 					React.createElement(
@@ -28471,7 +28475,7 @@ module.exports = React.createClass({
 				null,
 				React.createElement(
 					NavItem,
-					{ icon: 'home' },
+					{ icon: 'home', active: true },
 					'Home'
 				),
 				React.createElement(
@@ -28573,20 +28577,4 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"react":242}],275:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-module.exports = React.createClass({
-	displayName: 'exports',
-
-	render: function render() {
-		return React.createElement(
-			'div',
-			null,
-			'Todo'
-		);
-	}
-});
-
-},{"react":242}]},{},[244]);
+},{"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"react":242}]},{},[244]);

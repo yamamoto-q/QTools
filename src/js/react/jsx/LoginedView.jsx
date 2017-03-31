@@ -3,7 +3,7 @@ var Controller_View = require('./Controller_View.js');
 
 var Home = require('./View_Home.js');
 var AdminTools = require('./View_AdminTools.js');
-var ToDo = require('./View_ToDo.js');
+
 
 module.exports = React.createClass({
 	getInitialState: function() {
@@ -29,6 +29,7 @@ module.exports = React.createClass({
 			case Controller_View.ViewNames.HOME:
 				return(<Home />);
 				break;
+
 			case Controller_View.ViewNames.ADMIN_TOOLS:
 				return(<AdminTools />);
 				break;

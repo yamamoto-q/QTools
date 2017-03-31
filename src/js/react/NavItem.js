@@ -10,6 +10,10 @@ module.exports = React.createClass({
     render: function render() {
         var classes = ["nav-item"];
 
+        if (typeof this.props.active !== "undefined" && this.props.active) {
+            classes.push("nav-item-active");
+        }
+
         var icon = null;
         if (this.props.icon) {
             icon = React.createElement('span', { className: "icon icon-" + this.props.icon });

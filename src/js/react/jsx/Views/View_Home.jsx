@@ -16,7 +16,7 @@ module.exports = React.createClass({
 			<LayoutHeader label="Home">
 				<LayoutBody>
 					<LayoutBodyLeft>
-						<NavItem icon="home">Home</NavItem>
+						<NavItem icon="home" active={true}>Home</NavItem>
 						<NavItem icon="inbox">B</NavItem>
 						<NavItem icon="chat_bubble">C</NavItem>
 					</LayoutBodyLeft>
@@ -25,7 +25,7 @@ module.exports = React.createClass({
 					</LayoutBodyRight>
 				</LayoutBody>
 				<Footer>
-					<NavItem icon="home">Home</NavItem>
+					<NavItem icon="home" active={true}>Home</NavItem>
 					<NavItem icon="inbox">B</NavItem>
 					<NavItem icon="chat_bubble">C</NavItem>
 				</Footer>

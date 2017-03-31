@@ -27,7 +27,7 @@ module.exports = React.createClass({
 					null,
 					React.createElement(
 						NavItem,
-						{ icon: 'home' },
+						{ icon: 'home', active: true },
 						'Home'
 					),
 					React.createElement(
@@ -52,7 +52,7 @@ module.exports = React.createClass({
 				null,
 				React.createElement(
 					NavItem,
-					{ icon: 'home' },
+					{ icon: 'home', active: true },
 					'Home'
 				),
 				React.createElement(
