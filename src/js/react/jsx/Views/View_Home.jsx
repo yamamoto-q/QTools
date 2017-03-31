@@ -50,9 +50,11 @@ module.exports = React.createClass({
 					<Bootstrap_Container className="height-fix">
 						<Bootstrap_Row className="height-fix">
 							<div className="col nav-items nav-items-v hidden-xs-down" style={{flexBasis:"210px", flexGrow: "0"}}>
-								<NavItem icon="home">Home</NavItem>
-								<NavItem icon="inbox">B</NavItem>
-								<NavItem icon="chat_bubble">C</NavItem>
+								<ScrollArea>
+									<NavItem icon="home">Home</NavItem>
+									<NavItem icon="inbox">B</NavItem>
+									<NavItem icon="chat_bubble">C</NavItem>
+								</ScrollArea>
 							</div>
 							<div className="col">
 								<ScrollArea>

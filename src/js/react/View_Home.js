@@ -59,19 +59,23 @@ module.exports = React.createClass({
 							'div',
 							{ className: 'col nav-items nav-items-v hidden-xs-down', style: { flexBasis: "210px", flexGrow: "0" } },
 							React.createElement(
-								NavItem,
-								{ icon: 'home' },
-								'Home'
-							),
-							React.createElement(
-								NavItem,
-								{ icon: 'inbox' },
-								'B'
-							),
-							React.createElement(
-								NavItem,
-								{ icon: 'chat_bubble' },
-								'C'
+								ScrollArea,
+								null,
+								React.createElement(
+									NavItem,
+									{ icon: 'home' },
+									'Home'
+								),
+								React.createElement(
+									NavItem,
+									{ icon: 'inbox' },
+									'B'
+								),
+								React.createElement(
+									NavItem,
+									{ icon: 'chat_bubble' },
+									'C'
+								)
 							)
 						),
 						React.createElement(
