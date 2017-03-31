@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.31 18:25"
+    VERSION: "2017.03.31 18:29"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -26970,11 +26970,12 @@ var Store = assign({}, EventEmitter.prototype, {
     	//console.log("emitChangeState");
         this.emit(EVENT.CHANGE_STATE);
     },
+    // permission - - - - - - - - - - - - - - - - - - -
     addChangePermissionListener:function(callback){
         this.on(EVENT.CHANGE_PERMISSION, callback);
     },
     removeChangePermissionListener:function(callback){
-        thi.removeListener(EVENT.CHANGE_PERMISSION, blink);
+        thi.removeListener(EVENT.CHANGE_PERMISSION, callback);
     },
     emitChangePermission:function(){
     	//console.log("emitChangeState");

@@ -88,11 +88,12 @@ var Store = assign({}, EventEmitter.prototype, {
     	//console.log("emitChangeState");
         this.emit(EVENT.CHANGE_STATE);
     },
+    // permission - - - - - - - - - - - - - - - - - - -
     addChangePermissionListener:function(callback){
         this.on(EVENT.CHANGE_PERMISSION, callback);
     },
     removeChangePermissionListener:function(callback){
-        thi.removeListener(EVENT.CHANGE_PERMISSION, blink);
+        thi.removeListener(EVENT.CHANGE_PERMISSION, callback);
     },
     emitChangePermission:function(){
     	//console.log("emitChangeState");
