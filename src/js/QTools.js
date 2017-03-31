@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.30 19:22"
+    VERSION: "2017.03.31 11:38"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28319,7 +28319,7 @@ module.exports = React.createClass({
 				{ className: 'height-fix' },
 				React.createElement(
 					Bootstrap_Container,
-					null,
+					{ className: 'height-fix' },
 					React.createElement(
 						Bootstrap_Row,
 						null,

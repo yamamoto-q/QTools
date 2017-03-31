@@ -50,7 +50,7 @@ module.exports = React.createClass({
 				{ className: 'height-fix' },
 				React.createElement(
 					Bootstrap_Container,
-					null,
+					{ className: 'height-fix' },
 					React.createElement(
 						Bootstrap_Row,
 						null,

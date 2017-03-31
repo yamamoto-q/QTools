@@ -46,7 +46,7 @@ module.exports = React.createClass({
 			<div className="height-fix">
 				<Header on_click_menu_icon={this.onClickMenuIcon} label="Home"/>
 				<div className="height-fix">
-					<Bootstrap_Container>
+					<Bootstrap_Container className="height-fix">
 						<Bootstrap_Row>
 							<div className="col nav-items nav-items-v hidden-xs-down" style={{flexBasis:"210px", flexGrow: "0"}}>
 								<NavItem icon="home">Home</NavItem>
