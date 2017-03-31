@@ -91,10 +91,14 @@ var Store = assign({}, EventEmitter.prototype, {
     addChangePermissionListener:function(callback){
         this.on(EVENT.CHANGE_PERMISSION, callback);
     },
+    removeChangePermissionListener:function(callback){
+        thi.removeListener(EVENT.CHANGE_PERMISSION, blink);
+    },
     emitChangePermission:function(){
     	//console.log("emitChangeState");
         this.emit(EVENT.CHANGE_PERMISSION);
     },
+
     // Dispacher
     dispatcherIndex: dispatcher.register(function(payload) {
         switch (payload.actionType) {

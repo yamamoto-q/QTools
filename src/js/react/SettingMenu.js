@@ -15,16 +15,19 @@ module.exports = React.createClass({
 			permission: permission
 		};
 	},
+	onChangePermission: function onChangePermission() {
+		if (this.isMounted()) {
+			var permission = _Login.Store.getPermission();
+			this.setState({
+				permission: permission
+			});
+		}
+	},
 	componentDidMount: function componentDidMount() {
-		var self = this;
-		_Login.Store.addChangePermissionListener(function () {
-			if (self.isMounted()) {
-				var permission = _Login.Store.getPermission();
-				self.setState({
-					permission: permission
-				});
-			}
-		});
+		_Login.Store.addChangePermissionListener(this.onChangePermission);
+	},
+	componentWillUnmount: function componentWillUnmount() {
+		_Login.Store.removeChangePermissionListener(this.onChangePermission);
 	},
 	conClick: function conClick(e) {
 		var viewName = e.target.getAttribute('data-viewname');

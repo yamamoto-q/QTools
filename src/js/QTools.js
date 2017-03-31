@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.31 17:50"
+    VERSION: "2017.03.31 18:25"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -26973,10 +26973,14 @@ var Store = assign({}, EventEmitter.prototype, {
     addChangePermissionListener:function(callback){
         this.on(EVENT.CHANGE_PERMISSION, callback);
     },
+    removeChangePermissionListener:function(callback){
+        thi.removeListener(EVENT.CHANGE_PERMISSION, blink);
+    },
     emitChangePermission:function(){
     	//console.log("emitChangeState");
         this.emit(EVENT.CHANGE_PERMISSION);
     },
+
     // Dispacher
     dispatcherIndex: dispatcher.register(function(payload) {
         switch (payload.actionType) {
@@ -28340,16 +28344,19 @@ module.exports = React.createClass({
 			permission: permission
 		};
 	},
+	onChangePermission: function onChangePermission() {
+		if (this.isMounted()) {
+			var permission = _Login.Store.getPermission();
+			this.setState({
+				permission: permission
+			});
+		}
+	},
 	componentDidMount: function componentDidMount() {
-		var self = this;
-		_Login.Store.addChangePermissionListener(function () {
-			if (self.isMounted()) {
-				var permission = _Login.Store.getPermission();
-				self.setState({
-					permission: permission
-				});
-			}
-		});
+		_Login.Store.addChangePermissionListener(this.onChangePermission);
+	},
+	componentWillUnmount: function componentWillUnmount() {
+		_Login.Store.removeChangePermissionListener(this.onChangePermission);
 	},
 	conClick: function conClick(e) {
 		var viewName = e.target.getAttribute('data-viewname');
