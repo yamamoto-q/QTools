@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+var Controller_View = require('./Controller_View.js');
 
 var LayoutHeader = require('./Layout_Header.js');
 var LayoutBody = require('./Layout_Body.js');
@@ -15,6 +16,11 @@ var TaskSummary = require('./View_Task_Summary.js');
 module.exports = React.createClass({
 	displayName: 'exports',
 
+	onClickNavItem: function onClickNavItem(e) {
+		var viewName = e.target.getAttribute('data-viewname');
+		console.log("onClickNavItem:" + viewName);
+		Controller_View.Action.setView(viewName);
+	},
 	render: function render() {
 		return React.createElement(
 			LayoutHeader,
@@ -27,7 +33,7 @@ module.exports = React.createClass({
 					null,
 					React.createElement(
 						NavItem,
-						{ icon: 'home' },
+						{ icon: 'home', onClick: this.onClickNavItem, 'data-viewname': Controller_View.ViewNames.WORK },
 						'Home'
 					),
 					React.createElement(
@@ -52,7 +58,7 @@ module.exports = React.createClass({
 				null,
 				React.createElement(
 					NavItem,
-					{ icon: 'home' },
+					{ icon: 'home', onClick: this.onClickNavItem, 'data-viewname': Controller_View.ViewNames.WORK },
 					'Home'
 				),
 				React.createElement(

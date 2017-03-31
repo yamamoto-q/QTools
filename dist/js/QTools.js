@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.31 17:08"
+    VERSION: "2017.03.31 17:11"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28593,6 +28593,7 @@ module.exports = React.createClass({
 'use strict';
 
 var React = require('react');
+var Controller_View = require('./Controller_View.js');
 
 var LayoutHeader = require('./Layout_Header.js');
 var LayoutBody = require('./Layout_Body.js');
@@ -28607,6 +28608,11 @@ var TaskSummary = require('./View_Task_Summary.js');
 module.exports = React.createClass({
 	displayName: 'exports',
 
+	onClickNavItem: function onClickNavItem(e) {
+		var viewName = e.target.getAttribute('data-viewname');
+		console.log("onClickNavItem:" + viewName);
+		Controller_View.Action.setView(viewName);
+	},
 	render: function render() {
 		return React.createElement(
 			LayoutHeader,
@@ -28619,7 +28625,7 @@ module.exports = React.createClass({
 					null,
 					React.createElement(
 						NavItem,
-						{ icon: 'home' },
+						{ icon: 'home', onClick: this.onClickNavItem, 'data-viewname': Controller_View.ViewNames.WORK },
 						'Home'
 					),
 					React.createElement(
@@ -28644,7 +28650,7 @@ module.exports = React.createClass({
 				null,
 				React.createElement(
 					NavItem,
-					{ icon: 'home' },
+					{ icon: 'home', onClick: this.onClickNavItem, 'data-viewname': Controller_View.ViewNames.WORK },
 					'Home'
 				),
 				React.createElement(
@@ -28662,4 +28668,4 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Footer.js":259,"./Layout_Body.js":262,"./Layout_BodyLeft.js":263,"./Layout_BodyRight.js":264,"./Layout_Header.js":265,"./NavItem.js":267,"./View_Task_Summary.js":274,"react":242}]},{},[244]);
+},{"./Controller_View.js":258,"./Footer.js":259,"./Layout_Body.js":262,"./Layout_BodyLeft.js":263,"./Layout_BodyRight.js":264,"./Layout_Header.js":265,"./NavItem.js":267,"./View_Task_Summary.js":274,"react":242}]},{},[244]);
