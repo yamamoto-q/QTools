@@ -27,17 +27,12 @@ module.exports = React.createClass({
 		var viewBody;
 		switch (this.state.viewName){
 			case Controller_View.ViewNames.HOME:
-				viewBody = (<Home />);
+				return(<Home />);
 				break;
 			case Controller_View.ViewNames.ADMIN_TOOLS:
-				viewBody = (<AdminTools />);
+				return(<AdminTools />);
 				break;
-		} 
-		return (
-			<div className="height-fix">
-				{viewBody}
-			</div>
-		);
+		}
 	}
 });
 

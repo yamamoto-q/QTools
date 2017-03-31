@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.31 15:36"
+    VERSION: "2017.03.31 15:43"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27940,17 +27940,12 @@ module.exports = React.createClass({
 		var viewBody;
 		switch (this.state.viewName) {
 			case Controller_View.ViewNames.HOME:
-				viewBody = React.createElement(Home, null);
+				return React.createElement(Home, null);
 				break;
 			case Controller_View.ViewNames.ADMIN_TOOLS:
-				viewBody = React.createElement(AdminTools, null);
+				return React.createElement(AdminTools, null);
 				break;
 		}
-		return React.createElement(
-			'div',
-			{ className: 'height-fix' },
-			viewBody
-		);
 	}
 });
 

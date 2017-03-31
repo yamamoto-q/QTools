@@ -31,16 +31,11 @@ module.exports = React.createClass({
 		var viewBody;
 		switch (this.state.viewName) {
 			case Controller_View.ViewNames.HOME:
-				viewBody = React.createElement(Home, null);
+				return React.createElement(Home, null);
 				break;
 			case Controller_View.ViewNames.ADMIN_TOOLS:
-				viewBody = React.createElement(AdminTools, null);
+				return React.createElement(AdminTools, null);
 				break;
 		}
-		return React.createElement(
-			'div',
-			{ className: 'height-fix' },
-			viewBody
-		);
 	}
 });
