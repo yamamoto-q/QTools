@@ -282,6 +282,7 @@ var Store = assign({}, EventEmitter.prototype, {
 
                 _state.allocatedWorkitems.isResultWaiting = true;
                 _API.API.PEWorkitemListAllocated(function(data){
+
                     _state.allocatedWorkitems = {
                         isResultWaiting : false,
                         workitems : data.workitems,

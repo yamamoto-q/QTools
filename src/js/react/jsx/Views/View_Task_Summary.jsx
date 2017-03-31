@@ -1,5 +1,6 @@
 var React = require('react');
 var _QApi = require('./Controller_Questetra_API.js');
+var Controller_View = require('./Controller_View.js');
 
 module.exports = React.createClass({
 	getInitialState: function() {
@@ -35,12 +36,17 @@ module.exports = React.createClass({
 		_QApi.Action.getAllocatedWorkitems();
 		_QApi.Action.getOfferedWorkitems();
 	},
+	onClick:function(e){
+		e.preventDefault();
+		var viewName = e.target.getAttribute('data-viewname');
+		Controller_View.Action.setView(viewName);
+	},
 	render: function() {
 		return(
-			<div className="card">
+			<div className="card" onClick={this.onClick} data-viewname={Controller_View.ViewNames.ADMIN_TOOLS}>
 				<div className="card-block">
-					<h4 className="card-title">View_Task_Summar</h4>
-					<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					<h4 className="card-title">Work!</h4>
+					<p className="card-text">Hoge</p>
 				</div>
 				<ul className="list-group list-group-flush">
 					<li className="list-group-item">allocatedWorkitems {this.state.allocatedWorkitems.length}</li>

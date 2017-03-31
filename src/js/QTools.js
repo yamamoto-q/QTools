@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.31 14:12"
+    VERSION: "2017.03.31 14:31"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27376,6 +27376,7 @@ var Store = assign({}, EventEmitter.prototype, {
 
                 _state.allocatedWorkitems.isResultWaiting = true;
                 _API.API.PEWorkitemListAllocated(function(data){
+
                     _state.allocatedWorkitems = {
                         isResultWaiting : false,
                         workitems : data.workitems,
@@ -28429,6 +28430,7 @@ module.exports = React.createClass({
 
 var React = require('react');
 var _QApi = require('./Controller_Questetra_API.js');
+var Controller_View = require('./Controller_View.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -28465,22 +28467,27 @@ module.exports = React.createClass({
 		_QApi.Action.getAllocatedWorkitems();
 		_QApi.Action.getOfferedWorkitems();
 	},
+	onClick: function onClick(e) {
+		e.preventDefault();
+		var viewName = e.target.getAttribute('data-viewname');
+		Controller_View.Action.setView(viewName);
+	},
 	render: function render() {
 		return React.createElement(
 			'div',
-			{ className: 'card' },
+			{ className: 'card', onClick: this.onClick, 'data-viewname': Controller_View.ViewNames.ADMIN_TOOLS },
 			React.createElement(
 				'div',
 				{ className: 'card-block' },
 				React.createElement(
 					'h4',
 					{ className: 'card-title' },
-					'View_Task_Summar'
+					'Work!'
 				),
 				React.createElement(
 					'p',
 					{ className: 'card-text' },
-					'Some quick example text to build on the card title and make up the bulk of the card\'s content.'
+					'Hoge'
 				)
 			),
 			React.createElement(
@@ -28503,7 +28510,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Questetra_API.js":257,"react":242}],271:[function(require,module,exports){
+},{"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"react":242}],271:[function(require,module,exports){
 'use strict';
 
 var React = require('react');

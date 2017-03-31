@@ -2,6 +2,7 @@
 
 var React = require('react');
 var _QApi = require('./Controller_Questetra_API.js');
+var Controller_View = require('./Controller_View.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -38,22 +39,27 @@ module.exports = React.createClass({
 		_QApi.Action.getAllocatedWorkitems();
 		_QApi.Action.getOfferedWorkitems();
 	},
+	onClick: function onClick(e) {
+		e.preventDefault();
+		var viewName = e.target.getAttribute('data-viewname');
+		Controller_View.Action.setView(viewName);
+	},
 	render: function render() {
 		return React.createElement(
 			'div',
-			{ className: 'card' },
+			{ className: 'card', onClick: this.onClick, 'data-viewname': Controller_View.ViewNames.ADMIN_TOOLS },
 			React.createElement(
 				'div',
 				{ className: 'card-block' },
 				React.createElement(
 					'h4',
 					{ className: 'card-title' },
-					'View_Task_Summar'
+					'Work!'
 				),
 				React.createElement(
 					'p',
 					{ className: 'card-text' },
-					'Some quick example text to build on the card title and make up the bulk of the card\'s content.'
+					'Hoge'
 				)
 			),
 			React.createElement(
