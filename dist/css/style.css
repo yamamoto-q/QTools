@@ -171,9 +171,9 @@ body.logining {
 .scroll-v::-webkit-scrollbar-thumb {
   background-color: #AAA;
 }
-/**
+/**************************************************
  * ICONS
-**/
+ **************************************************/
 @font-face {
   font-family: 'quater-inch';
   src: url('quater-inch.ttf') format('truetype');
