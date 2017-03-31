@@ -1,4 +1,5 @@
 var React = require('react');
+var Controller_View = require('./Controller_View.js');
 
 var LayoutHeader = require('./Layout_Header.js');
 var LayoutBody = require('./Layout_Body.js');
