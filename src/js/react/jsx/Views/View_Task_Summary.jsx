@@ -37,8 +37,10 @@ module.exports = React.createClass({
 		_QApi.Action.getOfferedWorkitems();
 	},
 	onClick:function(e){
-		e.preventDefault();
+		
 		var viewName = e.target.getAttribute('data-viewname');
+		e.preventDefault();
+		
 		console.log(viewName);
 		Controller_View.Action.setView(viewName);
 	},

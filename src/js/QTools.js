@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.31 14:39"
+    VERSION: "2017.03.31 14:55"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28469,8 +28469,10 @@ module.exports = React.createClass({
 		_QApi.Action.getOfferedWorkitems();
 	},
 	onClick: function onClick(e) {
-		e.preventDefault();
+
 		var viewName = e.target.getAttribute('data-viewname');
+		e.preventDefault();
+
 		console.log(viewName);
 		Controller_View.Action.setView(viewName);
 	},
