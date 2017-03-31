@@ -41,7 +41,6 @@ module.exports = React.createClass({
 				<div className="card-block">
 					<h4 className="card-title">View_Task_Summar</h4>
 					<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<a href="#" className="btn btn-primary">Go somewhere</a>
 				</div>
 				<ul className="list-group list-group-flush">
 					<li className="list-group-item">allocatedWorkitems {this.state.allocatedWorkitems.length}</li>

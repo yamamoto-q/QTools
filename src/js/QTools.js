@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.31 11:57"
+    VERSION: "2017.03.31 14:12"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27381,6 +27381,8 @@ var Store = assign({}, EventEmitter.prototype, {
                         workitems : data.workitems,
                         update : Store.getTimestamp()
                     }
+
+                    console.log(data.workitems);
 
                     Store.emitChangeAllocatedWorkitems();
 
@@ -28479,11 +28481,6 @@ module.exports = React.createClass({
 					'p',
 					{ className: 'card-text' },
 					'Some quick example text to build on the card title and make up the bulk of the card\'s content.'
-				),
-				React.createElement(
-					'a',
-					{ href: '#', className: 'btn btn-primary' },
-					'Go somewhere'
 				)
 			),
 			React.createElement(

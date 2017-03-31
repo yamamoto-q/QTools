@@ -288,6 +288,8 @@ var Store = assign({}, EventEmitter.prototype, {
                         update : Store.getTimestamp()
                     }
 
+                    console.log(data.workitems);
+
                     Store.emitChangeAllocatedWorkitems();
 
                 }, function(jqXHR, textStatus){
