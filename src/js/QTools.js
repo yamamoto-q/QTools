@@ -26679,7 +26679,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.31 17:33"
+    VERSION: "2017.03.31 17:36"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27964,9 +27964,7 @@ var Controller_View = require('./Controller_View.js');
 module.exports = React.createClass({
     displayName: 'exports',
 
-    clickCancell: function clickCancell(e) {
-        e.preventDefault();
-    },
+
     render: function render() {
         var classes = ["nav-item"];
 
@@ -27976,7 +27974,7 @@ module.exports = React.createClass({
 
         var icon = null;
         if (this.props.icon) {
-            icon = React.createElement('span', { className: "icon icon-" + this.props.icon, onClick: this.clickCancell });
+            icon = React.createElement('span', { className: "icon icon-" + this.props.icon });
             classes.push("nav-item-has-icon");
         }
 
@@ -27989,17 +27987,17 @@ module.exports = React.createClass({
                         display: "table",
                         width: "100%",
                         height: "100%"
-                    }, onClick: this.clickCancell },
+                    } },
                 React.createElement(
                     'div',
                     { className: 'label-wrapper', style: {
                             display: "table-cell",
                             verticalAlign: "middle"
-                        }, onClick: this.clickCancell },
+                        } },
                     icon,
                     React.createElement(
                         'span',
-                        { className: 'label', onClick: this.clickCancell },
+                        { className: 'label' },
                         this.props.children
                     )
                 )
@@ -28451,6 +28449,7 @@ module.exports = React.createClass({
 		var viewName = e.target.getAttribute('data-viewname');
 		console.log("onClickNavItem:" + viewName);
 		console.log(e.target);
+		console.log(e.currentTarget);
 		//Controller_View.Action.setView(viewName);
 	},
 	render: function render() {
