@@ -6,7 +6,9 @@ var Controller_View = require('./Controller_View.js');
 module.exports = React.createClass({
     displayName: 'exports',
 
-
+    clickCancell: function clickCancell(e) {
+        e.preventDefault();
+    },
     render: function render() {
         var classes = ["nav-item"];
 
@@ -16,7 +18,7 @@ module.exports = React.createClass({
 
         var icon = null;
         if (this.props.icon) {
-            icon = React.createElement('span', { className: "icon icon-" + this.props.icon });
+            icon = React.createElement('span', { className: "icon icon-" + this.props.icon, onClick: this.clickCancell });
             classes.push("nav-item-has-icon");
         }
 
@@ -29,17 +31,17 @@ module.exports = React.createClass({
                         display: "table",
                         width: "100%",
                         height: "100%"
-                    } },
+                    }, onClick: this.clickCancell },
                 React.createElement(
                     'div',
                     { className: 'label-wrapper', style: {
                             display: "table-cell",
                             verticalAlign: "middle"
-                        } },
+                        }, onClick: this.clickCancell },
                     icon,
                     React.createElement(
                         'span',
-                        { className: 'label' },
+                        { className: 'label', onClick: this.clickCancell },
                         this.props.children
                     )
                 )
