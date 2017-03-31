@@ -111,10 +111,6 @@ body.logining {
   align-items: stretch;
   align-content: center;
 }
-.nav-items.nav-item-active {
-  background-color: rgba(0, 0, 0, 0.75);
-  color: white;
-}
 .nav-items.nav-items-h {
   flex-direction: row;
 }
@@ -149,6 +145,11 @@ body.logining {
   flex-shrink: 1;
   flex-basis: auto;
   align-self: auto;
+  transition: all 0.25s ease;
+}
+.nav-items .nav-item.nav-item-active {
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
 }
 #SettingMenu.SettingMenu-modal {
   position: absolute;
