@@ -382,8 +382,10 @@ var Store = assign({}, EventEmitter.prototype, {
                     },30000);
                 }
                 console.log("startCheckWorkItems");
-                Action.getAllocatedWorkitems();
-                Action.getOfferedWorkitems();
+                setTimeout(function(){
+                    Action.getAllocatedWorkitems();
+                    Action.getOfferedWorkitems();
+                },250);
                 break;
 
             case"getWorkitems":

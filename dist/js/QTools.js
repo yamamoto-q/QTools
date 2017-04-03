@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.03 15:50"
+    VERSION: "2017.04.03 15:52"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27727,8 +27727,10 @@ var Store = assign({}, EventEmitter.prototype, {
                     },30000);
                 }
                 console.log("startCheckWorkItems");
-                Action.getAllocatedWorkitems();
-                Action.getOfferedWorkitems();
+                setTimeout(function(){
+                    Action.getAllocatedWorkitems();
+                    Action.getOfferedWorkitems();
+                },250)
                 break;
 
             case"getWorkitems":
