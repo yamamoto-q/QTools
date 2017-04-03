@@ -16,7 +16,12 @@ var TaskSummary = require('./View_Task_Summary.js');
 module.exports = React.createClass({
 	displayName: 'exports',
 
-
+	componentDidMount: function componentDidMount() {
+		$("body").addClass('view-' + Controller_View.ViewNames.HOME);
+	},
+	componentWillUnmount: function componentWillUnmount() {
+		$("body").removeClass('view-' + Controller_View.ViewNames.HOME);
+	},
 	render: function render() {
 		return React.createElement(
 			LayoutHeader,

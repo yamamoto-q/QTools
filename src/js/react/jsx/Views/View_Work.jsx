@@ -10,6 +10,12 @@ var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
 
 module.exports = React.createClass({
+	componentDidMount: function() {
+		$("body").addClass('view-' + Controller_View.ViewNames.WORK);
+	},
+	componentWillUnmount:function(){
+		$("body").removeClass('view-' + Controller_View.ViewNames.WORK);
+	},
 	render: function() {
 		return(
 			<LayoutHeader label="Work">

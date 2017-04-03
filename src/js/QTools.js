@@ -26678,7 +26678,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.03 11:17"
+    VERSION: "2017.04.03 11:23"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28461,7 +28461,12 @@ var TaskSummary = require('./View_Task_Summary.js');
 module.exports = React.createClass({
 	displayName: 'exports',
 
-
+	componentDidMount: function componentDidMount() {
+		$("body").addClass('view-' + Controller_View.ViewNames.HOME);
+	},
+	componentWillUnmount: function componentWillUnmount() {
+		$("body").removeClass('view-' + Controller_View.ViewNames.HOME);
+	},
 	render: function render() {
 		return React.createElement(
 			LayoutHeader,
@@ -28618,6 +28623,12 @@ var NavItem = require('./NavItem.js');
 module.exports = React.createClass({
 	displayName: 'exports',
 
+	componentDidMount: function componentDidMount() {
+		$("body").addClass('view-' + Controller_View.ViewNames.WORK);
+	},
+	componentWillUnmount: function componentWillUnmount() {
+		$("body").removeClass('view-' + Controller_View.ViewNames.WORK);
+	},
 	render: function render() {
 		return React.createElement(
 			LayoutHeader,

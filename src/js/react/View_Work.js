@@ -14,6 +14,12 @@ var NavItem = require('./NavItem.js');
 module.exports = React.createClass({
 	displayName: 'exports',
 
+	componentDidMount: function componentDidMount() {
+		$("body").addClass('view-' + Controller_View.ViewNames.WORK);
+	},
+	componentWillUnmount: function componentWillUnmount() {
+		$("body").removeClass('view-' + Controller_View.ViewNames.WORK);
+	},
 	render: function render() {
 		return React.createElement(
 			LayoutHeader,

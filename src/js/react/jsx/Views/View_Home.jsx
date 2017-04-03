@@ -12,7 +12,12 @@ var NavItem = require('./NavItem.js');
 var TaskSummary = require('./View_Task_Summary.js');
 
 module.exports = React.createClass({
-
+	componentDidMount: function() {
+		$("body").addClass('view-' + Controller_View.ViewNames.HOME);
+	},
+	componentWillUnmount:function(){
+		$("body").removeClass('view-' + Controller_View.ViewNames.HOME);
+	},
 	render: function() {
 		return(
 			<LayoutHeader label="Home">
