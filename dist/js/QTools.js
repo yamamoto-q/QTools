@@ -26635,7 +26635,7 @@ module.exports = React.createClass({
 
 },{"react":242}],253:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.03 11:48"
+    VERSION: "2017.04.03 11:52"
 }
 },{}],254:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27711,7 +27711,7 @@ module.exports = React.createClass({
 	},
 	onClick: function onClick(e) {
 		e.preventDefault();
-		var viewName = e.target.getAttribute('data-viewname');
+		var viewName = e.currentTarget.getAttribute('data-viewname');
 		Controller_View.Action.setView(viewName);
 	},
 	render: function render() {
