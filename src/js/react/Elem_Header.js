@@ -4,7 +4,7 @@ var React = require('react');
 var _Login = require('./Controller_Login.js');
 var _QApi = require('./Controller_Questetra_API.js');
 var Controller_View = require('./Controller_View.js');
-var Avater = require('./Avater.js');
+var Avater = require('./Elem_Avater.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',

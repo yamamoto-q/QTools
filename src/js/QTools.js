@@ -26434,50 +26434,7 @@ var BuildInfo = require('./BuildInfo.js');
 	};
 })(window.jQuery);
 
-},{"./BuildInfo.js":254,"./QTools.js":268,"react":242,"react-dom":35}],245:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var _QApi = require('./Controller_Questetra_API.js');
-
-module.exports = React.createClass({
-	displayName: 'exports',
-
-	getInitialState: function getInitialState() {
-		var qUserId = this.props.quser_id;
-		return {
-			qUserId: qUserId,
-			blob: null
-		};
-	},
-	onGetAvater: function onGetAvater() {
-		if (this.isMounted()) {
-			var avaterBlob = _QApi.Store.getAvater(this.state.qUserId);
-			this.setState({
-				blob: avaterBlob
-			});
-		}
-	},
-	componentDidMount: function componentDidMount() {
-		_QApi.Store.addOnGetAvaterListener(this.state.qUserId, this.onGetAvater);
-		_QApi.Action.getAvater(this.state.qUserId);
-	},
-	componentWillUnmount: function componentWillUnmount() {
-		_QApi.Store.removeOnGetAvaterListener(this.state.qUserId, this.onGetAvater);
-	},
-	render: function render() {
-		if (this.state.blob) {
-			var style = {
-				backgroundImage: "url(" + this.state.blob + ")"
-			};
-			return React.createElement('div', { className: 'avater', style: style });
-		} else {
-			return React.createElement('div', { className: 'avater' });
-		}
-	}
-});
-
-},{"./Controller_Questetra_API.js":257,"react":242}],246:[function(require,module,exports){
+},{"./BuildInfo.js":253,"./QTools.js":269,"react":242,"react-dom":35}],245:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -26498,7 +26455,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":242}],247:[function(require,module,exports){
+},{"react":242}],246:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -26545,7 +26502,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":242}],248:[function(require,module,exports){
+},{"react":242}],247:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -26574,7 +26531,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":242}],249:[function(require,module,exports){
+},{"react":242}],248:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -26594,7 +26551,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":242}],250:[function(require,module,exports){
+},{"react":242}],249:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -26613,7 +26570,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":242}],251:[function(require,module,exports){
+},{"react":242}],250:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -26634,7 +26591,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":242}],252:[function(require,module,exports){
+},{"react":242}],251:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -26655,7 +26612,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":242}],253:[function(require,module,exports){
+},{"react":242}],252:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -26676,11 +26633,11 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":242}],254:[function(require,module,exports){
+},{"react":242}],253:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.03 11:23"
+    VERSION: "2017.04.03 11:48"
 }
-},{}],255:[function(require,module,exports){
+},{}],254:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -26878,7 +26835,7 @@ module.exports = {
     Store: Store
 }
 
-},{"events":4,"flux":28,"object-assign":32}],256:[function(require,module,exports){
+},{"events":4,"flux":28,"object-assign":32}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -27096,7 +27053,7 @@ _QApi.Store.addPermissionCheckedListener(function(){
 setTimeout(function(){
 	_Strage.Action.getAuthentication();
 }, 1000);
-},{"./Contloller_Strage.js":255,"./Controller_Questetra_API.js":257,"events":4,"flux":28,"object-assign":32}],257:[function(require,module,exports){
+},{"./Contloller_Strage.js":254,"./Controller_Questetra_API.js":256,"events":4,"flux":28,"object-assign":32}],256:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -27448,7 +27405,7 @@ module.exports = {
     TypeOfSystemAuthorization:TYPE_OF_SYSTEM_AUTHORIZATION
 }
 
-},{"./Questetra_API.js":269,"events":4,"flux":28,"object-assign":32}],258:[function(require,module,exports){
+},{"./Questetra_API.js":270,"events":4,"flux":28,"object-assign":32}],257:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -27570,40 +27527,57 @@ module.exports = {
     Store: Store,
     ViewNames:VIEW_NAMES
 }
-},{"events":4,"flux":28,"object-assign":32}],259:[function(require,module,exports){
+},{"events":4,"flux":28,"object-assign":32}],258:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var Controller_View = require('./Controller_View.js');
+var _QApi = require('./Controller_Questetra_API.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
 
+	getInitialState: function getInitialState() {
+		var qUserId = this.props.quser_id;
+		return {
+			qUserId: qUserId,
+			blob: null
+		};
+	},
+	onGetAvater: function onGetAvater() {
+		if (this.isMounted()) {
+			var avaterBlob = _QApi.Store.getAvater(this.state.qUserId);
+			this.setState({
+				blob: avaterBlob
+			});
+		}
+	},
 	componentDidMount: function componentDidMount() {
-		// マウントされたとき
-		Controller_View.Action.setHasFooter(true);
+		_QApi.Store.addOnGetAvaterListener(this.state.qUserId, this.onGetAvater);
+		_QApi.Action.getAvater(this.state.qUserId);
 	},
 	componentWillUnmount: function componentWillUnmount() {
-		// アンマウントされるとき
-		Controller_View.Action.setHasFooter(false);
+		_QApi.Store.removeOnGetAvaterListener(this.state.qUserId, this.onGetAvater);
 	},
 	render: function render() {
-		return React.createElement(
-			'div',
-			{ id: 'footer', className: 'nav-items nav-items-h hidden-sm-up' },
-			this.props.children
-		);
+		if (this.state.blob) {
+			var style = {
+				backgroundImage: "url(" + this.state.blob + ")"
+			};
+			return React.createElement('div', { className: 'avater', style: style });
+		} else {
+			return React.createElement('div', { className: 'avater' });
+		}
 	}
 });
 
-},{"./Controller_View.js":258,"react":242}],260:[function(require,module,exports){
+},{"./Controller_Questetra_API.js":256,"react":242}],259:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var _Login = require('./Controller_Login.js');
 var _QApi = require('./Controller_Questetra_API.js');
 var Controller_View = require('./Controller_View.js');
-var Avater = require('./Avater.js');
+var Avater = require('./Elem_Avater.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -27693,7 +27667,118 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Avater.js":245,"./Controller_Login.js":256,"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"react":242}],261:[function(require,module,exports){
+},{"./Controller_Login.js":255,"./Controller_Questetra_API.js":256,"./Controller_View.js":257,"./Elem_Avater.js":258,"react":242}],260:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var _QApi = require('./Controller_Questetra_API.js');
+var Controller_View = require('./Controller_View.js');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+		var allocatedWorkitems = _QApi.Store.getAllocatedWorkitems();
+		var offeredWorkitems = _QApi.Store.getOfferedWorkitems();
+		return {
+			allocatedWorkitems: allocatedWorkitems,
+			offeredWorkitems: offeredWorkitems
+		};
+	},
+	componentDidMount: function componentDidMount() {
+		var self = this;
+
+		_QApi.Store.addChangeAllocatedWorkitemsListener(function () {
+			if (self.isMounted()) {
+				var allocatedWorkitems = _QApi.Store.getAllocatedWorkitems();
+				self.setState({
+					allocatedWorkitems: allocatedWorkitems
+				});
+			}
+		});
+
+		_QApi.Store.addChangeOfferedWorkitemsListener(function () {
+			if (self.isMounted()) {
+				var offeredWorkitems = _QApi.Store.getOfferedWorkitems();
+				self.setState({
+					offeredWorkitems: offeredWorkitems
+				});
+			}
+		});
+
+		_QApi.Action.getAllocatedWorkitems();
+		_QApi.Action.getOfferedWorkitems();
+	},
+	onClick: function onClick(e) {
+		e.preventDefault();
+		var viewName = e.target.getAttribute('data-viewname');
+		Controller_View.Action.setView(viewName);
+	},
+	render: function render() {
+		return React.createElement(
+			'div',
+			{ className: 'card', onClick: this.onClick, 'data-viewname': Controller_View.ViewNames.WORK },
+			React.createElement(
+				'div',
+				{ className: 'card-block' },
+				React.createElement(
+					'h4',
+					{ className: 'card-title' },
+					'Work!'
+				),
+				React.createElement(
+					'p',
+					{ className: 'card-text' },
+					'Hoge'
+				)
+			),
+			React.createElement(
+				'ul',
+				{ className: 'list-group list-group-flush' },
+				React.createElement(
+					'li',
+					{ className: 'list-group-item' },
+					'allocatedWorkitems ',
+					this.state.allocatedWorkitems.length
+				),
+				React.createElement(
+					'li',
+					{ className: 'list-group-item' },
+					'offeredWorkitems ',
+					this.state.offeredWorkitems.length
+				)
+			)
+		);
+	}
+});
+
+},{"./Controller_Questetra_API.js":256,"./Controller_View.js":257,"react":242}],261:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var Controller_View = require('./Controller_View.js');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	componentDidMount: function componentDidMount() {
+		// マウントされたとき
+		Controller_View.Action.setHasFooter(true);
+	},
+	componentWillUnmount: function componentWillUnmount() {
+		// アンマウントされるとき
+		Controller_View.Action.setHasFooter(false);
+	},
+	render: function render() {
+		return React.createElement(
+			'div',
+			{ id: 'footer', className: 'nav-items nav-items-h hidden-sm-up' },
+			this.props.children
+		);
+	}
+});
+
+},{"./Controller_View.js":257,"react":242}],262:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27781,7 +27866,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Button.js":246,"./Bootstrap_FormGroup.js":249,"./Bootstrap_FormInput.js":250,"./Bootstrap_FormLabel.js":251,"./Bootstrap_InputGroup.js":252,"./Controller_Login.js":256,"react":242}],262:[function(require,module,exports){
+},{"./Bootstrap_Button.js":245,"./Bootstrap_FormGroup.js":248,"./Bootstrap_FormInput.js":249,"./Bootstrap_FormLabel.js":250,"./Bootstrap_InputGroup.js":251,"./Controller_Login.js":255,"react":242}],263:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27808,7 +27893,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"react":242}],263:[function(require,module,exports){
+},{"./Bootstrap_Container.js":247,"./Bootstrap_Row.js":252,"react":242}],264:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27830,7 +27915,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./ScrollArea.js":270,"react":242}],264:[function(require,module,exports){
+},{"./ScrollArea.js":271,"react":242}],265:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27852,11 +27937,11 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./ScrollArea.js":270,"react":242}],265:[function(require,module,exports){
+},{"./ScrollArea.js":271,"react":242}],266:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
-var Header = require('./Header.js');
+var Header = require('./Elem_Header.js');
 var SettingMenu = require('./SettingMenu.js');
 var BuildInfo = require('./BuildInfo.js');
 
@@ -27916,7 +28001,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./BuildInfo.js":254,"./Header.js":260,"./SettingMenu.js":271,"react":242}],266:[function(require,module,exports){
+},{"./BuildInfo.js":253,"./Elem_Header.js":259,"./SettingMenu.js":272,"react":242}],267:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27964,7 +28049,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./View_AdminTools.js":272,"./View_Home.js":273,"./View_Work.js":275,"react":242}],267:[function(require,module,exports){
+},{"./Controller_View.js":257,"./View_AdminTools.js":273,"./View_Home.js":274,"./View_Work.js":275,"react":242}],268:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28019,7 +28104,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"./Controller_View.js":258,"react":242}],268:[function(require,module,exports){
+},{"./Controller_View.js":257,"react":242}],269:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28151,7 +28236,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./BuildInfo.js":254,"./Controller_Login.js":256,"./InputAuthForm.js":261,"./LoginedView.js":266,"react":242}],269:[function(require,module,exports){
+},{"./Bootstrap_Col.js":246,"./Bootstrap_Container.js":247,"./Bootstrap_Row.js":252,"./BuildInfo.js":253,"./Controller_Login.js":255,"./InputAuthForm.js":262,"./LoginedView.js":267,"react":242}],270:[function(require,module,exports){
 
 
 var QuestetraAPI = function(){
@@ -28315,7 +28400,7 @@ module.exports = {
     API:_QuestetraAPI
 }
 
-},{}],270:[function(require,module,exports){
+},{}],271:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -28331,7 +28416,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":242}],271:[function(require,module,exports){
+},{"react":242}],272:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28405,7 +28490,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Login.js":256,"./Controller_View.js":258,"react":242,"react-router":191}],272:[function(require,module,exports){
+},{"./Controller_Login.js":255,"./Controller_View.js":257,"react":242,"react-router":191}],273:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28442,7 +28527,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./Controller_View.js":258,"react":242}],273:[function(require,module,exports){
+},{"./Bootstrap_Col.js":246,"./Bootstrap_Container.js":247,"./Bootstrap_Row.js":252,"./Controller_View.js":257,"react":242}],274:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28456,7 +28541,7 @@ var LayoutBodyRight = require('./Layout_BodyRight.js');
 var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
 
-var TaskSummary = require('./View_Task_Summary.js');
+var TaskSummary = require('./Elem_Task_Summary.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -28522,91 +28607,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./Footer.js":259,"./Layout_Body.js":262,"./Layout_BodyLeft.js":263,"./Layout_BodyRight.js":264,"./Layout_Header.js":265,"./NavItem.js":267,"./View_Task_Summary.js":274,"react":242}],274:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var _QApi = require('./Controller_Questetra_API.js');
-var Controller_View = require('./Controller_View.js');
-
-module.exports = React.createClass({
-	displayName: 'exports',
-
-	getInitialState: function getInitialState() {
-		var allocatedWorkitems = _QApi.Store.getAllocatedWorkitems();
-		var offeredWorkitems = _QApi.Store.getOfferedWorkitems();
-		return {
-			allocatedWorkitems: allocatedWorkitems,
-			offeredWorkitems: offeredWorkitems
-		};
-	},
-	componentDidMount: function componentDidMount() {
-		var self = this;
-
-		_QApi.Store.addChangeAllocatedWorkitemsListener(function () {
-			if (self.isMounted()) {
-				var allocatedWorkitems = _QApi.Store.getAllocatedWorkitems();
-				self.setState({
-					allocatedWorkitems: allocatedWorkitems
-				});
-			}
-		});
-
-		_QApi.Store.addChangeOfferedWorkitemsListener(function () {
-			if (self.isMounted()) {
-				var offeredWorkitems = _QApi.Store.getOfferedWorkitems();
-				self.setState({
-					offeredWorkitems: offeredWorkitems
-				});
-			}
-		});
-
-		_QApi.Action.getAllocatedWorkitems();
-		_QApi.Action.getOfferedWorkitems();
-	},
-	onClick: function onClick(e) {
-		e.preventDefault();
-		Controller_View.Action.setView(Controller_View.ViewNames.ADMIN_TOOLS);
-	},
-	render: function render() {
-		return React.createElement(
-			'div',
-			{ className: 'card', onClick: this.onClick, 'data-viewname': Controller_View.ViewNames.ADMIN_TOOLS },
-			React.createElement(
-				'div',
-				{ className: 'card-block' },
-				React.createElement(
-					'h4',
-					{ className: 'card-title' },
-					'Work!'
-				),
-				React.createElement(
-					'p',
-					{ className: 'card-text' },
-					'Hoge'
-				)
-			),
-			React.createElement(
-				'ul',
-				{ className: 'list-group list-group-flush' },
-				React.createElement(
-					'li',
-					{ className: 'list-group-item' },
-					'allocatedWorkitems ',
-					this.state.allocatedWorkitems.length
-				),
-				React.createElement(
-					'li',
-					{ className: 'list-group-item' },
-					'offeredWorkitems ',
-					this.state.offeredWorkitems.length
-				)
-			)
-		);
-	}
-});
-
-},{"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"react":242}],275:[function(require,module,exports){
+},{"./Controller_View.js":257,"./Elem_Task_Summary.js":260,"./Footer.js":261,"./Layout_Body.js":263,"./Layout_BodyLeft.js":264,"./Layout_BodyRight.js":265,"./Layout_Header.js":266,"./NavItem.js":268,"react":242}],275:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28684,4 +28685,4 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./Footer.js":259,"./Layout_Body.js":262,"./Layout_BodyLeft.js":263,"./Layout_BodyRight.js":264,"./Layout_Header.js":265,"./NavItem.js":267,"react":242}]},{},[244]);
+},{"./Controller_View.js":257,"./Footer.js":261,"./Layout_Body.js":263,"./Layout_BodyLeft.js":264,"./Layout_BodyRight.js":265,"./Layout_Header.js":266,"./NavItem.js":268,"react":242}]},{},[244]);

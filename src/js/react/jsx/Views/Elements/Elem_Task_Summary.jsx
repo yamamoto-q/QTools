@@ -38,11 +38,12 @@ module.exports = React.createClass({
 	},
 	onClick:function(e){
 		e.preventDefault();
-		Controller_View.Action.setView(Controller_View.ViewNames.ADMIN_TOOLS);
+		var viewName = e.target.getAttribute('data-viewname');
+		Controller_View.Action.setView(viewName);
 	},
 	render: function() {
 		return(
-			<div className="card" onClick={this.onClick} data-viewname={Controller_View.ViewNames.ADMIN_TOOLS}>
+			<div className="card" onClick={this.onClick} data-viewname={Controller_View.ViewNames.WORK}>
 				<div className="card-block">
 					<h4 className="card-title">Work!</h4>
 					<p className="card-text">Hoge</p>

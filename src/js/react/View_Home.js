@@ -11,7 +11,7 @@ var LayoutBodyRight = require('./Layout_BodyRight.js');
 var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
 
-var TaskSummary = require('./View_Task_Summary.js');
+var TaskSummary = require('./Elem_Task_Summary.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',

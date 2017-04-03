@@ -1,5 +1,5 @@
 var React = require('react');
-var Header = require('./Header.js');
+var Header = require('./Elem_Header.js');
 var SettingMenu = require('./SettingMenu.js');
 var BuildInfo = require('./BuildInfo.js');
 
