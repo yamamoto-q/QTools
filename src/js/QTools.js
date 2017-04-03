@@ -26469,7 +26469,7 @@ var BuildInfo = require('./BuildInfo.js');
 	};
 })(window.jQuery);
 
-},{"./BuildInfo.js":253,"./QTools.js":270,"react":241,"react-dom":35}],245:[function(require,module,exports){
+},{"./BuildInfo.js":253,"./QTools.js":271,"react":241,"react-dom":35}],245:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -26670,7 +26670,7 @@ module.exports = React.createClass({
 
 },{"react":241}],253:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.03 12:31"
+    VERSION: "2017.04.03 12:34"
 }
 },{}],254:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27440,7 +27440,7 @@ module.exports = {
     TypeOfSystemAuthorization:TYPE_OF_SYSTEM_AUTHORIZATION
 }
 
-},{"./Questetra_API.js":271,"events":4,"flux":28,"object-assign":32}],257:[function(require,module,exports){
+},{"./Questetra_API.js":272,"events":4,"flux":28,"object-assign":32}],257:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -27739,6 +27739,26 @@ module.exports = React.createClass({
 'use strict';
 
 var React = require('react');
+
+var ListViewSwitcher = require('./Elem_ListViewSwitcher.js');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	render: function render() {
+		return React.createElement(
+			'div',
+			{ className: 'scroll-area' },
+			React.createElement(ListViewSwitcher, null),
+			'Elem_MyWorkitemList'
+		);
+	}
+});
+
+},{"./Elem_ListViewSwitcher.js":260,"react":241}],262:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
 var _QApi = require('./Controller_Questetra_API.js');
 var Controller_View = require('./Controller_View.js');
 
@@ -27820,7 +27840,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Questetra_API.js":256,"./Controller_View.js":257,"react":241}],262:[function(require,module,exports){
+},{"./Controller_Questetra_API.js":256,"./Controller_View.js":257,"react":241}],263:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27846,7 +27866,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":257,"react":241}],263:[function(require,module,exports){
+},{"./Controller_View.js":257,"react":241}],264:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27934,7 +27954,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Button.js":245,"./Bootstrap_FormGroup.js":248,"./Bootstrap_FormInput.js":249,"./Bootstrap_FormLabel.js":250,"./Bootstrap_InputGroup.js":251,"./Controller_Login.js":255,"react":241}],264:[function(require,module,exports){
+},{"./Bootstrap_Button.js":245,"./Bootstrap_FormGroup.js":248,"./Bootstrap_FormInput.js":249,"./Bootstrap_FormLabel.js":250,"./Bootstrap_InputGroup.js":251,"./Controller_Login.js":255,"react":241}],265:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27961,7 +27981,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Container.js":247,"./Bootstrap_Row.js":252,"react":241}],265:[function(require,module,exports){
+},{"./Bootstrap_Container.js":247,"./Bootstrap_Row.js":252,"react":241}],266:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27983,7 +28003,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./ScrollArea.js":272,"react":241}],266:[function(require,module,exports){
+},{"./ScrollArea.js":273,"react":241}],267:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28005,7 +28025,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./ScrollArea.js":272,"react":241}],267:[function(require,module,exports){
+},{"./ScrollArea.js":273,"react":241}],268:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28069,7 +28089,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./BuildInfo.js":253,"./Elem_Header.js":259,"./SettingMenu.js":273,"react":241}],268:[function(require,module,exports){
+},{"./BuildInfo.js":253,"./Elem_Header.js":259,"./SettingMenu.js":274,"react":241}],269:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28117,7 +28137,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":257,"./View_AdminTools.js":274,"./View_Home.js":275,"./View_Work.js":276,"react":241}],269:[function(require,module,exports){
+},{"./Controller_View.js":257,"./View_AdminTools.js":275,"./View_Home.js":276,"./View_Work.js":277,"react":241}],270:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28172,7 +28192,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"./Controller_View.js":257,"react":241}],270:[function(require,module,exports){
+},{"./Controller_View.js":257,"react":241}],271:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28304,7 +28324,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Col.js":246,"./Bootstrap_Container.js":247,"./Bootstrap_Row.js":252,"./BuildInfo.js":253,"./Controller_Login.js":255,"./InputAuthForm.js":263,"./LoginedView.js":268,"react":241}],271:[function(require,module,exports){
+},{"./Bootstrap_Col.js":246,"./Bootstrap_Container.js":247,"./Bootstrap_Row.js":252,"./BuildInfo.js":253,"./Controller_Login.js":255,"./InputAuthForm.js":264,"./LoginedView.js":269,"react":241}],272:[function(require,module,exports){
 
 
 var QuestetraAPI = function(){
@@ -28468,7 +28488,7 @@ module.exports = {
     API:_QuestetraAPI
 }
 
-},{}],272:[function(require,module,exports){
+},{}],273:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -28484,7 +28504,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":241}],273:[function(require,module,exports){
+},{"react":241}],274:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28558,7 +28578,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Login.js":255,"./Controller_View.js":257,"react":241,"react-router":191}],274:[function(require,module,exports){
+},{"./Controller_Login.js":255,"./Controller_View.js":257,"react":241,"react-router":191}],275:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28595,7 +28615,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Col.js":246,"./Bootstrap_Container.js":247,"./Bootstrap_Row.js":252,"./Controller_View.js":257,"react":241}],275:[function(require,module,exports){
+},{"./Bootstrap_Col.js":246,"./Bootstrap_Container.js":247,"./Bootstrap_Row.js":252,"./Controller_View.js":257,"react":241}],276:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28675,7 +28695,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":257,"./Elem_Task_Summary.js":261,"./Footer.js":262,"./Layout_Body.js":264,"./Layout_BodyLeft.js":265,"./Layout_BodyRight.js":266,"./Layout_Header.js":267,"./NavItem.js":269,"react":241}],276:[function(require,module,exports){
+},{"./Controller_View.js":257,"./Elem_Task_Summary.js":262,"./Footer.js":263,"./Layout_Body.js":265,"./Layout_BodyLeft.js":266,"./Layout_BodyRight.js":267,"./Layout_Header.js":268,"./NavItem.js":270,"react":241}],277:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28689,7 +28709,7 @@ var LayoutBodyRight = require('./Layout_BodyRight.js');
 var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
 
-var ListViewSwitcher = require('./Elem_ListViewSwitcher.js');
+var MyWorkitemList = require('./Elem_MyWorkitemList.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -28729,7 +28749,7 @@ module.exports = React.createClass({
 				React.createElement(
 					LayoutBodyRight,
 					null,
-					React.createElement(ListViewSwitcher, null)
+					React.createElement(MyWorkitemList, null)
 				)
 			),
 			React.createElement(
@@ -28755,4 +28775,4 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":257,"./Elem_ListViewSwitcher.js":260,"./Footer.js":262,"./Layout_Body.js":264,"./Layout_BodyLeft.js":265,"./Layout_BodyRight.js":266,"./Layout_Header.js":267,"./NavItem.js":269,"react":241}]},{},[244]);
+},{"./Controller_View.js":257,"./Elem_MyWorkitemList.js":261,"./Footer.js":263,"./Layout_Body.js":265,"./Layout_BodyLeft.js":266,"./Layout_BodyRight.js":267,"./Layout_Header.js":268,"./NavItem.js":270,"react":241}]},{},[244]);

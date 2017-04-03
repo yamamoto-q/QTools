@@ -9,7 +9,7 @@ var LayoutBodyRight = require('./Layout_BodyRight.js');
 var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
 
-var ListViewSwitcher = require('./Elem_ListViewSwitcher.js');
+var MyWorkitemList = require('./Elem_MyWorkitemList.js');
 
 module.exports = React.createClass({
 	componentDidMount: function() {
@@ -28,7 +28,7 @@ module.exports = React.createClass({
 						<NavItem icon="chat_bubble">C</NavItem>
 					</LayoutBodyLeft>
 					<LayoutBodyRight>
-						<ListViewSwitcher />
+						<MyWorkitemList />
 						
 					</LayoutBodyRight>
 				</LayoutBody>
