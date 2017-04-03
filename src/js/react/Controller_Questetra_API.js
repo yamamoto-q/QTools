@@ -293,7 +293,7 @@ var Store = assign({}, EventEmitter.prototype, {
 
                 _state.allocatedWorkitems.isResultWaiting = true;
                 _API.API.PEWorkitemListAllocated(function(data){
-                    var oldHash = _state.allocatedWorkitem.hash;
+                    var oldHash = _state.allocatedWorkitems.hash;
                     var hash = md5(JSON.stringify(data.workitems));
 
                     _state.allocatedWorkitems = {

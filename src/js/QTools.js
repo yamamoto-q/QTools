@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.03 13:53"
+    VERSION: "2017.04.03 13:56"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27638,7 +27638,7 @@ var Store = assign({}, EventEmitter.prototype, {
 
                 _state.allocatedWorkitems.isResultWaiting = true;
                 _API.API.PEWorkitemListAllocated(function(data){
-                    var oldHash = _state.allocatedWorkitem.hash;
+                    var oldHash = _state.allocatedWorkitems.hash;
                     var hash = md5(JSON.stringify(data.workitems));
 
                     _state.allocatedWorkitems = {
