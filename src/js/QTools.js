@@ -26463,7 +26463,7 @@ module.exports = React.createClass({
 		_QApi.Action.getAvater(this.state.qUserId);
 	},
 	componentWillUnmount: function componentWillUnmount() {
-		_Login.Store.removeOnGetAvaterListener(this.state.qUserId, this.onGetAvater);
+		_QApi.Store.removeOnGetAvaterListener(this.state.qUserId, this.onGetAvater);
 	},
 	render: function render() {
 		if (this.state.blob) {
@@ -26678,7 +26678,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.03.31 19:34"
+    VERSION: "2017.04.03 11:17"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;

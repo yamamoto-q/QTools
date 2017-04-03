@@ -26,7 +26,7 @@ module.exports = React.createClass({
 		_QApi.Action.getAvater(this.state.qUserId);
 	},
 	componentWillUnmount: function componentWillUnmount() {
-		_Login.Store.removeOnGetAvaterListener(this.state.qUserId, this.onGetAvater);
+		_QApi.Store.removeOnGetAvaterListener(this.state.qUserId, this.onGetAvater);
 	},
 	render: function render() {
 		if (this.state.blob) {
