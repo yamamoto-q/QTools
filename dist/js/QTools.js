@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.03 15:12"
+    VERSION: "2017.04.03 15:15"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28082,7 +28082,7 @@ module.exports = React.createClass({
 			}
 		});
 
-		Ctr_QApi.Action.startCheckWorkItems();
+		setTimeout(_QApi.Action.startCheckWorkItems(), 250);
 	},
 	render: function render() {
 		console.log(this.state.workitems);
@@ -28134,7 +28134,7 @@ module.exports = React.createClass({
 			}
 		});
 
-		_QApi.Action.startCheckWorkItems();
+		setTimeout(_QApi.Action.startCheckWorkItems(), 250);
 	},
 	onClick: function onClick(e) {
 		e.preventDefault();

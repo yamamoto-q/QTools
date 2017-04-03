@@ -43,7 +43,7 @@ module.exports = React.createClass({
 			}
 		});
 
-		Ctr_QApi.Action.startCheckWorkItems();
+		setTimeout(_QApi.Action.startCheckWorkItems(), 250);
 	},
 	render: function render() {
 		console.log(this.state.workitems);
