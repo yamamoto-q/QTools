@@ -304,16 +304,14 @@ var Store = assign({}, EventEmitter.prototype, {
                     }
 
                     if(oldHash != hash){
+                        // 変化があれば発火する
                         Store.emitChangeAllocatedWorkitems();
-                    }
-                    
+                    } 
 
                 }, function(jqXHR, textStatus){
                     // fail
                     console.log(jqXHR, textStatus);
-                    _state.allocatedWorkitems = {
-                        isResultWaiting : false
-                    }
+                    _state.allocatedWorkitems.isResultWaiting = false;
                 });
                 break;
 
@@ -335,12 +333,14 @@ var Store = assign({}, EventEmitter.prototype, {
                     }
 
                     if(oldHash != hash){
+                        // 変化があれば発火する
                         Store.emitChangeOfferedWorkitems();
                     }
 
                 }, function(jqXHR, textStatus){
                     // fail
                     console.log(jqXHR, textStatus);
+                    _state.offeredWorkitems.isResultWaiting = false;
                 });
                 break;
 

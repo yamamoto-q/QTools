@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.03 13:56"
+    VERSION: "2017.04.03 13:58"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27649,16 +27649,14 @@ var Store = assign({}, EventEmitter.prototype, {
                     }
 
                     if(oldHash != hash){
+                        // 変化があれば発火する
                         Store.emitChangeAllocatedWorkitems();
-                    }
-                    
+                    } 
 
                 }, function(jqXHR, textStatus){
                     // fail
                     console.log(jqXHR, textStatus);
-                    _state.allocatedWorkitems = {
-                        isResultWaiting : false
-                    }
+                    _state.allocatedWorkitems.isResultWaiting = false;
                 });
                 break;
 
@@ -27680,12 +27678,14 @@ var Store = assign({}, EventEmitter.prototype, {
                     }
 
                     if(oldHash != hash){
+                        // 変化があれば発火する
                         Store.emitChangeOfferedWorkitems();
                     }
 
                 }, function(jqXHR, textStatus){
                     // fail
                     console.log(jqXHR, textStatus);
+                    _state.offeredWorkitems.isResultWaiting = false;
                 });
                 break;
 
