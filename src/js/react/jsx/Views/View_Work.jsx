@@ -9,6 +9,8 @@ var LayoutBodyRight = require('./Layout_BodyRight.js');
 var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
 
+var ListViewSwitcher = require('./Elem_ListViewSwitcher.js');
+
 module.exports = React.createClass({
 	componentDidMount: function() {
 		$("body").addClass('view-' + Controller_View.ViewNames.WORK);
@@ -26,7 +28,8 @@ module.exports = React.createClass({
 						<NavItem icon="chat_bubble">C</NavItem>
 					</LayoutBodyLeft>
 					<LayoutBodyRight>
-						Work
+						<ListViewSwitcher />
+						
 					</LayoutBodyRight>
 				</LayoutBody>
 				<Footer>

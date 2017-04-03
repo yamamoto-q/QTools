@@ -60,6 +60,7 @@ module.exports = function(grunt) {
                     { 'src/js/react/Elem_Header.js': 'src/js/react/jsx/Views/Elements/Elem_Header.jsx' },
                     { 'src/js/react/Elem_Avater.js': 'src/js/react/jsx/Views/Elements/Elem_Avater.jsx' },
                     { 'src/js/react/Elem_Task_Summary.js': 'src/js/react/jsx/Views/Elements/Elem_Task_Summary.jsx' },
+                    { 'src/js/react/Elem_ListViewSwitcher.js': 'src/js/react/jsx/Views/Elements/Elem_ListViewSwitcher.jsx' },
                     // Bootstrap
                     { 'src/js/react/Bootstrap_Row.js': 'src/js/react/jsx/Bootstrap/row.jsx' },
                     { 'src/js/react/Bootstrap_Container.js': 'src/js/react/jsx/Bootstrap/container.jsx' },
