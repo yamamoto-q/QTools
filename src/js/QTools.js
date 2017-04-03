@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.03 13:44"
+    VERSION: "2017.04.03 13:53"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27435,9 +27435,15 @@ var _state = {
     allocatedWorkitems : {
         isResultWaiting:false,
         workitems:[],
-        update:0
+        update:0,
+        hash:null
     },
-    offeredWorkitems : [],
+    offeredWorkitems : {
+        isResultWaiting:false,
+        workitems:[],
+        update:0,
+        hash:null
+    },
     userQuserSelf:null,
     resopnses:{}
 };
@@ -27453,7 +27459,7 @@ var Store = assign({}, EventEmitter.prototype, {
         return _state.allocatedWorkitems.workitems;
     },
     getOfferedWorkitems:function(){
-        return _state.offeredWorkitems;
+        return _state.offeredWorkitems.workitems;
     },
     getPermission:function(){
         return _state.permission;
@@ -27632,17 +27638,20 @@ var Store = assign({}, EventEmitter.prototype, {
 
                 _state.allocatedWorkitems.isResultWaiting = true;
                 _API.API.PEWorkitemListAllocated(function(data){
+                    var oldHash = _state.allocatedWorkitem.hash;
+                    var hash = md5(JSON.stringify(data.workitems));
 
                     _state.allocatedWorkitems = {
                         isResultWaiting : false,
                         workitems : data.workitems,
-                        update : Store.getTimestamp()
+                        update : Store.getTimestamp(),
+                        hash:hash
                     }
 
-                    var hash = md5(JSON.stringify(data.workitems));
-                    console.log(hash);
-
-                    Store.emitChangeAllocatedWorkitems();
+                    if(oldHash != hash){
+                        Store.emitChangeAllocatedWorkitems();
+                    }
+                    
 
                 }, function(jqXHR, textStatus){
                     // fail
@@ -27654,9 +27663,25 @@ var Store = assign({}, EventEmitter.prototype, {
                 break;
 
             case "getOfferedWorkitems":
+                if(_state.offeredWorkitems.isResultWaiting || Store.getTimestamp() - _state.offeredWorkitems.update < 30){
+                    console.log("Cancel");
+                    return;
+                }
+
                 _API.API.PEWorkitemListOffered(function(data){
-                    _state.offeredWorkitems = data.workitems;
-                    Store.emitChangeOfferedWorkitems();
+                    var oldHash = _state.offeredWorkitems.hash;
+                    var hash = md5(JSON.stringify(data.workitems));
+
+                    _state.offeredWorkitems = {
+                        isResultWaiting : false,
+                        workitems:data.workitems,
+                        update : Store.getTimestamp(),
+                        hash:hash
+                    }
+
+                    if(oldHash != hash){
+                        Store.emitChangeOfferedWorkitems();
+                    }
 
                 }, function(jqXHR, textStatus){
                     // fail
