@@ -1,11 +1,11 @@
 var React = require('react');
-var _QApi = require('./Controller_Questetra_API.js');
+var Ctr_QApi = require('./Controller_Questetra_API.js');
 var Controller_View = require('./Controller_View.js');
 
 module.exports = React.createClass({
 	getInitialState: function() {
-		var allocatedWorkitems = _QApi.Store.getAllocatedWorkitems();
-		var offeredWorkitems = _QApi.Store.getOfferedWorkitems();
+		var allocatedWorkitems = Ctr_QApi.Store.getAllocatedWorkitems();
+		var offeredWorkitems = Ctr_QApi.Store.getOfferedWorkitems();
 		return {
 			allocatedWorkitems:allocatedWorkitems,
 			offeredWorkitems:offeredWorkitems
@@ -14,9 +14,9 @@ module.exports = React.createClass({
 	componentDidMount: function() {
 		var self = this;
 
-		_QApi.Store.addChangeAllocatedWorkitemsListener(function(){
+		Ctr_QApi.Store.addChangeAllocatedWorkitemsListener(function(){
 			if (self.isMounted()) {
-				var allocatedWorkitems = _QApi.Store.getAllocatedWorkitems();
+				var allocatedWorkitems = Ctr_QApi.Store.getAllocatedWorkitems();
 				self.setState({
 					allocatedWorkitems:allocatedWorkitems
 				});
@@ -24,16 +24,16 @@ module.exports = React.createClass({
 			}
 		});
 
-		_QApi.Store.addChangeOfferedWorkitemsListener(function(){
+		Ctr_QApi.Store.addChangeOfferedWorkitemsListener(function(){
 			if (self.isMounted()) {
-				var offeredWorkitems = _QApi.Store.getOfferedWorkitems();
+				var offeredWorkitems = Ctr_QApi.Store.getOfferedWorkitems();
 				self.setState({
 					offeredWorkitems:offeredWorkitems
 				});
 			}
 		});
 
-		_QApi.Action.startCheckWorkItems();
+		Ctr_QApi.Action.startCheckWorkItems();
 	},
 	onClick:function(e){
 		e.preventDefault();

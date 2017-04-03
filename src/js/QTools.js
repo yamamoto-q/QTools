@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.03 15:30"
+    VERSION: "2017.04.03 15:34"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28096,7 +28096,7 @@ module.exports = React.createClass({
 			}
 		});
 
-		_QApi.Action.startCheckWorkItems();
+		Ctr_QApi.Action.startCheckWorkItems();
 	},
 	render: function render() {
 		console.log(this.state.workitems);
@@ -28113,15 +28113,15 @@ module.exports = React.createClass({
 'use strict';
 
 var React = require('react');
-var _QApi = require('./Controller_Questetra_API.js');
+var Ctr_QApi = require('./Controller_Questetra_API.js');
 var Controller_View = require('./Controller_View.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
-		var allocatedWorkitems = _QApi.Store.getAllocatedWorkitems();
-		var offeredWorkitems = _QApi.Store.getOfferedWorkitems();
+		var allocatedWorkitems = Ctr_QApi.Store.getAllocatedWorkitems();
+		var offeredWorkitems = Ctr_QApi.Store.getOfferedWorkitems();
 		return {
 			allocatedWorkitems: allocatedWorkitems,
 			offeredWorkitems: offeredWorkitems
@@ -28130,25 +28130,25 @@ module.exports = React.createClass({
 	componentDidMount: function componentDidMount() {
 		var self = this;
 
-		_QApi.Store.addChangeAllocatedWorkitemsListener(function () {
+		Ctr_QApi.Store.addChangeAllocatedWorkitemsListener(function () {
 			if (self.isMounted()) {
-				var allocatedWorkitems = _QApi.Store.getAllocatedWorkitems();
+				var allocatedWorkitems = Ctr_QApi.Store.getAllocatedWorkitems();
 				self.setState({
 					allocatedWorkitems: allocatedWorkitems
 				});
 			}
 		});
 
-		_QApi.Store.addChangeOfferedWorkitemsListener(function () {
+		Ctr_QApi.Store.addChangeOfferedWorkitemsListener(function () {
 			if (self.isMounted()) {
-				var offeredWorkitems = _QApi.Store.getOfferedWorkitems();
+				var offeredWorkitems = Ctr_QApi.Store.getOfferedWorkitems();
 				self.setState({
 					offeredWorkitems: offeredWorkitems
 				});
 			}
 		});
 
-		_QApi.Action.startCheckWorkItems();
+		Ctr_QApi.Action.startCheckWorkItems();
 	},
 	onClick: function onClick(e) {
 		e.preventDefault();

@@ -40,7 +40,7 @@ module.exports = React.createClass({
 			}
 		});
 
-		_QApi.Action.startCheckWorkItems();
+		Ctr_QApi.Action.startCheckWorkItems();
 	},
 	render: function() {
 		console.log(this.state.workitems);
