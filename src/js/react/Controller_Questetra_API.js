@@ -35,11 +35,13 @@ var Action = {
     },
     startCheckWorkItems:function(){
         // マイタスクの定期チェックを開始する
-        dispatcher.dispatch({
-            actionType: "startCheckWorkItems",
-            value: {
-            }
-        });
+        setTimeout(function(){
+            dispatcher.dispatch({
+                actionType: "startCheckWorkItems",
+                value: {
+                }
+            });
+        },250)
     },
     getWorkitems:function(){
         // マイタスクの一覧を取得する
@@ -309,10 +311,8 @@ var Store = assign({}, EventEmitter.prototype, {
                         Action.getOfferedWorkitems();
                     },30000);
                 }
-                setTimeout(Action.startCheckWorkItems(), 250);
-                setTimeout(Action.getOfferedWorkitems(), 250);
-                //Action.getAllocatedWorkitems();
-                //Action.getOfferedWorkitems();
+                Action.getAllocatedWorkitems();
+                Action.getOfferedWorkitems();
                 break;
 
             case"getWorkitems":
