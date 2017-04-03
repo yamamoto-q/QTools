@@ -33,6 +33,14 @@ var Action = {
             }
         });
     },
+    startCheckWorkItems:function(){
+        // マイタスクの定期チェックを開始する
+        dispatcher.dispatch({
+            actionType: "startCheckWorkItems",
+            value: {
+            }
+        });
+    },
     getAllocatedWorkitems:function(){
         // マイタスクの一覧を取得する
         dispatcher.dispatch({
@@ -87,6 +95,7 @@ var _state = {
         isUserManager:false,
         isProcessModelCreator:false
     },
+    workitemCheckTimer:null,
     allocatedWorkitems : {
         isResultWaiting:false,
         workitems:[],
@@ -283,6 +292,17 @@ var Store = assign({}, EventEmitter.prototype, {
                     }
                 });
 
+                break;
+
+            case "startCheckWorkItems":
+                if(_state.workitemCheckTimer == null){
+                    _state.workitemCheckTimer = setInterval(function(){
+                        Action.getAllocatedWorkitems();
+                        Action.getOfferedWorkitems();
+                    },30000);
+                }
+                Action.getAllocatedWorkitems();
+                Action.getOfferedWorkitems();
                 break;
 
             case "getAllocatedWorkitems":

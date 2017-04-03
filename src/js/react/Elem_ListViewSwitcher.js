@@ -11,19 +11,19 @@ module.exports = React.createClass({
 			React.createElement(
 				"label",
 				{ className: "btn btn-primary active" },
-				React.createElement("input", { type: "radio", name: "options", id: "option1", autocomplete: "off" }),
+				React.createElement("input", { type: "radio", name: "options", id: "option1", autoComplete: "off" }),
 				" A"
 			),
 			React.createElement(
 				"label",
 				{ className: "btn btn-primary" },
-				React.createElement("input", { type: "radio", name: "options", id: "option2", autocomplete: "off" }),
+				React.createElement("input", { type: "radio", name: "options", id: "option2", autoComplete: "off" }),
 				" B"
 			),
 			React.createElement(
 				"label",
 				{ className: "btn btn-primary" },
-				React.createElement("input", { type: "radio", name: "options", id: "option3", autocomplete: "off" }),
+				React.createElement("input", { type: "radio", name: "options", id: "option3", autoComplete: "off" }),
 				" C"
 			)
 		);

@@ -36,8 +36,7 @@ module.exports = React.createClass({
 			}
 		});
 
-		_QApi.Action.getAllocatedWorkitems();
-		_QApi.Action.getOfferedWorkitems();
+		_QApi.Action.startCheckWorkItems();
 	},
 	onClick: function onClick(e) {
 		e.preventDefault();

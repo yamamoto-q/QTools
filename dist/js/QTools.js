@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.03 13:58"
+    VERSION: "2017.04.03 15:12"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27378,6 +27378,14 @@ var Action = {
             }
         });
     },
+    startCheckWorkItems:function(){
+        // マイタスクの定期チェックを開始する
+        dispatcher.dispatch({
+            actionType: "startCheckWorkItems",
+            value: {
+            }
+        });
+    },
     getAllocatedWorkitems:function(){
         // マイタスクの一覧を取得する
         dispatcher.dispatch({
@@ -27432,6 +27440,7 @@ var _state = {
         isUserManager:false,
         isProcessModelCreator:false
     },
+    workitemCheckTimer:null,
     allocatedWorkitems : {
         isResultWaiting:false,
         workitems:[],
@@ -27628,6 +27637,17 @@ var Store = assign({}, EventEmitter.prototype, {
                     }
                 });
 
+                break;
+
+            case "startCheckWorkItems":
+                if(_state.workitemCheckTimer == null){
+                    _state.workitemCheckTimer = setInterval(function(){
+                        Action.getAllocatedWorkitems();
+                        Action.getOfferedWorkitems();
+                    },30000);
+                }
+                Action.getAllocatedWorkitems();
+                Action.getOfferedWorkitems();
                 break;
 
             case "getAllocatedWorkitems":
@@ -27997,19 +28017,19 @@ module.exports = React.createClass({
 			React.createElement(
 				"label",
 				{ className: "btn btn-primary active" },
-				React.createElement("input", { type: "radio", name: "options", id: "option1", autocomplete: "off" }),
+				React.createElement("input", { type: "radio", name: "options", id: "option1", autoComplete: "off" }),
 				" A"
 			),
 			React.createElement(
 				"label",
 				{ className: "btn btn-primary" },
-				React.createElement("input", { type: "radio", name: "options", id: "option2", autocomplete: "off" }),
+				React.createElement("input", { type: "radio", name: "options", id: "option2", autoComplete: "off" }),
 				" B"
 			),
 			React.createElement(
 				"label",
 				{ className: "btn btn-primary" },
-				React.createElement("input", { type: "radio", name: "options", id: "option3", autocomplete: "off" }),
+				React.createElement("input", { type: "radio", name: "options", id: "option3", autoComplete: "off" }),
 				" C"
 			)
 		);
@@ -28062,8 +28082,7 @@ module.exports = React.createClass({
 			}
 		});
 
-		Ctr_QApi.Action.getAllocatedWorkitems();
-		Ctr_QApi.Action.getOfferedWorkitems();
+		Ctr_QApi.Action.startCheckWorkItems();
 	},
 	render: function render() {
 		console.log(this.state.workitems);
@@ -28115,8 +28134,7 @@ module.exports = React.createClass({
 			}
 		});
 
-		_QApi.Action.getAllocatedWorkitems();
-		_QApi.Action.getOfferedWorkitems();
+		_QApi.Action.startCheckWorkItems();
 	},
 	onClick: function onClick(e) {
 		e.preventDefault();
