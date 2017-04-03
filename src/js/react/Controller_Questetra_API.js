@@ -184,6 +184,76 @@ var Store = assign({}, EventEmitter.prototype, {
         var date = new Date() ;
         return Math.floor( date.getTime() / 1000 ) ;
     },
+    _getAllocatedWorkitems(cb){
+        if(_state.allocatedWorkitems.isResultWaiting || Store.getTimestamp() - _state.allocatedWorkitems.update < 30){
+            console.log("Cancel");
+            cb(false);
+            return;
+        }
+
+        _state.allocatedWorkitems.isResultWaiting = true;
+        _API.API.PEWorkitemListAllocated(function(data){
+            var oldHash = _state.allocatedWorkitems.hash;
+            var hash = md5(JSON.stringify(data.workitems));
+
+            _state.allocatedWorkitems = {
+                isResultWaiting : false,
+                workitems : data.workitems,
+                update : Store.getTimestamp(),
+                hash:hash
+            }
+
+            if(oldHash != hash){
+                // 変化があれば発火する
+                cb(true);
+                return;
+            }
+            cb(false);
+            return;
+
+        }, function(jqXHR, textStatus){
+            // fail
+            console.log(jqXHR, textStatus);
+            _state.allocatedWorkitems.isResultWaiting = false;
+            cb(false);
+            return;
+        });
+    },
+    _getOfferedWorkitems(cb){
+        if(_state.offeredWorkitems.isResultWaiting || Store.getTimestamp() - _state.offeredWorkitems.update < 30){
+            console.log("Cancel");
+            cb(false);
+            return;
+        }
+
+        _API.API.PEWorkitemListOffered(function(data){
+            var oldHash = _state.offeredWorkitems.hash;
+            var hash = md5(JSON.stringify(data.workitems));
+
+            _state.offeredWorkitems = {
+                isResultWaiting : false,
+                workitems:data.workitems,
+                update : Store.getTimestamp(),
+                hash:hash
+            }
+
+            if(oldHash != hash){
+                // 変化があれば発火する
+                
+                cb(true);
+                return;
+            }
+            cb(false);
+            return;
+
+        }, function(jqXHR, textStatus){
+            // fail
+            console.log(jqXHR, textStatus);
+            _state.offeredWorkitems.isResultWaiting = false;
+            cb(false);
+            return;
+        });
+    },
     // Dispacher
     dispatcherIndex: dispatcher.register(function(payload) {
         switch (payload.actionType) {
@@ -320,61 +390,18 @@ var Store = assign({}, EventEmitter.prototype, {
                 break;
 
             case "getAllocatedWorkitems":
-                if(_state.allocatedWorkitems.isResultWaiting || Store.getTimestamp() - _state.allocatedWorkitems.update < 30){
-                    console.log("Cancel");
-                    return;
-                }
-
-                _state.allocatedWorkitems.isResultWaiting = true;
-                _API.API.PEWorkitemListAllocated(function(data){
-                    var oldHash = _state.allocatedWorkitems.hash;
-                    var hash = md5(JSON.stringify(data.workitems));
-
-                    _state.allocatedWorkitems = {
-                        isResultWaiting : false,
-                        workitems : data.workitems,
-                        update : Store.getTimestamp(),
-                        hash:hash
+                Store._getAllocatedWorkitems(function(change){
+                    if(change){
+                       Store.emitChangeAllocatedWorkitems(); 
                     }
-
-                    if(oldHash != hash){
-                        // 変化があれば発火する
-                        Store.emitChangeAllocatedWorkitems();
-                    } 
-
-                }, function(jqXHR, textStatus){
-                    // fail
-                    console.log(jqXHR, textStatus);
-                    _state.allocatedWorkitems.isResultWaiting = false;
                 });
                 break;
 
             case "getOfferedWorkitems":
-                if(_state.offeredWorkitems.isResultWaiting || Store.getTimestamp() - _state.offeredWorkitems.update < 30){
-                    console.log("Cancel");
-                    return;
-                }
-
-                _API.API.PEWorkitemListOffered(function(data){
-                    var oldHash = _state.offeredWorkitems.hash;
-                    var hash = md5(JSON.stringify(data.workitems));
-
-                    _state.offeredWorkitems = {
-                        isResultWaiting : false,
-                        workitems:data.workitems,
-                        update : Store.getTimestamp(),
-                        hash:hash
-                    }
-
-                    if(oldHash != hash){
-                        // 変化があれば発火する
+                Store._getOfferedWorkitems(function(change){
+                    if(change){
                         Store.emitChangeOfferedWorkitems();
                     }
-
-                }, function(jqXHR, textStatus){
-                    // fail
-                    console.log(jqXHR, textStatus);
-                    _state.offeredWorkitems.isResultWaiting = false;
                 });
                 break;
 
