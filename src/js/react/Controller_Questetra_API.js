@@ -185,7 +185,7 @@ var Store = assign({}, EventEmitter.prototype, {
         return Math.floor( date.getTime() / 1000 ) ;
     },
     _getAllocatedWorkitems(cb){
-        if(_state.allocatedWorkitems.isResultWaiting || Store.getTimestamp() - _state.allocatedWorkitems.update < 30){
+        if(_state.allocatedWorkitems.isResultWaiting || Store.getTimestamp() - _state.allocatedWorkitems.update < 25){
             console.log("Cancel");
             cb(false);
             return;
@@ -220,7 +220,7 @@ var Store = assign({}, EventEmitter.prototype, {
         });
     },
     _getOfferedWorkitems(cb){
-        if(_state.offeredWorkitems.isResultWaiting || Store.getTimestamp() - _state.offeredWorkitems.update < 30){
+        if(_state.offeredWorkitems.isResultWaiting || Store.getTimestamp() - _state.offeredWorkitems.update < 25){
             console.log("Cancel");
             cb(false);
             return;
@@ -381,6 +381,7 @@ var Store = assign({}, EventEmitter.prototype, {
                         Action.getOfferedWorkitems();
                     },30000);
                 }
+                console.log("startCheckWorkItems");
                 Action.getAllocatedWorkitems();
                 Action.getOfferedWorkitems();
                 break;
