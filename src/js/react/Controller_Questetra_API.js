@@ -1,3 +1,4 @@
+var md5 = require('md5-node');
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -293,7 +294,8 @@ var Store = assign({}, EventEmitter.prototype, {
                         update : Store.getTimestamp()
                     }
 
-                    console.log(data.workitems);
+                    var hash = md5(JSON.stringify(data.workitems));
+                    console.log(hash);
 
                     Store.emitChangeAllocatedWorkitems();
 
