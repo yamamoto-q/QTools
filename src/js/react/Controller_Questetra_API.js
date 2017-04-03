@@ -41,6 +41,14 @@ var Action = {
             }
         });
     },
+    getWorkitems:function(){
+        // マイタスクの一覧を取得する
+        dispatcher.dispatch({
+            actionType: "getWorkitems",
+            value: {
+            }
+        });
+    },
     getAllocatedWorkitems:function(){
         // マイタスクの一覧を取得する
         dispatcher.dispatch({
@@ -301,8 +309,14 @@ var Store = assign({}, EventEmitter.prototype, {
                         Action.getOfferedWorkitems();
                     },30000);
                 }
-                Action.getAllocatedWorkitems();
-                Action.getOfferedWorkitems();
+                setTimeout(Action.startCheckWorkItems(), 250);
+                setTimeout(Action.getOfferedWorkitems(), 250);
+                //Action.getAllocatedWorkitems();
+                //Action.getOfferedWorkitems();
+                break;
+
+            case"getWorkitems":
+
                 break;
 
             case "getAllocatedWorkitems":

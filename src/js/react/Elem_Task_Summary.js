@@ -36,7 +36,7 @@ module.exports = React.createClass({
 			}
 		});
 
-		setTimeout(_QApi.Action.startCheckWorkItems(), 250);
+		_QApi.Action.startCheckWorkItems();
 	},
 	onClick: function onClick(e) {
 		e.preventDefault();

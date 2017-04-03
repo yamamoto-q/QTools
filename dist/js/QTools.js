@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.03 15:15"
+    VERSION: "2017.04.03 15:26"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27386,6 +27386,14 @@ var Action = {
             }
         });
     },
+    getWorkitems:function(){
+        // マイタスクの一覧を取得する
+        dispatcher.dispatch({
+            actionType: "getWorkitems",
+            value: {
+            }
+        });
+    },
     getAllocatedWorkitems:function(){
         // マイタスクの一覧を取得する
         dispatcher.dispatch({
@@ -27646,8 +27654,14 @@ var Store = assign({}, EventEmitter.prototype, {
                         Action.getOfferedWorkitems();
                     },30000);
                 }
-                Action.getAllocatedWorkitems();
-                Action.getOfferedWorkitems();
+                setTimeout(Action.startCheckWorkItems(), 250);
+                setTimeout(Action.getOfferedWorkitems(), 250);
+                //Action.getAllocatedWorkitems();
+                //Action.getOfferedWorkitems();
+                break;
+
+            case"getWorkitems":
+
                 break;
 
             case "getAllocatedWorkitems":
@@ -28082,7 +28096,7 @@ module.exports = React.createClass({
 			}
 		});
 
-		setTimeout(_QApi.Action.startCheckWorkItems(), 250);
+		_QApi.Action.startCheckWorkItems();
 	},
 	render: function render() {
 		console.log(this.state.workitems);
@@ -28134,7 +28148,7 @@ module.exports = React.createClass({
 			}
 		});
 
-		setTimeout(_QApi.Action.startCheckWorkItems(), 250);
+		_QApi.Action.startCheckWorkItems();
 	},
 	onClick: function onClick(e) {
 		e.preventDefault();
