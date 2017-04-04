@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 14:36"
+    VERSION: "2017.04.04 14:44"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28394,6 +28394,7 @@ module.exports = React.createClass({
 
 	getInitialState: function getInitialState() {
 		var auth = _Login.Store.getAuth();
+		console.log("getInitialState", auth);
 		if (auth) {
 			return {
 				context_path: auth.context_path || "",
