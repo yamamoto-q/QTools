@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 11:13"
+    VERSION: "2017.04.04 11:19"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27078,7 +27078,7 @@ var Store = assign({}, EventEmitter.prototype, {
         if(!viewType){
             viewType = VIEW_TYPE.MINIMUM;
         }
-        return viewType
+        return viewType;
     },
     // Event
     addGetSavedSettingListener: function(callback) {
