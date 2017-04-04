@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 11:04"
+    VERSION: "2017.04.04 11:13"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27074,7 +27074,11 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     getMyWorkitemListViewType(){
         // マイタスクの表示方法を返す
-        return _state.view.workitemListViewType;
+        var viewType = _state.view.workitemListViewType;
+        if(!viewType){
+            viewType = VIEW_TYPE.MINIMUM;
+        }
+        return viewType
     },
     // Event
     addGetSavedSettingListener: function(callback) {

@@ -145,7 +145,11 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     getMyWorkitemListViewType(){
         // マイタスクの表示方法を返す
-        return _state.view.workitemListViewType;
+        var viewType = _state.view.workitemListViewType;
+        if(!viewType){
+            viewType = VIEW_TYPE.MINIMUM;
+        }
+        return viewType;
     },
     // Event
     addGetSavedSettingListener: function(callback) {
