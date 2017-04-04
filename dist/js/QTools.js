@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 12:16"
+    VERSION: "2017.04.04 12:17"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28087,11 +28087,13 @@ module.exports = React.createClass({
 });
 
 },{"./Controller_Login.js":256,"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"./Elem_Avater.js":259,"react":242}],261:[function(require,module,exports){
-"use strict";
+'use strict';
 
 var React = require('react');
+var Ctr_Strage = require('./Contloller_Strage.js');
+
 module.exports = React.createClass({
-	displayName: "exports",
+	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
 		var listStyle = this.props.list_style;
@@ -28109,25 +28111,25 @@ module.exports = React.createClass({
 			minimum_label_classes.push("active");
 		}
 		return React.createElement(
-			"div",
-			{ className: "btn-group", "data-toggle": "buttons" },
+			'div',
+			{ className: 'btn-group', 'data-toggle': 'buttons' },
 			React.createElement(
-				"label",
+				'label',
 				{ className: minimum_label_classes.join(" ") },
-				React.createElement("input", { type: "radio", name: "options", id: "option1", autoComplete: "off", checked: this.state.listStyle == Ctr_Strage.ViewType.MINIMUM }),
-				React.createElement("span", { className: "icon icon-view_list" })
+				React.createElement('input', { type: 'radio', name: 'options', id: 'option1', autoComplete: 'off', checked: this.state.listStyle == Ctr_Strage.ViewType.MINIMUM }),
+				React.createElement('span', { className: "icon icon-view_list" })
 			),
 			React.createElement(
-				"label",
-				{ className: "btn" },
-				React.createElement("input", { type: "radio", name: "options", id: "option2", autoComplete: "off" }),
-				React.createElement("span", { className: "icon icon-view_module" })
+				'label',
+				{ className: 'btn' },
+				React.createElement('input', { type: 'radio', name: 'options', id: 'option2', autoComplete: 'off' }),
+				React.createElement('span', { className: "icon icon-view_module" })
 			)
 		);
 	}
 });
 
-},{"react":242}],262:[function(require,module,exports){
+},{"./Contloller_Strage.js":255,"react":242}],262:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
