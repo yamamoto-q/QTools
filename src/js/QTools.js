@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 09:51"
+    VERSION: "2017.04.04 10:02"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27475,6 +27475,12 @@ var Store = assign({}, EventEmitter.prototype, {
     getAvater:function(qUserId){
         return _state.resopnses['avater-' + qUserId];
     },
+    getWorkitems:function(){
+        // Allocated、Offered、を区別せずに取得する
+        var allocated = _state.allocatedWorkitems.workitems;
+        var offered = _state.offeredWorkitems.workitems;
+        return allocated.concat(offered);
+    },
     getAllocatedWorkitems:function(){
         return _state.allocatedWorkitems.workitems;
     },
@@ -27525,7 +27531,7 @@ var Store = assign({}, EventEmitter.prototype, {
     emitChangeOfferedWorkitems(){
         this.emit(EVENT.CHANGE_OFFERED_WORKITEMS);
     },
-    // Workitem
+    // Workitems
     addChangeWorkitemsListener:function(callback){
         this.on(EVENT.CHANGE_WORKITEMS, callback);
     },
@@ -28118,35 +28124,22 @@ module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
-		var allocatedWorkitems = Ctr_QApi.Store.getAllocatedWorkitems();
-		var offeredWorkitems = Ctr_QApi.Store.getOfferedWorkitems();
-		var workitems = allocatedWorkitems.concat(offeredWorkitems);
+		//var allocatedWorkitems = Ctr_QApi.Store.getAllocatedWorkitems();
+		//var offeredWorkitems = Ctr_QApi.Store.getOfferedWorkitems();
+		var workitems = Ctr_QApi.Store.getWorkitems();
 		return {
-			allocatedWorkitems: allocatedWorkitems,
-			offeredWorkitems: offeredWorkitems,
+			//allocatedWorkitems:allocatedWorkitems,
+			//offeredWorkitems:offeredWorkitems,
 			workitems: workitems
 		};
 	},
 	componentDidMount: function componentDidMount() {
 		var self = this;
 
-		Ctr_QApi.Store.addChangeAllocatedWorkitemsListener(function () {
+		Ctr_QApi.Store.addChangeWorkitemsListener(function () {
 			if (self.isMounted()) {
-				var allocatedWorkitems = Ctr_QApi.Store.getAllocatedWorkitems();
-				var workitems = allocatedWorkitems.concat(self.state.offeredWorkitems);
+				var workitems = Ctr_QApi.Store.getWorkitems();
 				self.setState({
-					allocatedWorkitems: allocatedWorkitems,
-					workitems: workitems
-				});
-			}
-		});
-
-		Ctr_QApi.Store.addChangeOfferedWorkitemsListener(function () {
-			if (self.isMounted()) {
-				var offeredWorkitems = Ctr_QApi.Store.getOfferedWorkitems();
-				var workitems = self.state.offeredWorkitems.concat(offeredWorkitems);
-				self.setState({
-					offeredWorkitems: offeredWorkitems,
 					workitems: workitems
 				});
 			}

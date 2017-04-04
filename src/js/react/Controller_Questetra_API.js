@@ -130,6 +130,12 @@ var Store = assign({}, EventEmitter.prototype, {
     getAvater:function(qUserId){
         return _state.resopnses['avater-' + qUserId];
     },
+    getWorkitems:function(){
+        // Allocated、Offered、を区別せずに取得する
+        var allocated = _state.allocatedWorkitems.workitems;
+        var offered = _state.offeredWorkitems.workitems;
+        return allocated.concat(offered);
+    },
     getAllocatedWorkitems:function(){
         return _state.allocatedWorkitems.workitems;
     },
@@ -180,7 +186,7 @@ var Store = assign({}, EventEmitter.prototype, {
     emitChangeOfferedWorkitems(){
         this.emit(EVENT.CHANGE_OFFERED_WORKITEMS);
     },
-    // Workitem
+    // Workitems
     addChangeWorkitemsListener:function(callback){
         this.on(EVENT.CHANGE_WORKITEMS, callback);
     },

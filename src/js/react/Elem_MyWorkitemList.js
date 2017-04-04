@@ -9,35 +9,22 @@ module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
-		var allocatedWorkitems = Ctr_QApi.Store.getAllocatedWorkitems();
-		var offeredWorkitems = Ctr_QApi.Store.getOfferedWorkitems();
-		var workitems = allocatedWorkitems.concat(offeredWorkitems);
+		//var allocatedWorkitems = Ctr_QApi.Store.getAllocatedWorkitems();
+		//var offeredWorkitems = Ctr_QApi.Store.getOfferedWorkitems();
+		var workitems = Ctr_QApi.Store.getWorkitems();
 		return {
-			allocatedWorkitems: allocatedWorkitems,
-			offeredWorkitems: offeredWorkitems,
+			//allocatedWorkitems:allocatedWorkitems,
+			//offeredWorkitems:offeredWorkitems,
 			workitems: workitems
 		};
 	},
 	componentDidMount: function componentDidMount() {
 		var self = this;
 
-		Ctr_QApi.Store.addChangeAllocatedWorkitemsListener(function () {
+		Ctr_QApi.Store.addChangeWorkitemsListener(function () {
 			if (self.isMounted()) {
-				var allocatedWorkitems = Ctr_QApi.Store.getAllocatedWorkitems();
-				var workitems = allocatedWorkitems.concat(self.state.offeredWorkitems);
+				var workitems = Ctr_QApi.Store.getWorkitems();
 				self.setState({
-					allocatedWorkitems: allocatedWorkitems,
-					workitems: workitems
-				});
-			}
-		});
-
-		Ctr_QApi.Store.addChangeOfferedWorkitemsListener(function () {
-			if (self.isMounted()) {
-				var offeredWorkitems = Ctr_QApi.Store.getOfferedWorkitems();
-				var workitems = self.state.offeredWorkitems.concat(offeredWorkitems);
-				self.setState({
-					offeredWorkitems: offeredWorkitems,
 					workitems: workitems
 				});
 			}
