@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 15:04"
+    VERSION: "2017.04.04 15:09"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28123,11 +28123,7 @@ module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
-		var listStyle = this.props.list_style;
-		if (typeof listStyle === "undefined" || !listStyle || listStyle.length == 0) {
-			listStyle = Ctr_Strage.ViewType.MINIMUM;
-		}
-
+		var listStyle = Ctr_Strage.Store.getMyWorkitemListViewType();
 		return {
 			listStyle: listStyle
 		};
@@ -28291,6 +28287,7 @@ module.exports = React.createClass({
 		Ctr_Strage.Store.addChangeMyWorkitemListViewTypeListener(function () {
 			if (self.isMounted()) {
 				var listStyle = Ctr_Strage.Store.getMyWorkitemListViewType();
+				console.log("listStyle:" + listStyle);
 				self.setState({
 					listStyle: listStyle
 				});
@@ -28300,6 +28297,7 @@ module.exports = React.createClass({
 		Ctr_QApi.Action.startCheckWorkItems();
 	},
 	render: function render() {
+
 		var listItems = [];
 		for (var i = 0; i < this.state.workitems.length; i++) {
 			var workitem = this.state.workitems[i];
@@ -28311,7 +28309,7 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			{ className: 'scroll-area' },
-			React.createElement(ListViewSwitcher, { list_style: this.state.listStyle }),
+			React.createElement(ListViewSwitcher, null),
 			React.createElement(
 				List,
 				{ className: 'workitem-list', list_style: this.state.listStyle },

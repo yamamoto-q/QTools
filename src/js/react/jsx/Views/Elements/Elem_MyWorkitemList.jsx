@@ -32,6 +32,7 @@ module.exports = React.createClass({
 		Ctr_Strage.Store.addChangeMyWorkitemListViewTypeListener(function(){
 			if (self.isMounted()) {
 				var listStyle = Ctr_Strage.Store.getMyWorkitemListViewType();
+				console.log("listStyle:" + listStyle);
 				self.setState({
 					listStyle:listStyle
 				});
@@ -41,6 +42,7 @@ module.exports = React.createClass({
 		Ctr_QApi.Action.startCheckWorkItems();
 	},
 	render: function() {
+		
 		var listItems = [];
 		for(var i = 0; i < this.state.workitems.length; i++){
 			var workitem = this.state.workitems[i];
@@ -53,7 +55,7 @@ module.exports = React.createClass({
 
 		return (
 			<div className="scroll-area">
-				<ListViewSwitcher list_style={this.state.listStyle}/>
+				<ListViewSwitcher/>
 				<List className="workitem-list" list_style={this.state.listStyle}>
 					{listItems}
 				</List>
