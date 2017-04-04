@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 13:48"
+    VERSION: "2017.04.04 13:53"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28118,19 +28118,24 @@ module.exports = React.createClass({
 		if (this.state.listStyle == Ctr_Strage.ViewType.MINIMUM) {
 			minimum_label_classes.push("active");
 		}
+
+		var card_label_classes = ["btn", "btn-primary"];
+		if (this.state.listStyle == Ctr_Strage.ViewType.CARD) {
+			card_label_classes.push("active");
+		}
 		return React.createElement(
 			'div',
 			{ className: 'btn-group', 'data-toggle': 'buttons' },
 			React.createElement(
 				'label',
-				{ className: minimum_label_classes.join(" ") },
-				React.createElement('input', { type: 'radio', name: 'options', checked: this.state.listStyle == Ctr_Strage.ViewType.MINIMUM, onChange: this.onSiteChanged, 'data-listtype': Ctr_Strage.ViewType.MINIMUM }),
+				{ className: minimum_label_classes.join(" "), onClick: this.onClick, 'data-listtype': Ctr_Strage.ViewType.MINIMUM },
+				React.createElement('input', { type: 'radio', name: 'options', checked: this.state.listStyle == Ctr_Strage.ViewType.MINIMUM }),
 				React.createElement('span', { className: "icon icon-view_list" })
 			),
 			React.createElement(
 				'label',
-				{ className: 'btn' },
-				React.createElement('input', { type: 'radio', name: 'options', checked: this.state.listStyle == Ctr_Strage.ViewType.CARD, onChange: this.onSiteChanged, 'data-listtype': Ctr_Strage.ViewType.CARD }),
+				{ className: card_label_classes.join(" "), onClick: this.onClick, 'data-listtype': Ctr_Strage.ViewType.CARD },
+				React.createElement('input', { type: 'radio', name: 'options', checked: this.state.listStyle == Ctr_Strage.ViewType.CARD }),
 				React.createElement('span', { className: "icon icon-view_module" })
 			)
 		);
