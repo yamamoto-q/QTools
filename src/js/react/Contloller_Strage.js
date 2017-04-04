@@ -20,6 +20,9 @@ var Action = {
                 api_password:api_password
             }
         });
+    },
+    setMyWorkitemListViewType:function(viewType){
+        console.log(viewType);
     }
 };
 

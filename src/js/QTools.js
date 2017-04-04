@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 13:35"
+    VERSION: "2017.04.04 13:44"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -26949,6 +26949,9 @@ var Action = {
                 api_password:api_password
             }
         });
+    },
+    setMyWorkitemListViewType:function(viewType){
+        console.log(viewType);
     }
 };
 
@@ -28105,6 +28108,10 @@ module.exports = React.createClass({
 			listStyle: listStyle
 		};
 	},
+	onClick: function onClick(e) {
+		var listType = e.target.getAttribute('data-listtype');
+		Ctr_Strage.Action.setMyWorkitemListViewType(listType);
+	},
 	render: function render() {
 		var minimum_label_classes = ["btn", "btn-primary"];
 		if (this.state.listStyle == Ctr_Strage.ViewType.MINIMUM) {
@@ -28116,7 +28123,7 @@ module.exports = React.createClass({
 			React.createElement(
 				'label',
 				{ className: minimum_label_classes.join(" ") },
-				React.createElement('input', { type: 'radio', name: 'options', checked: this.state.listStyle == Ctr_Strage.ViewType.MINIMUM }),
+				React.createElement('input', { type: 'radio', name: 'options', checked: this.state.listStyle == Ctr_Strage.ViewType.MINIMUM, onChange: this.onSiteChanged, 'data-listtype': Ctr_Strage.ViewType.MINIMUM }),
 				React.createElement('span', { className: "icon icon-view_list" })
 			),
 			React.createElement(
