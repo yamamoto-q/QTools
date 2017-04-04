@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 10:02"
+    VERSION: "2017.04.04 10:03"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28124,12 +28124,8 @@ module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
-		//var allocatedWorkitems = Ctr_QApi.Store.getAllocatedWorkitems();
-		//var offeredWorkitems = Ctr_QApi.Store.getOfferedWorkitems();
 		var workitems = Ctr_QApi.Store.getWorkitems();
 		return {
-			//allocatedWorkitems:allocatedWorkitems,
-			//offeredWorkitems:offeredWorkitems,
 			workitems: workitems
 		};
 	},

@@ -5,12 +5,8 @@ var ListViewSwitcher = require('./Elem_ListViewSwitcher.js');
 
 module.exports = React.createClass({
 	getInitialState: function() {
-		//var allocatedWorkitems = Ctr_QApi.Store.getAllocatedWorkitems();
-		//var offeredWorkitems = Ctr_QApi.Store.getOfferedWorkitems();
 		var workitems = Ctr_QApi.Store.getWorkitems();
 		return {
-			//allocatedWorkitems:allocatedWorkitems,
-			//offeredWorkitems:offeredWorkitems,
 			workitems:workitems
 		};
 	},
