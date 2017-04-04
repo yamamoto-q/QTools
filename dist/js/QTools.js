@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 15:39"
+    VERSION: "2017.04.04 16:03"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28153,7 +28153,7 @@ module.exports = React.createClass({
 				'label',
 				{ className: minimum_label_classes.join(" "), onClick: this.onClick, 'data-listtype': Ctr_Strage.ViewType.MINIMUM },
 				React.createElement('input', { type: 'radio', name: 'options', onChange: this.onChanged, checked: this.state.listStyle == Ctr_Strage.ViewType.MINIMUM }),
-				React.createElement('span', { className: "icon icon-view_list" })
+				React.createElement('span', { className: "icon icon-view_headline" })
 			),
 			React.createElement(
 				'label',
@@ -28345,16 +28345,31 @@ module.exports = React.createClass({
 
 		if (this.props.list_style == Ctr_Strage.ViewType.MINIMUM) {
 			classes.push("list-group-item");
-			classes.push("justify-content-between");
+			//classes.push("justify-content-between");
 
 			return React.createElement(
 				'li',
 				{ className: classes.join(" ") },
-				this.props.workitem.nodeName,
+				this.props.processInstanceTitle
+			);
+		} else if (this.props.list_style == Ctr_Strage.ViewType.CARD) {
+			classes.push("card");
+			return React.createElement(
+				'div',
+				{ className: classes.join(" ") },
 				React.createElement(
-					'span',
-					{ className: 'badge badge-default badge-pill' },
-					'14'
+					'div',
+					{ className: 'card-block' },
+					React.createElement(
+						'h4',
+						{ className: 'card-title' },
+						this.props.processInstanceTitle
+					),
+					React.createElement(
+						'p',
+						{ className: 'card-text' },
+						JSON.stringify(this.props.workitem, null, 2)
+					)
 				)
 			);
 		}
@@ -28647,6 +28662,13 @@ module.exports = React.createClass({
 			classes.push("list-group");
 			return React.createElement(
 				'ul',
+				{ className: classes.join(" ") },
+				this.props.children
+			);
+		} else if (this.props.list_style == Ctr_Strage.ViewType.CARD) {
+			classes.push("card-group");
+			return React.createElement(
+				'div',
 				{ className: classes.join(" ") },
 				this.props.children
 			);

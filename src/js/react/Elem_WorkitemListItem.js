@@ -24,16 +24,31 @@ module.exports = React.createClass({
 
 		if (this.props.list_style == Ctr_Strage.ViewType.MINIMUM) {
 			classes.push("list-group-item");
-			classes.push("justify-content-between");
+			//classes.push("justify-content-between");
 
 			return React.createElement(
 				'li',
 				{ className: classes.join(" ") },
-				this.props.workitem.nodeName,
+				this.props.processInstanceTitle
+			);
+		} else if (this.props.list_style == Ctr_Strage.ViewType.CARD) {
+			classes.push("card");
+			return React.createElement(
+				'div',
+				{ className: classes.join(" ") },
 				React.createElement(
-					'span',
-					{ className: 'badge badge-default badge-pill' },
-					'14'
+					'div',
+					{ className: 'card-block' },
+					React.createElement(
+						'h4',
+						{ className: 'card-title' },
+						this.props.processInstanceTitle
+					),
+					React.createElement(
+						'p',
+						{ className: 'card-text' },
+						JSON.stringify(this.props.workitem, null, 2)
+					)
 				)
 			);
 		}

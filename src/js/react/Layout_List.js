@@ -30,6 +30,13 @@ module.exports = React.createClass({
 				{ className: classes.join(" ") },
 				this.props.children
 			);
+		} else if (this.props.list_style == Ctr_Strage.ViewType.CARD) {
+			classes.push("card-group");
+			return React.createElement(
+				'div',
+				{ className: classes.join(" ") },
+				this.props.children
+			);
 		}
 
 		return React.createElement(

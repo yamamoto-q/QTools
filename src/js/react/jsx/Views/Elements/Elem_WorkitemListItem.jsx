@@ -20,15 +20,22 @@ module.exports = React.createClass({
 		
 		if(this.props.list_style == Ctr_Strage.ViewType.MINIMUM){
 			classes.push("list-group-item");
-			classes.push("justify-content-between");
-
-
+			//classes.push("justify-content-between");
 
 			return(
 				<li className={classes.join(" ")}>
-					{this.props.workitem.nodeName}
-					<span className="badge badge-default badge-pill">14</span>
+					{this.props.processInstanceTitle}
 				</li>
+			);
+		}else if(this.props.list_style == Ctr_Strage.ViewType.CARD){
+			classes.push("card");
+			return(
+				<div className={classes.join(" ")}>
+					<div className="card-block">
+						<h4 className="card-title">{this.props.processInstanceTitle}</h4>
+						<p className="card-text">{JSON.stringify(this.props.workitem, null, 2)}</p>
+					</div>
+				</div>
 			);
 		}
 
