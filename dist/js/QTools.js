@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 11:32"
+    VERSION: "2017.04.04 11:46"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28253,10 +28253,9 @@ module.exports = React.createClass({
 			'div',
 			{ className: 'scroll-area' },
 			React.createElement(ListViewSwitcher, null),
-			myWorkitemListViewType,
 			React.createElement(
 				List,
-				{ list_style: myWorkitemListViewType },
+				{ className: 'workitem-list', list_style: myWorkitemListViewType },
 				listItems
 			)
 		);
@@ -28576,10 +28575,18 @@ module.exports = React.createClass({
 		};
 	},
 	render: function render() {
+		var classes = [];
+		if (this.props.className) {
+			classes = this.props.className.split(" ");
+		}
+		classes.push("layout-list");
+		classes.push("layout-list-" + this.state.listStyle);
+
 		if (this.state.listStyle == Ctr_Strage.ViewType.MINIMUM) {
+			classes.push("list-group");
 			return React.createElement(
 				'ul',
-				{ className: 'list-group' },
+				{ className: classes.join(" ") },
 				this.props.children
 			);
 		}
