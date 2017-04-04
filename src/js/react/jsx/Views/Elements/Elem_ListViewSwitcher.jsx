@@ -13,7 +13,7 @@ module.exports = React.createClass({
 		}
 	},
 	onClick:function(e){
-		var listType = e.curretTarget.getAttribute('data-listtype');
+		var listType = e.currentTarget.getAttribute('data-listtype');
 		console.log("onClick:" + listType);
 		Ctr_Strage.Action.setMyWorkitemListViewType(listType);
 	},
