@@ -6,13 +6,21 @@ var Ctr_Strage = require('./Contloller_Strage.js');
 
 module.exports = React.createClass({
 	getInitialState: function() {
-		var listStyle = this.props.list_style;
-		if(typeof listStyle === "undefined" || !listStyle || listStyle.length == 0){
-			listStyle = Ctr_Strage.ViewType.MINIMUM;
-		}
+		var listStyle = Ctr_Strage.Store.getMyWorkitemListViewType();
 		return {
 			listStyle:listStyle
 		};
+	},
+	componentDidMount: function() {
+		var self = this;
+		Ctr_Strage.Store.addChangeMyWorkitemListViewTypeListener(function(){
+			if (self.isMounted()) {
+				var listStyle = Ctr_Strage.Store.getMyWorkitemListViewType();
+				self.setState({
+					listStyle:listStyle
+				});
+			}
+		});
 	},
 	render: function() {
 		var classes = [];

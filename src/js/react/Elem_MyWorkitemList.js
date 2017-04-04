@@ -4,7 +4,6 @@ var React = require('react');
 var Ctr_QApi = require('./Controller_Questetra_API.js');
 
 var Ctr_Strage = require('./Contloller_Strage.js');
-
 var ListViewSwitcher = require('./Elem_ListViewSwitcher.js');
 
 var List = require('./Layout_List.js');
@@ -34,7 +33,7 @@ module.exports = React.createClass({
 		Ctr_QApi.Action.startCheckWorkItems();
 	},
 	render: function render() {
-		var myWorkitemListViewType = Ctr_Strage.Store.getMyWorkitemListViewType();
+		//var myWorkitemListViewType = Ctr_Strage.Store.getMyWorkitemListViewType();
 		var listItems = [];
 		for (var i = 0; i < this.state.workitems.length; i++) {
 			var workitem = this.state.workitems[i];
@@ -49,7 +48,7 @@ module.exports = React.createClass({
 			React.createElement(ListViewSwitcher, { list_style: myWorkitemListViewType }),
 			React.createElement(
 				List,
-				{ className: 'workitem-list', list_style: myWorkitemListViewType },
+				{ className: 'workitem-list' },
 				listItems
 			)
 		);

@@ -10,13 +10,21 @@ module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
-		var listStyle = this.props.list_style;
-		if (typeof listStyle === "undefined" || !listStyle || listStyle.length == 0) {
-			listStyle = Ctr_Strage.ViewType.MINIMUM;
-		}
+		var listStyle = Ctr_Strage.Store.getMyWorkitemListViewType();
 		return {
 			listStyle: listStyle
 		};
+	},
+	componentDidMount: function componentDidMount() {
+		var self = this;
+		Ctr_Strage.Store.addChangeMyWorkitemListViewTypeListener(function () {
+			if (self.isMounted()) {
+				var listStyle = Ctr_Strage.Store.getMyWorkitemListViewType();
+				self.setState({
+					listStyle: listStyle
+				});
+			}
+		});
 	},
 	render: function render() {
 		var classes = [];

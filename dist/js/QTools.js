@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 14:20"
+    VERSION: "2017.04.04 14:31"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -26950,8 +26950,13 @@ var Action = {
             }
         });
     },
-    setMyWorkitemListViewType:function(viewType){
-        console.log(viewType);
+    setMyWorkitemListViewType:function(listType){
+        dispatcher.dispatch({
+            actionType: "setMyWorkitemListViewType",
+            value: {
+                listType:listType
+            }
+        });
     }
 };
 
@@ -27050,7 +27055,8 @@ var QIStrage = Strage('Q-Tools');
 // ****************************************************
 var EVENT = {
     GET_AUTHENTICATION: "get_authentication",
-    CHANGE_AUTHENTICATION: "change_authentication"
+    CHANGE_AUTHENTICATION: "change_authentication",
+    CHANGE_MY_WORKITEM_LISTVIEW_TYPE:"change_my_workitemlist_view_type"
 }
 
 var VIEW_TYPE = {
@@ -27101,6 +27107,13 @@ var Store = assign({}, EventEmitter.prototype, {
     emitChangeAuthentication:function(){
         this.emit(EVENT.CHANGE_AUTHENTICATION);
     },
+    //
+    addChangeMyWorkitemListViewTypeListener:function(callback){
+        this.on(EVENT.CHANGE_MY_WORKITEM_LISTVIEW_TYPE, callback);
+    },
+    emitChangeMyWorkitemListViewType:function(){
+        this.emit(EVENT.CHANGE_MY_WORKITEM_LISTVIEW_TYPE);
+    },
     dispatcherIndex: dispatcher.register(function(payload) {
         switch (payload.actionType) {
             case "getSavedSetting":
@@ -27124,6 +27137,12 @@ var Store = assign({}, EventEmitter.prototype, {
 
                 QIStrage.set(_state);
                 Store.emitChangeAuthentication();
+                break;
+
+            case "setMyWorkitemListViewType":
+                _state.view.workitemListViewType = payload.value.listType;
+                QIStrage.set(_state);
+                Store.emitChangeMyWorkitemListViewType();
                 break;
         };
     })
@@ -28237,7 +28256,6 @@ var React = require('react');
 var Ctr_QApi = require('./Controller_Questetra_API.js');
 
 var Ctr_Strage = require('./Contloller_Strage.js');
-
 var ListViewSwitcher = require('./Elem_ListViewSwitcher.js');
 
 var List = require('./Layout_List.js');
@@ -28267,7 +28285,7 @@ module.exports = React.createClass({
 		Ctr_QApi.Action.startCheckWorkItems();
 	},
 	render: function render() {
-		var myWorkitemListViewType = Ctr_Strage.Store.getMyWorkitemListViewType();
+		//var myWorkitemListViewType = Ctr_Strage.Store.getMyWorkitemListViewType();
 		var listItems = [];
 		for (var i = 0; i < this.state.workitems.length; i++) {
 			var workitem = this.state.workitems[i];
@@ -28282,7 +28300,7 @@ module.exports = React.createClass({
 			React.createElement(ListViewSwitcher, { list_style: myWorkitemListViewType }),
 			React.createElement(
 				List,
-				{ className: 'workitem-list', list_style: myWorkitemListViewType },
+				{ className: 'workitem-list' },
 				listItems
 			)
 		);
@@ -28595,13 +28613,21 @@ module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
-		var listStyle = this.props.list_style;
-		if (typeof listStyle === "undefined" || !listStyle || listStyle.length == 0) {
-			listStyle = Ctr_Strage.ViewType.MINIMUM;
-		}
+		var listStyle = Ctr_Strage.Store.getMyWorkitemListViewType();
 		return {
 			listStyle: listStyle
 		};
+	},
+	componentDidMount: function componentDidMount() {
+		var self = this;
+		Ctr_Strage.Store.addChangeMyWorkitemListViewTypeListener(function () {
+			if (self.isMounted()) {
+				var listStyle = Ctr_Strage.Store.getMyWorkitemListViewType();
+				self.setState({
+					listStyle: listStyle
+				});
+			}
+		});
 	},
 	render: function render() {
 		var classes = [];

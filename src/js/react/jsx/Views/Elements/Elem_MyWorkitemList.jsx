@@ -3,11 +3,7 @@ var Ctr_QApi = require('./Controller_Questetra_API.js');
 
 
 var Ctr_Strage = require('./Contloller_Strage.js');
-
 var ListViewSwitcher = require('./Elem_ListViewSwitcher.js');
-
-
-
 
 var List = require('./Layout_List.js');
 var WorkitemListItem = require('./Elem_WorkitemListItem.js');
@@ -34,7 +30,7 @@ module.exports = React.createClass({
 		Ctr_QApi.Action.startCheckWorkItems();
 	},
 	render: function() {
-		var myWorkitemListViewType = Ctr_Strage.Store.getMyWorkitemListViewType();
+		//var myWorkitemListViewType = Ctr_Strage.Store.getMyWorkitemListViewType();
 		var listItems = [];
 		for(var i = 0; i < this.state.workitems.length; i++){
 			var workitem = this.state.workitems[i];
@@ -48,7 +44,7 @@ module.exports = React.createClass({
 		return (
 			<div className="scroll-area">
 				<ListViewSwitcher list_style={myWorkitemListViewType}/>
-				<List className="workitem-list" list_style={myWorkitemListViewType} >
+				<List className="workitem-list">
 					{listItems}
 				</List>
 			</div>

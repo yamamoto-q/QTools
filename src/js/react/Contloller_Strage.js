@@ -21,8 +21,13 @@ var Action = {
             }
         });
     },
-    setMyWorkitemListViewType:function(viewType){
-        console.log(viewType);
+    setMyWorkitemListViewType:function(listType){
+        dispatcher.dispatch({
+            actionType: "setMyWorkitemListViewType",
+            value: {
+                listType:listType
+            }
+        });
     }
 };
 
@@ -121,7 +126,8 @@ var QIStrage = Strage('Q-Tools');
 // ****************************************************
 var EVENT = {
     GET_AUTHENTICATION: "get_authentication",
-    CHANGE_AUTHENTICATION: "change_authentication"
+    CHANGE_AUTHENTICATION: "change_authentication",
+    CHANGE_MY_WORKITEM_LISTVIEW_TYPE:"change_my_workitemlist_view_type"
 }
 
 var VIEW_TYPE = {
@@ -172,6 +178,13 @@ var Store = assign({}, EventEmitter.prototype, {
     emitChangeAuthentication:function(){
         this.emit(EVENT.CHANGE_AUTHENTICATION);
     },
+    //
+    addChangeMyWorkitemListViewTypeListener:function(callback){
+        this.on(EVENT.CHANGE_MY_WORKITEM_LISTVIEW_TYPE, callback);
+    },
+    emitChangeMyWorkitemListViewType:function(){
+        this.emit(EVENT.CHANGE_MY_WORKITEM_LISTVIEW_TYPE);
+    },
     dispatcherIndex: dispatcher.register(function(payload) {
         switch (payload.actionType) {
             case "getSavedSetting":
@@ -195,6 +208,12 @@ var Store = assign({}, EventEmitter.prototype, {
 
                 QIStrage.set(_state);
                 Store.emitChangeAuthentication();
+                break;
+
+            case "setMyWorkitemListViewType":
+                _state.view.workitemListViewType = payload.value.listType;
+                QIStrage.set(_state);
+                Store.emitChangeMyWorkitemListViewType();
                 break;
         };
     })
