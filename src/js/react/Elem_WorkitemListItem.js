@@ -29,7 +29,7 @@ module.exports = React.createClass({
 			return React.createElement(
 				'li',
 				{ className: classes.join(" ") },
-				this.props.processInstanceTitle
+				this.props.workitem.processInstanceTitle
 			);
 		} else if (this.props.list_style == Ctr_Strage.ViewType.CARD) {
 			classes.push("card");
@@ -42,7 +42,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'h4',
 						{ className: 'card-title' },
-						this.props.processInstanceTitle
+						this.props.workitem.processInstanceTitle
 					),
 					React.createElement(
 						'p',

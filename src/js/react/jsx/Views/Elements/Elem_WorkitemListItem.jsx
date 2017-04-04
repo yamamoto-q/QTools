@@ -24,7 +24,7 @@ module.exports = React.createClass({
 
 			return(
 				<li className={classes.join(" ")}>
-					{this.props.processInstanceTitle}
+					{this.props.workitem.processInstanceTitle}
 				</li>
 			);
 		}else if(this.props.list_style == Ctr_Strage.ViewType.CARD){
@@ -32,7 +32,7 @@ module.exports = React.createClass({
 			return(
 				<div className={classes.join(" ")}>
 					<div className="card-block">
-						<h4 className="card-title">{this.props.processInstanceTitle}</h4>
+						<h4 className="card-title">{this.props.workitem.processInstanceTitle}</h4>
 						<p className="card-text">{JSON.stringify(this.props.workitem, null, 2)}</p>
 					</div>
 				</div>
