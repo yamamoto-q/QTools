@@ -10,7 +10,7 @@ var Bootstrap_InputGroup = require('./Bootstrap_InputGroup.js');
 module.exports = React.createClass({
 	getInitialState: function() {
 		var auth = _Login.Store.getAuth();
-		console.log("getInitialState", auth);
+		//console.log("getInitialState", auth);
 		if(auth){
 			return {
 				context_path:auth.context_path || "",

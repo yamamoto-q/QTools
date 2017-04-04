@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 14:44"
+    VERSION: "2017.04.04 14:52"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28286,7 +28286,7 @@ module.exports = React.createClass({
 		Ctr_QApi.Action.startCheckWorkItems();
 	},
 	render: function render() {
-		//var myWorkitemListViewType = Ctr_Strage.Store.getMyWorkitemListViewType();
+		var myWorkitemListViewType = Ctr_Strage.Store.getMyWorkitemListViewType();
 		var listItems = [];
 		for (var i = 0; i < this.state.workitems.length; i++) {
 			var workitem = this.state.workitems[i];
@@ -28394,7 +28394,7 @@ module.exports = React.createClass({
 
 	getInitialState: function getInitialState() {
 		var auth = _Login.Store.getAuth();
-		console.log("getInitialState", auth);
+		//console.log("getInitialState", auth);
 		if (auth) {
 			return {
 				context_path: auth.context_path || "",

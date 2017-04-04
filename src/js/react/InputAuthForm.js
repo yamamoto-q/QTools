@@ -13,7 +13,7 @@ module.exports = React.createClass({
 
 	getInitialState: function getInitialState() {
 		var auth = _Login.Store.getAuth();
-		console.log("getInitialState", auth);
+		//console.log("getInitialState", auth);
 		if (auth) {
 			return {
 				context_path: auth.context_path || "",

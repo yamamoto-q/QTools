@@ -33,7 +33,7 @@ module.exports = React.createClass({
 		Ctr_QApi.Action.startCheckWorkItems();
 	},
 	render: function render() {
-		//var myWorkitemListViewType = Ctr_Strage.Store.getMyWorkitemListViewType();
+		var myWorkitemListViewType = Ctr_Strage.Store.getMyWorkitemListViewType();
 		var listItems = [];
 		for (var i = 0; i < this.state.workitems.length; i++) {
 			var workitem = this.state.workitems[i];
