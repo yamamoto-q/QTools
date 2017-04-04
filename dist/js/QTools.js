@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 09:37"
+    VERSION: "2017.04.04 09:51"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27389,7 +27389,7 @@ var Action = {
         },250)
     },
     getWorkitems:function(){
-        // マイタスクの一覧を取得する
+        // Allocated、Offered を合わせた問い合わせ
         dispatcher.dispatch({
             actionType: "getWorkitems",
             value: {
@@ -27434,6 +27434,7 @@ var EVENT = {
     LOGIN_ERROR: "login_error",
     LOGIN_SUCCESS: "login_success",
     CHECKED_PERMISSION:"checked_permission",
+    CHANGE_WORKITEMS:"change_workitems",
     CHANGE_ALLOCATED_WORKITEMS:"change_allocated_workitems",
     CHANGE_OFFERED_WORKITEMS:"change_offered_workitems",
     ON_GET_AVATER: "on_get_avater"
@@ -27524,12 +27525,20 @@ var Store = assign({}, EventEmitter.prototype, {
     emitChangeOfferedWorkitems(){
         this.emit(EVENT.CHANGE_OFFERED_WORKITEMS);
     },
+    // Workitem
+    addChangeWorkitemsListener:function(callback){
+        this.on(EVENT.CHANGE_WORKITEMS, callback);
+    },
+    emitChangeWorkitems(){
+        this.emit(EVENT.CHANGE_WORKITEMS);
+    },
     // function
     getTimestamp(){
         var date = new Date() ;
         return Math.floor( date.getTime() / 1000 ) ;
     },
     _getAllocatedWorkitems(cb){
+        console.log("getAllocatedWorkitems");
         if(_state.allocatedWorkitems.isResultWaiting || Store.getTimestamp() - _state.allocatedWorkitems.update < 25){
             console.log("Cancel");
             cb(false);
@@ -27565,6 +27574,7 @@ var Store = assign({}, EventEmitter.prototype, {
         });
     },
     _getOfferedWorkitems(cb){
+        console.log("getOfferedWorkitems");
         if(_state.offeredWorkitems.isResultWaiting || Store.getTimestamp() - _state.offeredWorkitems.update < 25){
             console.log("Cancel");
             cb(false);
@@ -27584,7 +27594,6 @@ var Store = assign({}, EventEmitter.prototype, {
 
             if(oldHash != hash){
                 // 変化があれば発火する
-                
                 cb(true);
                 return;
             }
@@ -27722,18 +27731,35 @@ var Store = assign({}, EventEmitter.prototype, {
             case "startCheckWorkItems":
                 if(_state.workitemCheckTimer == null){
                     _state.workitemCheckTimer = setInterval(function(){
-                        Action.getAllocatedWorkitems();
-                        Action.getOfferedWorkitems();
+                        Action.getWorkitems();
                     },30000);
                 }
-                console.log("startCheckWorkItems");
+                //console.log("startCheckWorkItems");
                 setTimeout(function(){
-                    Action.getAllocatedWorkitems();
-                    Action.getOfferedWorkitems();
+                    Action.getWorkitems();
                 },250);
                 break;
 
             case"getWorkitems":
+                // Allocated、Offered、両方を問い合わせる
+                var change = false;
+                Store._getAllocatedWorkitems(function(_change){
+                    if(_change){
+                       Store.emitChangeAllocatedWorkitems();
+                       change = true;
+                    }
+
+                    Store._getOfferedWorkitems(function(_change){
+                        if(_change){
+                            Store.emitChangeOfferedWorkitems();
+                            change = true;
+                        }
+
+                        if(change){
+                            Store.emitChangeWorkitems(); 
+                        }
+                    });
+                });
 
                 break;
 
