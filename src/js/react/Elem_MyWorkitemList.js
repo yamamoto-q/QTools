@@ -4,6 +4,7 @@ var React = require('react');
 var Ctr_QApi = require('./Controller_Questetra_API.js');
 
 var ListViewSwitcher = require('./Elem_ListViewSwitcher.js');
+var WorkitemListItem = require('./Elem_WorkitemListItem.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -29,12 +30,23 @@ module.exports = React.createClass({
 		Ctr_QApi.Action.startCheckWorkItems();
 	},
 	render: function render() {
-		console.log(this.state.workitems);
+		var listItems = [];
+		for (var i = 0; i < this.state.workitems; i++) {
+			var workitem = this.state.workitems[i];
+			var key = "myworkitemlist-" + workitem.processModelInfoId + "-" + workitem.processInstanceId + "-" + workitem.nodeNumber + "-" + workitem.id;
+
+			listItems.push(React.createElement(WorkitemListItem, { key: key, workitem: this.state.workitems[i], list_style: "" }));
+		}
+
 		return React.createElement(
 			'div',
 			{ className: 'scroll-area' },
 			React.createElement(ListViewSwitcher, null),
-			'Elem_MyWorkitemList'
+			React.createElement(
+				'ul',
+				{ className: 'list-group' },
+				listItems
+			)
 		);
 	}
 });

@@ -26723,7 +26723,7 @@ var BuildInfo = require('./BuildInfo.js');
 	};
 })(window.jQuery);
 
-},{"./BuildInfo.js":254,"./QTools.js":272,"react":242,"react-dom":36}],246:[function(require,module,exports){
+},{"./BuildInfo.js":254,"./QTools.js":273,"react":242,"react-dom":36}],246:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 10:08"
+    VERSION: "2017.04.04 10:26"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27817,7 +27817,7 @@ module.exports = {
     TypeOfSystemAuthorization:TYPE_OF_SYSTEM_AUTHORIZATION
 }
 
-},{"./Questetra_API.js":273,"events":4,"flux":28,"md5-node":32,"object-assign":33}],258:[function(require,module,exports){
+},{"./Questetra_API.js":274,"events":4,"flux":28,"md5-node":32,"object-assign":33}],258:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -28203,6 +28203,7 @@ var React = require('react');
 var Ctr_QApi = require('./Controller_Questetra_API.js');
 
 var ListViewSwitcher = require('./Elem_ListViewSwitcher.js');
+var WorkitemListItem = require('./Elem_WorkitemListItem.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -28228,17 +28229,55 @@ module.exports = React.createClass({
 		Ctr_QApi.Action.startCheckWorkItems();
 	},
 	render: function render() {
-		console.log(this.state.workitems);
+		var listItems = [];
+		for (var i = 0; i < this.state.workitems; i++) {
+			var workitem = this.state.workitems[i];
+			var key = "myworkitemlist-" + workitem.processModelInfoId + "-" + workitem.processInstanceId + "-" + workitem.nodeNumber + "-" + workitem.id;
+
+			listItems.push(React.createElement(WorkitemListItem, { key: key, workitem: this.state.workitems[i], list_style: "" }));
+		}
+
 		return React.createElement(
 			'div',
 			{ className: 'scroll-area' },
 			React.createElement(ListViewSwitcher, null),
-			'Elem_MyWorkitemList'
+			React.createElement(
+				'ul',
+				{ className: 'list-group' },
+				listItems
+			)
 		);
 	}
 });
 
-},{"./Controller_Questetra_API.js":257,"./Elem_ListViewSwitcher.js":261,"react":242}],264:[function(require,module,exports){
+},{"./Controller_Questetra_API.js":257,"./Elem_ListViewSwitcher.js":261,"./Elem_WorkitemListItem.js":264,"react":242}],264:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+module.exports = React.createClass({
+	displayName: "exports",
+
+	getInitialState: function getInitialState() {
+		return {
+			workitem: this.props.workitem,
+			listStyle: this.props.list_style
+		};
+	},
+	render: function render() {
+		return React.createElement(
+			"li",
+			{ className: "list-group-item justify-content-between" },
+			this.state.workitem.nodeName,
+			React.createElement(
+				"span",
+				{ className: "badge badge-default badge-pill" },
+				"14"
+			)
+		);
+	}
+});
+
+},{"react":242}],265:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28264,7 +28303,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"react":242}],265:[function(require,module,exports){
+},{"./Controller_View.js":258,"react":242}],266:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28352,7 +28391,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Button.js":246,"./Bootstrap_FormGroup.js":249,"./Bootstrap_FormInput.js":250,"./Bootstrap_FormLabel.js":251,"./Bootstrap_InputGroup.js":252,"./Controller_Login.js":256,"react":242}],266:[function(require,module,exports){
+},{"./Bootstrap_Button.js":246,"./Bootstrap_FormGroup.js":249,"./Bootstrap_FormInput.js":250,"./Bootstrap_FormLabel.js":251,"./Bootstrap_InputGroup.js":252,"./Controller_Login.js":256,"react":242}],267:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28379,7 +28418,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"react":242}],267:[function(require,module,exports){
+},{"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"react":242}],268:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28401,7 +28440,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./ScrollArea.js":274,"react":242}],268:[function(require,module,exports){
+},{"./ScrollArea.js":275,"react":242}],269:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28423,7 +28462,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./ScrollArea.js":274,"react":242}],269:[function(require,module,exports){
+},{"./ScrollArea.js":275,"react":242}],270:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28487,7 +28526,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./BuildInfo.js":254,"./Elem_Header.js":260,"./SettingMenu.js":275,"react":242}],270:[function(require,module,exports){
+},{"./BuildInfo.js":254,"./Elem_Header.js":260,"./SettingMenu.js":276,"react":242}],271:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28535,7 +28574,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./View_AdminTools.js":276,"./View_Home.js":277,"./View_Work.js":278,"react":242}],271:[function(require,module,exports){
+},{"./Controller_View.js":258,"./View_AdminTools.js":277,"./View_Home.js":278,"./View_Work.js":279,"react":242}],272:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28590,7 +28629,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"./Controller_View.js":258,"react":242}],272:[function(require,module,exports){
+},{"./Controller_View.js":258,"react":242}],273:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28722,7 +28761,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./BuildInfo.js":254,"./Controller_Login.js":256,"./InputAuthForm.js":265,"./LoginedView.js":270,"react":242}],273:[function(require,module,exports){
+},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./BuildInfo.js":254,"./Controller_Login.js":256,"./InputAuthForm.js":266,"./LoginedView.js":271,"react":242}],274:[function(require,module,exports){
 
 
 var QuestetraAPI = function(){
@@ -28886,7 +28925,7 @@ module.exports = {
     API:_QuestetraAPI
 }
 
-},{}],274:[function(require,module,exports){
+},{}],275:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -28902,7 +28941,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":242}],275:[function(require,module,exports){
+},{"react":242}],276:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28976,7 +29015,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Login.js":256,"./Controller_View.js":258,"react":242,"react-router":192}],276:[function(require,module,exports){
+},{"./Controller_Login.js":256,"./Controller_View.js":258,"react":242,"react-router":192}],277:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -29013,7 +29052,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./Controller_View.js":258,"react":242}],277:[function(require,module,exports){
+},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./Controller_View.js":258,"react":242}],278:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -29093,7 +29132,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./Elem_MyWorkItems_Summary.js":262,"./Footer.js":264,"./Layout_Body.js":266,"./Layout_BodyLeft.js":267,"./Layout_BodyRight.js":268,"./Layout_Header.js":269,"./NavItem.js":271,"react":242}],278:[function(require,module,exports){
+},{"./Controller_View.js":258,"./Elem_MyWorkItems_Summary.js":262,"./Footer.js":265,"./Layout_Body.js":267,"./Layout_BodyLeft.js":268,"./Layout_BodyRight.js":269,"./Layout_Header.js":270,"./NavItem.js":272,"react":242}],279:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -29173,4 +29212,4 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./Elem_MyWorkitemList.js":263,"./Footer.js":264,"./Layout_Body.js":266,"./Layout_BodyLeft.js":267,"./Layout_BodyRight.js":268,"./Layout_Header.js":269,"./NavItem.js":271,"react":242}]},{},[245]);
+},{"./Controller_View.js":258,"./Elem_MyWorkitemList.js":263,"./Footer.js":265,"./Layout_Body.js":267,"./Layout_BodyLeft.js":268,"./Layout_BodyRight.js":269,"./Layout_Header.js":270,"./NavItem.js":272,"react":242}]},{},[245]);

@@ -62,6 +62,7 @@ module.exports = function(grunt) {
                     { 'src/js/react/Elem_MyWorkItems_Summary.js': 'src/js/react/jsx/Views/Elements/Elem_MyWorkItems_Summary.jsx' },
                     { 'src/js/react/Elem_MyWorkitemList.js': 'src/js/react/jsx/Views/Elements/Elem_MyWorkitemList.jsx' },
                     { 'src/js/react/Elem_ListViewSwitcher.js': 'src/js/react/jsx/Views/Elements/Elem_ListViewSwitcher.jsx' },
+                    { 'src/js/react/Elem_WorkitemListItem.js': 'src/js/react/jsx/Views/Elements/Elem_WorkitemListItem.jsx' },
                     // Bootstrap
                     { 'src/js/react/Bootstrap_Row.js': 'src/js/react/jsx/Bootstrap/row.jsx' },
                     { 'src/js/react/Bootstrap_Container.js': 'src/js/react/jsx/Bootstrap/container.jsx' },
