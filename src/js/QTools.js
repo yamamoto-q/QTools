@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 12:17"
+    VERSION: "2017.04.04 13:35"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28106,7 +28106,7 @@ module.exports = React.createClass({
 		};
 	},
 	render: function render() {
-		var minimum_label_classes = ["btn"];
+		var minimum_label_classes = ["btn", "btn-primary"];
 		if (this.state.listStyle == Ctr_Strage.ViewType.MINIMUM) {
 			minimum_label_classes.push("active");
 		}
@@ -28116,13 +28116,13 @@ module.exports = React.createClass({
 			React.createElement(
 				'label',
 				{ className: minimum_label_classes.join(" ") },
-				React.createElement('input', { type: 'radio', name: 'options', id: 'option1', autoComplete: 'off', checked: this.state.listStyle == Ctr_Strage.ViewType.MINIMUM }),
+				React.createElement('input', { type: 'radio', name: 'options', checked: this.state.listStyle == Ctr_Strage.ViewType.MINIMUM }),
 				React.createElement('span', { className: "icon icon-view_list" })
 			),
 			React.createElement(
 				'label',
 				{ className: 'btn' },
-				React.createElement('input', { type: 'radio', name: 'options', id: 'option2', autoComplete: 'off' }),
+				React.createElement('input', { type: 'radio', name: 'options' }),
 				React.createElement('span', { className: "icon icon-view_module" })
 			)
 		);

@@ -13,18 +13,18 @@ module.exports = React.createClass({
 		}
 	},
 	render: function() {
-		var minimum_label_classes = ["btn"];
+		var minimum_label_classes = ["btn", "btn-primary"];
 		if(this.state.listStyle == Ctr_Strage.ViewType.MINIMUM){
 			minimum_label_classes.push("active");
 		}
 		return (
 			<div className="btn-group" data-toggle="buttons">
 				<label className={minimum_label_classes.join(" ")}>
-					<input type="radio" name="options" id="option1" autoComplete="off" checked={this.state.listStyle == Ctr_Strage.ViewType.MINIMUM}/>
+					<input type="radio" name="options" checked={this.state.listStyle == Ctr_Strage.ViewType.MINIMUM}/>
 					<span className={"icon icon-view_list"} />
 				</label>
 				<label className="btn">
-					<input type="radio" name="options" id="option2" autoComplete="off" />
+					<input type="radio" name="options"/>
 					<span className={"icon icon-view_module"} />
 				</label>
 			</div>
