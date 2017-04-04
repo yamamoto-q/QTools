@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 15:13"
+    VERSION: "2017.04.04 15:19"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28302,7 +28302,6 @@ module.exports = React.createClass({
 		for (var i = 0; i < this.state.workitems.length; i++) {
 			var workitem = this.state.workitems[i];
 			var key = "myworkitemlist-" + workitem.processModelInfoId + "-" + workitem.processInstanceId + "-" + workitem.nodeNumber + "-" + workitem.id;
-
 			listItems.push(React.createElement(WorkitemListItem, { key: key, workitem: this.state.workitems[i], list_style: this.state.listStyle }));
 		}
 
@@ -28329,20 +28328,17 @@ module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
-		var listStyle = this.props.list_style;
-		if (typeof listStyle === "undefined" || !listStyle || listStyle.length == 0) {
-			listStyle = Ctr_Strage.ViewType.MINIMUM;
-		}
-
 		return {
-			workitem: this.props.workitem,
-			listStyle: listStyle
+			workitem: this.props.workitem
 		};
+	},
+	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+		console.log(nextProps);
 	},
 	render: function render() {
 		//console.log(this.state.workitem);
 
-		if (this.state.listStyle == Ctr_Strage.ViewType.MINIMUM) {
+		if (this.props.list_style == Ctr_Strage.ViewType.MINIMUM) {
 			return React.createElement(
 				'li',
 				{ className: 'list-group-item justify-content-between' },

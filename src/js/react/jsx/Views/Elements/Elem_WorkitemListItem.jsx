@@ -3,20 +3,17 @@ var Ctr_Strage = require('./Contloller_Strage.js');
 
 module.exports = React.createClass({
 	getInitialState: function() {
-		var listStyle = this.props.list_style;
-		if(typeof listStyle === "undefined" || !listStyle || listStyle.length == 0){
-			listStyle = Ctr_Strage.ViewType.MINIMUM;
-		}
-
 		return {
 			workitem : this.props.workitem,
-			listStyle : listStyle
 		}
+	},
+	componentWillReceiveProps:function(nextProps){
+		console.log(nextProps);
 	},
 	render: function() {
 		//console.log(this.state.workitem);
 		
-		if(this.state.listStyle == Ctr_Strage.ViewType.MINIMUM){
+		if(this.props.list_style == Ctr_Strage.ViewType.MINIMUM){
 			return(
 				<li className="list-group-item justify-content-between">
 					{this.state.workitem.nodeName}
