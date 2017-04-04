@@ -14,6 +14,8 @@ module.exports = React.createClass({
 		}
 	},
 	render: function() {
+		console.log(this.state.workitem);
+		
 		if(this.state.listStyle == Ctr_Strage.ViewType.MINIMUM){
 			return(
 				<li className="list-group-item justify-content-between">

@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 11:46"
+    VERSION: "2017.04.04 12:07"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28099,21 +28099,15 @@ module.exports = React.createClass({
 			{ className: "btn-group", "data-toggle": "buttons" },
 			React.createElement(
 				"label",
-				{ className: "btn btn-primary active" },
+				{ className: "btn" },
 				React.createElement("input", { type: "radio", name: "options", id: "option1", autoComplete: "off" }),
-				" A"
+				React.createElement("span", { className: "icon icon-view_list" })
 			),
 			React.createElement(
 				"label",
-				{ className: "btn btn-primary" },
+				{ className: "btn" },
 				React.createElement("input", { type: "radio", name: "options", id: "option2", autoComplete: "off" }),
-				" B"
-			),
-			React.createElement(
-				"label",
-				{ className: "btn btn-primary" },
-				React.createElement("input", { type: "radio", name: "options", id: "option3", autoComplete: "off" }),
-				" C"
+				React.createElement("span", { className: "icon icon-view_module" })
 			)
 		);
 	}
@@ -28283,6 +28277,8 @@ module.exports = React.createClass({
 		};
 	},
 	render: function render() {
+		console.log(this.state.workitem);
+
 		if (this.state.listStyle == Ctr_Strage.ViewType.MINIMUM) {
 			return React.createElement(
 				'li',

@@ -18,6 +18,8 @@ module.exports = React.createClass({
 		};
 	},
 	render: function render() {
+		console.log(this.state.workitem);
+
 		if (this.state.listStyle == Ctr_Strage.ViewType.MINIMUM) {
 			return React.createElement(
 				'li',
