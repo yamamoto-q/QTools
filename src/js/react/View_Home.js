@@ -11,7 +11,7 @@ var LayoutBodyRight = require('./Layout_BodyRight.js');
 var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
 
-var TaskSummary = require('./Elem_Task_Summary.js');
+var MyWorkItemsSummary = require('./Elem_MyWorkItems_Summary.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -51,7 +51,7 @@ module.exports = React.createClass({
 				React.createElement(
 					LayoutBodyRight,
 					null,
-					React.createElement(TaskSummary, null)
+					React.createElement(MyWorkItemsSummary, null)
 				)
 			),
 			React.createElement(

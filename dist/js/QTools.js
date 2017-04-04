@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 10:03"
+    VERSION: "2017.04.04 10:08"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28117,48 +28117,6 @@ module.exports = React.createClass({
 
 var React = require('react');
 var Ctr_QApi = require('./Controller_Questetra_API.js');
-
-var ListViewSwitcher = require('./Elem_ListViewSwitcher.js');
-
-module.exports = React.createClass({
-	displayName: 'exports',
-
-	getInitialState: function getInitialState() {
-		var workitems = Ctr_QApi.Store.getWorkitems();
-		return {
-			workitems: workitems
-		};
-	},
-	componentDidMount: function componentDidMount() {
-		var self = this;
-
-		Ctr_QApi.Store.addChangeWorkitemsListener(function () {
-			if (self.isMounted()) {
-				var workitems = Ctr_QApi.Store.getWorkitems();
-				self.setState({
-					workitems: workitems
-				});
-			}
-		});
-
-		Ctr_QApi.Action.startCheckWorkItems();
-	},
-	render: function render() {
-		console.log(this.state.workitems);
-		return React.createElement(
-			'div',
-			{ className: 'scroll-area' },
-			React.createElement(ListViewSwitcher, null),
-			'Elem_MyWorkitemList'
-		);
-	}
-});
-
-},{"./Controller_Questetra_API.js":257,"./Elem_ListViewSwitcher.js":261,"react":242}],263:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var Ctr_QApi = require('./Controller_Questetra_API.js');
 var Controller_View = require('./Controller_View.js');
 
 module.exports = React.createClass({
@@ -28238,7 +28196,49 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"react":242}],264:[function(require,module,exports){
+},{"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"react":242}],263:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var Ctr_QApi = require('./Controller_Questetra_API.js');
+
+var ListViewSwitcher = require('./Elem_ListViewSwitcher.js');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+		var workitems = Ctr_QApi.Store.getWorkitems();
+		return {
+			workitems: workitems
+		};
+	},
+	componentDidMount: function componentDidMount() {
+		var self = this;
+
+		Ctr_QApi.Store.addChangeWorkitemsListener(function () {
+			if (self.isMounted()) {
+				var workitems = Ctr_QApi.Store.getWorkitems();
+				self.setState({
+					workitems: workitems
+				});
+			}
+		});
+
+		Ctr_QApi.Action.startCheckWorkItems();
+	},
+	render: function render() {
+		console.log(this.state.workitems);
+		return React.createElement(
+			'div',
+			{ className: 'scroll-area' },
+			React.createElement(ListViewSwitcher, null),
+			'Elem_MyWorkitemList'
+		);
+	}
+});
+
+},{"./Controller_Questetra_API.js":257,"./Elem_ListViewSwitcher.js":261,"react":242}],264:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -29027,7 +29027,7 @@ var LayoutBodyRight = require('./Layout_BodyRight.js');
 var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
 
-var TaskSummary = require('./Elem_Task_Summary.js');
+var MyWorkItemsSummary = require('./Elem_MyWorkItems_Summary.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -29067,7 +29067,7 @@ module.exports = React.createClass({
 				React.createElement(
 					LayoutBodyRight,
 					null,
-					React.createElement(TaskSummary, null)
+					React.createElement(MyWorkItemsSummary, null)
 				)
 			),
 			React.createElement(
@@ -29093,7 +29093,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./Elem_Task_Summary.js":263,"./Footer.js":264,"./Layout_Body.js":266,"./Layout_BodyLeft.js":267,"./Layout_BodyRight.js":268,"./Layout_Header.js":269,"./NavItem.js":271,"react":242}],278:[function(require,module,exports){
+},{"./Controller_View.js":258,"./Elem_MyWorkItems_Summary.js":262,"./Footer.js":264,"./Layout_Body.js":266,"./Layout_BodyLeft.js":267,"./Layout_BodyRight.js":268,"./Layout_Header.js":269,"./NavItem.js":271,"react":242}],278:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -29173,4 +29173,4 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./Elem_MyWorkitemList.js":262,"./Footer.js":264,"./Layout_Body.js":266,"./Layout_BodyLeft.js":267,"./Layout_BodyRight.js":268,"./Layout_Header.js":269,"./NavItem.js":271,"react":242}]},{},[245]);
+},{"./Controller_View.js":258,"./Elem_MyWorkitemList.js":263,"./Footer.js":264,"./Layout_Body.js":266,"./Layout_BodyLeft.js":267,"./Layout_BodyRight.js":268,"./Layout_Header.js":269,"./NavItem.js":271,"react":242}]},{},[245]);

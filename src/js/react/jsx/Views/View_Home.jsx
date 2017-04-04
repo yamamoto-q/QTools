@@ -9,7 +9,7 @@ var LayoutBodyRight = require('./Layout_BodyRight.js');
 var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
 
-var TaskSummary = require('./Elem_Task_Summary.js');
+var MyWorkItemsSummary = require('./Elem_MyWorkItems_Summary.js');
 
 module.exports = React.createClass({
 	componentDidMount: function() {
@@ -28,7 +28,7 @@ module.exports = React.createClass({
 						<NavItem icon="chat_bubble">C</NavItem>
 					</LayoutBodyLeft>
 					<LayoutBodyRight>
-						<TaskSummary />
+						<MyWorkItemsSummary />
 					</LayoutBodyRight>
 				</LayoutBody>
 				<Footer>
