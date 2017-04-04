@@ -4,9 +4,9 @@ var Dispatcher = require('flux').Dispatcher;
 var dispatcher = new Dispatcher();
 
 var Action = {
-    getAuthentication:function(){
+    getSavedSetting:function(){
         dispatcher.dispatch({
-            actionType: "getAuthentication",
+            actionType: "getSavedSetting",
             value: {
             }
         });
@@ -136,10 +136,10 @@ var Store = assign({}, EventEmitter.prototype, {
         }
         return null;
     },
-    addGetAuthenticationListener: function(callback) {
+    addGetSavedSettingListener: function(callback) {
         this.on(EVENT.GET_AUTHENTICATION, callback);
     },
-    emitGetAuthentication: function() {
+    emitGetSavedSetting: function() {
         this.emit(EVENT.GET_AUTHENTICATION);
     },
     addChangeAuthenticationListener:function(callback){
@@ -150,10 +150,8 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     dispatcherIndex: dispatcher.register(function(payload) {
         switch (payload.actionType) {
-            case "getAuthentication":
+            case "getSavedSetting":
                 var state = QIStrage.get();
-
-                //console.log(state);
 
                 if(state){
                     _state = state;
@@ -163,18 +161,13 @@ var Store = assign({}, EventEmitter.prototype, {
                     };
                 }
 
-                //console.log(166,_state);
-
-                Store.emitGetAuthentication();
+                Store.emitGetSavedSetting();
                 break;
 
             case "setAuthentication":
                 var context_path = payload.value.context;
                 var email = payload.value.email;
                 var api_password = payload.value.api_password;
-
-                console.log("setAuthentication", context_path, email, api_password);
-
                 _state = {
                     auth:{
                         context_path:context_path,

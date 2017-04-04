@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 10:35"
+    VERSION: "2017.04.04 10:53"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -26933,9 +26933,9 @@ var Dispatcher = require('flux').Dispatcher;
 var dispatcher = new Dispatcher();
 
 var Action = {
-    getAuthentication:function(){
+    getSavedSetting:function(){
         dispatcher.dispatch({
-            actionType: "getAuthentication",
+            actionType: "getSavedSetting",
             value: {
             }
         });
@@ -27065,10 +27065,10 @@ var Store = assign({}, EventEmitter.prototype, {
         }
         return null;
     },
-    addGetAuthenticationListener: function(callback) {
+    addGetSavedSettingListener: function(callback) {
         this.on(EVENT.GET_AUTHENTICATION, callback);
     },
-    emitGetAuthentication: function() {
+    emitGetSavedSetting: function() {
         this.emit(EVENT.GET_AUTHENTICATION);
     },
     addChangeAuthenticationListener:function(callback){
@@ -27079,10 +27079,8 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     dispatcherIndex: dispatcher.register(function(payload) {
         switch (payload.actionType) {
-            case "getAuthentication":
+            case "getSavedSetting":
                 var state = QIStrage.get();
-
-                //console.log(state);
 
                 if(state){
                     _state = state;
@@ -27092,18 +27090,13 @@ var Store = assign({}, EventEmitter.prototype, {
                     };
                 }
 
-                //console.log(166,_state);
-
-                Store.emitGetAuthentication();
+                Store.emitGetSavedSetting();
                 break;
 
             case "setAuthentication":
                 var context_path = payload.value.context;
                 var email = payload.value.email;
                 var api_password = payload.value.api_password;
-
-                console.log("setAuthentication", context_path, email, api_password);
-
                 _state = {
                     auth:{
                         context_path:context_path,
@@ -27261,7 +27254,7 @@ module.exports = {
 }
 
 // 1. Strage から認証情報を取得する
-_Strage.Store.addGetAuthenticationListener(function () {
+_Strage.Store.addGetSavedSettingListener(function () {
 	_onGetAndChangeStrageAuth();
 });
 
@@ -27340,7 +27333,7 @@ _QApi.Store.addPermissionCheckedListener(function(){
 
 // 0. 認証情報を取得する
 setTimeout(function(){
-	_Strage.Action.getAuthentication();
+	_Strage.Action.getSavedSetting();
 }, 1000);
 },{"./Contloller_Strage.js":255,"./Controller_Questetra_API.js":257,"events":4,"flux":28,"object-assign":33}],257:[function(require,module,exports){
 var md5 = require('md5-node');

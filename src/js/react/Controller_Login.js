@@ -134,7 +134,7 @@ module.exports = {
 }
 
 // 1. Strage から認証情報を取得する
-_Strage.Store.addGetAuthenticationListener(function () {
+_Strage.Store.addGetSavedSettingListener(function () {
 	_onGetAndChangeStrageAuth();
 });
 
@@ -213,5 +213,5 @@ _QApi.Store.addPermissionCheckedListener(function(){
 
 // 0. 認証情報を取得する
 setTimeout(function(){
-	_Strage.Action.getAuthentication();
+	_Strage.Action.getSavedSetting();
 }, 1000);
