@@ -14,6 +14,7 @@ module.exports = React.createClass({
 	},
 	onClick:function(e){
 		var listType = e.curretTarget.getAttribute('data-listtype');
+		console.log("onClick:" + listType);
 		Ctr_Strage.Action.setMyWorkitemListViewType(listType);
 	},
 	onChanged:function(e){
@@ -31,11 +32,11 @@ module.exports = React.createClass({
 		}
 		return (
 			<div className="btn-group" data-toggle="buttons">
-				<label className={minimum_label_classes.join(" ")} onClick={this.onSiteChanged} data-listtype={Ctr_Strage.ViewType.MINIMUM}>
+				<label className={minimum_label_classes.join(" ")} onClick={this.onClick} data-listtype={Ctr_Strage.ViewType.MINIMUM}>
 					<input type="radio" name="options" onChanged={this.onChanged} checked={this.state.listStyle == Ctr_Strage.ViewType.MINIMUM}/>
 					<span className={"icon icon-view_list"} />
 				</label>
-				<label className={card_label_classes.join(" ")} onClick={this.onSiteChanged} data-listtype={Ctr_Strage.ViewType.CARD}>
+				<label className={card_label_classes.join(" ")} onClick={this.onClick} data-listtype={Ctr_Strage.ViewType.CARD}>
 					<input type="radio" name="options" onChanged={this.onChanged} checked={this.state.listStyle == Ctr_Strage.ViewType.CARD}/>
 					<span className={"icon icon-view_module"} />
 				</label>
