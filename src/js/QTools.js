@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 10:53"
+    VERSION: "2017.04.04 11:04"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27050,8 +27050,15 @@ var EVENT = {
     CHANGE_AUTHENTICATION: "change_authentication"
 }
 
+var VIEW_TYPE = {
+    MINIMUM:"minimum"
+};
+
 var _state = {
-    auth:null
+    auth:null,
+    view:{
+        workitemListViewType:VIEW_TYPE.MINIMUM
+    }
 };
 
 var Store = assign({}, EventEmitter.prototype, {
@@ -27065,6 +27072,11 @@ var Store = assign({}, EventEmitter.prototype, {
         }
         return null;
     },
+    getMyWorkitemListViewType(){
+        // マイタスクの表示方法を返す
+        return _state.view.workitemListViewType;
+    },
+    // Event
     addGetSavedSettingListener: function(callback) {
         this.on(EVENT.GET_AUTHENTICATION, callback);
     },
@@ -27094,16 +27106,9 @@ var Store = assign({}, EventEmitter.prototype, {
                 break;
 
             case "setAuthentication":
-                var context_path = payload.value.context;
-                var email = payload.value.email;
-                var api_password = payload.value.api_password;
-                _state = {
-                    auth:{
-                        context_path:context_path,
-                        email:email,
-                        api_password:api_password
-                    }
-                }
+                _state.auth.context_path = payload.value.context;
+                _state.auth.email = payload.value.email;
+                _state.auth.api_password = payload.value.api_password;
 
                 QIStrage.set(_state);
                 Store.emitChangeAuthentication();
@@ -27114,7 +27119,8 @@ var Store = assign({}, EventEmitter.prototype, {
 
 module.exports = {
     Action: Action,
-    Store: Store
+    Store: Store,
+    ViewType:VIEW_TYPE
 }
 
 },{"events":4,"flux":28,"object-assign":33}],256:[function(require,module,exports){
@@ -28195,7 +28201,10 @@ module.exports = React.createClass({
 var React = require('react');
 var Ctr_QApi = require('./Controller_Questetra_API.js');
 
+var Ctr_Strage = require('./Contloller_Strage.js');
+
 var ListViewSwitcher = require('./Elem_ListViewSwitcher.js');
+
 var List = require('./Layout_List.js');
 var WorkitemListItem = require('./Elem_WorkitemListItem.js');
 
@@ -28223,28 +28232,30 @@ module.exports = React.createClass({
 		Ctr_QApi.Action.startCheckWorkItems();
 	},
 	render: function render() {
+		var myWorkitemListViewType = Ctr_Strage.Store.getMyWorkitemListViewType();
 		var listItems = [];
 		for (var i = 0; i < this.state.workitems.length; i++) {
 			var workitem = this.state.workitems[i];
 			var key = "myworkitemlist-" + workitem.processModelInfoId + "-" + workitem.processInstanceId + "-" + workitem.nodeNumber + "-" + workitem.id;
 
-			listItems.push(React.createElement(WorkitemListItem, { key: key, workitem: this.state.workitems[i], list_style: "" }));
+			listItems.push(React.createElement(WorkitemListItem, { key: key, workitem: this.state.workitems[i], list_style: myWorkitemListViewType }));
 		}
 
 		return React.createElement(
 			'div',
 			{ className: 'scroll-area' },
 			React.createElement(ListViewSwitcher, null),
+			myWorkitemListViewType,
 			React.createElement(
 				List,
-				null,
+				{ list_style: myWorkitemListViewType },
 				listItems
 			)
 		);
 	}
 });
 
-},{"./Controller_Questetra_API.js":257,"./Elem_ListViewSwitcher.js":261,"./Elem_WorkitemListItem.js":264,"./Layout_List.js":271,"react":242}],264:[function(require,module,exports){
+},{"./Contloller_Strage.js":255,"./Controller_Questetra_API.js":257,"./Elem_ListViewSwitcher.js":261,"./Elem_WorkitemListItem.js":264,"./Layout_List.js":271,"react":242}],264:[function(require,module,exports){
 "use strict";
 
 var React = require('react');

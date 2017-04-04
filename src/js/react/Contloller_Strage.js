@@ -121,8 +121,15 @@ var EVENT = {
     CHANGE_AUTHENTICATION: "change_authentication"
 }
 
+var VIEW_TYPE = {
+    MINIMUM:"minimum"
+};
+
 var _state = {
-    auth:null
+    auth:null,
+    view:{
+        workitemListViewType:VIEW_TYPE.MINIMUM
+    }
 };
 
 var Store = assign({}, EventEmitter.prototype, {
@@ -136,6 +143,11 @@ var Store = assign({}, EventEmitter.prototype, {
         }
         return null;
     },
+    getMyWorkitemListViewType(){
+        // マイタスクの表示方法を返す
+        return _state.view.workitemListViewType;
+    },
+    // Event
     addGetSavedSettingListener: function(callback) {
         this.on(EVENT.GET_AUTHENTICATION, callback);
     },
@@ -165,16 +177,9 @@ var Store = assign({}, EventEmitter.prototype, {
                 break;
 
             case "setAuthentication":
-                var context_path = payload.value.context;
-                var email = payload.value.email;
-                var api_password = payload.value.api_password;
-                _state = {
-                    auth:{
-                        context_path:context_path,
-                        email:email,
-                        api_password:api_password
-                    }
-                }
+                _state.auth.context_path = payload.value.context;
+                _state.auth.email = payload.value.email;
+                _state.auth.api_password = payload.value.api_password;
 
                 QIStrage.set(_state);
                 Store.emitChangeAuthentication();
@@ -185,5 +190,6 @@ var Store = assign({}, EventEmitter.prototype, {
 
 module.exports = {
     Action: Action,
-    Store: Store
+    Store: Store,
+    ViewType:VIEW_TYPE
 }
