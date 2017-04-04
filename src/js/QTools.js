@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 11:31"
+    VERSION: "2017.04.04 11:32"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28264,11 +28264,13 @@ module.exports = React.createClass({
 });
 
 },{"./Contloller_Strage.js":255,"./Controller_Questetra_API.js":257,"./Elem_ListViewSwitcher.js":261,"./Elem_WorkitemListItem.js":264,"./Layout_List.js":271,"react":242}],264:[function(require,module,exports){
-"use strict";
+'use strict';
 
 var React = require('react');
+var Ctr_Strage = require('./Contloller_Strage.js');
+
 module.exports = React.createClass({
-	displayName: "exports",
+	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
 		var listStyle = this.props.list_style;
@@ -28284,26 +28286,26 @@ module.exports = React.createClass({
 	render: function render() {
 		if (this.state.listStyle == Ctr_Strage.ViewType.MINIMUM) {
 			return React.createElement(
-				"li",
-				{ className: "list-group-item justify-content-between" },
+				'li',
+				{ className: 'list-group-item justify-content-between' },
 				this.state.workitem.nodeName,
 				React.createElement(
-					"span",
-					{ className: "badge badge-default badge-pill" },
-					"14"
+					'span',
+					{ className: 'badge badge-default badge-pill' },
+					'14'
 				)
 			);
 		}
 
 		return React.createElement(
-			"div",
+			'div',
 			null,
 			JSON.stringify(this.state.workitem, null, 2)
 		);
 	}
 });
 
-},{"react":242}],265:[function(require,module,exports){
+},{"./Contloller_Strage.js":255,"react":242}],265:[function(require,module,exports){
 'use strict';
 
 var React = require('react');

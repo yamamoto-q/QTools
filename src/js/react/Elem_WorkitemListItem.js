@@ -1,8 +1,10 @@
-"use strict";
+'use strict';
 
 var React = require('react');
+var Ctr_Strage = require('./Contloller_Strage.js');
+
 module.exports = React.createClass({
-	displayName: "exports",
+	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
 		var listStyle = this.props.list_style;
@@ -18,19 +20,19 @@ module.exports = React.createClass({
 	render: function render() {
 		if (this.state.listStyle == Ctr_Strage.ViewType.MINIMUM) {
 			return React.createElement(
-				"li",
-				{ className: "list-group-item justify-content-between" },
+				'li',
+				{ className: 'list-group-item justify-content-between' },
 				this.state.workitem.nodeName,
 				React.createElement(
-					"span",
-					{ className: "badge badge-default badge-pill" },
-					"14"
+					'span',
+					{ className: 'badge badge-default badge-pill' },
+					'14'
 				)
 			);
 		}
 
 		return React.createElement(
-			"div",
+			'div',
 			null,
 			JSON.stringify(this.state.workitem, null, 2)
 		);

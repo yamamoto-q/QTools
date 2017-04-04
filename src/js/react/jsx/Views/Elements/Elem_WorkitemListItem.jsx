@@ -1,4 +1,6 @@
 var React = require('react');
+var Ctr_Strage = require('./Contloller_Strage.js');
+
 module.exports = React.createClass({
 	getInitialState: function() {
 		var listStyle = this.props.list_style;
