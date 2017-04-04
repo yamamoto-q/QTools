@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 15:09"
+    VERSION: "2017.04.04 15:11"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28340,7 +28340,7 @@ module.exports = React.createClass({
 		};
 	},
 	render: function render() {
-		console.log(this.state.workitem);
+		//console.log(this.state.workitem);
 
 		if (this.state.listStyle == Ctr_Strage.ViewType.MINIMUM) {
 			return React.createElement(

@@ -14,7 +14,7 @@ module.exports = React.createClass({
 		}
 	},
 	render: function() {
-		console.log(this.state.workitem);
+		//console.log(this.state.workitem);
 		
 		if(this.state.listStyle == Ctr_Strage.ViewType.MINIMUM){
 			return(
