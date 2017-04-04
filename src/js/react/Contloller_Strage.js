@@ -125,7 +125,8 @@ var EVENT = {
 }
 
 var VIEW_TYPE = {
-    MINIMUM:"minimum"
+    MINIMUM:"minimum",
+    CARD:"card"
 };
 
 var _state = {

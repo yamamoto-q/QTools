@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 13:44"
+    VERSION: "2017.04.04 13:48"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27054,7 +27054,8 @@ var EVENT = {
 }
 
 var VIEW_TYPE = {
-    MINIMUM:"minimum"
+    MINIMUM:"minimum",
+    CARD:"card"
 };
 
 var _state = {
@@ -28129,7 +28130,7 @@ module.exports = React.createClass({
 			React.createElement(
 				'label',
 				{ className: 'btn' },
-				React.createElement('input', { type: 'radio', name: 'options' }),
+				React.createElement('input', { type: 'radio', name: 'options', checked: this.state.listStyle == Ctr_Strage.ViewType.CARD, onChange: this.onSiteChanged, 'data-listtype': Ctr_Strage.ViewType.CARD }),
 				React.createElement('span', { className: "icon icon-view_module" })
 			)
 		);

@@ -37,7 +37,7 @@ module.exports = React.createClass({
 			React.createElement(
 				'label',
 				{ className: 'btn' },
-				React.createElement('input', { type: 'radio', name: 'options' }),
+				React.createElement('input', { type: 'radio', name: 'options', checked: this.state.listStyle == Ctr_Strage.ViewType.CARD, onChange: this.onSiteChanged, 'data-listtype': Ctr_Strage.ViewType.CARD }),
 				React.createElement('span', { className: "icon icon-view_module" })
 			)
 		);

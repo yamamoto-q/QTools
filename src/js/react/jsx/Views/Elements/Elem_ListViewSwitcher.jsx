@@ -28,7 +28,7 @@ module.exports = React.createClass({
 					<span className={"icon icon-view_list"} />
 				</label>
 				<label className="btn">
-					<input type="radio" name="options"/>
+					<input type="radio" name="options" checked={this.state.listStyle == Ctr_Strage.ViewType.CARD} onChange={this.onSiteChanged} data-listtype={Ctr_Strage.ViewType.CARD}/>
 					<span className={"icon icon-view_module"} />
 				</label>
 			</div>
