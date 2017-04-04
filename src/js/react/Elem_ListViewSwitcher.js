@@ -36,13 +36,13 @@ module.exports = React.createClass({
 			React.createElement(
 				'label',
 				{ className: minimum_label_classes.join(" "), onClick: this.onClick, 'data-listtype': Ctr_Strage.ViewType.MINIMUM },
-				React.createElement('input', { type: 'radio', name: 'options', onChanged: this.onChanged, checked: this.state.listStyle == Ctr_Strage.ViewType.MINIMUM }),
+				React.createElement('input', { type: 'radio', name: 'options', onChange: this.onChanged, checked: this.state.listStyle == Ctr_Strage.ViewType.MINIMUM }),
 				React.createElement('span', { className: "icon icon-view_list" })
 			),
 			React.createElement(
 				'label',
 				{ className: card_label_classes.join(" "), onClick: this.onClick, 'data-listtype': Ctr_Strage.ViewType.CARD },
-				React.createElement('input', { type: 'radio', name: 'options', onChanged: this.onChanged, checked: this.state.listStyle == Ctr_Strage.ViewType.CARD }),
+				React.createElement('input', { type: 'radio', name: 'options', onChange: this.onChanged, checked: this.state.listStyle == Ctr_Strage.ViewType.CARD }),
 				React.createElement('span', { className: "icon icon-view_module" })
 			)
 		);
