@@ -13,19 +13,22 @@ module.exports = React.createClass({
 			classes = this.props.className.split(" ");
 		}
 
+		classes.push("workitem");
+
+		// 既読Style
+		if (this.props.workitem.read) {
+			classes.push("workitem-readed");
+		} else {
+			classes.push("workitem-unread");
+		}
+
 		if (this.props.list_style == Ctr_Strage.ViewType.MINIMUM) {
 			classes.push("list-group-item");
 			classes.push("justify-content-between");
 
-			if (this.props.workitem.read) {
-				classes.push("workitem-readed");
-			} else {
-				classes.push("workitem-unread");
-			}
-
 			return React.createElement(
 				'li',
-				{ className: classe.join(" ") },
+				{ className: classes.join(" ") },
 				this.props.workitem.nodeName,
 				React.createElement(
 					'span',

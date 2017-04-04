@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 15:36"
+    VERSION: "2017.04.04 15:39"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28302,7 +28302,7 @@ module.exports = React.createClass({
 		for (var i = 0; i < this.state.workitems.length; i++) {
 			var workitem = this.state.workitems[i];
 			var key = "myworkitemlist-" + workitem.processModelInfoId + "-" + workitem.processInstanceId + "-" + workitem.nodeNumber + "-" + workitem.id;
-			listItems.push(React.createElement(WorkitemListItem, { key: key, workitem: this.state.workitems[i], list_style: this.state.listStyle, className: 'workitem' }));
+			listItems.push(React.createElement(WorkitemListItem, { key: key, workitem: this.state.workitems[i], list_style: this.state.listStyle }));
 		}
 
 		return React.createElement(
@@ -28334,19 +28334,22 @@ module.exports = React.createClass({
 			classes = this.props.className.split(" ");
 		}
 
+		classes.push("workitem");
+
+		// 既読Style
+		if (this.props.workitem.read) {
+			classes.push("workitem-readed");
+		} else {
+			classes.push("workitem-unread");
+		}
+
 		if (this.props.list_style == Ctr_Strage.ViewType.MINIMUM) {
 			classes.push("list-group-item");
 			classes.push("justify-content-between");
 
-			if (this.props.workitem.read) {
-				classes.push("workitem-readed");
-			} else {
-				classes.push("workitem-unread");
-			}
-
 			return React.createElement(
 				'li',
-				{ className: classe.join(" ") },
+				{ className: classes.join(" ") },
 				this.props.workitem.nodeName,
 				React.createElement(
 					'span',
