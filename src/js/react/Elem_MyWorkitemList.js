@@ -31,7 +31,7 @@ module.exports = React.createClass({
 	},
 	render: function render() {
 		var listItems = [];
-		for (var i = 0; i < this.state.workitems; i++) {
+		for (var i = 0; i < this.state.workitems.length; i++) {
 			var workitem = this.state.workitems[i];
 			var key = "myworkitemlist-" + workitem.processModelInfoId + "-" + workitem.processInstanceId + "-" + workitem.nodeNumber + "-" + workitem.id;
 
