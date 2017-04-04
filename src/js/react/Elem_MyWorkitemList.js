@@ -46,7 +46,7 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			{ className: 'scroll-area' },
-			React.createElement(ListViewSwitcher, null),
+			React.createElement(ListViewSwitcher, { list_style: myWorkitemListViewType }),
 			React.createElement(
 				List,
 				{ className: 'workitem-list', list_style: myWorkitemListViewType },

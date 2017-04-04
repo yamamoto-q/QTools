@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 12:07"
+    VERSION: "2017.04.04 12:16"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28093,14 +28093,28 @@ var React = require('react');
 module.exports = React.createClass({
 	displayName: "exports",
 
+	getInitialState: function getInitialState() {
+		var listStyle = this.props.list_style;
+		if (typeof listStyle === "undefined" || !listStyle || listStyle.length == 0) {
+			listStyle = Ctr_Strage.ViewType.MINIMUM;
+		}
+
+		return {
+			listStyle: listStyle
+		};
+	},
 	render: function render() {
+		var minimum_label_classes = ["btn"];
+		if (this.state.listStyle == Ctr_Strage.ViewType.MINIMUM) {
+			minimum_label_classes.push("active");
+		}
 		return React.createElement(
 			"div",
 			{ className: "btn-group", "data-toggle": "buttons" },
 			React.createElement(
 				"label",
-				{ className: "btn" },
-				React.createElement("input", { type: "radio", name: "options", id: "option1", autoComplete: "off" }),
+				{ className: minimum_label_classes.join(" ") },
+				React.createElement("input", { type: "radio", name: "options", id: "option1", autoComplete: "off", checked: this.state.listStyle == Ctr_Strage.ViewType.MINIMUM }),
 				React.createElement("span", { className: "icon icon-view_list" })
 			),
 			React.createElement(
@@ -28246,7 +28260,7 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			{ className: 'scroll-area' },
-			React.createElement(ListViewSwitcher, null),
+			React.createElement(ListViewSwitcher, { list_style: myWorkitemListViewType }),
 			React.createElement(
 				List,
 				{ className: 'workitem-list', list_style: myWorkitemListViewType },

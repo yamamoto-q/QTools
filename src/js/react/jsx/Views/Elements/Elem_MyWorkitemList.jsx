@@ -47,7 +47,7 @@ module.exports = React.createClass({
 
 		return (
 			<div className="scroll-area">
-				<ListViewSwitcher/>
+				<ListViewSwitcher list_style={myWorkitemListViewType}/>
 				<List className="workitem-list" list_style={myWorkitemListViewType} >
 					{listItems}
 				</List>
