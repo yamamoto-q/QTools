@@ -70,7 +70,7 @@ var QuestetraAPI = function(){
         var sendData = {
             id:qGroupId
         };
-        _request("API/UGA/Membership/listByQgroup", function(data){
+        _request("API/User/Membership/listByQgroup", function(data){
             success(data);
         },function(jqXHR, textStatus){
             fail(jqXHR, textStatus);
