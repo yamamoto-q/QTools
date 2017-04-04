@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 13:59"
+    VERSION: "2017.04.04 14:04"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28110,13 +28110,11 @@ module.exports = React.createClass({
 		};
 	},
 	onClick: function onClick(e) {
-		var listType = e.target.getAttribute('data-listtype');
+		var listType = e.curretTarget.getAttribute('data-listtype');
 		Ctr_Strage.Action.setMyWorkitemListViewType(listType);
-		if (this.isMounted()) {
-			this.setState({
-				listStyle: listStyle
-			});
-		}
+	},
+	onChanged: function onChanged(e) {
+		console.log("onChanged");
 	},
 	render: function render() {
 		var minimum_label_classes = ["btn", "btn-primary"];
@@ -28133,14 +28131,14 @@ module.exports = React.createClass({
 			{ className: 'btn-group', 'data-toggle': 'buttons' },
 			React.createElement(
 				'label',
-				{ className: minimum_label_classes.join(" ") },
-				React.createElement('input', { type: 'radio', name: 'options', checked: this.state.listStyle == Ctr_Strage.ViewType.MINIMUM, onChange: this.onClick, 'data-listtype': Ctr_Strage.ViewType.MINIMUM }),
+				{ className: minimum_label_classes.join(" "), onClick: this.onSiteChanged, 'data-listtype': Ctr_Strage.ViewType.MINIMUM },
+				React.createElement('input', { type: 'radio', name: 'options', onChanged: this.onChanged, checked: this.state.listStyle == Ctr_Strage.ViewType.MINIMUM }),
 				React.createElement('span', { className: "icon icon-view_list" })
 			),
 			React.createElement(
 				'label',
-				{ className: card_label_classes.join(" ") },
-				React.createElement('input', { type: 'radio', name: 'options', checked: this.state.listStyle == Ctr_Strage.ViewType.CARD, onChange: this.onClick, 'data-listtype': Ctr_Strage.ViewType.CARD }),
+				{ className: card_label_classes.join(" "), onClick: this.onSiteChanged, 'data-listtype': Ctr_Strage.ViewType.CARD },
+				React.createElement('input', { type: 'radio', name: 'options', onChanged: this.onChanged, checked: this.state.listStyle == Ctr_Strage.ViewType.CARD }),
 				React.createElement('span', { className: "icon icon-view_module" })
 			)
 		);
