@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 14:52"
+    VERSION: "2017.04.04 14:54"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27141,6 +27141,9 @@ var Store = assign({}, EventEmitter.prototype, {
                 break;
 
             case "setMyWorkitemListViewType":
+                if(typeof _state.view === "undefined"){
+                    _state.view = {};
+                }
                 _state.view.workitemListViewType = payload.value.listType;
                 QIStrage.set(_state);
                 Store.emitChangeMyWorkitemListViewType();

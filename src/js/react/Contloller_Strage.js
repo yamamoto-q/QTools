@@ -212,6 +212,9 @@ var Store = assign({}, EventEmitter.prototype, {
                 break;
 
             case "setMyWorkitemListViewType":
+                if(typeof _state.view === "undefined"){
+                    _state.view = {};
+                }
                 _state.view.workitemListViewType = payload.value.listType;
                 QIStrage.set(_state);
                 Store.emitChangeMyWorkitemListViewType();
