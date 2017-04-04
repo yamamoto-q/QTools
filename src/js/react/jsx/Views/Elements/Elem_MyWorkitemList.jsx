@@ -48,7 +48,7 @@ module.exports = React.createClass({
 			var workitem = this.state.workitems[i];
 			var key = "myworkitemlist-" + workitem.processModelInfoId + "-" + workitem.processInstanceId + "-" + workitem.nodeNumber + "-" + workitem.id;
 			listItems.push(
-				<WorkitemListItem key={key} workitem={this.state.workitems[i]} list_style={this.state.listStyle}/>
+				<WorkitemListItem key={key} workitem={this.state.workitems[i]} list_style={this.state.listStyle} className="workitem"/>
 			);
 		}
 

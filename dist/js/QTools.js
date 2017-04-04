@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 15:19"
+    VERSION: "2017.04.04 15:36"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28302,7 +28302,7 @@ module.exports = React.createClass({
 		for (var i = 0; i < this.state.workitems.length; i++) {
 			var workitem = this.state.workitems[i];
 			var key = "myworkitemlist-" + workitem.processModelInfoId + "-" + workitem.processInstanceId + "-" + workitem.nodeNumber + "-" + workitem.id;
-			listItems.push(React.createElement(WorkitemListItem, { key: key, workitem: this.state.workitems[i], list_style: this.state.listStyle }));
+			listItems.push(React.createElement(WorkitemListItem, { key: key, workitem: this.state.workitems[i], list_style: this.state.listStyle, className: 'workitem' }));
 		}
 
 		return React.createElement(
@@ -28327,22 +28327,27 @@ var Ctr_Strage = require('./Contloller_Strage.js');
 module.exports = React.createClass({
 	displayName: 'exports',
 
-	getInitialState: function getInitialState() {
-		return {
-			workitem: this.props.workitem
-		};
-	},
-	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-		console.log(nextProps);
-	},
 	render: function render() {
 		//console.log(this.state.workitem);
+		var classes = [];
+		if (this.props.className) {
+			classes = this.props.className.split(" ");
+		}
 
 		if (this.props.list_style == Ctr_Strage.ViewType.MINIMUM) {
+			classes.push("list-group-item");
+			classes.push("justify-content-between");
+
+			if (this.props.workitem.read) {
+				classes.push("workitem-readed");
+			} else {
+				classes.push("workitem-unread");
+			}
+
 			return React.createElement(
 				'li',
-				{ className: 'list-group-item justify-content-between' },
-				this.state.workitem.nodeName,
+				{ className: classe.join(" ") },
+				this.props.workitem.nodeName,
 				React.createElement(
 					'span',
 					{ className: 'badge badge-default badge-pill' },
@@ -28354,7 +28359,7 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			null,
-			JSON.stringify(this.state.workitem, null, 2)
+			JSON.stringify(this.props.workitem, null, 2)
 		);
 	}
 });
@@ -28633,9 +28638,9 @@ module.exports = React.createClass({
 			classes = this.props.className.split(" ");
 		}
 		classes.push("layout-list");
-		classes.push("layout-list-" + this.state.listStyle);
+		classes.push("layout-list-" + this.props.list_style);
 
-		if (this.state.listStyle == Ctr_Strage.ViewType.MINIMUM) {
+		if (this.props.list_style == Ctr_Strage.ViewType.MINIMUM) {
 			classes.push("list-group");
 			return React.createElement(
 				'ul',

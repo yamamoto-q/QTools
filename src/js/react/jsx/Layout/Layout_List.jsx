@@ -17,9 +17,9 @@ module.exports = React.createClass({
 			classes = this.props.className.split(" ");
 		} 
 		classes.push("layout-list");
-		classes.push("layout-list-" + this.state.listStyle);
+		classes.push("layout-list-" + this.props.list_style);
 
-		if(this.state.listStyle == Ctr_Strage.ViewType.MINIMUM){
+		if(this.props.list_style == Ctr_Strage.ViewType.MINIMUM){
 			classes.push("list-group");
 			return(
 				<ul className={classes.join(" ")}>{this.props.children}</ul>
