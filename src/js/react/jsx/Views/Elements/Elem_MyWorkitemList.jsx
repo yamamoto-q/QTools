@@ -2,6 +2,7 @@ var React = require('react');
 var Ctr_QApi = require('./Controller_Questetra_API.js');
 
 var ListViewSwitcher = require('./Elem_ListViewSwitcher.js');
+var List = require('./Layout_List.js');
 var WorkitemListItem = require('./Elem_WorkitemListItem.js');
 
 module.exports = React.createClass({
@@ -39,9 +40,9 @@ module.exports = React.createClass({
 		return (
 			<div className="scroll-area">
 				<ListViewSwitcher />
-				<ul className="list-group">
+				<List>
 					{listItems}
-				</ul>
+				</List>
 			</div>
 		);
 	}

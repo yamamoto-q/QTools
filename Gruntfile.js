@@ -56,6 +56,7 @@ module.exports = function(grunt) {
                     { 'src/js/react/View_Home.js': 'src/js/react/jsx/Views/View_Home.jsx' },
                     { 'src/js/react/View_Work.js': 'src/js/react/jsx/Views/View_Work.jsx' },
                     { 'src/js/react/View_AdminTools.js': 'src/js/react/jsx/Views/View_AdminTools.jsx' },
+                    { 'src/js/react/Layout_List.js': 'src/js/react/jsx/Layout/Layout_List.jsx' },
                     // Elements
                     { 'src/js/react/Elem_Header.js': 'src/js/react/jsx/Views/Elements/Elem_Header.jsx' },
                     { 'src/js/react/Elem_Avater.js': 'src/js/react/jsx/Views/Elements/Elem_Avater.jsx' },
