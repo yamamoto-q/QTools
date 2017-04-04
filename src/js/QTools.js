@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 11:21"
+    VERSION: "2017.04.04 11:31"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28271,21 +28271,34 @@ module.exports = React.createClass({
 	displayName: "exports",
 
 	getInitialState: function getInitialState() {
+		var listStyle = this.props.list_style;
+		if (typeof listStyle === "undefined" || !listStyle || listStyle.length == 0) {
+			listStyle = Ctr_Strage.ViewType.MINIMUM;
+		}
+
 		return {
 			workitem: this.props.workitem,
-			listStyle: this.props.list_style
+			listStyle: listStyle
 		};
 	},
 	render: function render() {
+		if (this.state.listStyle == Ctr_Strage.ViewType.MINIMUM) {
+			return React.createElement(
+				"li",
+				{ className: "list-group-item justify-content-between" },
+				this.state.workitem.nodeName,
+				React.createElement(
+					"span",
+					{ className: "badge badge-default badge-pill" },
+					"14"
+				)
+			);
+		}
+
 		return React.createElement(
-			"li",
-			{ className: "list-group-item justify-content-between" },
-			this.state.workitem.nodeName,
-			React.createElement(
-				"span",
-				{ className: "badge badge-default badge-pill" },
-				"14"
-			)
+			"div",
+			null,
+			JSON.stringify(this.state.workitem, null, 2)
 		);
 	}
 });
@@ -28546,28 +28559,38 @@ var React = require('react');
 var Bootstrap_Container = require('./Bootstrap_Container.js');
 var Bootstrap_Row = require('./Bootstrap_Row.js');
 
+var Ctr_Strage = require('./Contloller_Strage.js');
+
 module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
 		var listStyle = this.props.list_style;
 		if (typeof listStyle === "undefined" || !listStyle || listStyle.length == 0) {
-			listStyle = "minimum";
+			listStyle = Ctr_Strage.ViewType.MINIMUM;
 		}
 		return {
 			listStyle: listStyle
 		};
 	},
 	render: function render() {
+		if (this.state.listStyle == Ctr_Strage.ViewType.MINIMUM) {
+			return React.createElement(
+				'ul',
+				{ className: 'list-group' },
+				this.props.children
+			);
+		}
+
 		return React.createElement(
-			'ul',
-			{ className: 'list-group' },
+			'div',
+			null,
 			this.props.children
 		);
 	}
 });
 
-},{"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"react":242}],272:[function(require,module,exports){
+},{"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./Contloller_Strage.js":255,"react":242}],272:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
