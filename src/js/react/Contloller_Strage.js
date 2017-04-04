@@ -145,6 +145,10 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     getMyWorkitemListViewType(){
         // マイタスクの表示方法を返す
+        if(!_state.view){
+            return VIEW_TYPE.MINIMUM;
+        }
+
         var viewType = _state.view.workitemListViewType;
         if(!viewType){
             viewType = VIEW_TYPE.MINIMUM;

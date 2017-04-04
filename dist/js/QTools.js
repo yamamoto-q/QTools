@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.04 11:19"
+    VERSION: "2017.04.04 11:21"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27074,6 +27074,10 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     getMyWorkitemListViewType(){
         // マイタスクの表示方法を返す
+        if(!_state.view){
+            return VIEW_TYPE.MINIMUM;
+        }
+
         var viewType = _state.view.workitemListViewType;
         if(!viewType){
             viewType = VIEW_TYPE.MINIMUM;
