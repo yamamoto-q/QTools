@@ -154,6 +154,7 @@ var Store = assign({}, EventEmitter.prototype, {
         return null;
     },
     getMyWorkitemListViewType(){
+        console.log("getMyWorkitemListViewType");
         // マイタスクの表示方法を返す
         if(!_state.view){
             return VIEW_TYPE.MINIMUM;
