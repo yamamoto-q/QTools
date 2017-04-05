@@ -12,6 +12,7 @@ var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
 
 var MyWorkItemsSummary = require('./Elem_MyWorkItems_Summary.js');
+var AppsSummary = require('./Elem_Apps_Summary.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -51,7 +52,8 @@ module.exports = React.createClass({
 				React.createElement(
 					LayoutBodyRight,
 					null,
-					React.createElement(MyWorkItemsSummary, null)
+					React.createElement(MyWorkItemsSummary, null),
+					React.createElement(AppsSummary, null)
 				)
 			),
 			React.createElement(

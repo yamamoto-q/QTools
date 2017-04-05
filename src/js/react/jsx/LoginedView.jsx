@@ -5,7 +5,6 @@ var Home = require('./View_Home.js');
 var Work = require('./View_Work.js');
 var AdminTools = require('./View_AdminTools.js');
 
-
 module.exports = React.createClass({
 	getInitialState: function() {
 		var viewName = Controller_View.Store.getViewNane();

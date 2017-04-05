@@ -10,6 +10,7 @@ var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
 
 var MyWorkItemsSummary = require('./Elem_MyWorkItems_Summary.js');
+var AppsSummary = require('./Elem_Apps_Summary.js');
 
 module.exports = React.createClass({
 	componentDidMount: function() {
@@ -29,6 +30,7 @@ module.exports = React.createClass({
 					</LayoutBodyLeft>
 					<LayoutBodyRight>
 						<MyWorkItemsSummary />
+						<AppsSummary />
 					</LayoutBodyRight>
 				</LayoutBody>
 				<Footer>

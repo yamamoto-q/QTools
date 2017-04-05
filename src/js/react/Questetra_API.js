@@ -88,6 +88,19 @@ var QuestetraAPI = function(){
         },sendData);
     }
 
+    function _PEProcessModeListStartable(limit, start, success, fail){
+        var sendData = {
+            limit:limit,
+            start:start,
+            dc:_getTimestamp()
+        };
+        _request("PE/ProcessModel/listStartabl", function(data){
+            success(data);
+        },function(jqXHR, textStatus){
+            fail(jqXHR, textStatus);
+        },sendData);
+    }
+
     function _UserIconView(qUserId, success, fail){
         var oReq = new XMLHttpRequest();
         oReq.open("GET", _contextPath + "User/Icon/view?name=usericon%2f" + qUserId, true);
@@ -110,6 +123,13 @@ var QuestetraAPI = function(){
         };
 
         oReq.send();
+    }
+
+
+
+    function _getTimestamp(){
+        var date = new Date() ;
+        return Math.floor( date.getTime() / 1000 ) ;
     }
 
 	return {
@@ -150,8 +170,12 @@ var QuestetraAPI = function(){
         AdminSystemAuthorityList:function(authorityType, success, fail){
             // システム権限の一覧を取得する : システム管理権限
             _AdminSystemAuthorityList(authorityType, success, fail);
+        },
+        PEProcessModeListStartable:function(success, fail, limit, start){
+            this.limit = limit || 1000;
+            this.start = start || 0;
+            _PEProcessModeListStartable(this.limit, this.start, success, fail);
         }
-
 	};
 }
 

@@ -67,6 +67,14 @@ var Action = {
             }
         });
     },
+    getStartableActivities:function(){
+        // 新規開始できるプロセスモデル一覧を取得する
+        dispatcher.dispatch({
+            actionType: "getStartableActivities",
+            value: {
+            }
+        });
+    },
     getAvater:function(qUserId){
         if(typeof _state.resopnses['avater-' + qUserId] === "undefined"){
             dispatcher.dispatch({
@@ -437,6 +445,15 @@ var Store = assign({}, EventEmitter.prototype, {
                     if(change){
                         Store.emitChangeOfferedWorkitems();
                     }
+                });
+                break;
+
+            case "getStartableActivities":
+                _API.API.PEProcessModeListStartable(function(data){
+                    console.log("getStartableActivities", data);
+                },function(jqXHR, textStatus){
+                    // fail
+                    console.log(jqXHR, textStatus);
                 });
                 break;
 

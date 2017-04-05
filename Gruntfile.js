@@ -61,6 +61,7 @@ module.exports = function(grunt) {
                     { 'src/js/react/Elem_Header.js': 'src/js/react/jsx/Views/Elements/Elem_Header.jsx' },
                     { 'src/js/react/Elem_Avater.js': 'src/js/react/jsx/Views/Elements/Elem_Avater.jsx' },
                     { 'src/js/react/Elem_MyWorkItems_Summary.js': 'src/js/react/jsx/Views/Elements/Elem_MyWorkItems_Summary.jsx' },
+                    { 'src/js/react/Elem_Apps_Summary.js': 'src/js/react/jsx/Views/Elements/Elem_Apps_Summary.jsx' },
                     { 'src/js/react/Elem_MyWorkitemList.js': 'src/js/react/jsx/Views/Elements/Elem_MyWorkitemList.jsx' },
                     { 'src/js/react/Elem_ListViewSwitcher.js': 'src/js/react/jsx/Views/Elements/Elem_ListViewSwitcher.jsx' },
                     { 'src/js/react/Elem_WorkitemListItem.js': 'src/js/react/jsx/Views/Elements/Elem_WorkitemListItem.jsx' },
