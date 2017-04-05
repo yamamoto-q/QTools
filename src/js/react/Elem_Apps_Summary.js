@@ -72,7 +72,7 @@ module.exports = React.createClass({
 
 		return React.createElement(
 			'div',
-			{ className: 'card', onClick: this.onClick, 'data-viewname': Controller_View.ViewNames.WORK },
+			{ className: 'card', onClick: this.onClick, 'data-viewname': Controller_View.ViewNames.APPS },
 			React.createElement(
 				'div',
 				{ className: 'card-block' },

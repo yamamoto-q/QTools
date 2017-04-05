@@ -44,6 +44,7 @@ var EVENT = {
 var VIEW_NAMES = {
 	HOME:"home",
     WORK:"work",
+    APPS:"apps",
 	ADMIN_TOOLS:"admin-tools"
 }
 

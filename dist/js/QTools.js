@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 15:42"
+    VERSION: "2017.04.05 15:51"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28120,6 +28120,7 @@ var EVENT = {
 var VIEW_NAMES = {
 	HOME:"home",
     WORK:"work",
+    APPS:"apps",
 	ADMIN_TOOLS:"admin-tools"
 }
 
@@ -28270,7 +28271,7 @@ module.exports = React.createClass({
 
 		return React.createElement(
 			'div',
-			{ className: 'card', onClick: this.onClick, 'data-viewname': Controller_View.ViewNames.WORK },
+			{ className: 'card', onClick: this.onClick, 'data-viewname': Controller_View.ViewNames.APPS },
 			React.createElement(
 				'div',
 				{ className: 'card-block' },
@@ -29011,6 +29012,7 @@ var Controller_View = require('./Controller_View.js');
 
 var Home = require('./View_Home.js');
 var Work = require('./View_Work.js');
+var Apps = require('./View_Apps.js');
 var AdminTools = require('./View_AdminTools.js');
 
 module.exports = React.createClass({
@@ -29044,6 +29046,10 @@ module.exports = React.createClass({
 				return React.createElement(Work, null);
 				break;
 
+			case Controller_View.ViewNames.APPS:
+				return React.createElement(Apps, null);
+				break;
+
 			case Controller_View.ViewNames.ADMIN_TOOLS:
 				return React.createElement(AdminTools, null);
 				break;
@@ -29051,7 +29057,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./View_AdminTools.js":279,"./View_Home.js":280,"./View_Work.js":281,"react":242}],274:[function(require,module,exports){
+},{"./Controller_View.js":258,"./View_AdminTools.js":279,"./View_Apps.js":280,"./View_Home.js":281,"./View_Work.js":282,"react":242}],274:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -29589,6 +29595,86 @@ var LayoutBodyRight = require('./Layout_BodyRight.js');
 var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
 
+var MyWorkitemList = require('./Elem_MyWorkitemList.js');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	componentDidMount: function componentDidMount() {
+		$("body").addClass('view-' + Controller_View.ViewNames.APPS);
+	},
+	componentWillUnmount: function componentWillUnmount() {
+		$("body").removeClass('view-' + Controller_View.ViewNames.APPS);
+	},
+	render: function render() {
+		return React.createElement(
+			LayoutHeader,
+			{ label: 'Apps' },
+			React.createElement(
+				LayoutBody,
+				null,
+				React.createElement(
+					LayoutBodyLeft,
+					null,
+					React.createElement(
+						NavItem,
+						{ icon: 'home', view_name: Controller_View.ViewNames.HOME },
+						'Home'
+					),
+					React.createElement(
+						NavItem,
+						{ icon: 'inbox', view_name: Controller_View.ViewNames.WORK },
+						'Work'
+					),
+					React.createElement(
+						NavItem,
+						{ icon: 'chat_bubble', active: true },
+						'Apps'
+					)
+				),
+				React.createElement(
+					LayoutBodyRight,
+					null,
+					'Works'
+				)
+			),
+			React.createElement(
+				Footer,
+				null,
+				React.createElement(
+					NavItem,
+					{ icon: 'home', view_name: Controller_View.ViewNames.HOME },
+					'Home'
+				),
+				React.createElement(
+					NavItem,
+					{ icon: 'inbox', view_name: Controller_View.ViewNames.WORK },
+					'Work'
+				),
+				React.createElement(
+					NavItem,
+					{ icon: 'chat_bubble', active: true },
+					'Apps'
+				)
+			)
+		);
+	}
+});
+
+},{"./Controller_View.js":258,"./Elem_MyWorkitemList.js":264,"./Footer.js":266,"./Layout_Body.js":268,"./Layout_BodyLeft.js":269,"./Layout_BodyRight.js":270,"./Layout_Header.js":271,"./NavItem.js":274,"react":242}],281:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var Controller_View = require('./Controller_View.js');
+
+var LayoutHeader = require('./Layout_Header.js');
+var LayoutBody = require('./Layout_Body.js');
+var LayoutBodyLeft = require('./Layout_BodyLeft.js');
+var LayoutBodyRight = require('./Layout_BodyRight.js');
+
+var Footer = require('./Footer.js');
+var NavItem = require('./NavItem.js');
+
 var MyWorkItemsSummary = require('./Elem_MyWorkItems_Summary.js');
 var AppsSummary = require('./Elem_Apps_Summary.js');
 
@@ -29657,7 +29743,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./Elem_Apps_Summary.js":259,"./Elem_MyWorkItems_Summary.js":263,"./Footer.js":266,"./Layout_Body.js":268,"./Layout_BodyLeft.js":269,"./Layout_BodyRight.js":270,"./Layout_Header.js":271,"./NavItem.js":274,"react":242}],281:[function(require,module,exports){
+},{"./Controller_View.js":258,"./Elem_Apps_Summary.js":259,"./Elem_MyWorkItems_Summary.js":263,"./Footer.js":266,"./Layout_Body.js":268,"./Layout_BodyLeft.js":269,"./Layout_BodyRight.js":270,"./Layout_Header.js":271,"./NavItem.js":274,"react":242}],282:[function(require,module,exports){
 'use strict';
 
 var React = require('react');

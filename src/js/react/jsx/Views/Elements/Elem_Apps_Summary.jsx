@@ -53,7 +53,7 @@ module.exports = React.createClass({
 		}
 
 		return(
-			<div className="card" onClick={this.onClick} data-viewname={Controller_View.ViewNames.WORK}>
+			<div className="card" onClick={this.onClick} data-viewname={Controller_View.ViewNames.APPS}>
 				<div className="card-block">
 					<h4 className="card-title">Apps</h4>
 					<p className="card-text">Hoge</p>

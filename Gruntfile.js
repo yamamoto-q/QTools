@@ -55,6 +55,7 @@ module.exports = function(grunt) {
                     { 'src/js/react/SettingMenu.js': 'src/js/react/jsx/SettingMenu.jsx' },
                     { 'src/js/react/View_Home.js': 'src/js/react/jsx/Views/View_Home.jsx' },
                     { 'src/js/react/View_Work.js': 'src/js/react/jsx/Views/View_Work.jsx' },
+                    { 'src/js/react/View_Apps.js': 'src/js/react/jsx/Views/View_Apps.jsx' },
                     { 'src/js/react/View_AdminTools.js': 'src/js/react/jsx/Views/View_AdminTools.jsx' },
                     { 'src/js/react/Layout_List.js': 'src/js/react/jsx/Layout/Layout_List.jsx' },
                     // Elements
