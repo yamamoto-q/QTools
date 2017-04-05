@@ -110,6 +110,7 @@ var EVENT = {
     CHANGE_ALLOCATED_WORKITEMS:"change_allocated_workitems",
     CHANGE_OFFERED_WORKITEMS:"change_offered_workitems",
     CHANGE_STARTABLE_ACTIVITIES:"change_startable_activity",
+    CHANGE_PROCESSMODEL_LIST:"change_processmodel_list",
     ON_GET_AVATER: "on_get_avater"
 }
 
@@ -142,7 +143,10 @@ var _state = {
             activities:[],
             hash:null
         },
-        infos:[]
+        infos:{
+            infos:[],
+            hash:null
+        }
     },
     userQuserSelf:null,
     resopnses:{}
@@ -169,6 +173,9 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     getStartableActivities:function(){
         return _state.apps.startableActivities.activities;
+    },
+    getProcessModelList:function(){
+        return _state.apps.infos.infos;
     },
     getPermission:function(){
         return _state.permission;
@@ -227,6 +234,13 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     emitChangeStartableActivities(){
         this.emit(EVENT.CHANGE_STARTABLE_ACTIVITIES);
+    },
+    // ProcessModelList
+    addChangeProcessModelListListener(callback){
+        this.on(EVENT.CHANGE_PROCESSMODEL_LIST, callback);
+    },
+    emitChangeProcessModelList(){
+        this.emit(EVENT.CHANGE_PROCESSMODEL_LIST);
     },
     // function
     getTimestamp(){
@@ -311,7 +325,7 @@ var Store = assign({}, EventEmitter.prototype, {
             var hash = md5(JSON.stringify(data.startableActivities));
 
             _state.apps.startableActivities.activities = data.startableActivities;
-            _state.apps.startableActivities.hash = md5(JSON.stringify(data.startableActivities));
+            _state.apps.startableActivities.hash = hash;
 
             if(oldHash != hash){
                 cb(true);
@@ -326,6 +340,29 @@ var Store = assign({}, EventEmitter.prototype, {
             cb(false);
             return;
         });
+    },
+    _getWorkitems(isAuthorizedOnly, cb){
+        // プロセスモデル一覧を取得する
+        _API.API.PMMProcessModelList(function(data){
+            var oldHash = _state.apps.infos.hash;
+            var hash = md5(JSON.stringify(data.processModelInfos));
+
+            _state.apps.infos.infos = data.startableActivities;
+            _state.apps.infos.hash = hash;
+
+            if(oldHash != hash){
+                cb(true);
+                return;
+            }
+            cb(false);
+            return;
+
+        },function(jqXHR, textStatus){
+            // fail
+            console.log(jqXHR, textStatus);
+            cb(false);
+            return;
+        }, isAuthorizedOnly);
     },
     // Dispacher
     dispatcherIndex: dispatcher.register(function(payload) {
@@ -510,12 +547,11 @@ var Store = assign({}, EventEmitter.prototype, {
             case "getProcessModelList":
                 // プロセスモデル一覧を取得する
                 var authorizedOnly = payload.value.isAuthorizedOnly;
-                _API.API.PMMProcessModelList(function(data){
-                    console.log("getProcessModelList", data);
-                },function(jqXHR, textStatus){
-                    // fail
-                    console.log(jqXHR, textStatus);
-                }, authorizedOnly);
+                Store._getWorkitems(authorizedOnly, function(change){
+                    if(change){
+                        Store.emitChangeProcessModelList();
+                    }
+                });
                 break;
 
             case "getAvater":

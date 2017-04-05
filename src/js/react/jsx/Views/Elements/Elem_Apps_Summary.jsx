@@ -33,9 +33,14 @@ module.exports = React.createClass({
 			}
 		});
 		*/
+		Ctr_QApi.Store.addChangeProcessModelListListener(function(){
+			var processModelList = Ctr_QApi.Store.getProcessModelList();
+			console.log("processModelList", processModelList);
+		});
+
 		Ctr_QApi.Store.addChangeStartableActivitiesListener(function(){
 			var startableActivities = Ctr_QApi.Store.getStartableActivities();
-			console.log("StartableActivities", StartableActivities);
+			console.log("StartableActivities", startableActivities);
 		});
 
 		Ctr_QApi.Action.getStartableActivities();
