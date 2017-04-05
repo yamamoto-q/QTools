@@ -75,6 +75,15 @@ var Action = {
             }
         });
     },
+    getProcessModelList:function(isAuthorizedOnly){
+        // プロセスモデル一覧を取得する
+        dispatcher.dispatch({
+            actionType: "getProcessModelList",
+            value: {
+                isAuthorizedOnly:isAuthorizedOnly
+            }
+        });
+    },
     getAvater:function(qUserId){
         if(typeof _state.resopnses['avater-' + qUserId] === "undefined"){
             dispatcher.dispatch({
@@ -455,6 +464,16 @@ var Store = assign({}, EventEmitter.prototype, {
                     // fail
                     console.log(jqXHR, textStatus);
                 });
+                break;
+
+            case "getProcessModelList":
+                var authorizedOnly = payload.value.isAuthorizedOnly;
+                _API.API.PMMProcessModelList(function(data){
+                    console.log("getProcessModelList", data);
+                },function(jqXHR, textStatus){
+                    // fail
+                    console.log(jqXHR, textStatus);
+                }, authorizedOnly);
                 break;
 
             case "getAvater":

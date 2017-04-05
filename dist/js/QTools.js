@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 10:33"
+    VERSION: "2017.04.05 10:45"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27454,6 +27454,15 @@ var Action = {
             }
         });
     },
+    getProcessModelList:function(isAuthorizedOnly){
+        // プロセスモデル一覧を取得する
+        dispatcher.dispatch({
+            actionType: "getProcessModelList",
+            value: {
+                isAuthorizedOnly:isAuthorizedOnly
+            }
+        });
+    },
     getAvater:function(qUserId){
         if(typeof _state.resopnses['avater-' + qUserId] === "undefined"){
             dispatcher.dispatch({
@@ -27836,6 +27845,16 @@ var Store = assign({}, EventEmitter.prototype, {
                 });
                 break;
 
+            case "getProcessModelList":
+                var authorizedOnly = payload.value.isAuthorizedOnly;
+                _API.API.PMMProcessModelList(function(data){
+                    console.log("getProcessModelList", data);
+                },function(jqXHR, textStatus){
+                    // fail
+                    console.log(jqXHR, textStatus);
+                }, authorizedOnly);
+                break;
+
             case "getAvater":
                 var qUserId = payload.value.qUserId;
                 var requestId = payload.value.requestId;
@@ -28030,6 +28049,7 @@ module.exports = React.createClass({
   });
   */
 		Ctr_QApi.Action.getStartableActivities();
+		Ctr_QApi.Action.getProcessModelList(false);
 	},
 	onClick: function onClick(e) {
 		e.preventDefault();
@@ -29122,6 +29142,20 @@ var QuestetraAPI = function(){
         },sendData);
     }
 
+    function _PMMProcessModelList(success, fail, limit, start, authorizedOnly){
+        var sendData = {
+            limit:limit,
+            start:start,
+            authorizedOnly:authorizedOnly,
+            _dc:_getTimestamp()
+        };
+        _request("API/PMM/ProcessModel/list", function(data){
+            success(data);
+        },function(jqXHR, textStatus){
+            fail(jqXHR, textStatus);
+        },sendData);
+    }
+
     function _UserIconView(qUserId, success, fail){
         var oReq = new XMLHttpRequest();
         oReq.open("GET", _contextPath + "User/Icon/view?name=usericon%2f" + qUserId, true);
@@ -29198,8 +29232,12 @@ var QuestetraAPI = function(){
             this.start = start || 0;
             _PEProcessModeListStartable(this.limit, this.start, success, fail);
         },
-        PMMProcessModelList:function(success, fail, limit, start, isAuthorizedOnly){
+        PMMProcessModelList:function(success, fail, isAuthorizedOnly, limit, start){
+            this.limit = limit || 1000;
+            this.start = start || 0;
+            this.authorizedOnly = isAuthorizedOnly || false;
             //_dc=1491355791539&authorizedOnly=false&start=0&limit=10
+            _PMMProcessModelList(success, fail, this.limit, this.start, this.authorizedOnly);
         }
 	};
 }

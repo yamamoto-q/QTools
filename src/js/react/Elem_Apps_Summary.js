@@ -37,6 +37,7 @@ module.exports = React.createClass({
   });
   */
 		Ctr_QApi.Action.getStartableActivities();
+		Ctr_QApi.Action.getProcessModelList(false);
 	},
 	onClick: function onClick(e) {
 		e.preventDefault();

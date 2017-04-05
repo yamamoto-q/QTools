@@ -101,6 +101,20 @@ var QuestetraAPI = function(){
         },sendData);
     }
 
+    function _PMMProcessModelList(success, fail, limit, start, authorizedOnly){
+        var sendData = {
+            limit:limit,
+            start:start,
+            authorizedOnly:authorizedOnly,
+            _dc:_getTimestamp()
+        };
+        _request("API/PMM/ProcessModel/list", function(data){
+            success(data);
+        },function(jqXHR, textStatus){
+            fail(jqXHR, textStatus);
+        },sendData);
+    }
+
     function _UserIconView(qUserId, success, fail){
         var oReq = new XMLHttpRequest();
         oReq.open("GET", _contextPath + "User/Icon/view?name=usericon%2f" + qUserId, true);
@@ -177,8 +191,12 @@ var QuestetraAPI = function(){
             this.start = start || 0;
             _PEProcessModeListStartable(this.limit, this.start, success, fail);
         },
-        PMMProcessModelList:function(success, fail, limit, start, isAuthorizedOnly){
+        PMMProcessModelList:function(success, fail, isAuthorizedOnly, limit, start){
+            this.limit = limit || 1000;
+            this.start = start || 0;
+            this.authorizedOnly = isAuthorizedOnly || false;
             //_dc=1491355791539&authorizedOnly=false&start=0&limit=10
+            _PMMProcessModelList(success, fail, this.limit, this.start, this.authorizedOnly);
         }
 	};
 }
