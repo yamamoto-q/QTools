@@ -41,6 +41,7 @@ module.exports = React.createClass({
 		$("body").removeClass('view-' + Controller_View.ViewNames.APPS);
 	},
 	sortApp: function sortApp(apps) {
+		// Stared
 		apps.sort(function (a, b) {
 			if (a.starred && !b.starred) {
 				return -1;
@@ -54,6 +55,8 @@ module.exports = React.createClass({
 	},
 	render: function render() {
 		var allApps = [];
+
+		console.log("apps", this.state.apps);
 		for (var i = this.state.apps.length - 1; i >= 0; i--) {
 			var app = this.state.apps[i];
 			allApps.push(React.createElement(
