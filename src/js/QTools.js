@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 10:45"
+    VERSION: "2017.04.05 11:12"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27488,6 +27488,7 @@ var EVENT = {
     CHANGE_WORKITEMS:"change_workitems",
     CHANGE_ALLOCATED_WORKITEMS:"change_allocated_workitems",
     CHANGE_OFFERED_WORKITEMS:"change_offered_workitems",
+    CHANGE_STARTABLE_ACTIVITIES:"change_startable_activity",
     ON_GET_AVATER: "on_get_avater"
 }
 
@@ -27515,6 +27516,13 @@ var _state = {
         update:0,
         hash:null
     },
+    apps:{
+        startableActivities:{
+            activities:[],
+            hash:null
+        },
+        infos:[]
+    },
     userQuserSelf:null,
     resopnses:{}
 };
@@ -27537,6 +27545,9 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     getOfferedWorkitems:function(){
         return _state.offeredWorkitems.workitems;
+    },
+    getStartableActivities:function(){
+        return _state.apps.startableActivities.activities;
     },
     getPermission:function(){
         return _state.permission;
@@ -27588,6 +27599,13 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     emitChangeWorkitems(){
         this.emit(EVENT.CHANGE_WORKITEMS);
+    },
+    // StartableActivities
+    addChangeStartableActivitiesListener(callback){
+        this.on(EVENT.CHANGE_STARTABLE_ACTIVITIES, callback);
+    },
+    emitChangeStartableActivities(){
+        this.emit(EVENT.CHANGE_STARTABLE_ACTIVITIES);
     },
     // function
     getTimestamp(){
@@ -27661,6 +27679,29 @@ var Store = assign({}, EventEmitter.prototype, {
             // fail
             console.log(jqXHR, textStatus);
             _state.offeredWorkitems.isResultWaiting = false;
+            cb(false);
+            return;
+        });
+    },
+    _getStartableActivities(cb){
+        // 新規開始できるプロセスモデル一覧を取得する
+        _API.API.PEProcessModeListStartable(function(data){
+            var oldHash = _state.apps.startableActivities.hash;
+            var hash = md5(JSON.stringify(data.startableActivities));
+
+            _state.apps.startableActivities.activities = data.startableActivities;
+            _state.apps.startableActivities.hash = md5(JSON.stringify(data.startableActivities));
+
+            if(oldHash != hash){
+                cb(true);
+                return;
+            }
+            cb(false);
+            return;
+
+        },function(jqXHR, textStatus){
+            // fail
+            console.log(jqXHR, textStatus);
             cb(false);
             return;
         });
@@ -27837,15 +27878,16 @@ var Store = assign({}, EventEmitter.prototype, {
                 break;
 
             case "getStartableActivities":
-                _API.API.PEProcessModeListStartable(function(data){
-                    console.log("getStartableActivities", data);
-                },function(jqXHR, textStatus){
-                    // fail
-                    console.log(jqXHR, textStatus);
+                // 新規開始できるプロセスモデル一覧を取得する
+                Store._getStartableActivities(function(change){
+                    if(change){
+                        Store.emitChangeStartableActivities();
+                    }
                 });
                 break;
 
             case "getProcessModelList":
+                // プロセスモデル一覧を取得する
                 var authorizedOnly = payload.value.isAuthorizedOnly;
                 _API.API.PMMProcessModelList(function(data){
                     console.log("getProcessModelList", data);
@@ -28048,6 +28090,11 @@ module.exports = React.createClass({
   	}
   });
   */
+		Ctr_QApi.Store.addChangeStartableActivitiesListener(function () {
+			var startableActivities = Ctr_QApi.Store.getStartableActivities();
+			console.log("StartableActivities", StartableActivities);
+		});
+
 		Ctr_QApi.Action.getStartableActivities();
 		Ctr_QApi.Action.getProcessModelList(false);
 	},
