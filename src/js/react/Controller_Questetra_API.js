@@ -183,6 +183,16 @@ var Store = assign({}, EventEmitter.prototype, {
     getOfferedWorkitems:function(){
         return _state.offeredWorkitems.workitems;
     },
+    getApps:function(){
+        var apps = [];
+        var appIndex = _state.apps.index.index;
+        var keys = Object.keys(appIndex);
+        for (var i = keys.length - 1; i >= 0; i--) {
+            var key = keys[i];
+            apps.push(appIndex[key]);
+        }
+        return apps;
+    },
     getAppsIndex:function(){
         return _state.apps.index.index;
     },
@@ -272,14 +282,13 @@ var Store = assign({}, EventEmitter.prototype, {
     _getAllocatedWorkitems(cb){
         //console.log("getAllocatedWorkitems");
         if(_state.allocatedWorkitems.isResultWaiting || Store.getTimestamp() - _state.allocatedWorkitems.update < 25){
-            console.log("Cancel");
+            //console.log("Cancel");
             cb(false);
             return;
         }
 
         _state.allocatedWorkitems.isResultWaiting = true;
         _API.API.PEWorkitemListAllocated(function(data){
-            console.log("PEWorkitemListAllocate", data);
             var oldHash = _state.allocatedWorkitems.hash;
             var hash = md5(JSON.stringify(data.workitems));
 
@@ -309,7 +318,7 @@ var Store = assign({}, EventEmitter.prototype, {
     _getOfferedWorkitems(cb){
         //console.log("getOfferedWorkitems");
         if(_state.offeredWorkitems.isResultWaiting || Store.getTimestamp() - _state.offeredWorkitems.update < 25){
-            console.log("Cancel");
+            //console.log("Cancel");
             cb(false);
             return;
         }

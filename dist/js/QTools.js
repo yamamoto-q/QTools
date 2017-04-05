@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 12:44"
+    VERSION: "2017.04.05 12:57"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27562,6 +27562,16 @@ var Store = assign({}, EventEmitter.prototype, {
     getOfferedWorkitems:function(){
         return _state.offeredWorkitems.workitems;
     },
+    getApps:function(){
+        var apps = [];
+        var appIndex = _state.apps.index.index;
+        var keys = Object.keys(appIndex);
+        for (var i = keys.length - 1; i >= 0; i--) {
+            var key = keys[i];
+            apps.push(appIndex[key]);
+        }
+        return apps;
+    },
     getAppsIndex:function(){
         return _state.apps.index.index;
     },
@@ -27651,14 +27661,13 @@ var Store = assign({}, EventEmitter.prototype, {
     _getAllocatedWorkitems(cb){
         //console.log("getAllocatedWorkitems");
         if(_state.allocatedWorkitems.isResultWaiting || Store.getTimestamp() - _state.allocatedWorkitems.update < 25){
-            console.log("Cancel");
+            //console.log("Cancel");
             cb(false);
             return;
         }
 
         _state.allocatedWorkitems.isResultWaiting = true;
         _API.API.PEWorkitemListAllocated(function(data){
-            console.log("PEWorkitemListAllocate", data);
             var oldHash = _state.allocatedWorkitems.hash;
             var hash = md5(JSON.stringify(data.workitems));
 
@@ -27688,7 +27697,7 @@ var Store = assign({}, EventEmitter.prototype, {
     _getOfferedWorkitems(cb){
         //console.log("getOfferedWorkitems");
         if(_state.offeredWorkitems.isResultWaiting || Store.getTimestamp() - _state.offeredWorkitems.update < 25){
-            console.log("Cancel");
+            //console.log("Cancel");
             cb(false);
             return;
         }
@@ -28227,8 +28236,11 @@ module.exports = React.createClass({
   });
   */
 		Ctr_QApi.Store.addChangeAppsListener(function () {
-			var appsIndex = Ctr_QApi.Store.getAppsIndex();
-			console.log("appsIndex", appsIndex);
+			var appsIndex = Ctr_QApi.Store.getApps();
+			var startable = appsIndex.filter(function (element, index, array) {
+				return element.startableActivitis.length > 0;
+			});
+			console.log("startable", startable);
 		});
 
 		Ctr_QApi.Action.getApps();
