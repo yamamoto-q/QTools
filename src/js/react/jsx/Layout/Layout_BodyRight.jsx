@@ -4,7 +4,7 @@ var ScrollArea = require('./ScrollArea.js');
 module.exports = React.createClass({
 	render: function() {
 		return(
-			<div className="col">
+			<div id="body-right" className="col">
 				<ScrollArea>{this.props.children}</ScrollArea>
 			</div>
 		)

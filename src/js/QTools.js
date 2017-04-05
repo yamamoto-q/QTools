@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 16:07"
+    VERSION: "2017.04.05 16:10"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28880,7 +28880,7 @@ module.exports = React.createClass({
 	render: function render() {
 		return React.createElement(
 			'div',
-			{ className: 'col' },
+			{ id: 'body-right', className: 'col' },
 			React.createElement(
 				ScrollArea,
 				null,

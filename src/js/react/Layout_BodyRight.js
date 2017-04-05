@@ -9,7 +9,7 @@ module.exports = React.createClass({
 	render: function render() {
 		return React.createElement(
 			'div',
-			{ className: 'col' },
+			{ id: 'body-right', className: 'col' },
 			React.createElement(
 				ScrollArea,
 				null,
