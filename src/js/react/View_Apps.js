@@ -42,17 +42,15 @@ module.exports = React.createClass({
 	},
 	sortApp: function sortApp(apps) {
 		//processModelInfoHasActiveProcessModel
-		/*
-  apps.sort(function(a, b){
-  	if(a.processModelInfoHasActiveProcessModel && !b.processModelInfoHasActiveProcessModel){
-  		return -1;
-  	}
-  	if(!a.processModelInfoHasActiveProcessModel && b.processModelInfoHasActiveProcessModel){
-  		return 1;
-  	}
-  	return 0;
-  });
-  */
+		apps.sort(function (a, b) {
+			if (a.processModelInfoHasActiveProcessModel && !b.processModelInfoHasActiveProcessModel) {
+				return -1;
+			}
+			if (!a.processModelInfoHasActiveProcessModel && b.processModelInfoHasActiveProcessModel) {
+				return 1;
+			}
+			return 0;
+		});
 
 		// offeredWorkitems
 		apps.sort(function (a, b) {
@@ -92,7 +90,7 @@ module.exports = React.createClass({
 		var allApps = [];
 
 		console.log("apps", this.state.apps);
-		for (var i = this.state.apps.length - 1; i >= 0; i--) {
+		for (var i = 0; i < this.state.apps.length; i++) {
 			var app = this.state.apps[i];
 			allApps.push(React.createElement(
 				'div',

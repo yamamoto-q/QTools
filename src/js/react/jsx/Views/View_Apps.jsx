@@ -38,7 +38,6 @@ module.exports = React.createClass({
 	},
 	sortApp:function(apps){
 		//processModelInfoHasActiveProcessModel
-		/*
 		apps.sort(function(a, b){
 			if(a.processModelInfoHasActiveProcessModel && !b.processModelInfoHasActiveProcessModel){
 				return -1;
@@ -48,7 +47,6 @@ module.exports = React.createClass({
 			}
 			return 0;
 		});
-		*/
 
 		// offeredWorkitems
 		apps.sort(function(a, b){
@@ -88,13 +86,12 @@ module.exports = React.createClass({
 		var allApps = [];
 
 		console.log("apps", this.state.apps);
-		for (var i = this.state.apps.length - 1; i >= 0; i--) {
+		for (var i = 0; i < this.state.apps.length; i++) {
 			var app = this.state.apps[i];
 			allApps.push(
 				<div key={"view-app-allapps-" + app.processModelInfoId}>{app.processModelInfoName}</div>
 			);
 		}
-
 
 		return(
 			<LayoutHeader label="Apps">
