@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 11:57"
+    VERSION: "2017.04.05 12:09"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27648,10 +27648,10 @@ var Store = assign({}, EventEmitter.prototype, {
                 workitems : data.workitems,
                 update : Store.getTimestamp(),
                 hash:hash
-            }
+            };
 
             if(oldHash != hash){
-                // 変化があれば発火する
+                Store._builtModelIndex();
                 cb(true);
                 return;
             }
@@ -27711,6 +27711,7 @@ var Store = assign({}, EventEmitter.prototype, {
             _state.apps.startableActivities.hash = hash;
 
             if(oldHash != hash){
+                Store._builtModelIndex();
                 cb(true);
                 return;
             }
@@ -27733,23 +27734,8 @@ var Store = assign({}, EventEmitter.prototype, {
             _state.apps.infos.infos = data.processModelInfos;
             _state.apps.infos.hash = hash;
 
-            // index
-            for (var i = data.processModelInfos.length - 1; i >= 0; i--) {
-                var info = data.processModelInfos[i];
-                var infoId = info.processModelInfoId;
-                console.log("infoId", infoId);
-                var startableActivitis = _state.apps.startableActivities.activities.filter(function(element, index, array){
-                    return element.processModelInfoId == infoId;
-                });
-                console.log("startableActivitis", startableActivitis)
-                var allocatedWorkitems = _state.allocatedWorkitems.workitems.filter(function(element, index, array){
-                    return element.processModelInfoId == infoId;
-                });
-                console.log("allocatedWorkitems", allocatedWorkitems)
-
-            }
-
             if(oldHash != hash){
+                Store._builtModelIndex();
                 cb(true);
                 return;
             }
@@ -27762,6 +27748,25 @@ var Store = assign({}, EventEmitter.prototype, {
             cb(false);
             return;
         }, isAuthorizedOnly);
+    },
+    _builtModelIndex(){
+        console.log("_builtModelIndex - - - - - - - ");
+        for (var i = _state.apps.infos.infos.length - 1; i >= 0; i--) {
+            var info = _state.apps.infos.infos[i];
+            var infoId = info.processModelInfoId;
+
+            console.log("infoId", infoId);
+
+            var startableActivitis = _state.apps.startableActivities.activities.filter(function(element, index, array){
+                return element.processModelInfoId == infoId;
+            });
+            //console.log("startableActivitis", startableActivitis)
+            var allocatedWorkitems = _state.allocatedWorkitems.workitems.filter(function(element, index, array){
+                return element.processModelInfoId == infoId;
+            });
+            console.log("allocatedWorkitems", allocatedWorkitems)
+
+        }
     },
     // Dispacher
     dispatcherIndex: dispatcher.register(function(payload) {
