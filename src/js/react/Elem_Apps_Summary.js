@@ -42,7 +42,7 @@ module.exports = React.createClass({
 	render: function render() {
 		var quickStart = [];
 		for (var i = this.state.startableApps.length - 1; i >= 0; i--) {
-			var app = this.state.startableApp[i];
+			var app = this.state.startableApps[i];
 			var appName = app.processModelInfoName;
 			quickStart.push(React.createElement(
 				'li',
