@@ -24,7 +24,7 @@ module.exports = React.createClass({
 		var self = this;
 		Ctr_QApi.Store.addChangeAppsListener(function(){
 			if (self.isMounted()) {
-				var apps = this.sortApp(Ctr_QApi.Store.getApps());
+				var apps = self.sortApp(Ctr_QApi.Store.getApps());
 				self.setState({
 					apps:apps
 				});

@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 18:41"
+    VERSION: "2017.04.05 18:46"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -29612,7 +29612,7 @@ module.exports = React.createClass({
 		var self = this;
 		Ctr_QApi.Store.addChangeAppsListener(function () {
 			if (self.isMounted()) {
-				var apps = this.sortApp(Ctr_QApi.Store.getApps());
+				var apps = self.sortApp(Ctr_QApi.Store.getApps());
 				self.setState({
 					apps: apps
 				});
