@@ -41,6 +41,7 @@ body.logining {
 }
 body.view-apps {
   background-color: purple;
+  color: white;
 }
 #header {
   height: 3.125rem;
