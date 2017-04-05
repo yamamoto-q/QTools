@@ -51,7 +51,70 @@ module.exports = React.createClass({
 				React.createElement(
 					LayoutBodyRight,
 					null,
-					'Apps'
+					React.createElement(
+						'ul',
+						{ 'class': 'nav nav-tabs', role: 'tablist' },
+						React.createElement(
+							'li',
+							{ 'class': 'nav-item' },
+							React.createElement(
+								'a',
+								{ 'class': 'nav-link active', 'data-toggle': 'tab', href: '#home', role: 'tab' },
+								'Home'
+							)
+						),
+						React.createElement(
+							'li',
+							{ 'class': 'nav-item' },
+							React.createElement(
+								'a',
+								{ 'class': 'nav-link', 'data-toggle': 'tab', href: '#profile', role: 'tab' },
+								'Profile'
+							)
+						),
+						React.createElement(
+							'li',
+							{ 'class': 'nav-item' },
+							React.createElement(
+								'a',
+								{ 'class': 'nav-link', 'data-toggle': 'tab', href: '#messages', role: 'tab' },
+								'Messages'
+							)
+						),
+						React.createElement(
+							'li',
+							{ 'class': 'nav-item' },
+							React.createElement(
+								'a',
+								{ 'class': 'nav-link', 'data-toggle': 'tab', href: '#settings', role: 'tab' },
+								'Settings'
+							)
+						)
+					),
+					React.createElement(
+						'div',
+						{ 'class': 'tab-content' },
+						React.createElement(
+							'div',
+							{ 'class': 'tab-pane active', id: 'home', role: 'tabpanel' },
+							'...'
+						),
+						React.createElement(
+							'div',
+							{ 'class': 'tab-pane', id: 'profile', role: 'tabpanel' },
+							'...'
+						),
+						React.createElement(
+							'div',
+							{ 'class': 'tab-pane', id: 'messages', role: 'tabpanel' },
+							'...'
+						),
+						React.createElement(
+							'div',
+							{ 'class': 'tab-pane', id: 'settings', role: 'tabpanel' },
+							'...'
+						)
+					)
 				)
 			),
 			React.createElement(
