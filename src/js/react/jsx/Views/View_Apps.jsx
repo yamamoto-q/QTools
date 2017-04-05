@@ -89,13 +89,21 @@ module.exports = React.createClass({
 		for (var i = 0; i < this.state.apps.length; i++) {
 			var app = this.state.apps[i];
 			
+			var isStarred = app.starred;
+			var allocatedNum = staredApp.allocatedWorkitems.length;
+			var offeredNum = staredApp.offeredWorkitems.length;
+			
 			var starred = null;
-			if(app.starred){
+			if(isStarred){
 				starred = (<span className="icon icon-star"/>);
 			}
 
+			var tasks = (
+				<span className="badge badge-default badge-pill">{allocatedNum}/{offeredNum}</span>
+			)
+
 			allApps.push(
-				<div key={"view-app-allapps-" + app.processModelInfoId}>{starred}{app.processModelInfoName}</div>
+				<div key={"view-app-allapps-" + app.processModelInfoId}>{starred}{app.processModelInfoName}{tasks}</div>
 			);
 		}
 
