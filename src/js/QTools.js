@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 11:32"
+    VERSION: "2017.04.05 11:42"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27525,7 +27525,8 @@ var _state = {
         infos:{
             infos:[],
             hash:null
-        }
+        },
+        index:{}
     },
     userQuserSelf:null,
     resopnses:{}
@@ -27728,6 +27729,12 @@ var Store = assign({}, EventEmitter.prototype, {
 
             _state.apps.infos.infos = data.processModelInfos;
             _state.apps.infos.hash = hash;
+
+            // index
+            for (var i = data.processModelInfos.length - 1; i >= 0; i--) {
+                var info = data.processModelInfos[i];
+                
+            }
 
             if(oldHash != hash){
                 cb(true);

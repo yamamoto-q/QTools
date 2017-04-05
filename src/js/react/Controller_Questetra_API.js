@@ -146,7 +146,8 @@ var _state = {
         infos:{
             infos:[],
             hash:null
-        }
+        },
+        index:{}
     },
     userQuserSelf:null,
     resopnses:{}
@@ -349,6 +350,12 @@ var Store = assign({}, EventEmitter.prototype, {
 
             _state.apps.infos.infos = data.processModelInfos;
             _state.apps.infos.hash = hash;
+
+            // index
+            for (var i = data.processModelInfos.length - 1; i >= 0; i--) {
+                var info = data.processModelInfos[i];
+                
+            }
 
             if(oldHash != hash){
                 cb(true);
