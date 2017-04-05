@@ -10,7 +10,7 @@ module.exports = React.createClass({
 	render: function render() {
 		return React.createElement(
 			'div',
-			{ className: 'height-fix' },
+			{ id: 'body', className: 'height-fix' },
 			React.createElement(
 				Bootstrap_Container,
 				{ className: 'height-fix' },

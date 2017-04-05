@@ -93,6 +93,9 @@ body.logining {
   padding: 0 15px 0 15px;
   width: 100%;
 }
+#body {
+  padding: 15px 0 15px 0;
+}
 #footer {
   height: 3.125rem;
   font-size: 1rem;

@@ -5,7 +5,7 @@ var Bootstrap_Row = require('./Bootstrap_Row.js');
 module.exports = React.createClass({
 	render: function() {
 		return(
-			<div className="height-fix">
+			<div id="body" className="height-fix">
 				<Bootstrap_Container className="height-fix">
 					<Bootstrap_Row className="height-fix">
 					{this.props.children}
