@@ -4,26 +4,19 @@ var Controller_View = require('./Controller_View.js');
 
 module.exports = React.createClass({
 	getInitialState: function() {
-		var appsIndex = Ctr_QApi.Store.getApps();
-		var startable = appsIndex.filter(function(element, index, array){
-			return element.startableActivitis.length > 0
-		});
+		var staredApps = Ctr_QApi.Store.getStaredApps();
 
 		return {
-			startableApps:startable
+			staredApps:staredApps
 		};
 	},
 	componentDidMount: function() {
 		var self = this;
 		Ctr_QApi.Store.addChangeAppsListener(function(){
 			if (self.isMounted()) {
-				var appsIndex = Ctr_QApi.Store.getApps();
-				var startable = appsIndex.filter(function(element, index, array){
-					return element.startableActivitis.length > 0
-				});
-				console.log("startable", startable);
+				var staredApps = Ctr_QApi.Store.getStaredApps();
 				self.setState({
-					startableApps:startable
+					staredApps:staredApps
 				});
 			}
 		});
@@ -36,12 +29,11 @@ module.exports = React.createClass({
 		Controller_View.Action.setView(viewName);
 	},
 	render: function() {
-		var quickStart = [];
-		for (var i = this.state.startableApps.length - 1; i >= 0; i--) {
-			var app = this.state.startableApps[i];
-			var appName = app.processModelInfoName;
-			quickStart.push(
-				<li key={"quick-start-" + i} className="list-group-item">{appName}</li>
+		var staredApps = [];
+		for (var i = this.state.staredAppss.length - 1; i >= 0; i--) {
+			var staredApp = this.state.staredAppss[i];
+			staredApps.push(
+				<li key={"apps-summary-stared-apps-" + staredApp.processModelInfoId} className="list-group-item">{staredApp.processModelInfoName}</li>
 			);
 		}
 		return(
@@ -51,7 +43,7 @@ module.exports = React.createClass({
 					<p className="card-text">Hoge</p>
 				</div>
 				<ul className="list-group list-group-flush">
-					{quickStart}
+					{staredApps}
 				</ul>
 			</div>
 		)

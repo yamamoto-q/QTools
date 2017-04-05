@@ -184,6 +184,7 @@ var Store = assign({}, EventEmitter.prototype, {
         return _state.offeredWorkitems.workitems;
     },
     getApps:function(){
+        // アプリのリストを取得する（Array）
         var apps = [];
         var appIndex = _state.apps.index.index;
         var keys = Object.keys(appIndex);
@@ -193,7 +194,15 @@ var Store = assign({}, EventEmitter.prototype, {
         }
         return apps;
     },
+    getStaredApps:function(){
+        var apps = Store.getApps();
+        apps = apps.filter(function(element, index, array){
+            return element.starred;
+        });
+        return apps;
+    },
     getAppsIndex:function(){
+        // アプリのリストを取得する（InfoIDをキーにしたObject）
         return _state.apps.index.index;
     },
     getStartableActivities:function(){

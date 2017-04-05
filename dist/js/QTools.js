@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 13:11"
+    VERSION: "2017.04.05 14:49"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27563,6 +27563,7 @@ var Store = assign({}, EventEmitter.prototype, {
         return _state.offeredWorkitems.workitems;
     },
     getApps:function(){
+        // アプリのリストを取得する（Array）
         var apps = [];
         var appIndex = _state.apps.index.index;
         var keys = Object.keys(appIndex);
@@ -27572,7 +27573,15 @@ var Store = assign({}, EventEmitter.prototype, {
         }
         return apps;
     },
+    getStaredApps:function(){
+        var apps = Store.getApps();
+        apps = apps.filter(function(element, index, array){
+            return element.starred;
+        });
+        return apps;
+    },
     getAppsIndex:function(){
+        // アプリのリストを取得する（InfoIDをキーにしたObject）
         return _state.apps.index.index;
     },
     getStartableActivities:function(){
@@ -28198,26 +28207,19 @@ module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
-		var appsIndex = Ctr_QApi.Store.getApps();
-		var startable = appsIndex.filter(function (element, index, array) {
-			return element.startableActivitis.length > 0;
-		});
+		var staredApps = Ctr_QApi.Store.getStaredApps();
 
 		return {
-			startableApps: startable
+			staredApps: staredApps
 		};
 	},
 	componentDidMount: function componentDidMount() {
 		var self = this;
 		Ctr_QApi.Store.addChangeAppsListener(function () {
 			if (self.isMounted()) {
-				var appsIndex = Ctr_QApi.Store.getApps();
-				var startable = appsIndex.filter(function (element, index, array) {
-					return element.startableActivitis.length > 0;
-				});
-				console.log("startable", startable);
+				var staredApps = Ctr_QApi.Store.getStaredApps();
 				self.setState({
-					startableApps: startable
+					staredApps: staredApps
 				});
 			}
 		});
@@ -28230,14 +28232,13 @@ module.exports = React.createClass({
 		Controller_View.Action.setView(viewName);
 	},
 	render: function render() {
-		var quickStart = [];
-		for (var i = this.state.startableApps.length - 1; i >= 0; i--) {
-			var app = this.state.startableApps[i];
-			var appName = app.processModelInfoName;
-			quickStart.push(React.createElement(
+		var staredApps = [];
+		for (var i = this.state.staredAppss.length - 1; i >= 0; i--) {
+			var staredApp = this.state.staredAppss[i];
+			staredApps.push(React.createElement(
 				'li',
-				{ key: "quick-start-" + i, className: 'list-group-item' },
-				appName
+				{ key: "apps-summary-stared-apps-" + staredApp.processModelInfoId, className: 'list-group-item' },
+				staredApp.processModelInfoName
 			));
 		}
 		return React.createElement(
@@ -28260,7 +28261,7 @@ module.exports = React.createClass({
 			React.createElement(
 				'ul',
 				{ className: 'list-group list-group-flush' },
-				quickStart
+				staredApps
 			)
 		);
 	}
