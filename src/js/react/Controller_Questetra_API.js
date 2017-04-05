@@ -612,8 +612,7 @@ var Store = assign({}, EventEmitter.prototype, {
                 break;
 
             case "getApps":
-
-                console.log("getApps");
+                //console.log("getApps");
                 // プロセスモデル一覧を取得する
                 Store._getWorkitems(false, function(change){
                     if(change){

@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 15:09"
+    VERSION: "2017.04.05 15:16"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27991,8 +27991,7 @@ var Store = assign({}, EventEmitter.prototype, {
                 break;
 
             case "getApps":
-
-                console.log("getApps");
+                //console.log("getApps");
                 // プロセスモデル一覧を取得する
                 Store._getWorkitems(false, function(change){
                     if(change){
@@ -28235,11 +28234,16 @@ module.exports = React.createClass({
 		for (var i = this.state.staredApps.length - 1; i >= 0; i--) {
 			var staredApp = this.state.staredApps[i];
 			console.log("staredApp", staredApp);
+			var allocatedNum = staredApp.allocatedWorkitems.length;
+			var offeredNum = staredApp.offeredWorkitems.length;
 			staredApps.push(React.createElement(
 				'li',
 				{ key: "apps-summary-stared-apps-" + staredApp.processModelInfoId, className: 'list-group-item' },
 				React.createElement('span', { className: 'icon icon-star' }),
-				staredApp.processModelInfoName
+				staredApp.processModelInfoName,
+				allocatedNum,
+				' / ',
+				offeredNum
 			));
 		}
 		return React.createElement(

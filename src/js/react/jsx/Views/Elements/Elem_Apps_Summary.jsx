@@ -32,9 +32,12 @@ module.exports = React.createClass({
 		for (var i = this.state.staredApps.length - 1; i >= 0; i--) {
 			var staredApp = this.state.staredApps[i];
 			console.log("staredApp", staredApp);
+			var allocatedNum = staredApp.allocatedWorkitems.length;
+			var offeredNum = staredApp.offeredWorkitems.length;
 			staredApps.push(
 				<li key={"apps-summary-stared-apps-" + staredApp.processModelInfoId} className="list-group-item">
 					<span className="icon icon-star"/>{staredApp.processModelInfoName}
+					{allocatedNum} / {offeredNum}
 				</li>
 			);
 		}
