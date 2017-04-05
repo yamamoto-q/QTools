@@ -628,7 +628,7 @@ var Store = assign({}, EventEmitter.prototype, {
                                     Store.emitChangeStartableActivities();
                                 }
 
-                                console.log(_state.apps.index.index);
+                                //console.log(_state.apps.index.index);
                             });
                         });
                     });

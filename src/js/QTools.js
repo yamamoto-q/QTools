@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 12:57"
+    VERSION: "2017.04.05 13:07"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28007,7 +28007,7 @@ var Store = assign({}, EventEmitter.prototype, {
                                     Store.emitChangeStartableActivities();
                                 }
 
-                                console.log(_state.apps.index.index);
+                                //console.log(_state.apps.index.index);
                             });
                         });
                     });
@@ -28198,49 +28198,28 @@ module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
-		var allocatedWorkitems = Ctr_QApi.Store.getAllocatedWorkitems();
-		var offeredWorkitems = Ctr_QApi.Store.getOfferedWorkitems();
+		var appsIndex = Ctr_QApi.Store.getApps();
+		var startable = appsIndex.filter(function (element, index, array) {
+			return element.startableActivitis.length > 0;
+		});
+
 		return {
-			allocatedWorkitems: allocatedWorkitems,
-			offeredWorkitems: offeredWorkitems
+			startableApps: startable
 		};
 	},
 	componentDidMount: function componentDidMount() {
 		var self = this;
-		/*
-  Ctr_QApi.Store.addChangeAllocatedWorkitemsListener(function(){
-  	if (self.isMounted()) {
-  		var allocatedWorkitems = Ctr_QApi.Store.getAllocatedWorkitems();
-  		self.setState({
-  			allocatedWorkitems:allocatedWorkitems
-  		});
-  		
-  	}
-  });
-  		Ctr_QApi.Store.addChangeOfferedWorkitemsListener(function(){
-  	if (self.isMounted()) {
-  		var offeredWorkitems = Ctr_QApi.Store.getOfferedWorkitems();
-  		self.setState({
-  			offeredWorkitems:offeredWorkitems
-  		});
-  	}
-  });
-  
-  Ctr_QApi.Store.addChangeProcessModelListListener(function(){
-  	var processModelList = Ctr_QApi.Store.getProcessModelList();
-  	console.log("processModelList", processModelList);
-  });
-  		Ctr_QApi.Store.addChangeStartableActivitiesListener(function(){
-  	var startableActivities = Ctr_QApi.Store.getStartableActivities();
-  	console.log("StartableActivities", startableActivities);
-  });
-  */
 		Ctr_QApi.Store.addChangeAppsListener(function () {
-			var appsIndex = Ctr_QApi.Store.getApps();
-			var startable = appsIndex.filter(function (element, index, array) {
-				return element.startableActivitis.length > 0;
-			});
-			console.log("startable", startable);
+			if (self.isMounted()) {
+				var appsIndex = Ctr_QApi.Store.getApps();
+				var startable = appsIndex.filter(function (element, index, array) {
+					return element.startableActivitis.length > 0;
+				});
+				console.log("startable", startable);
+				self.setState({
+					startableApps: startable
+				});
+			}
 		});
 
 		Ctr_QApi.Action.getApps();
@@ -28251,6 +28230,16 @@ module.exports = React.createClass({
 		Controller_View.Action.setView(viewName);
 	},
 	render: function render() {
+		var quickStart = [];
+		for (var i = this.state.startableApps.length - 1; i >= 0; i--) {
+			var app = this.state.startableApp[i];
+			var appName = app.processModelInfoName;
+			quickStart.push(React.createElement(
+				'li',
+				{ key: "quick-start-" + i, className: 'list-group-item' },
+				appName
+			));
+		}
 		return React.createElement(
 			'div',
 			{ className: 'card', onClick: this.onClick, 'data-viewname': Controller_View.ViewNames.WORK },
@@ -28271,18 +28260,7 @@ module.exports = React.createClass({
 			React.createElement(
 				'ul',
 				{ className: 'list-group list-group-flush' },
-				React.createElement(
-					'li',
-					{ className: 'list-group-item' },
-					'allocatedWorkitems ',
-					this.state.allocatedWorkitems.length
-				),
-				React.createElement(
-					'li',
-					{ className: 'list-group-item' },
-					'offeredWorkitems ',
-					this.state.offeredWorkitems.length
-				)
+				quickStart
 			)
 		);
 	}
