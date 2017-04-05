@@ -38,6 +38,7 @@ module.exports = React.createClass({
 			staredApps.push(React.createElement(
 				'li',
 				{ key: "apps-summary-stared-apps-" + staredApp.processModelInfoId, className: 'list-group-item' },
+				React.createElement('span', { className: 'icon icon-star' }),
 				staredApp.processModelInfoName
 			));
 		}
