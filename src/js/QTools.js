@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 10:25"
+    VERSION: "2017.04.05 10:27"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -29115,7 +29115,7 @@ var QuestetraAPI = function(){
             start:start,
             dc:_getTimestamp()
         };
-        _request("PE/ProcessModel/listStartabl", function(data){
+        _request("API/PE/ProcessModel/listStartable", function(data){
             success(data);
         },function(jqXHR, textStatus){
             fail(jqXHR, textStatus);
@@ -29192,6 +29192,7 @@ var QuestetraAPI = function(){
             // システム権限の一覧を取得する : システム管理権限
             _AdminSystemAuthorityList(authorityType, success, fail);
         },
+
         PEProcessModeListStartable:function(success, fail, limit, start){
             this.limit = limit || 1000;
             this.start = start || 0;
