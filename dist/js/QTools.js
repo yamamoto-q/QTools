@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 18:11"
+    VERSION: "2017.04.05 18:17"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -29625,6 +29625,28 @@ module.exports = React.createClass({
 		$("body").removeClass('view-' + Controller_View.ViewNames.APPS);
 	},
 	sortApp: function sortApp(apps) {
+		// offeredWorkitems
+		apps.sort(function (a, b) {
+			if (a.offeredWorkitem.length > b.offeredWorkitem.length) {
+				return -1;
+			}
+			if (a.offeredWorkitem.length < b.offeredWorkitem.length) {
+				return 1;
+			}
+			return 0;
+		});
+
+		// allocatedWorkitems
+		apps.sort(function (a, b) {
+			if (a.allocatedWorkitems.length > b.allocatedWorkitems.length) {
+				return -1;
+			}
+			if (a.allocatedWorkitems.length < b.allocatedWorkitems.length) {
+				return 1;
+			}
+			return 0;
+		});
+
 		// Stared
 		apps.sort(function (a, b) {
 			if (a.starred && !b.starred) {

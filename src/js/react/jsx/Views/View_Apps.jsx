@@ -37,6 +37,28 @@ module.exports = React.createClass({
 		$("body").removeClass('view-' + Controller_View.ViewNames.APPS);
 	},
 	sortApp:function(apps){
+		// offeredWorkitems
+		apps.sort(function(a, b){
+			if(a.offeredWorkitem.length > b.offeredWorkitem.length){
+				return -1;
+			}
+			if(a.offeredWorkitem.length < b.offeredWorkitem.length){
+				return 1;
+			}
+			return 0;
+		});
+
+		// allocatedWorkitems
+		apps.sort(function(a, b){
+			if(a.allocatedWorkitems.length > b.allocatedWorkitems.length){
+				return -1;
+			}
+			if(a.allocatedWorkitems.length < b.allocatedWorkitems.length){
+				return 1;
+			}
+			return 0;
+		});
+
 		// Stared
 		apps.sort(function(a, b){
 			if(a.starred && !b.starred){
@@ -51,7 +73,7 @@ module.exports = React.createClass({
 	},
 	render: function() {
 		var allApps = [];
-		
+
 		console.log("apps", this.state.apps);
 		for (var i = this.state.apps.length - 1; i >= 0; i--) {
 			var app = this.state.apps[i];

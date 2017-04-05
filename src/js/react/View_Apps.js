@@ -41,6 +41,28 @@ module.exports = React.createClass({
 		$("body").removeClass('view-' + Controller_View.ViewNames.APPS);
 	},
 	sortApp: function sortApp(apps) {
+		// offeredWorkitems
+		apps.sort(function (a, b) {
+			if (a.offeredWorkitem.length > b.offeredWorkitem.length) {
+				return -1;
+			}
+			if (a.offeredWorkitem.length < b.offeredWorkitem.length) {
+				return 1;
+			}
+			return 0;
+		});
+
+		// allocatedWorkitems
+		apps.sort(function (a, b) {
+			if (a.allocatedWorkitems.length > b.allocatedWorkitems.length) {
+				return -1;
+			}
+			if (a.allocatedWorkitems.length < b.allocatedWorkitems.length) {
+				return 1;
+			}
+			return 0;
+		});
+
 		// Stared
 		apps.sort(function (a, b) {
 			if (a.starred && !b.starred) {
