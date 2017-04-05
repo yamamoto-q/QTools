@@ -92,9 +92,16 @@ module.exports = React.createClass({
 		console.log("apps", this.state.apps);
 		for (var i = 0; i < this.state.apps.length; i++) {
 			var app = this.state.apps[i];
+
+			var starred = null;
+			if (app.starred) {
+				starred = React.createElement('span', { className: 'icon icon-star' });
+			}
+
 			allApps.push(React.createElement(
 				'div',
 				{ key: "view-app-allapps-" + app.processModelInfoId },
+				starred,
 				app.processModelInfoName
 			));
 		}

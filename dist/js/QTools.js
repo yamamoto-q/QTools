@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 18:27"
+    VERSION: "2017.04.05 18:41"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -29676,9 +29676,16 @@ module.exports = React.createClass({
 		console.log("apps", this.state.apps);
 		for (var i = 0; i < this.state.apps.length; i++) {
 			var app = this.state.apps[i];
+
+			var starred = null;
+			if (app.starred) {
+				starred = React.createElement('span', { className: 'icon icon-star' });
+			}
+
 			allApps.push(React.createElement(
 				'div',
 				{ key: "view-app-allapps-" + app.processModelInfoId },
+				starred,
 				app.processModelInfoName
 			));
 		}
