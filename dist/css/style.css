@@ -97,10 +97,10 @@ body.logining {
   padding: 15px 0 15px 0;
 }
 .card-deck .card {
-  padding-bottom: 15px;
+  margin-bottom: 15px;
 }
 .card-deck .card::last-child {
-  padding-bottom: 0;
+  margin-bottom: 0;
 }
 #footer {
   height: 3.125rem;
