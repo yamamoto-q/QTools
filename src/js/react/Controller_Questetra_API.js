@@ -249,14 +249,12 @@ var Store = assign({}, EventEmitter.prototype, {
         return Math.floor( date.getTime() / 1000 ) ;
     },
     _getAllocatedWorkitems(cb){
-        console.log("getAllocatedWorkitems");
+        //console.log("getAllocatedWorkitems");
         if(_state.allocatedWorkitems.isResultWaiting || Store.getTimestamp() - _state.allocatedWorkitems.update < 25){
             console.log("Cancel");
             cb(false);
             return;
         }
-
-
 
         _state.allocatedWorkitems.isResultWaiting = true;
         _API.API.PEWorkitemListAllocated(function(data){
@@ -288,7 +286,7 @@ var Store = assign({}, EventEmitter.prototype, {
         });
     },
     _getOfferedWorkitems(cb){
-        console.log("getOfferedWorkitems");
+        //console.log("getOfferedWorkitems");
         if(_state.offeredWorkitems.isResultWaiting || Store.getTimestamp() - _state.offeredWorkitems.update < 25){
             console.log("Cancel");
             cb(false);
@@ -307,7 +305,7 @@ var Store = assign({}, EventEmitter.prototype, {
             }
 
             if(oldHash != hash){
-                // 変化があれば発火する
+                Store._builtModelIndex();
                 cb(true);
                 return;
             }
@@ -371,23 +369,34 @@ var Store = assign({}, EventEmitter.prototype, {
         }, isAuthorizedOnly);
     },
     _builtModelIndex(){
-        console.log("_builtModelIndex - - - - - - - ");
+        //console.log("_builtModelIndex - - - - - - - ");
         for (var i = _state.apps.infos.infos.length - 1; i >= 0; i--) {
             var info = _state.apps.infos.infos[i];
             var infoId = info.processModelInfoId;
 
-            console.log("infoId", infoId);
+            //console.log("infoId", infoId);
 
             var startableActivitis = _state.apps.startableActivities.activities.filter(function(element, index, array){
                 return element.processModelInfoId == infoId;
             });
-            //console.log("startableActivitis", startableActivitis)
             var allocatedWorkitems = _state.allocatedWorkitems.workitems.filter(function(element, index, array){
                 return element.processModelInfoId == infoId;
             });
-            console.log("allocatedWorkitems", allocatedWorkitems)
+            var offeredWorkitems = _state.offeredWorkitems.workitems.filter(function(element, index, array){
+                return element.processModelInfoId == infoId;
+            });
 
+            if(typeof _state.apps.index[infoId] === "undegined"){
+                _state.apps.index[infoId] = {};
+            }
+
+            _state.apps.index["p" + infoId] = info;
+            _state.apps.index["p" + infoId].startableActivitis = startableActivitis;
+            _state.apps.index["p" + infoId].allocatedWorkitems = allocatedWorkitems;
+            _state.apps.index["p" + infoId].offeredWorkitems = offeredWorkitems;
         }
+
+        console.log("index", _state.apps.index);
     },
     // Dispacher
     dispatcherIndex: dispatcher.register(function(payload) {
