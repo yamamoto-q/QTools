@@ -43,6 +43,10 @@ module.exports = React.createClass({
 			console.log("StartableActivities", startableActivities);
 		});
 		*/
+		Ctr_QApi.Store.addChangeAppsListener(function(){
+			var appsIndex = Ctr_QApi.Store.getAppsIndex();
+			console.log("appsIndex", appsIndex);
+		});
 
 		Ctr_QApi.Action.getApps();
 	},

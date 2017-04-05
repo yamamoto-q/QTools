@@ -116,6 +116,7 @@ var EVENT = {
     CHANGE_WORKITEMS:"change_workitems",
     CHANGE_ALLOCATED_WORKITEMS:"change_allocated_workitems",
     CHANGE_OFFERED_WORKITEMS:"change_offered_workitems",
+    CHANGE_APPS:"change_apps",
     CHANGE_STARTABLE_ACTIVITIES:"change_startable_activity",
     CHANGE_PROCESSMODEL_LIST:"change_processmodel_list",
     ON_GET_AVATER: "on_get_avater"
@@ -182,6 +183,9 @@ var Store = assign({}, EventEmitter.prototype, {
     getOfferedWorkitems:function(){
         return _state.offeredWorkitems.workitems;
     },
+    getAppsIndex:function(){
+        return _state.apps.index.index;
+    },
     getStartableActivities:function(){
         return _state.apps.startableActivities.activities;
     },
@@ -231,6 +235,13 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     emitChangeOfferedWorkitems(){
         this.emit(EVENT.CHANGE_OFFERED_WORKITEMS);
+    },
+    // Apps
+    addChangeAppsListener:function(callback){
+        this.on(EVENT.CHANGE_APPS, callback);
+    },
+    emitChangeApps(){
+        this.emit(EVENT.CHANGE_APPS);
     },
     // Workitems
     addChangeWorkitemsListener:function(callback){
@@ -408,7 +419,7 @@ var Store = assign({}, EventEmitter.prototype, {
         _state.apps.index.hash = hash;
 
         if(hash != oldHash){
-            console.log("index", hash, _state.apps.index.index);
+            Store.emitChangeApps();
         }
     },
     // Dispacher
