@@ -37,12 +37,25 @@ module.exports = React.createClass({
 		$("body").removeClass('view-' + Controller_View.ViewNames.APPS);
 	},
 	sortApp:function(apps){
-		// offeredWorkitems
+		//processModelInfoHasActiveProcessModel
+		/*
 		apps.sort(function(a, b){
-			if(a.offeredWorkitem.length > b.offeredWorkitem.length){
+			if(a.processModelInfoHasActiveProcessModel && !b.processModelInfoHasActiveProcessModel){
 				return -1;
 			}
-			if(a.offeredWorkitem.length < b.offeredWorkitem.length){
+			if(!a.processModelInfoHasActiveProcessModel && b.processModelInfoHasActiveProcessModel){
+				return 1;
+			}
+			return 0;
+		});
+		*/
+
+		// offeredWorkitems
+		apps.sort(function(a, b){
+			if(a.offeredWorkitems.length > b.offeredWorkitems.length){
+				return -1;
+			}
+			if(a.offeredWorkitems.length < b.offeredWorkitems.length){
 				return 1;
 			}
 			return 0;
