@@ -1,6 +1,8 @@
 @headerHeight: 3.125rem;
 @footerHeight: 3.125rem;
 
+@colorApps:purple;
+
 .scrollBar(){
 	// カスタムスクロールバー
 	&::-webkit-scrollbar-track{
@@ -119,6 +121,16 @@ body.splash,body.splash, body.authentication, body.logining{
 		margin-bottom: 15px;
 		&::last-child{
 			margin-bottom: 0;
+		}
+	}
+}
+.card{
+	&.card-apps-summary{
+		.card-block{
+			&.card-block-header{
+				background-color: @colorApps;
+				color:white;
+			}
 		}
 	}
 }
