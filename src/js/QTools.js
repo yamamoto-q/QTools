@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 17:46"
+    VERSION: "2017.04.05 17:48"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -29595,7 +29595,7 @@ var LayoutBodyRight = require('./Layout_BodyRight.js');
 var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
 
-var MyWorkitemList = require('./Elem_MyWorkitemList.js');
+var Ctr_QApi = require('./Controller_Questetra_API.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -29752,7 +29752,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./Elem_MyWorkitemList.js":264,"./Footer.js":266,"./Layout_Body.js":268,"./Layout_BodyLeft.js":269,"./Layout_BodyRight.js":270,"./Layout_Header.js":271,"./NavItem.js":274,"react":242}],281:[function(require,module,exports){
+},{"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"./Footer.js":266,"./Layout_Body.js":268,"./Layout_BodyLeft.js":269,"./Layout_BodyRight.js":270,"./Layout_Header.js":271,"./NavItem.js":274,"react":242}],281:[function(require,module,exports){
 'use strict';
 
 var React = require('react');

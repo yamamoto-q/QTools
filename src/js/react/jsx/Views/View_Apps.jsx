@@ -9,7 +9,7 @@ var LayoutBodyRight = require('./Layout_BodyRight.js');
 var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
 
-var MyWorkitemList = require('./Elem_MyWorkitemList.js');
+var Ctr_QApi = require('./Controller_Questetra_API.js');
 
 module.exports = React.createClass({
 	getInitialState: function() {
