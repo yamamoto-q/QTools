@@ -90,8 +90,8 @@ module.exports = React.createClass({
 			var app = this.state.apps[i];
 			
 			var isStarred = app.starred;
-			var allocatedNum = staredApp.allocatedWorkitems.length;
-			var offeredNum = staredApp.offeredWorkitems.length;
+			var allocatedNum = app.allocatedWorkitems.length;
+			var offeredNum = app.offeredWorkitems.length;
 			
 			var starred = null;
 			if(isStarred){

@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 18:53"
+    VERSION: "2017.04.05 18:55"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -29678,8 +29678,8 @@ module.exports = React.createClass({
 			var app = this.state.apps[i];
 
 			var isStarred = app.starred;
-			var allocatedNum = staredApp.allocatedWorkitems.length;
-			var offeredNum = staredApp.offeredWorkitems.length;
+			var allocatedNum = app.allocatedWorkitems.length;
+			var offeredNum = app.offeredWorkitems.length;
 
 			var starred = null;
 			if (isStarred) {
