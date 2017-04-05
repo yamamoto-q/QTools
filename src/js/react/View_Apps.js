@@ -17,7 +17,7 @@ module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
-		var apps = Ctr_QApi.Store.getApps();
+		var apps = this.sortApp(Ctr_QApi.Store.getApps());
 		return {
 			apps: apps
 		};
@@ -28,7 +28,7 @@ module.exports = React.createClass({
 		var self = this;
 		Ctr_QApi.Store.addChangeAppsListener(function () {
 			if (self.isMounted()) {
-				var apps = Ctr_QApi.Store.getApps();
+				var apps = this.sortApp(Ctr_QApi.Store.getApps());
 				self.setState({
 					apps: apps
 				});
@@ -39,6 +39,18 @@ module.exports = React.createClass({
 	},
 	componentWillUnmount: function componentWillUnmount() {
 		$("body").removeClass('view-' + Controller_View.ViewNames.APPS);
+	},
+	sortApp: function sortApp(apps) {
+		app.sort(function (a, b) {
+			if (a.starred && !b.starred) {
+				return -1;
+			}
+			if (!a.starred && b.starred) {
+				return 1;
+			}
+			return 0;
+		});
+		return app;
 	},
 	render: function render() {
 		var allApps = [];

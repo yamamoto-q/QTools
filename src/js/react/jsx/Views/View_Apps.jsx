@@ -13,7 +13,7 @@ var Ctr_QApi = require('./Controller_Questetra_API.js');
 
 module.exports = React.createClass({
 	getInitialState: function() {
-		var apps = Ctr_QApi.Store.getApps();
+		var apps = this.sortApp(Ctr_QApi.Store.getApps());
 		return {
 			apps:apps
 		};
@@ -24,7 +24,7 @@ module.exports = React.createClass({
 		var self = this;
 		Ctr_QApi.Store.addChangeAppsListener(function(){
 			if (self.isMounted()) {
-				var apps = Ctr_QApi.Store.getApps();
+				var apps = this.sortApp(Ctr_QApi.Store.getApps());
 				self.setState({
 					apps:apps
 				});
@@ -35,6 +35,18 @@ module.exports = React.createClass({
 	},
 	componentWillUnmount:function(){
 		$("body").removeClass('view-' + Controller_View.ViewNames.APPS);
+	},
+	sortApp:function(apps){
+		app.sort(function(a, b){
+			if(a.starred && !b.starred){
+				return -1;
+			}
+			if(!a.starred && b.starred){
+				return 1;
+			}
+			return 0;
+		});
+		return app;
 	},
 	render: function() {
 		var allApps = [];
