@@ -5,7 +5,6 @@ var Controller_View = require('./Controller_View.js');
 module.exports = React.createClass({
 	getInitialState: function() {
 		var staredApps = Ctr_QApi.Store.getStaredApps();
-
 		return {
 			staredApps:staredApps
 		};
@@ -30,7 +29,7 @@ module.exports = React.createClass({
 	},
 	render: function() {
 		var staredApps = [];
-		for (var i = this.state.staredAppss.length - 1; i >= 0; i--) {
+		for (var i = this.state.staredApps.length - 1; i >= 0; i--) {
 			var staredApp = this.state.staredAppss[i];
 			staredApps.push(
 				<li key={"apps-summary-stared-apps-" + staredApp.processModelInfoId} className="list-group-item">{staredApp.processModelInfoName}</li>

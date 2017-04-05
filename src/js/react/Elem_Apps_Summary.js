@@ -9,7 +9,6 @@ module.exports = React.createClass({
 
 	getInitialState: function getInitialState() {
 		var staredApps = Ctr_QApi.Store.getStaredApps();
-
 		return {
 			staredApps: staredApps
 		};
@@ -34,7 +33,7 @@ module.exports = React.createClass({
 	},
 	render: function render() {
 		var staredApps = [];
-		for (var i = this.state.staredAppss.length - 1; i >= 0; i--) {
+		for (var i = this.state.staredApps.length - 1; i >= 0; i--) {
 			var staredApp = this.state.staredAppss[i];
 			staredApps.push(React.createElement(
 				'li',
