@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 16:20"
+    VERSION: "2017.04.05 16:32"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
