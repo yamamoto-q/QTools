@@ -26853,7 +26853,7 @@ module.exports = React.createClass({
 			classes = classes.concat(this.props.className.split(" "));
 		}
 
-		console.log(9, this.props.on_change);
+		// console.log(9, this.props.on_change);
 
 		return React.createElement("input", { name: this.props.name, type: this.props.type, value: this.props.value, onChange: this.props.on_change, className: classes.join(" ") });
 	}
@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 15:00"
+    VERSION: "2017.04.05 15:09"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28234,6 +28234,7 @@ module.exports = React.createClass({
 		var staredApps = [];
 		for (var i = this.state.staredApps.length - 1; i >= 0; i--) {
 			var staredApp = this.state.staredApps[i];
+			console.log("staredApp", staredApp);
 			staredApps.push(React.createElement(
 				'li',
 				{ key: "apps-summary-stared-apps-" + staredApp.processModelInfoId, className: 'list-group-item' },
@@ -29126,7 +29127,7 @@ module.exports = React.createClass({
 				var changeAuth = _Login.Store.changeAuth();
 				var loginedUser = _Login.Store.getLoginedUser();
 
-				console.log(37, isValidAuthParam, loginSuccess, changeAuth);
+				//console.log(37, isValidAuthParam, loginSuccess, changeAuth);
 
 				self.setState({
 					showSplash: isWaitingStrage,
