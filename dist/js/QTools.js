@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 12:18"
+    VERSION: "2017.04.05 12:24"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27526,7 +27526,10 @@ var _state = {
             infos:[],
             hash:null
         },
-        index:{}
+        index:{
+            index:{},
+            hash:null
+        }
     },
     userQuserSelf:null,
     resopnses:{}
@@ -27748,12 +27751,11 @@ var Store = assign({}, EventEmitter.prototype, {
         }, isAuthorizedOnly);
     },
     _builtModelIndex(){
-        //console.log("_builtModelIndex - - - - - - - ");
+        var oldHash = _state.apps.index.hash;
+
         for (var i = _state.apps.infos.infos.length - 1; i >= 0; i--) {
             var info = _state.apps.infos.infos[i];
             var infoId = info.processModelInfoId;
-
-            //console.log("infoId", infoId);
 
             var startableActivitis = _state.apps.startableActivities.activities.filter(function(element, index, array){
                 return element.processModelInfoId == infoId;
@@ -27765,17 +27767,21 @@ var Store = assign({}, EventEmitter.prototype, {
                 return element.processModelInfoId == infoId;
             });
 
-            if(typeof _state.apps.index[infoId] === "undegined"){
-                _state.apps.index[infoId] = {};
+            if(typeof _state.apps.index.index[infoId] === "undegined"){
+                _state.apps.index.index[infoId] = {};
             }
 
-            _state.apps.index["p" + infoId] = info;
-            _state.apps.index["p" + infoId].startableActivitis = startableActivitis;
-            _state.apps.index["p" + infoId].allocatedWorkitems = allocatedWorkitems;
-            _state.apps.index["p" + infoId].offeredWorkitems = offeredWorkitems;
+            _state.apps.index.index["p" + infoId] = info;
+            _state.apps.index.index["p" + infoId].startableActivitis = startableActivitis;
+            _state.apps.index.index["p" + infoId].allocatedWorkitems = allocatedWorkitems;
+            _state.apps.index.index["p" + infoId].offeredWorkitems = offeredWorkitems;
         }
+        var hash = md5(JSON.stringify(_state.apps.index.index));
+        _state.apps.index.hash = hash;
 
-        console.log("index", _state.apps.index);
+        if(hash != oldHash){
+            console.log("index", hash, _state.apps.index.index);
+        }
     },
     // Dispacher
     dispatcherIndex: dispatcher.register(function(payload) {
