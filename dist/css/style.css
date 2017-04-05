@@ -102,8 +102,10 @@ body.logining {
 .card-deck .card::last-child {
   margin-bottom: 0;
 }
-.card.card-apps-summary .card-block.card-block-header {
+.card.card-apps-summary {
   background-color: purple;
+}
+.card.card-apps-summary .card-block.card-block-header {
   color: white;
 }
 #footer {
