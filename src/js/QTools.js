@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 14:58"
+    VERSION: "2017.04.05 15:00"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28233,7 +28233,7 @@ module.exports = React.createClass({
 	render: function render() {
 		var staredApps = [];
 		for (var i = this.state.staredApps.length - 1; i >= 0; i--) {
-			var staredApp = this.state.staredAppss[i];
+			var staredApp = this.state.staredApps[i];
 			staredApps.push(React.createElement(
 				'li',
 				{ key: "apps-summary-stared-apps-" + staredApp.processModelInfoId, className: 'list-group-item' },

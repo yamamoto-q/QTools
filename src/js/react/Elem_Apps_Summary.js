@@ -34,7 +34,7 @@ module.exports = React.createClass({
 	render: function render() {
 		var staredApps = [];
 		for (var i = this.state.staredApps.length - 1; i >= 0; i--) {
-			var staredApp = this.state.staredAppss[i];
+			var staredApp = this.state.staredApps[i];
 			staredApps.push(React.createElement(
 				'li',
 				{ key: "apps-summary-stared-apps-" + staredApp.processModelInfoId, className: 'list-group-item' },
