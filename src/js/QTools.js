@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 15:31"
+    VERSION: "2017.04.05 15:38"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28238,9 +28238,13 @@ module.exports = React.createClass({
 			var offeredNum = staredApp.offeredWorkitems.length;
 			staredApps.push(React.createElement(
 				'li',
-				{ key: "apps-summary-stared-apps-" + staredApp.processModelInfoId, className: 'list-group-item' },
+				{ key: "apps-summary-stared-apps-" + staredApp.processModelInfoId, className: 'list-group-item justify-content-between' },
 				React.createElement('span', { className: 'icon icon-star' }),
-				staredApp.processModelInfoName,
+				React.createElement(
+					'span',
+					null,
+					staredApp.processModelInfoName
+				),
 				React.createElement(
 					'span',
 					{ className: 'badge badge-default badge-pill' },
