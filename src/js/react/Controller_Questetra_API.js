@@ -60,9 +60,16 @@ var Action = {
         });
     },
     getOfferedWorkitems:function(){
-        // マイタスクの一覧を取得する
+        // オファータスクの一覧を取得する
         dispatcher.dispatch({
             actionType: "getOfferedWorkitems",
+            value: {
+            }
+        });
+    },
+    getApps:function(){
+        dispatcher.dispatch({
+            actionType: "getApps",
             value: {
             }
         });
@@ -575,6 +582,39 @@ var Store = assign({}, EventEmitter.prototype, {
                 });
                 break;
 
+            case "getApps":
+
+                console.log("getApps");
+                // プロセスモデル一覧を取得する
+                Store._getWorkitems(false, function(change){
+                    if(change){
+                        Store.emitChangeProcessModelList();
+                    }
+
+                    // 
+                    Store._getAllocatedWorkitems(function(change){
+                        if(change){
+                           Store.emitChangeAllocatedWorkitems(); 
+                        }
+
+                        Store._getOfferedWorkitems(function(change){
+                            if(change){
+                                Store.emitChangeOfferedWorkitems();
+                            }
+
+                            // 新規開始できるプロセスモデル一覧を取得する
+                            Store._getStartableActivities(function(change){
+                                if(change){
+                                    Store.emitChangeStartableActivities();
+                                }
+
+                                console.log(_state.apps.index.index);
+                            });
+                        });
+                    });
+                });
+
+                break;
             case "getStartableActivities":
                 // 新規開始できるプロセスモデル一覧を取得する
                 Store._getStartableActivities(function(change){

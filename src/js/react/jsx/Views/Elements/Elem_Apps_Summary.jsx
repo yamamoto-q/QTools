@@ -32,7 +32,7 @@ module.exports = React.createClass({
 				});
 			}
 		});
-		*/
+		
 		Ctr_QApi.Store.addChangeProcessModelListListener(function(){
 			var processModelList = Ctr_QApi.Store.getProcessModelList();
 			console.log("processModelList", processModelList);
@@ -42,9 +42,9 @@ module.exports = React.createClass({
 			var startableActivities = Ctr_QApi.Store.getStartableActivities();
 			console.log("StartableActivities", startableActivities);
 		});
+		*/
 
-		Ctr_QApi.Action.getStartableActivities();
-		Ctr_QApi.Action.getProcessModelList(false);
+		Ctr_QApi.Action.getApps();
 	},
 	onClick:function(e){
 		e.preventDefault();

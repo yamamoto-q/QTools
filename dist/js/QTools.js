@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 12:24"
+    VERSION: "2017.04.05 12:37"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27439,9 +27439,16 @@ var Action = {
         });
     },
     getOfferedWorkitems:function(){
-        // マイタスクの一覧を取得する
+        // オファータスクの一覧を取得する
         dispatcher.dispatch({
             actionType: "getOfferedWorkitems",
+            value: {
+            }
+        });
+    },
+    getApps:function(){
+        dispatcher.dispatch({
+            actionType: "getApps",
             value: {
             }
         });
@@ -27954,6 +27961,39 @@ var Store = assign({}, EventEmitter.prototype, {
                 });
                 break;
 
+            case "getApps":
+
+                console.log("getApps");
+                // プロセスモデル一覧を取得する
+                Store._getWorkitems(false, function(change){
+                    if(change){
+                        Store.emitChangeProcessModelList();
+                    }
+
+                    // 
+                    Store._getAllocatedWorkitems(function(change){
+                        if(change){
+                           Store.emitChangeAllocatedWorkitems(); 
+                        }
+
+                        Store._getOfferedWorkitems(function(change){
+                            if(change){
+                                Store.emitChangeOfferedWorkitems();
+                            }
+
+                            // 新規開始できるプロセスモデル一覧を取得する
+                            Store._getStartableActivities(function(change){
+                                if(change){
+                                    Store.emitChangeStartableActivities();
+                                }
+
+                                console.log(_state.apps.index.index);
+                            });
+                        });
+                    });
+                });
+
+                break;
             case "getStartableActivities":
                 // 新規開始できるプロセスモデル一覧を取得する
                 Store._getStartableActivities(function(change){
@@ -28165,19 +28205,18 @@ module.exports = React.createClass({
   		});
   	}
   });
+  
+  Ctr_QApi.Store.addChangeProcessModelListListener(function(){
+  	var processModelList = Ctr_QApi.Store.getProcessModelList();
+  	console.log("processModelList", processModelList);
+  });
+  		Ctr_QApi.Store.addChangeStartableActivitiesListener(function(){
+  	var startableActivities = Ctr_QApi.Store.getStartableActivities();
+  	console.log("StartableActivities", startableActivities);
+  });
   */
-		Ctr_QApi.Store.addChangeProcessModelListListener(function () {
-			var processModelList = Ctr_QApi.Store.getProcessModelList();
-			console.log("processModelList", processModelList);
-		});
 
-		Ctr_QApi.Store.addChangeStartableActivitiesListener(function () {
-			var startableActivities = Ctr_QApi.Store.getStartableActivities();
-			console.log("StartableActivities", startableActivities);
-		});
-
-		Ctr_QApi.Action.getStartableActivities();
-		Ctr_QApi.Action.getProcessModelList(false);
+		Ctr_QApi.Action.getApps();
 	},
 	onClick: function onClick(e) {
 		e.preventDefault();
