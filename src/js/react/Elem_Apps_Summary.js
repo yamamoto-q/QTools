@@ -33,29 +33,43 @@ module.exports = React.createClass({
 	},
 	render: function render() {
 		var staredApps = [];
-		for (var i = this.state.staredApps.length - 1; i >= 0; i--) {
-			var staredApp = this.state.staredApps[i];
-			console.log("staredApp", staredApp);
-			var allocatedNum = staredApp.allocatedWorkitems.length;
-			var offeredNum = staredApp.offeredWorkitems.length;
+		if (this.state.staredApps.length > 0) {
+			for (var i = this.state.staredApps.length - 1; i >= 0; i--) {
+				var staredApp = this.state.staredApps[i];
+				console.log("staredApp", staredApp);
+				var allocatedNum = staredApp.allocatedWorkitems.length;
+				var offeredNum = staredApp.offeredWorkitems.length;
+				staredApps.push(React.createElement(
+					'li',
+					{ key: "apps-summary-stared-apps-" + staredApp.processModelInfoId, className: 'list-group-item justify-content-between' },
+					React.createElement('span', { className: 'icon icon-star' }),
+					React.createElement(
+						'span',
+						null,
+						staredApp.processModelInfoName
+					),
+					React.createElement(
+						'span',
+						{ className: 'badge badge-default badge-pill' },
+						allocatedNum,
+						'/',
+						offeredNum
+					)
+				));
+			}
+		} else {
 			staredApps.push(React.createElement(
 				'li',
-				{ key: "apps-summary-stared-apps-" + staredApp.processModelInfoId, className: 'list-group-item justify-content-between' },
-				React.createElement('span', { className: 'icon icon-star' }),
+				{ key: "apps-summary-stared-apps-info", className: 'list-group-item justify-content-between' },
+				React.createElement('span', { className: 'icon icon-info' }),
 				React.createElement(
 					'span',
 					null,
-					staredApp.processModelInfoName
-				),
-				React.createElement(
-					'span',
-					{ className: 'badge badge-default badge-pill' },
-					allocatedNum,
-					'/',
-					offeredNum
+					'\u30B9\u30BF\u30FC'
 				)
 			));
 		}
+
 		return React.createElement(
 			'div',
 			{ className: 'card', onClick: this.onClick, 'data-viewname': Controller_View.ViewNames.WORK },
