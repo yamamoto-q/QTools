@@ -354,7 +354,17 @@ var Store = assign({}, EventEmitter.prototype, {
             // index
             for (var i = data.processModelInfos.length - 1; i >= 0; i--) {
                 var info = data.processModelInfos[i];
-                
+                var infoId = info.processModelInfoId;
+                console.log("infoId", infoId);
+                var startableActivitis = _state.apps.startableActivities.activities.filter(function(element, index, array){
+                    return element.processModelInfoId == infoId;
+                });
+                console.log("startableActivitis", startableActivitis)
+                var allocatedWorkitems = _state.allocatedWorkitems.workitems.filter(function(element, index, array){
+                    return element.processModelInfoId == infoId;
+                });
+                console.log("allocatedWorkitems", allocatedWorkitems)
+
             }
 
             if(oldHash != hash){

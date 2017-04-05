@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 11:42"
+    VERSION: "2017.04.05 11:53"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27733,7 +27733,17 @@ var Store = assign({}, EventEmitter.prototype, {
             // index
             for (var i = data.processModelInfos.length - 1; i >= 0; i--) {
                 var info = data.processModelInfos[i];
-                
+                var infoId = info.processModelInfoId;
+                console.log("infoId", infoId);
+                var startableActivitis = _state.apps.startableActivities.activities.filter(function(element, index, array){
+                    return element.processModelInfoId == infoId;
+                });
+                console.log("startableActivitis", startableActivitis)
+                var allocatedWorkitems = _state.allocatedWorkitems.workitems.filter(function(element, index, array){
+                    return element.processModelInfoId == infoId;
+                });
+                console.log("allocatedWorkitems", allocatedWorkitems)
+
             }
 
             if(oldHash != hash){
