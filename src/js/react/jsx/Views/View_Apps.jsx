@@ -37,7 +37,7 @@ module.exports = React.createClass({
 		$("body").removeClass('view-' + Controller_View.ViewNames.APPS);
 	},
 	sortApp:function(apps){
-		app.sort(function(a, b){
+		apps.sort(function(a, b){
 			if(a.starred && !b.starred){
 				return -1;
 			}
@@ -46,7 +46,7 @@ module.exports = React.createClass({
 			}
 			return 0;
 		});
-		return app;
+		return apps;
 	},
 	render: function() {
 		var allApps = [];

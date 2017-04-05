@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 18:07"
+    VERSION: "2017.04.05 18:08"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -29625,7 +29625,7 @@ module.exports = React.createClass({
 		$("body").removeClass('view-' + Controller_View.ViewNames.APPS);
 	},
 	sortApp: function sortApp(apps) {
-		app.sort(function (a, b) {
+		apps.sort(function (a, b) {
 			if (a.starred && !b.starred) {
 				return -1;
 			}
@@ -29634,7 +29634,7 @@ module.exports = React.createClass({
 			}
 			return 0;
 		});
-		return app;
+		return apps;
 	},
 	render: function render() {
 		var allApps = [];
