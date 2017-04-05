@@ -347,7 +347,7 @@ var Store = assign({}, EventEmitter.prototype, {
             var oldHash = _state.apps.infos.hash;
             var hash = md5(JSON.stringify(data.processModelInfos));
 
-            _state.apps.infos.infos = data.startableActivities;
+            _state.apps.infos.infos = data.processModelInfos;
             _state.apps.infos.hash = hash;
 
             if(oldHash != hash){
