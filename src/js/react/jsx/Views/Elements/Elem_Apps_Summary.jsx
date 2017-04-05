@@ -37,7 +37,7 @@ module.exports = React.createClass({
 			staredApps.push(
 				<li key={"apps-summary-stared-apps-" + staredApp.processModelInfoId} className="list-group-item">
 					<span className="icon icon-star"/>{staredApp.processModelInfoName}
-					{allocatedNum} / {offeredNum}
+					<span className="badge badge-default badge-pill">{allocatedNum}/{offeredNum}</span>
 				</li>
 			);
 		}

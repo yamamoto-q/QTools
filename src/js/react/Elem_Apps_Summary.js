@@ -43,9 +43,13 @@ module.exports = React.createClass({
 				{ key: "apps-summary-stared-apps-" + staredApp.processModelInfoId, className: 'list-group-item' },
 				React.createElement('span', { className: 'icon icon-star' }),
 				staredApp.processModelInfoName,
-				allocatedNum,
-				' / ',
-				offeredNum
+				React.createElement(
+					'span',
+					{ className: 'badge badge-default badge-pill' },
+					allocatedNum,
+					'/',
+					offeredNum
+				)
 			));
 		}
 		return React.createElement(
