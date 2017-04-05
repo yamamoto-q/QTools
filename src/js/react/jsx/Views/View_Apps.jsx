@@ -12,13 +12,40 @@ var NavItem = require('./NavItem.js');
 var MyWorkitemList = require('./Elem_MyWorkitemList.js');
 
 module.exports = React.createClass({
+	getInitialState: function() {
+		var apps = Ctr_QApi.Store.getApps();
+		return {
+			apps:apps
+		};
+	},
 	componentDidMount: function() {
 		$("body").addClass('view-' + Controller_View.ViewNames.APPS);
+
+		var self = this;
+		Ctr_QApi.Store.addChangeAppsListener(function(){
+			if (self.isMounted()) {
+				var apps = Ctr_QApi.Store.getApps();
+				self.setState({
+					apps:apps
+				});
+			}
+		});
+
+		Ctr_QApi.Action.getApps();
 	},
 	componentWillUnmount:function(){
 		$("body").removeClass('view-' + Controller_View.ViewNames.APPS);
 	},
 	render: function() {
+		var allApps = [];
+		for (var i = this.state.apps.length - 1; i >= 0; i--) {
+			var app = this.state.apps[i];
+			allApps.push(
+				<div key={"view-app-allapps-" + app.processModelInfoId}>{app.processModelInfoName}</div>
+			);
+		}
+
+
 		return(
 			<LayoutHeader label="Apps">
 				<LayoutBody>
@@ -43,7 +70,9 @@ module.exports = React.createClass({
 							</li>
 						</ul>
 						<div className="tab-content">
-							<div className="tab-pane active" id="home" role="tabpanel">...</div>
+							<div className="tab-pane active" id="home" role="tabpanel">
+								{allApps}
+							</div>
 							<div className="tab-pane" id="profile" role="tabpanel">...</div>
 							<div className="tab-pane" id="messages" role="tabpanel">...</div>
 							<div className="tab-pane" id="settings" role="tabpanel">...</div>

@@ -16,13 +16,41 @@ var MyWorkitemList = require('./Elem_MyWorkitemList.js');
 module.exports = React.createClass({
 	displayName: 'exports',
 
+	getInitialState: function getInitialState() {
+		var apps = Ctr_QApi.Store.getApps();
+		return {
+			apps: apps
+		};
+	},
 	componentDidMount: function componentDidMount() {
 		$("body").addClass('view-' + Controller_View.ViewNames.APPS);
+
+		var self = this;
+		Ctr_QApi.Store.addChangeAppsListener(function () {
+			if (self.isMounted()) {
+				var apps = Ctr_QApi.Store.getApps();
+				self.setState({
+					apps: apps
+				});
+			}
+		});
+
+		Ctr_QApi.Action.getApps();
 	},
 	componentWillUnmount: function componentWillUnmount() {
 		$("body").removeClass('view-' + Controller_View.ViewNames.APPS);
 	},
 	render: function render() {
+		var allApps = [];
+		for (var i = this.state.apps.length - 1; i >= 0; i--) {
+			var app = this.state.apps[i];
+			allApps.push(React.createElement(
+				'div',
+				{ key: "view-app-allapps-" + app.processModelInfoId },
+				app.processModelInfoName
+			));
+		}
+
 		return React.createElement(
 			LayoutHeader,
 			{ label: 'Apps' },
@@ -97,7 +125,7 @@ module.exports = React.createClass({
 						React.createElement(
 							'div',
 							{ className: 'tab-pane active', id: 'home', role: 'tabpanel' },
-							'...'
+							allApps
 						),
 						React.createElement(
 							'div',
