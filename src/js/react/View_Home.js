@@ -52,8 +52,12 @@ module.exports = React.createClass({
 				React.createElement(
 					LayoutBodyRight,
 					null,
-					React.createElement(MyWorkItemsSummary, null),
-					React.createElement(AppsSummary, null)
+					React.createElement(
+						'div',
+						{ className: 'card-deck' },
+						React.createElement(MyWorkItemsSummary, null),
+						React.createElement(AppsSummary, null)
+					)
 				)
 			),
 			React.createElement(

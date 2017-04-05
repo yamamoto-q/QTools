@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 16:14"
+    VERSION: "2017.04.05 16:20"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -29716,8 +29716,12 @@ module.exports = React.createClass({
 				React.createElement(
 					LayoutBodyRight,
 					null,
-					React.createElement(MyWorkItemsSummary, null),
-					React.createElement(AppsSummary, null)
+					React.createElement(
+						'div',
+						{ className: 'card-deck' },
+						React.createElement(MyWorkItemsSummary, null),
+						React.createElement(AppsSummary, null)
+					)
 				)
 			),
 			React.createElement(

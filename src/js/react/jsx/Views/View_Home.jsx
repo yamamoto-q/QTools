@@ -29,8 +29,10 @@ module.exports = React.createClass({
 						<NavItem icon="games" view_name={Controller_View.ViewNames.APPS}>Apps</NavItem>
 					</LayoutBodyLeft>
 					<LayoutBodyRight>
-						<MyWorkItemsSummary />
-						<AppsSummary />
+						<div className="card-deck">
+							<MyWorkItemsSummary />
+							<AppsSummary />
+						</div>
 					</LayoutBodyRight>
 				</LayoutBody>
 				<Footer>
