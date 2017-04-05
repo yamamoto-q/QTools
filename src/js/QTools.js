@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.05 15:51"
+    VERSION: "2017.04.05 16:07"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28271,10 +28271,10 @@ module.exports = React.createClass({
 
 		return React.createElement(
 			'div',
-			{ className: 'card', onClick: this.onClick, 'data-viewname': Controller_View.ViewNames.APPS },
+			{ className: 'card card-apps-summary', onClick: this.onClick, 'data-viewname': Controller_View.ViewNames.APPS },
 			React.createElement(
 				'div',
-				{ className: 'card-block' },
+				{ className: 'card-block card-block-header' },
 				React.createElement(
 					'h4',
 					{ className: 'card-title' },
@@ -29628,14 +29628,14 @@ module.exports = React.createClass({
 					),
 					React.createElement(
 						NavItem,
-						{ icon: 'chat_bubble', active: true },
+						{ icon: 'games', active: true },
 						'Apps'
 					)
 				),
 				React.createElement(
 					LayoutBodyRight,
 					null,
-					'Works'
+					'Apps'
 				)
 			),
 			React.createElement(
@@ -29653,7 +29653,7 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					NavItem,
-					{ icon: 'chat_bubble', active: true },
+					{ icon: 'games', active: true },
 					'Apps'
 				)
 			)
@@ -29709,8 +29709,8 @@ module.exports = React.createClass({
 					),
 					React.createElement(
 						NavItem,
-						{ icon: 'chat_bubble' },
-						'C'
+						{ icon: 'games', view_name: Controller_View.ViewNames.APPS },
+						'Apps'
 					)
 				),
 				React.createElement(
@@ -29735,8 +29735,8 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					NavItem,
-					{ icon: 'chat_bubble' },
-					'C'
+					{ icon: 'games', view_name: Controller_View.ViewNames.APPS },
+					'Apps'
 				)
 			)
 		);
@@ -29790,8 +29790,8 @@ module.exports = React.createClass({
 					),
 					React.createElement(
 						NavItem,
-						{ icon: 'chat_bubble' },
-						'C'
+						{ icon: 'games', view_name: Controller_View.ViewNames.APPS },
+						'Apps'
 					)
 				),
 				React.createElement(
@@ -29815,8 +29815,8 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					NavItem,
-					{ icon: 'chat_bubble' },
-					'C'
+					{ icon: 'games', view_name: Controller_View.ViewNames.APPS },
+					'Apps'
 				)
 			)
 		);

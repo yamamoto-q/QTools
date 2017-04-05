@@ -45,8 +45,8 @@ module.exports = React.createClass({
 					),
 					React.createElement(
 						NavItem,
-						{ icon: 'chat_bubble' },
-						'C'
+						{ icon: 'games', view_name: Controller_View.ViewNames.APPS },
+						'Apps'
 					)
 				),
 				React.createElement(
@@ -71,8 +71,8 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					NavItem,
-					{ icon: 'chat_bubble' },
-					'C'
+					{ icon: 'games', view_name: Controller_View.ViewNames.APPS },
+					'Apps'
 				)
 			)
 		);

@@ -25,16 +25,16 @@ module.exports = React.createClass({
 					<LayoutBodyLeft>
 						<NavItem icon="home" view_name={Controller_View.ViewNames.HOME}>Home</NavItem>
 						<NavItem icon="inbox" view_name={Controller_View.ViewNames.WORK}>Work</NavItem>
-						<NavItem icon="chat_bubble" active={true}>Apps</NavItem>
+						<NavItem icon="games" active={true}>Apps</NavItem>
 					</LayoutBodyLeft>
 					<LayoutBodyRight>
-						Works
+						Apps
 					</LayoutBodyRight>
 				</LayoutBody>
 				<Footer>
 					<NavItem icon="home" view_name={Controller_View.ViewNames.HOME}>Home</NavItem>
 					<NavItem icon="inbox" view_name={Controller_View.ViewNames.WORK}>Work</NavItem>
-					<NavItem icon="chat_bubble" active={true}>Apps</NavItem>
+					<NavItem icon="games" active={true}>Apps</NavItem>
 				</Footer>
 			</LayoutHeader>
 		)

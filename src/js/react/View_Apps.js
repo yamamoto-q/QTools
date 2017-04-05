@@ -44,14 +44,14 @@ module.exports = React.createClass({
 					),
 					React.createElement(
 						NavItem,
-						{ icon: 'chat_bubble', active: true },
+						{ icon: 'games', active: true },
 						'Apps'
 					)
 				),
 				React.createElement(
 					LayoutBodyRight,
 					null,
-					'Works'
+					'Apps'
 				)
 			),
 			React.createElement(
@@ -69,7 +69,7 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					NavItem,
-					{ icon: 'chat_bubble', active: true },
+					{ icon: 'games', active: true },
 					'Apps'
 				)
 			)

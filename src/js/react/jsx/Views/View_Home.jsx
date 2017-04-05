@@ -26,7 +26,7 @@ module.exports = React.createClass({
 					<LayoutBodyLeft>
 						<NavItem icon="home" active={true}>Home</NavItem>
 						<NavItem icon="inbox" view_name={Controller_View.ViewNames.WORK}>Work</NavItem>
-						<NavItem icon="chat_bubble">C</NavItem>
+						<NavItem icon="games" view_name={Controller_View.ViewNames.APPS}>Apps</NavItem>
 					</LayoutBodyLeft>
 					<LayoutBodyRight>
 						<MyWorkItemsSummary />
@@ -36,7 +36,7 @@ module.exports = React.createClass({
 				<Footer>
 					<NavItem icon="home" active={true}>Home</NavItem>
 					<NavItem icon="inbox" view_name={Controller_View.ViewNames.WORK}>Work</NavItem>
-					<NavItem icon="chat_bubble">C</NavItem>
+					<NavItem icon="games" view_name={Controller_View.ViewNames.APPS}>Apps</NavItem>
 				</Footer>
 			</LayoutHeader>
 		)
