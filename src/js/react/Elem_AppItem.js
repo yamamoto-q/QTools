@@ -81,7 +81,7 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				'div',
-				{ className: 'col' },
+				{ className: 'col', style: { maxWidth: "120px" } },
 				workItemNum,
 				startableIcon,
 				ownerIcon,

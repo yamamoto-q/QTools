@@ -112,6 +112,11 @@ body.view-apps #header {
 .card.card-apps-summary .card-block.card-block-header {
   color: white;
 }
+.app-item {
+  line-height: 2.75rem;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+}
 .app-item.app-item-deactive {
   background-color: rgba(0, 0, 0, 0.125);
   color: rgba(0, 0, 0, 0.5);
