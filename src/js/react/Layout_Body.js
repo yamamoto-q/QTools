@@ -16,7 +16,7 @@ module.exports = React.createClass({
 				{ className: 'height-fix' },
 				React.createElement(
 					Bootstrap_Row,
-					{ className: 'height-fix' },
+					{ className: 'height-fix', style: { flexWrap: "nowrap" } },
 					this.props.children
 				)
 			)
