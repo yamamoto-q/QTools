@@ -145,8 +145,8 @@ module.exports = React.createClass({
 							'div',
 							{ className: 'tab-pane height-fix active', id: 'home', role: 'tabpanel' },
 							React.createElement(
-								ScrollArea,
-								null,
+								'div',
+								{ className: 'container' },
 								allApps
 							)
 						)
