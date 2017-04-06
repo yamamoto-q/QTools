@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.06 10:09"
+    VERSION: "2017.04.06 10:23"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28210,16 +28210,35 @@ module.exports = React.createClass({
 		var allocatedNum = this.props.app.allocatedWorkitems.length;
 		var offeredNum = this.props.app.offeredWorkitems.length;
 
-		return React.createElement(
-			"div",
-			{ className: "row" },
-			React.createElement("div", { className: "col" }),
-			React.createElement(
-				"div",
-				{ className: "col" },
+		// Star
+		var starIcon = React.createElement("span", { className: "icon icon-star_border" });
+		if (isStarred) {
+			starIcon = React.createElement("span", { className: "icon icon-star" });
+		}
+
+		var workItemNum = null;
+		if (allocatedNum + offeredNum > 0) {
+			workItemNum = React.createElement(
+				"span",
+				{ className: "badge badge-default badge-pill" },
 				allocatedNum,
 				"/",
 				offeredNum
+			);
+		}
+
+		return React.createElement(
+			"div",
+			{ className: "row" },
+			React.createElement(
+				"div",
+				{ className: "col" },
+				starIcon
+			),
+			React.createElement(
+				"div",
+				{ className: "col" },
+				workItemNum
 			),
 			React.createElement(
 				"div",
@@ -29711,7 +29730,7 @@ module.exports = React.createClass({
 
 		console.log("apps", this.state.apps);
 		for (var i = 0; i < this.state.apps.length; i++) {
-			allApps.push(React.createElement(AppItem, { app: this.state.apps[i] }));
+			allApps.push(React.createElement(AppItem, { key: "view-apps-app-" + this.state.apps.processModelInfoId, app: this.state.apps[i] }));
 		}
 
 		return React.createElement(
@@ -29753,33 +29772,6 @@ module.exports = React.createClass({
 								{ className: 'nav-link active', 'data-toggle': 'tab', href: '#home', role: 'tab' },
 								'Home'
 							)
-						),
-						React.createElement(
-							'li',
-							{ className: 'nav-item' },
-							React.createElement(
-								'a',
-								{ className: 'nav-link', 'data-toggle': 'tab', href: '#profile', role: 'tab' },
-								'Profile'
-							)
-						),
-						React.createElement(
-							'li',
-							{ className: 'nav-item' },
-							React.createElement(
-								'a',
-								{ className: 'nav-link', 'data-toggle': 'tab', href: '#messages', role: 'tab' },
-								'Messages'
-							)
-						),
-						React.createElement(
-							'li',
-							{ className: 'nav-item' },
-							React.createElement(
-								'a',
-								{ className: 'nav-link', 'data-toggle': 'tab', href: '#settings', role: 'tab' },
-								'Settings'
-							)
 						)
 					),
 					React.createElement(
@@ -29789,21 +29781,6 @@ module.exports = React.createClass({
 							'div',
 							{ className: 'tab-pane active', id: 'home', role: 'tabpanel' },
 							allApps
-						),
-						React.createElement(
-							'div',
-							{ className: 'tab-pane', id: 'profile', role: 'tabpanel' },
-							'...'
-						),
-						React.createElement(
-							'div',
-							{ className: 'tab-pane', id: 'messages', role: 'tabpanel' },
-							'...'
-						),
-						React.createElement(
-							'div',
-							{ className: 'tab-pane', id: 'settings', role: 'tabpanel' },
-							'...'
 						)
 					)
 				)

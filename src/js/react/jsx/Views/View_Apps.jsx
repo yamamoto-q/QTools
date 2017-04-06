@@ -90,7 +90,7 @@ module.exports = React.createClass({
 		console.log("apps", this.state.apps);
 		for (var i = 0; i < this.state.apps.length; i++) {
 			allApps.push(
-				<AppItem app={this.state.apps[i]} />
+				<AppItem key={"view-apps-app-" + this.state.apps.processModelInfoId} app={this.state.apps[i]} />
 			);
 		}
 
@@ -107,23 +107,11 @@ module.exports = React.createClass({
 							<li className="nav-item">
 								<a className="nav-link active" data-toggle="tab" href="#home" role="tab">Home</a>
 							</li>
-							<li className="nav-item">
-								<a className="nav-link" data-toggle="tab" href="#profile" role="tab">Profile</a>
-							</li>
-							<li className="nav-item">
-								<a className="nav-link" data-toggle="tab" href="#messages" role="tab">Messages</a>
-							</li>
-							<li className="nav-item">
-								<a className="nav-link" data-toggle="tab" href="#settings" role="tab">Settings</a>
-							</li>
 						</ul>
 						<div className="tab-content">
 							<div className="tab-pane active" id="home" role="tabpanel">
 								{allApps}
 							</div>
-							<div className="tab-pane" id="profile" role="tabpanel">...</div>
-							<div className="tab-pane" id="messages" role="tabpanel">...</div>
-							<div className="tab-pane" id="settings" role="tabpanel">...</div>
 						</div>
 					</LayoutBodyRight>
 				</LayoutBody>

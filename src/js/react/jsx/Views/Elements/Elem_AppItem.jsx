@@ -7,10 +7,21 @@ module.exports = React.createClass({
 		var allocatedNum = this.props.app.allocatedWorkitems.length;
 		var offeredNum = this.props.app.offeredWorkitems.length;
 
+		// Star
+		var starIcon = (<span className="icon icon-star_border"/>);
+		if(isStarred){
+			starIcon = (<span className="icon icon-star"/>);
+		}
+
+		var workItemNum = null;
+		if(allocatedNum + offeredNum > 0){
+			workItemNum = (<span className="badge badge-default badge-pill">{allocatedNum}/{offeredNum}</span>);
+		}
+
 		return(
 			<div className="row">
-				<div className="col"></div>
-				<div className="col">{allocatedNum}/{offeredNum}</div>
+				<div className="col">{starIcon}</div>
+				<div className="col">{workItemNum}</div>
 				<div className="col">{label}</div>
 			</div>
 		)
