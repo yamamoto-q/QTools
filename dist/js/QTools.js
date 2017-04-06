@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.06 14:03"
+    VERSION: "2017.04.06 14:15"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -29817,7 +29817,7 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					'div',
-					{ id: 'body-right', className: 'col' },
+					{ id: 'body-right', className: 'col height-fix' },
 					React.createElement(
 						'ul',
 						{ className: 'nav nav-tabs', role: 'tablist' },
@@ -29836,7 +29836,7 @@ module.exports = React.createClass({
 						{ className: 'tab-content' },
 						React.createElement(
 							'div',
-							{ className: 'tab-pane container height-fix active', id: 'home', role: 'tabpanel' },
+							{ className: 'tab-pane height-fix active', id: 'home', role: 'tabpanel' },
 							React.createElement(
 								ScrollArea,
 								null,

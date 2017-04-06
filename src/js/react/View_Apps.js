@@ -124,7 +124,7 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					'div',
-					{ id: 'body-right', className: 'col' },
+					{ id: 'body-right', className: 'col height-fix' },
 					React.createElement(
 						'ul',
 						{ className: 'nav nav-tabs', role: 'tablist' },
@@ -143,7 +143,7 @@ module.exports = React.createClass({
 						{ className: 'tab-content' },
 						React.createElement(
 							'div',
-							{ className: 'tab-pane container height-fix active', id: 'home', role: 'tabpanel' },
+							{ className: 'tab-pane height-fix active', id: 'home', role: 'tabpanel' },
 							React.createElement(
 								ScrollArea,
 								null,
