@@ -10,7 +10,8 @@ module.exports = React.createClass({
 		var isStarred = this.props.app.starred;
 		var allocatedNum = this.props.app.allocatedWorkitems.length;
 		var offeredNum = this.props.app.offeredWorkitems.length;
-		var startable = this.props.app.startableActivitis > 0;
+		var isStartable = this.props.app.startableActivitis.length > 0;
+		var owner = this.props.app.processModelInfoCreateQuserName;
 
 		// Star
 		var starIcon = React.createElement("span", { className: "icon icon-star_border" });
@@ -30,7 +31,7 @@ module.exports = React.createClass({
 		}
 
 		var startableIcon = null;
-		if (startable) {
+		if (isStartable) {
 			startableIcon = React.createElement("span", { className: "icon-move_to_inbox" });
 		}
 
@@ -52,6 +53,11 @@ module.exports = React.createClass({
 				"div",
 				{ className: "col" },
 				label
+			),
+			React.createElement(
+				"div",
+				{ className: "col" },
+				owner
 			)
 		);
 	}
