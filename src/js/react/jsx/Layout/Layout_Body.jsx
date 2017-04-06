@@ -7,7 +7,7 @@ module.exports = React.createClass({
 		return(
 			<div id="body" className="height-fix">
 				<Bootstrap_Container className="height-fix">
-					<Bootstrap_Row className="height-fix" style={{flexWrap:"nowrap"}}>
+					<Bootstrap_Row className="height-fix" wrap={false}>
 					{this.props.children}
 					</Bootstrap_Row>
 				</Bootstrap_Container>

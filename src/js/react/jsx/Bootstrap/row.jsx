@@ -5,9 +5,14 @@ module.exports = React.createClass({
 		if(this.props.className){
 			classes = classes.concat(this.props.className.split(" "));
 		}
+
+		var style = {};
+		if(typeof this.props.wrap !== "undefined" && (!this.props.wrap || this.props.wrap == "false")){
+			style.flexWrap = "nowrap";
+		}
 		
 		return (
-			<div className={classes.join(" ")}>{this.props.children}</div>
+			<div className={classes.join(" ")} style={style}>{this.props.children}</div>
 		);
 	}
 });

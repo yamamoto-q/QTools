@@ -26914,9 +26914,14 @@ module.exports = React.createClass({
 			classes = classes.concat(this.props.className.split(" "));
 		}
 
+		var style = {};
+		if (typeof this.props.wrap !== "undefined" && (!this.props.wrap || this.props.wrap == "false")) {
+			style.flexWrap = "nowrap";
+		}
+
 		return React.createElement(
 			"div",
-			{ className: classes.join(" ") },
+			{ className: classes.join(" "), style: style },
 			this.props.children
 		);
 	}
@@ -26924,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.06 12:28"
+    VERSION: "2017.04.06 12:37"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28942,7 +28947,7 @@ module.exports = React.createClass({
 				{ className: 'height-fix' },
 				React.createElement(
 					Bootstrap_Row,
-					{ className: 'height-fix', style: { flexWrap: "nowrap" } },
+					{ className: 'height-fix', wrap: false },
 					this.props.children
 				)
 			)
