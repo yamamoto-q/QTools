@@ -98,6 +98,7 @@ body.view-apps #header {
   color: white;
 }
 #body {
+  flex-wrap: nowrap;
   padding: 15px 0 15px 0;
 }
 .card-deck .card {
