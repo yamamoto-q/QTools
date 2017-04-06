@@ -70,27 +70,29 @@ module.exports = React.createClass({
 		apps.sort(function (a, b) {
 
 			if (a.allocatedWorkitems.length > b.allocatedWorkitems.length) {
-				console.log("sort", a.allocatedWorkitems.length, b.allocatedWorkitems.length, 1);
+				console.log("sort-a:" + a.allocatedWorkitems.length + "," + b.allocatedWorkitems.length + "," + 1);
 				return -1;
 			}
 			if (a.allocatedWorkitems.length < b.allocatedWorkitems.length) {
-				console.log("sort", a.allocatedWorkitems.length, b.allocatedWorkitems.length, -1);
+				console.log("sort-a:" + a.allocatedWorkitems.length + "," + b.allocatedWorkitems.length + "," + -1);
 				return 1;
 			}
-			console.log("sort", a.allocatedWorkitems.length, b.allocatedWorkitems.length, 0);
+			console.log("sort-a:" + a.allocatedWorkitems.length + "," + b.allocatedWorkitems.length + "," + 0);
 			return 0;
 		});
 
 		// Stared
-		apps.sort(function (a, b) {
-			if (a.starred && !b.starred) {
-				return -1;
-			}
-			if (!a.starred && b.starred) {
-				return 1;
-			}
-			return 0;
-		});
+		/*
+  apps.sort(function(a, b){
+  	if(a.starred && !b.starred){
+  		return -1;
+  	}
+  	if(!a.starred && b.starred){
+  		return 1;
+  	}
+  	return 0;
+  });
+  */
 		return apps;
 	},
 	render: function render() {
