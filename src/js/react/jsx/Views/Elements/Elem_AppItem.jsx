@@ -8,7 +8,11 @@ module.exports = React.createClass({
 		var offeredNum = this.props.app.offeredWorkitems.length;
 		var isStartable = this.props.app.startableActivitis.length > 0;
 		var owner = this.props.app.processModelInfoCreateQuserName;
-		var isActive = processModelInfoHasActiveProcessModel;
+		var isActive = this.props.app.processModelInfoHasActiveProcessModel;
+
+		var authorities = this.props.app.authorities || [];
+		var isManager = authorities.indexOf("PROCESS_MODEL_MANAGER") != -1;
+
 
 		// Star
 		var starIcon = (<span className="icon icon-star_border"/>);
@@ -31,10 +35,15 @@ module.exports = React.createClass({
 			disableIcon = (<span className="icon icon-close"/>);
 		}
 
+		var managerIcon = null;
+		if(isManager){
+			managerIcon = (<span className="icon icon-face"/>);
+		}
+
 		return(
 			<div className="row">
 				<div className="col" style={{maxWidth:"16px"}}>{starIcon}</div>
-				<div className="col">{disableIcon}{workItemNum}{startableIcon}</div>
+				<div className="col">{disableIcon}{workItemNum}{startableIcon}{managerIcon}</div>
 				<div className="col">{label}</div>
 				<div className="col">{owner}</div>
 			</div>
