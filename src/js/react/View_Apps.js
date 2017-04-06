@@ -123,8 +123,8 @@ module.exports = React.createClass({
 					)
 				),
 				React.createElement(
-					'div',
-					{ id: 'body-right', className: 'col height-fix' },
+					LayoutBodyRight,
+					null,
 					React.createElement(
 						'ul',
 						{ className: 'nav nav-tabs', role: 'tablist' },
