@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
 var React = require('react');
 
 module.exports = React.createClass({
-	displayName: 'exports',
+	displayName: "exports",
 
 	render: function render() {
 		var label = this.props.app.processModelInfoName;
@@ -12,15 +12,21 @@ module.exports = React.createClass({
 		var offeredNum = this.props.app.offeredWorkitems.length;
 
 		return React.createElement(
-			'div',
-			null,
-			label,
-			':',
-			isStarred,
-			'/',
-			allocatedNum,
-			'/',
-			offeredNum
+			"div",
+			{ className: "row" },
+			React.createElement("div", { className: "col" }),
+			React.createElement(
+				"div",
+				{ className: "col" },
+				allocatedNum,
+				"/",
+				offeredNum
+			),
+			React.createElement(
+				"div",
+				{ className: "col" },
+				label
+			)
 		);
 	}
 });

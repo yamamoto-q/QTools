@@ -8,7 +8,11 @@ module.exports = React.createClass({
 		var offeredNum = this.props.app.offeredWorkitems.length;
 
 		return(
-			<div>{label}:{isStarred}/{allocatedNum}/{offeredNum}</div>
+			<div className="row">
+				<div className="col"></div>
+				<div className="col">{allocatedNum}/{offeredNum}</div>
+				<div className="col">{label}</div>
+			</div>
 		)
 	}
 });

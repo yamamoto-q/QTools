@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.06 09:59"
+    VERSION: "2017.04.06 10:09"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28197,12 +28197,12 @@ module.exports = {
     ViewNames:VIEW_NAMES
 }
 },{"events":4,"flux":28,"object-assign":33}],259:[function(require,module,exports){
-'use strict';
+"use strict";
 
 var React = require('react');
 
 module.exports = React.createClass({
-	displayName: 'exports',
+	displayName: "exports",
 
 	render: function render() {
 		var label = this.props.app.processModelInfoName;
@@ -28211,15 +28211,21 @@ module.exports = React.createClass({
 		var offeredNum = this.props.app.offeredWorkitems.length;
 
 		return React.createElement(
-			'div',
-			null,
-			label,
-			':',
-			isStarred,
-			'/',
-			allocatedNum,
-			'/',
-			offeredNum
+			"div",
+			{ className: "row" },
+			React.createElement("div", { className: "col" }),
+			React.createElement(
+				"div",
+				{ className: "col" },
+				allocatedNum,
+				"/",
+				offeredNum
+			),
+			React.createElement(
+				"div",
+				{ className: "col" },
+				label
+			)
 		);
 	}
 });
