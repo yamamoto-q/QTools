@@ -44,7 +44,7 @@ module.exports = React.createClass({
 		$("body").removeClass('view-' + Controller_View.ViewNames.APPS);
 	},
 	sortApp: function sortApp(apps) {
-		//processModelInfoHasActiveProcessModel
+		console.log("sort");
 		apps.sort(function (a, b) {
 			if (a.processModelInfoHasActiveProcessModel && !b.processModelInfoHasActiveProcessModel) {
 				return -1;
@@ -74,8 +74,10 @@ module.exports = React.createClass({
 				return -1;
 			}
 			if (a.allocatedWorkitems.length < b.allocatedWorkitems.length) {
+				console.log("sort", a.allocatedWorkitems.length, b.allocatedWorkitems.length, -1);
 				return 1;
 			}
+			console.log("sort", a.allocatedWorkitems.length, b.allocatedWorkitems.length, 0);
 			return 0;
 		});
 
