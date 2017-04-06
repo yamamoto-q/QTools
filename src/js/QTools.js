@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.06 15:55"
+    VERSION: "2017.04.06 15:58"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -29774,9 +29774,10 @@ module.exports = React.createClass({
 
 	sortApp: function sortApp(apps) {
 		console.log("sort");
+		var self = this;
 		apps.sort(function (a, b) {
-			var scoreA = this.sortScore(a);
-			var scoreB = this.sortScore(a);
+			var scoreA = self.sortScore(a);
+			var scoreB = self.sortScore(b);
 			console.log("score:" + scoreA + "," + scoreB);
 			if (scoreA > scoreB) {
 				return -1;

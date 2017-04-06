@@ -70,15 +70,16 @@ module.exports = React.createClass({
 			}
 		}
 
-		score += info.processModelInfoViewPriority
+		score += info.processModelInfoViewPriority;
 
 		return parseInt(score,10);
 	},
 	sortApp:function(apps){
 		console.log("sort");
+		var self = this;
 		apps.sort(function(a, b){
-			var scoreA = this.sortScore(a);
-			var scoreB = this.sortScore(a);
+			var scoreA = self.sortScore(a);
+			var scoreB = self.sortScore(b);
 			console.log("score:" + scoreA + "," + scoreB);
 			if(scoreA > scoreB){
 				return -1;

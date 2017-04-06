@@ -81,9 +81,10 @@ module.exports = React.createClass({
 
 	sortApp: function sortApp(apps) {
 		console.log("sort");
+		var self = this;
 		apps.sort(function (a, b) {
-			var scoreA = this.sortScore(a);
-			var scoreB = this.sortScore(a);
+			var scoreA = self.sortScore(a);
+			var scoreB = self.sortScore(b);
 			console.log("score:" + scoreA + "," + scoreB);
 			if (scoreA > scoreB) {
 				return -1;
