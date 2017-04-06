@@ -102,7 +102,7 @@ module.exports = React.createClass({
 						<NavItem icon="inbox" view_name={Controller_View.ViewNames.WORK}>Work</NavItem>
 						<NavItem icon="games" active={true}>Apps</NavItem>
 					</LayoutBodyLeft>
-					<LayoutBodyRight>
+					<div id="body-right" className="col">
 						<ul className="nav nav-tabs" role="tablist">
 							<li className="nav-item">
 								<a className="nav-link active" data-toggle="tab" href="#home" role="tab">Home</a>
@@ -113,7 +113,7 @@ module.exports = React.createClass({
 								{allApps}
 							</div>
 						</div>
-					</LayoutBodyRight>
+					</div>
 				</LayoutBody>
 				<Footer>
 					<NavItem icon="home" view_name={Controller_View.ViewNames.HOME}>Home</NavItem>

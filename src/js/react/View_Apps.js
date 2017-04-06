@@ -122,8 +122,8 @@ module.exports = React.createClass({
 					)
 				),
 				React.createElement(
-					LayoutBodyRight,
-					null,
+					'div',
+					{ id: 'body-right', className: 'col' },
 					React.createElement(
 						'ul',
 						{ className: 'nav nav-tabs', role: 'tablist' },
