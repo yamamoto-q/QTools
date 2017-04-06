@@ -128,8 +128,8 @@ body.view-apps #header {
   text-overflow: ellipsis;
 }
 .tab-content {
-  max-height: -webkit-calc(23%);
-  max-height: calc(23%);
+  max-height: -webkit-calc(100% - 77px);
+  max-height: calc(100% - 77px);
 }
 #footer {
   height: 3.125rem;

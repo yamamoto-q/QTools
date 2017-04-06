@@ -110,7 +110,7 @@ module.exports = React.createClass({
 							</li>
 						</ul>
 						<div className="tab-content">
-							<div className="tab-pane container active" id="home" role="tabpanel">
+							<div className="tab-pane container height-fix active" id="home" role="tabpanel">
 								<ScrollArea>
 									{allApps}
 								</ScrollArea>

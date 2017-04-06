@@ -143,7 +143,7 @@ module.exports = React.createClass({
 						{ className: 'tab-content' },
 						React.createElement(
 							'div',
-							{ className: 'tab-pane container active', id: 'home', role: 'tabpanel' },
+							{ className: 'tab-pane container height-fix active', id: 'home', role: 'tabpanel' },
 							React.createElement(
 								ScrollArea,
 								null,
