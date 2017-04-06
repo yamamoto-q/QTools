@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.06 11:47"
+    VERSION: "2017.04.06 11:48"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28225,7 +28225,7 @@ module.exports = React.createClass({
 		var authorities = this.props.app.authorities || [];
 		var isManager = authorities.indexOf("PROCESS_MODEL_MANAGER") != -1;
 
-		var isOwner = Ctr_Login.getLoginedUser().name == owner;
+		var isOwner = Ctr_Login.Store.getLoginedUser().name == owner;
 
 		// Star
 		var starIcon = React.createElement('span', { className: 'icon icon-star_border' });

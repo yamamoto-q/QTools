@@ -22,7 +22,7 @@ module.exports = React.createClass({
 		var authorities = this.props.app.authorities || [];
 		var isManager = authorities.indexOf("PROCESS_MODEL_MANAGER") != -1;
 
-		var isOwner = Ctr_Login.getLoginedUser().name == owner;
+		var isOwner = Ctr_Login.Store.getLoginedUser().name == owner;
 
 
 		// Star
