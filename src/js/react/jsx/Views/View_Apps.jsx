@@ -64,7 +64,9 @@ module.exports = React.createClass({
 
 		// allocatedWorkitems
 		apps.sort(function(a, b){
+
 			if(a.allocatedWorkitems.length > b.allocatedWorkitems.length){
+				console.log("sort", a.allocatedWorkitems.length, b.allocatedWorkitems.length, 1)
 				return -1;
 			}
 			if(a.allocatedWorkitems.length < b.allocatedWorkitems.length){

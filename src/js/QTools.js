@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.06 15:00"
+    VERSION: "2017.04.06 15:14"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -29761,7 +29761,9 @@ module.exports = React.createClass({
 
 		// allocatedWorkitems
 		apps.sort(function (a, b) {
+
 			if (a.allocatedWorkitems.length > b.allocatedWorkitems.length) {
+				console.log("sort", a.allocatedWorkitems.length, b.allocatedWorkitems.length, 1);
 				return -1;
 			}
 			if (a.allocatedWorkitems.length < b.allocatedWorkitems.length) {
