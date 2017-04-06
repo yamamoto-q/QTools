@@ -1,4 +1,5 @@
 var React = require('react');
+var Ctr_Login = require('./Controller_Login.js');
 
 module.exports = React.createClass({
 	render: function() {
@@ -20,6 +21,8 @@ module.exports = React.createClass({
 
 		var authorities = this.props.app.authorities || [];
 		var isManager = authorities.indexOf("PROCESS_MODEL_MANAGER") != -1;
+
+		var isOwner = Ctr_Login.getLoginedUser().name == owner;
 
 
 		// Star
@@ -53,12 +56,18 @@ module.exports = React.createClass({
 			classes.push("app-item-manager");
 		}
 
+		var ownerIcon = null;
+		if(isOwner){
+			ownerIcon = (<span className="icon icon-weekend"/>);
+			classes.push("app-item-creator");
+		}
+
 		return(
 			<div className={classes.join(" ")}>
 				<div className="col" style={{maxWidth:"16px"}}>{starIcon}</div>
-				<div className="col">{workItemNum}{startableIcon}{managerIcon}</div>
+				<div className="col">{workItemNum}{startableIcon}{ownerIcon}{managerIcon}</div>
 				<div className="col app-item-label">{label}</div>
-				<div className="col">{owner}</div>
+				<div className="col app-item-creator hidden-xs-down">{owner}</div>
 			</div>
 		)
 	}
