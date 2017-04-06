@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.06 15:24"
+    VERSION: "2017.04.06 15:37"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -29739,53 +29739,30 @@ module.exports = React.createClass({
 	sortApp: function sortApp(apps) {
 		console.log("sort");
 		apps.sort(function (a, b) {
-			if (a.processModelInfoHasActiveProcessModel && !b.processModelInfoHasActiveProcessModel) {
+			var sa = "1";
+			if (a.starred) {
+				var sa = "2";
+			};
+			var sb = "1";
+			if (b.starred) {
+				var sb = "2";
+			}
+			var aa = ("00" + a.allocatedWorkitems.length).slice(-2);
+			var ba = ("00" + b.allocatedWorkitems.length).slice(-2);
+			var ao = ("00" + a.offeredWorkitems.length).slice(-2);
+			var bo = ("00" + b.offeredWorkitems.length).slice(-2);
+
+			var scoreA = parseInt(sa + aa + ao, 10);
+			var scoreB = parseInt(sb + ba + bo, 10);
+
+			if (scoreA > scoreB) {
 				return -1;
 			}
-			if (!a.processModelInfoHasActiveProcessModel && b.processModelInfoHasActiveProcessModel) {
+			if (scoreA < scoreB) {
 				return 1;
 			}
 			return 0;
 		});
-
-		// offeredWorkitems
-		apps.sort(function (a, b) {
-			if (a.offeredWorkitems.length > b.offeredWorkitems.length) {
-				return -1;
-			}
-			if (a.offeredWorkitems.length < b.offeredWorkitems.length) {
-				return 1;
-			}
-			return 0;
-		});
-
-		// allocatedWorkitems
-		apps.sort(function (a, b) {
-
-			if (a.allocatedWorkitems.length > b.allocatedWorkitems.length) {
-				console.log("sort-a:" + a.allocatedWorkitems.length + "," + b.allocatedWorkitems.length + "," + 1);
-				return -1;
-			}
-			if (a.allocatedWorkitems.length < b.allocatedWorkitems.length) {
-				console.log("sort-a:" + a.allocatedWorkitems.length + "," + b.allocatedWorkitems.length + "," + -1);
-				return 1;
-			}
-			console.log("sort-a:" + a.allocatedWorkitems.length + "," + b.allocatedWorkitems.length + "," + 0);
-			return 0;
-		});
-
-		// Stared
-		/*
-  apps.sort(function(a, b){
-  	if(a.starred && !b.starred){
-  		return -1;
-  	}
-  	if(!a.starred && b.starred){
-  		return 1;
-  	}
-  	return 0;
-  });
-  */
 		return apps;
 	},
 	render: function render() {
