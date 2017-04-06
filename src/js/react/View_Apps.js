@@ -7,6 +7,7 @@ var LayoutHeader = require('./Layout_Header.js');
 var LayoutBody = require('./Layout_Body.js');
 var LayoutBodyLeft = require('./Layout_BodyLeft.js');
 var LayoutBodyRight = require('./Layout_BodyRight.js');
+var ScrollArea = require('./ScrollArea.js');
 
 var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
@@ -143,7 +144,11 @@ module.exports = React.createClass({
 						React.createElement(
 							'div',
 							{ className: 'tab-pane container active', id: 'home', role: 'tabpanel' },
-							allApps
+							React.createElement(
+								ScrollArea,
+								null,
+								allApps
+							)
 						)
 					)
 				)
