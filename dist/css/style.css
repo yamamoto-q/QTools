@@ -112,9 +112,14 @@ body.view-apps #header {
 .card.card-apps-summary .card-block.card-block-header {
   color: white;
 }
-.app-item .app-item-deactive {
+.app-item.app-item-deactive {
   background-color: rgba(0, 0, 0, 0.125);
   color: rgba(0, 0, 0, 0.5);
+}
+.app-item .app-item-label {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 #footer {
   height: 3.125rem;
