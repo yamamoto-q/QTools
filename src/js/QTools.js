@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.06 15:37"
+    VERSION: "2017.04.06 15:55"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -29706,6 +29706,7 @@ var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
 
 var Ctr_QApi = require('./Controller_Questetra_API.js');
+var Ctr_Login = require('./Controller_Login.js');
 
 var AppItem = require('./Elem_AppItem.js');
 
@@ -29736,25 +29737,47 @@ module.exports = React.createClass({
 	componentWillUnmount: function componentWillUnmount() {
 		$("body").removeClass('view-' + Controller_View.ViewNames.APPS);
 	},
+	sortScore: function sortScore(info) {
+		var score = "";
+		if (!info.processModelInfoHasActiveProcessModel) {
+			score += "1";
+		} else if (!info.starred) {
+			score += "2";
+		} else {
+			score += "3";
+		}
+
+		score += ("00" + info.allocatedWorkitems.length).slice(-2);
+		score += ("00" + info.offeredWorkitems.length).slice(-2);
+		score += ("00" + info.startableActivitis.length).slice(-2);
+
+		if (Ctr_Login.Store.getLoginedUser().name == info.processModelInfoCreateQuserName) {
+			score += "1";
+		} else {
+			score += "0";
+		}
+
+		if (!info.authorities) {
+			score += "0";
+		} else {
+			if (info.authorities.indexOf("PROCESS_MODEL_MANAGER") != -1) {
+				score += "1";
+			} else {
+				score += "0";
+			}
+		}
+
+		score += info.processModelInfoViewPriority;
+
+		return parseInt(score, 10);
+	},
+
 	sortApp: function sortApp(apps) {
 		console.log("sort");
 		apps.sort(function (a, b) {
-			var sa = "1";
-			if (a.starred) {
-				var sa = "2";
-			};
-			var sb = "1";
-			if (b.starred) {
-				var sb = "2";
-			}
-			var aa = ("00" + a.allocatedWorkitems.length).slice(-2);
-			var ba = ("00" + b.allocatedWorkitems.length).slice(-2);
-			var ao = ("00" + a.offeredWorkitems.length).slice(-2);
-			var bo = ("00" + b.offeredWorkitems.length).slice(-2);
-
-			var scoreA = parseInt(sa + aa + ao, 10);
-			var scoreB = parseInt(sb + ba + bo, 10);
-
+			var scoreA = this.sortScore(a);
+			var scoreB = this.sortScore(a);
+			console.log("score:" + scoreA + "," + scoreB);
 			if (scoreA > scoreB) {
 				return -1;
 			}
@@ -29852,7 +29875,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"./Elem_AppItem.js":259,"./Footer.js":267,"./Layout_Body.js":269,"./Layout_BodyLeft.js":270,"./Layout_BodyRight.js":271,"./Layout_Header.js":272,"./NavItem.js":275,"./ScrollArea.js":278,"react":242}],282:[function(require,module,exports){
+},{"./Controller_Login.js":256,"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"./Elem_AppItem.js":259,"./Footer.js":267,"./Layout_Body.js":269,"./Layout_BodyLeft.js":270,"./Layout_BodyRight.js":271,"./Layout_Header.js":272,"./NavItem.js":275,"./ScrollArea.js":278,"react":242}],282:[function(require,module,exports){
 'use strict';
 
 var React = require('react');

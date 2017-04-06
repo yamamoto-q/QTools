@@ -11,6 +11,7 @@ var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
 
 var Ctr_QApi = require('./Controller_Questetra_API.js');
+var Ctr_Login = require('./Controller_Login.js');
 
 var AppItem = require('./Elem_AppItem.js');
 
@@ -39,25 +40,46 @@ module.exports = React.createClass({
 	componentWillUnmount:function(){
 		$("body").removeClass('view-' + Controller_View.ViewNames.APPS);
 	},
+	sortScore(info){
+		var score = "";
+		if(!info.processModelInfoHasActiveProcessModel){
+			score += "1";
+		}else if(!info.starred){
+			score += "2";
+		}else{
+			score += "3";
+		}
+
+		score += ("00" + info.allocatedWorkitems.length).slice(-2);
+		score += ("00" + info.offeredWorkitems.length).slice(-2);
+		score += ("00" + info.startableActivitis.length).slice(-2);
+
+		if(Ctr_Login.Store.getLoginedUser().name == info.processModelInfoCreateQuserName){
+			score += "1";
+		}else{
+			score += "0";
+		}
+
+		if(!info.authorities){
+			score += "0";
+		}else{
+			if(info.authorities.indexOf("PROCESS_MODEL_MANAGER") != -1){
+				score += "1";
+			}else{
+				score += "0";
+			}
+		}
+
+		score += info.processModelInfoViewPriority
+
+		return parseInt(score,10);
+	},
 	sortApp:function(apps){
 		console.log("sort");
 		apps.sort(function(a, b){
-			var sa = "1";
-			if(a.starred){
-				var sa = "2";
-			};
-			var sb = "1";
-			if(b.starred){
-				var sb = "2";
-			}
-			var aa = ("00" + a.allocatedWorkitems.length).slice(-2);
-			var ba = ("00" + b.allocatedWorkitems.length).slice(-2);
-			var ao = ("00" + a.offeredWorkitems.length).slice(-2);
-			var bo = ("00" + b.offeredWorkitems.length).slice(-2);
-
-			var scoreA = parseInt(sa+aa+ao,10);
-			var scoreB = parseInt(sb+ba+bo,10);
-
+			var scoreA = this.sortScore(a);
+			var scoreB = this.sortScore(a);
+			console.log("score:" + scoreA + "," + scoreB);
 			if(scoreA > scoreB){
 				return -1;
 			}
