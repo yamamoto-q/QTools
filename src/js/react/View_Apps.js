@@ -146,7 +146,7 @@ module.exports = React.createClass({
 							{ className: 'tab-pane height-fix active', id: 'home', role: 'tabpanel' },
 							React.createElement(
 								'div',
-								{ className: 'container' },
+								{ className: 'container-fluid' },
 								allApps
 							)
 						)

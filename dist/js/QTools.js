@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.06 14:55"
+    VERSION: "2017.04.06 15:00"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -29839,7 +29839,7 @@ module.exports = React.createClass({
 							{ className: 'tab-pane height-fix active', id: 'home', role: 'tabpanel' },
 							React.createElement(
 								'div',
-								{ className: 'container' },
+								{ className: 'container-fluid' },
 								allApps
 							)
 						)

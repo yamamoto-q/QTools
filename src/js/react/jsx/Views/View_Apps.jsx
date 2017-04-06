@@ -111,7 +111,7 @@ module.exports = React.createClass({
 						</ul>
 						<div className="tab-content">
 							<div className="tab-pane height-fix active" id="home" role="tabpanel">
-								<div className="container">
+								<div className="container-fluid">
 									{allApps}
 								</div>
 							</div>
