@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.06 16:12"
+    VERSION: "2017.04.06 16:21"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -29752,6 +29752,8 @@ module.exports = React.createClass({
 			score += "1";
 		}
 
+		score += "000"; // ToDo 遷移度
+
 		score += ("00" + info.allocatedWorkitems.length).slice(-2); // 割り当て件数
 		score += ("00" + info.offeredWorkitems.length).slice(-2); // オファー件数
 		score += ("00" + info.startableActivitis.length).slice(-2); // スタートできるアクティビティ数
@@ -29782,7 +29784,7 @@ module.exports = React.createClass({
 	},
 
 	sortApp: function sortApp(apps) {
-		console.log("sort");
+		//console.log("sort");
 		var self = this;
 		apps.sort(function (a, b) {
 			var scoreA = self.sortScore(a);
@@ -29800,7 +29802,7 @@ module.exports = React.createClass({
 	render: function render() {
 		var allApps = [];
 
-		console.log("apps", this.state.apps);
+		//console.log("apps", this.state.apps);
 		for (var i = 0; i < this.state.apps.length; i++) {
 			allApps.push(React.createElement(AppItem, { key: "view-apps-app-" + this.state.apps[i].processModelInfoId, app: this.state.apps[i] }));
 		}
