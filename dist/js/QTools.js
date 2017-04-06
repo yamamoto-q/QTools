@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.06 11:04"
+    VERSION: "2017.04.06 11:18"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28205,6 +28205,14 @@ module.exports = React.createClass({
 	displayName: "exports",
 
 	render: function render() {
+		var classes = [];
+		if (this.props.className) {
+			classes = this.props.className.split(" ");
+		}
+		classes.push("row");
+		classes.push("app-item");
+		classes.push("app-item-view-minimum");
+
 		var label = this.props.app.processModelInfoName;
 		var isStarred = this.props.app.starred;
 		var allocatedNum = this.props.app.allocatedWorkitems.length;
@@ -28220,6 +28228,7 @@ module.exports = React.createClass({
 		var starIcon = React.createElement("span", { className: "icon icon-star_border" });
 		if (isStarred) {
 			starIcon = React.createElement("span", { className: "icon icon-star" });
+			classes.push("app-item-stared");
 		}
 
 		var workItemNum = null;
@@ -28231,26 +28240,30 @@ module.exports = React.createClass({
 				"/",
 				offeredNum
 			);
+			classes.push("app-item-has-workitem");
 		}
 
 		var startableIcon = null;
 		if (isStartable) {
 			startableIcon = React.createElement("span", { className: "icon icon-move_to_inbox" });
+			classes.push("app-item-is-startable");
 		}
 
-		var disableIcon = null;
-		if (isActive) {
-			disableIcon = React.createElement("span", { className: "icon icon-close" });
+		//var disableIcon = null;
+		if (!isActive) {
+			//disableIcon = (<span className="icon icon-close"/>);
+			classes.push("app-item-deactive");
 		}
 
 		var managerIcon = null;
 		if (isManager) {
 			managerIcon = React.createElement("span", { className: "icon icon-face" });
+			classes.push("app-item-manager");
 		}
 
 		return React.createElement(
 			"div",
-			{ className: "row" },
+			{ className: classes.join(" ") },
 			React.createElement(
 				"div",
 				{ className: "col", style: { maxWidth: "16px" } },
@@ -28259,7 +28272,6 @@ module.exports = React.createClass({
 			React.createElement(
 				"div",
 				{ className: "col" },
-				disableIcon,
 				workItemNum,
 				startableIcon,
 				managerIcon
