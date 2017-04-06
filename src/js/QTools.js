@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.06 16:00"
+    VERSION: "2017.04.06 16:12"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -29739,30 +29739,39 @@ module.exports = React.createClass({
 	},
 	sortScore: function sortScore(info) {
 		var score = "";
-		if (!info.processModelInfoHasActiveProcessModel) {
-			score += "1";
-		} else if (!info.starred) {
+
+		// 無効とスター
+		if (info.starred) {
+			// スター付は最優先
+			score += "9";
+		} else if (info.processModelInfoHasActiveProcessModel) {
+			// スターがない
 			score += "2";
 		} else {
-			score += "3";
+			// アクティブではないものは優先度最下位
+			score += "1";
 		}
 
-		score += ("00" + info.allocatedWorkitems.length).slice(-2);
-		score += ("00" + info.offeredWorkitems.length).slice(-2);
-		score += ("00" + info.startableActivitis.length).slice(-2);
+		score += ("00" + info.allocatedWorkitems.length).slice(-2); // 割り当て件数
+		score += ("00" + info.offeredWorkitems.length).slice(-2); // オファー件数
+		score += ("00" + info.startableActivitis.length).slice(-2); // スタートできるアクティビティ数
 
 		if (Ctr_Login.Store.getLoginedUser().name == info.processModelInfoCreateQuserName) {
+			// モデルの制作者の場合
 			score += "1";
 		} else {
 			score += "0";
 		}
 
 		if (!info.authorities) {
+			// モデル権限が無い（nullの場合がある）
 			score += "0";
 		} else {
 			if (info.authorities.indexOf("PROCESS_MODEL_MANAGER") != -1) {
+				// モデル編集権限
 				score += "1";
 			} else {
+				// モデル権限が無い
 				score += "0";
 			}
 		}
@@ -29778,7 +29787,6 @@ module.exports = React.createClass({
 		apps.sort(function (a, b) {
 			var scoreA = self.sortScore(a);
 			var scoreB = self.sortScore(b);
-			console.log("score:" + scoreA + "," + scoreB);
 			if (scoreA > scoreB) {
 				return -1;
 			}
