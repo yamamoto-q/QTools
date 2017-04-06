@@ -26924,7 +26924,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.06 10:40"
+    VERSION: "2017.04.06 10:51"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28211,6 +28211,7 @@ module.exports = React.createClass({
 		var offeredNum = this.props.app.offeredWorkitems.length;
 		var isStartable = this.props.app.startableActivitis.length > 0;
 		var owner = this.props.app.processModelInfoCreateQuserName;
+		var isActive = processModelInfoHasActiveProcessModel;
 
 		// Star
 		var starIcon = React.createElement("span", { className: "icon icon-star_border" });
@@ -28231,7 +28232,12 @@ module.exports = React.createClass({
 
 		var startableIcon = null;
 		if (isStartable) {
-			startableIcon = React.createElement("span", { className: "icon-move_to_inbox" });
+			startableIcon = React.createElement("span", { className: "icon icon-move_to_inbox" });
+		}
+
+		var disableIcon = null;
+		if (isActive) {
+			disableIcon = React.createElement("span", { className: "icon icon-close" });
 		}
 
 		return React.createElement(
@@ -28245,6 +28251,7 @@ module.exports = React.createClass({
 			React.createElement(
 				"div",
 				{ className: "col" },
+				disableIcon,
 				workItemNum,
 				startableIcon
 			),

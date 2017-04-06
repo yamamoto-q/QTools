@@ -8,6 +8,7 @@ module.exports = React.createClass({
 		var offeredNum = this.props.app.offeredWorkitems.length;
 		var isStartable = this.props.app.startableActivitis.length > 0;
 		var owner = this.props.app.processModelInfoCreateQuserName;
+		var isActive = processModelInfoHasActiveProcessModel;
 
 		// Star
 		var starIcon = (<span className="icon icon-star_border"/>);
@@ -22,13 +23,18 @@ module.exports = React.createClass({
 
 		var startableIcon = null;
 		if(isStartable){
-			startableIcon = (<span className="icon-move_to_inbox"/>);
+			startableIcon = (<span className="icon icon-move_to_inbox"/>);
+		}
+
+		var disableIcon = null;
+		if(isActive){
+			disableIcon = (<span className="icon icon-close"/>);
 		}
 
 		return(
 			<div className="row">
 				<div className="col" style={{maxWidth:"16px"}}>{starIcon}</div>
-				<div className="col">{workItemNum}{startableIcon}</div>
+				<div className="col">{disableIcon}{workItemNum}{startableIcon}</div>
 				<div className="col">{label}</div>
 				<div className="col">{owner}</div>
 			</div>

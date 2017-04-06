@@ -12,6 +12,7 @@ module.exports = React.createClass({
 		var offeredNum = this.props.app.offeredWorkitems.length;
 		var isStartable = this.props.app.startableActivitis.length > 0;
 		var owner = this.props.app.processModelInfoCreateQuserName;
+		var isActive = processModelInfoHasActiveProcessModel;
 
 		// Star
 		var starIcon = React.createElement("span", { className: "icon icon-star_border" });
@@ -32,7 +33,12 @@ module.exports = React.createClass({
 
 		var startableIcon = null;
 		if (isStartable) {
-			startableIcon = React.createElement("span", { className: "icon-move_to_inbox" });
+			startableIcon = React.createElement("span", { className: "icon icon-move_to_inbox" });
+		}
+
+		var disableIcon = null;
+		if (isActive) {
+			disableIcon = React.createElement("span", { className: "icon icon-close" });
 		}
 
 		return React.createElement(
@@ -46,6 +52,7 @@ module.exports = React.createClass({
 			React.createElement(
 				"div",
 				{ className: "col" },
+				disableIcon,
 				workItemNum,
 				startableIcon
 			),
