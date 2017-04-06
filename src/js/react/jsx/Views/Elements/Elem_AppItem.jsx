@@ -57,7 +57,7 @@ module.exports = React.createClass({
 			<div className={classes.join(" ")}>
 				<div className="col" style={{maxWidth:"16px"}}>{starIcon}</div>
 				<div className="col">{workItemNum}{startableIcon}{managerIcon}</div>
-				<div className="col">{label}</div>
+				<div className="col app-item-label">{label}</div>
 				<div className="col">{owner}</div>
 			</div>
 		)

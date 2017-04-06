@@ -79,7 +79,7 @@ module.exports = React.createClass({
 			),
 			React.createElement(
 				"div",
-				{ className: "col" },
+				{ className: "col app-item-label" },
 				label
 			),
 			React.createElement(

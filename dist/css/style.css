@@ -112,6 +112,10 @@ body.view-apps #header {
 .card.card-apps-summary .card-block.card-block-header {
   color: white;
 }
+.app-item .app-item-deactive {
+  background-color: rgba(0, 0, 0, 0.125);
+  color: rgba(0, 0, 0, 0.5);
+}
 #footer {
   height: 3.125rem;
   font-size: 1rem;
