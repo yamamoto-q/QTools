@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.06 12:37"
+    VERSION: "2017.04.06 13:54"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -29835,7 +29835,7 @@ module.exports = React.createClass({
 						{ className: 'tab-content' },
 						React.createElement(
 							'div',
-							{ className: 'tab-pane active', id: 'home', role: 'tabpanel' },
+							{ className: 'tab-pane container active', id: 'home', role: 'tabpanel' },
 							allApps
 						)
 					)

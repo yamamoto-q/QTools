@@ -142,7 +142,7 @@ module.exports = React.createClass({
 						{ className: 'tab-content' },
 						React.createElement(
 							'div',
-							{ className: 'tab-pane active', id: 'home', role: 'tabpanel' },
+							{ className: 'tab-pane container active', id: 'home', role: 'tabpanel' },
 							allApps
 						)
 					)
