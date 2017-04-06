@@ -13,6 +13,8 @@ var NavItem = require('./NavItem.js');
 
 var Ctr_QApi = require('./Controller_Questetra_API.js');
 
+var AppItem = require('./Elem_AppItem.js');
+
 module.exports = React.createClass({
 	displayName: 'exports',
 
@@ -91,32 +93,7 @@ module.exports = React.createClass({
 
 		console.log("apps", this.state.apps);
 		for (var i = 0; i < this.state.apps.length; i++) {
-			var app = this.state.apps[i];
-
-			var isStarred = app.starred;
-			var allocatedNum = app.allocatedWorkitems.length;
-			var offeredNum = app.offeredWorkitems.length;
-
-			var starred = null;
-			if (isStarred) {
-				starred = React.createElement('span', { className: 'icon icon-star' });
-			}
-
-			var tasks = React.createElement(
-				'span',
-				{ className: 'badge badge-default badge-pill' },
-				allocatedNum,
-				'/',
-				offeredNum
-			);
-
-			allApps.push(React.createElement(
-				'div',
-				{ key: "view-app-allapps-" + app.processModelInfoId },
-				starred,
-				app.processModelInfoName,
-				tasks
-			));
+			allApps.push(React.createElement(AppItem, { app: this.state.apps[i] }));
 		}
 
 		return React.createElement(
