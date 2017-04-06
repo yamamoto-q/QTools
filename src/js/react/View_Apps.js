@@ -93,7 +93,7 @@ module.exports = React.createClass({
 
 		console.log("apps", this.state.apps);
 		for (var i = 0; i < this.state.apps.length; i++) {
-			allApps.push(React.createElement(AppItem, { key: "view-apps-app-" + this.state.apps.processModelInfoId, app: this.state.apps[i] }));
+			allApps.push(React.createElement(AppItem, { key: "view-apps-app-" + this.state.apps[i].processModelInfoId, app: this.state.apps[i] }));
 		}
 
 		return React.createElement(
