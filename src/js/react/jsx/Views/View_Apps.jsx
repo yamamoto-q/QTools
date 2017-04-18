@@ -103,7 +103,7 @@ module.exports = React.createClass({
 		return parseInt(score,10);
 	},
 	startableSortScore(info){
-		score = "1";
+		var score = "1";
 		score += ("00" + info.startableActivitis.length).slice(-2);	// スタートできるアクティビティ数
 
 		score += info.processModelInfoViewPriority;

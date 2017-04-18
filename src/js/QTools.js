@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.18 18:26"
+    VERSION: "2017.04.18 18:31"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -29896,7 +29896,7 @@ module.exports = React.createClass({
 		return parseInt(score, 10);
 	},
 	startableSortScore: function startableSortScore(info) {
-		score = "1";
+		var score = "1";
 		score += ("00" + info.startableActivitis.length).slice(-2); // スタートできるアクティビティ数
 
 		score += info.processModelInfoViewPriority;
