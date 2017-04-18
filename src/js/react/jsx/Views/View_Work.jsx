@@ -29,7 +29,6 @@ module.exports = React.createClass({
 					</LayoutBodyLeft>
 					<LayoutBodyRight>
 						<MyWorkitemList />
-						
 					</LayoutBodyRight>
 				</LayoutBody>
 				<Footer>

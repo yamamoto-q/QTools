@@ -120,17 +120,8 @@ module.exports = React.createClass({
 						<NavItem icon="games" active={true}>Apps</NavItem>
 					</LayoutBodyLeft>
 					<LayoutBodyRight>
-						<ul className="nav nav-tabs" role="tablist">
-							<li className="nav-item">
-								<a className="nav-link active" data-toggle="tab" href="#home" role="tab">Home</a>
-							</li>
-						</ul>
-						<div className="tab-content">
-							<div className="tab-pane height-fix active" id="home" role="tabpanel">
-								<div className="container-fluid">
-									{allApps}
-								</div>
-							</div>
+						<div className="container-fluid">
+							{allApps}
 						</div>
 					</LayoutBodyRight>
 				</LayoutBody>

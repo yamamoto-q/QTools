@@ -143,30 +143,9 @@ module.exports = React.createClass({
 					LayoutBodyRight,
 					null,
 					React.createElement(
-						'ul',
-						{ className: 'nav nav-tabs', role: 'tablist' },
-						React.createElement(
-							'li',
-							{ className: 'nav-item' },
-							React.createElement(
-								'a',
-								{ className: 'nav-link active', 'data-toggle': 'tab', href: '#home', role: 'tab' },
-								'Home'
-							)
-						)
-					),
-					React.createElement(
 						'div',
-						{ className: 'tab-content' },
-						React.createElement(
-							'div',
-							{ className: 'tab-pane height-fix active', id: 'home', role: 'tabpanel' },
-							React.createElement(
-								'div',
-								{ className: 'container-fluid' },
-								allApps
-							)
-						)
+						{ className: 'container-fluid' },
+						allApps
 					)
 				)
 			),
