@@ -32,7 +32,7 @@ module.exports = React.createClass({
 		var self = this;
 		Ctr_QApi.Store.addChangeAppsListener(function(){
 			if (self.isMounted()) {
-				var apps = self.sortApp(Ctr_QApi.Store.getApps());
+				var apps = self.sortApp(Ctr_QApi.Store.getApps(), self.state.sortType);
 				self.setState({
 					apps:apps
 				});
@@ -43,9 +43,11 @@ module.exports = React.createClass({
 		Ctr_Strage.Store.addChangeAppListViewSortTypeListener(function(){
 			if (self.isMounted()) {
 				var sortType = Ctr_Strage.Store.getAppListViewSortType();
+				var apps = self.sortApp(self.state.apps, sortType);
 				console.log("sortType:" + sortType);
 				self.setState({
-					sortType:sortType
+					sortType:sortType,
+					apps:apps
 				});
 			}
 		});
@@ -55,7 +57,7 @@ module.exports = React.createClass({
 	componentWillUnmount:function(){
 		$("body").removeClass('view-' + Controller_View.ViewNames.APPS);
 	},
-	sortScore(info){
+	aiSortScore(info){
 		var score = "";
 
 		// 無効とスター
@@ -100,20 +102,47 @@ module.exports = React.createClass({
 
 		return parseInt(score,10);
 	},
-	sortApp:function(apps){
+	startableSortScore(info){
+		score = "1";
+		score += ("00" + info.startableActivitis.length).slice(-2);	// スタートできるアクティビティ数
+
+		score += info.processModelInfoViewPriority;
+		return parseInt(score,10);
+	},
+	sortApp:function(apps, sortType){
 		//console.log("sort");
 		var self = this;
-		apps.sort(function(a, b){
-			var scoreA = self.sortScore(a);
-			var scoreB = self.sortScore(b);
-			if(scoreA > scoreB){
-				return -1;
-			}
-			if(scoreA < scoreB){
-				return 1;
-			}
-			return 0;
-		});
+		switch (sortType){
+			case Ctr_Strage.AppSortTypes.STARTABLE:
+				// 開始可能なAPP優先
+				apps.sort(function(a, b){
+					var scoreA = self.startableSortScore(a);
+					var scoreB = self.startableSortScore(b);
+					if(scoreA > scoreB){
+						return -1;
+					}
+					if(scoreA < scoreB){
+						return 1;
+					}
+					return 0;
+				});
+				break;
+			default:
+				// AI Sort
+				apps.sort(function(a, b){
+					var scoreA = self.aiSortScore(a);
+					var scoreB = self.aiSortScore(b);
+					if(scoreA > scoreB){
+						return -1;
+					}
+					if(scoreA < scoreB){
+						return 1;
+					}
+					return 0;
+				});
+				break;
+		}
+
 		return apps;
 	},
 	render: function() {
