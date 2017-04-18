@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.18 19:46"
+    VERSION: "2017.04.18 19:47"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28407,7 +28407,7 @@ module.exports = React.createClass({
 				'label',
 				{ className: manager_label_classes.join(" "), onClick: this.onClick, 'data-sorttype': Ctr_Strage.AppSortTypes.MANAGER },
 				React.createElement('input', { type: 'radio', name: 'options', onChange: this.onChanged, checked: this.state.appSortType == Ctr_Strage.AppSortTypes.MANAGER }),
-				React.createElement('span', { className: "icon icon-move_to_inbox" })
+				React.createElement('span', { className: "icon icon-face" })
 			)
 		);
 	}

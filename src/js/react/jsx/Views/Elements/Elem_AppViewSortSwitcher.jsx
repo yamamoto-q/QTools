@@ -44,7 +44,7 @@ module.exports = React.createClass({
 				</label>
 				<label className={manager_label_classes.join(" ")} onClick={this.onClick} data-sorttype={Ctr_Strage.AppSortTypes.MANAGER}>
 					<input type="radio" name="options" onChange={this.onChanged} checked={this.state.appSortType == Ctr_Strage.AppSortTypes.MANAGER}/>
-					<span className={"icon icon-move_to_inbox"}/>
+					<span className={"icon icon-face"}/>
 				</label>
 			</div>
 		);
