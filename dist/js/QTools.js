@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.18 19:14"
+    VERSION: "2017.04.18 19:31"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -29938,7 +29938,7 @@ module.exports = React.createClass({
 			case Ctr_Strage.AppSortTypes.STARTABLE:
 				// 開始可能なAPP優先
 				apps = apps.filter(function (element, index, array) {
-					if (element.info.startableActivitis.length > 0) {
+					if (element.startableActivitis.length > 0) {
 						return true;
 					}
 					return false;

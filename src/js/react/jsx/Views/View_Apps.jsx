@@ -144,7 +144,7 @@ module.exports = React.createClass({
 			case Ctr_Strage.AppSortTypes.STARTABLE:
 				// 開始可能なAPP優先
 				apps = apps.filter(function(element, index, array){
-					if(element.info.startableActivitis.length > 0){
+					if(element.startableActivitis.length > 0){
 						return true;
 					}
 					return false;
