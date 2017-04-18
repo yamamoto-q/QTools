@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.18 19:31"
+    VERSION: "2017.04.18 19:45"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27080,7 +27080,8 @@ var VIEW_TYPE = {
 
 var APP_SORT_TYPE = {
     AI:"ai",
-    STARTABLE:"startable"
+    STARTABLE:"startable",
+    MANAGER:"manager"
 };
 
 var _state = {
@@ -28382,6 +28383,11 @@ module.exports = React.createClass({
 			startable_label_classes.push("active");
 		}
 
+		var manager_label_classes = ["btn", "btn-primary"];
+		if (this.state.appSortType == Ctr_Strage.AppSortTypes.MANAGER) {
+			manager_label_classes.push("active");
+		}
+
 		return React.createElement(
 			'div',
 			{ className: 'btn-group', 'data-toggle': 'buttons' },
@@ -28395,6 +28401,12 @@ module.exports = React.createClass({
 				'label',
 				{ className: startable_label_classes.join(" "), onClick: this.onClick, 'data-sorttype': Ctr_Strage.AppSortTypes.STARTABLE },
 				React.createElement('input', { type: 'radio', name: 'options', onChange: this.onChanged, checked: this.state.appSortType == Ctr_Strage.AppSortTypes.STARTABLE }),
+				React.createElement('span', { className: "icon icon-move_to_inbox" })
+			),
+			React.createElement(
+				'label',
+				{ className: manager_label_classe.join(" "), onClick: this.onClick, 'data-sorttype': Ctr_Strage.AppSortTypes.MANAGER },
+				React.createElement('input', { type: 'radio', name: 'options', onChange: this.onChanged, checked: this.state.appSortType == Ctr_Strage.AppSortTypes.MANAGER }),
 				React.createElement('span', { className: "icon icon-move_to_inbox" })
 			)
 		);
@@ -29813,10 +29825,11 @@ module.exports = React.createClass({
 
 	getInitialState: function getInitialState() {
 		var apps = Ctr_QApi.Store.getApps();
+		var preSortedAPPs = this.sortApp(apps, Ctr_Strage.AppSortTypes.AI);
 		var sortType = Ctr_Strage.Store.getAppListViewSortType();
 		var sortAndFilteredApps = this.sortApp(apps, sortType);
 		return {
-			apps: apps,
+			apps: preSortedAPPs,
 			sortAndFilteredApps: sortAndFilteredApps,
 			sortType: sortType
 		};
@@ -29943,20 +29956,21 @@ module.exports = React.createClass({
 					}
 					return false;
 				});
-				/*
-    apps.sort(function(a, b){
-    	var scoreA = self.startableSortScore(a);
-    	var scoreB = self.startableSortScore(b);
-    	if(scoreA > scoreB){
-    		return -1;
-    	}
-    	if(scoreA < scoreB){
-    		return 1;
-    	}
-    	return 0;
-    });
-    */
 				break;
+
+			case Ctr_Strage.AppSortTypes.MANAGER:
+				// 開始可能なAPP優先
+				apps = apps.filter(function (element, index, array) {
+					var authorities = element.authorities || [];
+					var isManager = authorities.indexOf("PROCESS_MODEL_MANAGER") != -1;
+
+					if (isManager) {
+						return true;
+					}
+					return false;
+				});
+				break;
+
 			default:
 				// AI Sort
 				apps.sort(function (a, b) {

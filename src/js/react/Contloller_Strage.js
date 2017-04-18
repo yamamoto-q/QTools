@@ -146,7 +146,8 @@ var VIEW_TYPE = {
 
 var APP_SORT_TYPE = {
     AI:"ai",
-    STARTABLE:"startable"
+    STARTABLE:"startable",
+    MANAGER:"manager"
 };
 
 var _state = {
