@@ -42,7 +42,7 @@ module.exports = React.createClass({
 					<input type="radio" name="options" onChange={this.onChanged} checked={this.state.appSortType == Ctr_Strage.AppSortTypes.STARTABLE}/>
 					<span className={"icon icon-move_to_inbox"}/>
 				</label>
-				<label className={manager_label_classe.join(" ")} onClick={this.onClick} data-sorttype={Ctr_Strage.AppSortTypes.MANAGER}>
+				<label className={manager_label_classes.join(" ")} onClick={this.onClick} data-sorttype={Ctr_Strage.AppSortTypes.MANAGER}>
 					<input type="radio" name="options" onChange={this.onChanged} checked={this.state.appSortType == Ctr_Strage.AppSortTypes.MANAGER}/>
 					<span className={"icon icon-move_to_inbox"}/>
 				</label>
