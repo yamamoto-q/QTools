@@ -23,10 +23,12 @@ module.exports = React.createClass({
 	displayName: 'exports',
 
 	getInitialState: function getInitialState() {
-		var apps = this.sortApp(Ctr_QApi.Store.getApps());
+		var apps = Ctr_QApi.Store.getApps();
 		var sortType = Ctr_Strage.Store.getAppListViewSortType();
+		var sortAndFilteredApps = this.sortApp(apps, sortType);
 		return {
 			apps: apps,
+			sortAndFilteredApps: sortAndFilteredApp,
 			sortType: sortType
 		};
 	},
@@ -36,9 +38,11 @@ module.exports = React.createClass({
 		var self = this;
 		Ctr_QApi.Store.addChangeAppsListener(function () {
 			if (self.isMounted()) {
-				var apps = self.sortApp(Ctr_QApi.Store.getApps(), self.state.sortType);
+				var apps = Ctr_QApi.Store.getApps();
+				var sortAndFilteredApps = this.sortApp(apps, self.state.sortType);
 				self.setState({
-					apps: apps
+					apps: apps,
+					sortAndFilteredApps: sortAndFilteredApp
 				});
 			}
 		});
@@ -47,11 +51,10 @@ module.exports = React.createClass({
 		Ctr_Strage.Store.addChangeAppListViewSortTypeListener(function () {
 			if (self.isMounted()) {
 				var sortType = Ctr_Strage.Store.getAppListViewSortType();
-				var apps = self.sortApp(self.state.apps, sortType);
-				console.log("sortType:" + sortType);
+				var sortAndFilteredApps = self.sortApp(self.state.apps, sortType);
 				self.setState({
 					sortType: sortType,
-					apps: apps
+					sortAndFilteredApps: sortAndFilteredApp
 				});
 			}
 		});
@@ -107,8 +110,33 @@ module.exports = React.createClass({
 		return parseInt(score, 10);
 	},
 	startableSortScore: function startableSortScore(info) {
-		var score = "1";
+		var score = "";
+		if (info.starred || info.processModelInfoHasActiveProcessModel) {
+			// スター付の優先度は無視
+			score += "2";
+		} else {
+			// アクティブではないものは優先度最下位
+			score += "1";
+		}
+
 		score += ("00" + info.startableActivitis.length).slice(-2); // スタートできるアクティビティ数
+		score += "000"; // ToDo 遷移度
+		score += ("00" + info.allocatedWorkitems.length).slice(-2); // 割り当て件数
+		score += ("00" + info.offeredWorkitems.length).slice(-2); // オファー件数
+
+		if (Ctr_Login.Store.getLoginedUser().name == info.processModelInfoCreateQuserName) {
+			// モデルの制作者の場合
+			score += "1";
+		} else {
+			score += "0";
+		}
+
+		if (Ctr_Login.Store.getLoginedUser().name == info.processModelInfoCreateQuserName) {
+			// モデルの制作者の場合
+			score += "1";
+		} else {
+			score += "0";
+		}
 
 		score += info.processModelInfoViewPriority;
 		return parseInt(score, 10);
@@ -154,8 +182,8 @@ module.exports = React.createClass({
 		var allApps = [];
 
 		//console.log("apps", this.state.apps);
-		for (var i = 0; i < this.state.apps.length; i++) {
-			allApps.push(React.createElement(AppItem, { key: "view-apps-app-" + this.state.apps[i].processModelInfoId, app: this.state.apps[i] }));
+		for (var i = 0; i < this.state.sortAndFilteredApps.length; i++) {
+			allApps.push(React.createElement(AppItem, { key: "view-apps-app-" + this.state.sortAndFilteredApps[i].processModelInfoId, app: this.state.sortAndFilteredApps[i] }));
 		}
 
 		return React.createElement(
