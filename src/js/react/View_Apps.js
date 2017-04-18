@@ -148,17 +148,25 @@ module.exports = React.createClass({
 		switch (sortType) {
 			case Ctr_Strage.AppSortTypes.STARTABLE:
 				// 開始可能なAPP優先
-				apps.sort(function (a, b) {
-					var scoreA = self.startableSortScore(a);
-					var scoreB = self.startableSortScore(b);
-					if (scoreA > scoreB) {
-						return -1;
+				apps = apps.filter(function (element, index, array) {
+					if (element.info.startableActivitis.length > 0) {
+						return true;
 					}
-					if (scoreA < scoreB) {
-						return 1;
-					}
-					return 0;
+					return false;
 				});
+				/*
+    apps.sort(function(a, b){
+    	var scoreA = self.startableSortScore(a);
+    	var scoreB = self.startableSortScore(b);
+    	if(scoreA > scoreB){
+    		return -1;
+    	}
+    	if(scoreA < scoreB){
+    		return 1;
+    	}
+    	return 0;
+    });
+    */
 				break;
 			default:
 				// AI Sort
