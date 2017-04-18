@@ -26723,7 +26723,7 @@ var BuildInfo = require('./BuildInfo.js');
 	};
 })(window.jQuery);
 
-},{"./BuildInfo.js":254,"./QTools.js":276,"react":242,"react-dom":36}],246:[function(require,module,exports){
+},{"./BuildInfo.js":254,"./QTools.js":277,"react":242,"react-dom":36}],246:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.18 17:20"
+    VERSION: "2017.04.18 17:40"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27069,11 +27069,17 @@ var VIEW_TYPE = {
     CARD:"card"
 };
 
+var APP_SORT_TYPE = {
+    AI:"ai",
+    STARTABLE:"startable"
+};
+
 var _state = {
     auth:null,
     view:{
-        workitemListViewType:VIEW_TYPE.MINIMUM
-    }
+        workitemListViewType:VIEW_TYPE.MINIMUM,
+        appSortType:APP_SORT_TYPE.AI
+    },
 };
 
 var Store = assign({}, EventEmitter.prototype, {
@@ -27088,7 +27094,7 @@ var Store = assign({}, EventEmitter.prototype, {
         return null;
     },
     getMyWorkitemListViewType(){
-        console.log("getMyWorkitemListViewType");
+        //console.log("getMyWorkitemListViewType");
         // マイタスクの表示方法を返す
         if(!_state.view){
             return VIEW_TYPE.MINIMUM;
@@ -27099,6 +27105,17 @@ var Store = assign({}, EventEmitter.prototype, {
             viewType = VIEW_TYPE.MINIMUM;
         }
         return viewType;
+    },
+    getAppListViewSortType(){
+        // アプリリストのソート種別を返す
+        if(!_state.view){
+            return APP_SORT_TYPE.AI;
+        }
+        var sortType = _state.view.appSortType;
+        if(!sortType){
+            sortType = APP_SORT_TYPE.AI;
+        }
+        return sortType;
     },
     // Event
     addGetSavedSettingListener: function(callback) {
@@ -27160,7 +27177,8 @@ var Store = assign({}, EventEmitter.prototype, {
 module.exports = {
     Action: Action,
     Store: Store,
-    ViewType:VIEW_TYPE
+    ViewType:VIEW_TYPE,
+    AppSortTypes:APP_SORT_TYPE
 }
 
 },{"events":4,"flux":28,"object-assign":33}],256:[function(require,module,exports){
@@ -28078,7 +28096,7 @@ module.exports = {
     TypeOfSystemAuthorization:TYPE_OF_SYSTEM_AUTHORIZATION
 }
 
-},{"./Questetra_API.js":277,"events":4,"flux":28,"md5-node":32,"object-assign":33}],258:[function(require,module,exports){
+},{"./Questetra_API.js":278,"events":4,"flux":28,"md5-node":32,"object-assign":33}],258:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
 var assign = require("object-assign");
 var Dispatcher = require('flux').Dispatcher;
@@ -28309,6 +28327,59 @@ module.exports = React.createClass({
 'use strict';
 
 var React = require('react');
+var Ctr_Strage = require('./Contloller_Strage.js');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+		var appSortType = Ctr_Strage.Store.getAppListViewSortType();
+		return {
+			appSortType: appSortType
+		};
+	},
+	onClick: function onClick(e) {
+		var appSortType = e.currentTarget.getAttribute('data-sorttype');
+		console.log("onClick:" + appSortType);
+		//Ctr_Strage.Action.setMyWorkitemListViewType(listType);
+	},
+	onChanged: function onChanged(e) {
+		console.log("onChanged");
+	},
+	render: function render() {
+		var ai_label_classes = ["btn", "btn-primary"];
+		if (this.state.appSortType == Ctr_Strage.AppSortTypes.AI) {
+			ai_label_classes.push("active");
+		}
+
+		var startable_label_classes = ["btn", "btn-primary"];
+		if (this.state.appSortType == Ctr_Strage.AppSortTypes.STARTABLE) {
+			startable_label_classes.push("active");
+		}
+
+		return React.createElement(
+			'div',
+			{ className: 'btn-group', 'data-toggle': 'buttons' },
+			React.createElement(
+				'label',
+				{ className: ai_label_classes.join(" "), onClick: this.onClick, 'data-sorttype': Ctr_Strage.AppSortTypes.AI },
+				React.createElement('input', { type: 'radio', name: 'options', onChange: this.onChanged, checked: this.state.appSortType == Ctr_Strage.AppSortTypes.AI }),
+				'AI'
+			),
+			React.createElement(
+				'label',
+				{ className: startable_label_classes.join(" "), onClick: this.onClick, 'data-sorttype': Ctr_Strage.AppSortTypes.STARTABLE },
+				React.createElement('input', { type: 'radio', name: 'options', onChange: this.onChanged, checked: this.state.appSortType == Ctr_Strage.AppSortTypes.STARTABLE }),
+				React.createElement('span', { className: "icon icon-move_to_inbox" })
+			)
+		);
+	}
+});
+
+},{"./Contloller_Strage.js":255,"react":242}],261:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
 var Ctr_QApi = require('./Controller_Questetra_API.js');
 var Controller_View = require('./Controller_View.js');
 
@@ -28404,7 +28475,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"react":242}],261:[function(require,module,exports){
+},{"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"react":242}],262:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28447,7 +28518,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Questetra_API.js":257,"react":242}],262:[function(require,module,exports){
+},{"./Controller_Questetra_API.js":257,"react":242}],263:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28544,7 +28615,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Login.js":256,"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"./Elem_Avater.js":261,"react":242}],263:[function(require,module,exports){
+},{"./Controller_Login.js":256,"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"./Elem_Avater.js":262,"react":242}],264:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28596,7 +28667,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Contloller_Strage.js":255,"react":242}],264:[function(require,module,exports){
+},{"./Contloller_Strage.js":255,"react":242}],265:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28680,7 +28751,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"react":242}],265:[function(require,module,exports){
+},{"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"react":242}],266:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28749,7 +28820,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Contloller_Strage.js":255,"./Controller_Questetra_API.js":257,"./Elem_ListViewSwitcher.js":263,"./Elem_WorkitemListItem.js":266,"./Layout_List.js":273,"react":242}],266:[function(require,module,exports){
+},{"./Contloller_Strage.js":255,"./Controller_Questetra_API.js":257,"./Elem_ListViewSwitcher.js":264,"./Elem_WorkitemListItem.js":267,"./Layout_List.js":274,"react":242}],267:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28813,7 +28884,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Contloller_Strage.js":255,"react":242}],267:[function(require,module,exports){
+},{"./Contloller_Strage.js":255,"react":242}],268:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28839,7 +28910,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"react":242}],268:[function(require,module,exports){
+},{"./Controller_View.js":258,"react":242}],269:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28928,7 +28999,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Button.js":246,"./Bootstrap_FormGroup.js":249,"./Bootstrap_FormInput.js":250,"./Bootstrap_FormLabel.js":251,"./Bootstrap_InputGroup.js":252,"./Controller_Login.js":256,"react":242}],269:[function(require,module,exports){
+},{"./Bootstrap_Button.js":246,"./Bootstrap_FormGroup.js":249,"./Bootstrap_FormInput.js":250,"./Bootstrap_FormLabel.js":251,"./Bootstrap_InputGroup.js":252,"./Controller_Login.js":256,"react":242}],270:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28955,7 +29026,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"react":242}],270:[function(require,module,exports){
+},{"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"react":242}],271:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28977,7 +29048,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./ScrollArea.js":278,"react":242}],271:[function(require,module,exports){
+},{"./ScrollArea.js":279,"react":242}],272:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28999,7 +29070,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./ScrollArea.js":278,"react":242}],272:[function(require,module,exports){
+},{"./ScrollArea.js":279,"react":242}],273:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -29063,7 +29134,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./BuildInfo.js":254,"./Elem_Header.js":262,"./SettingMenu.js":279,"react":242}],273:[function(require,module,exports){
+},{"./BuildInfo.js":254,"./Elem_Header.js":263,"./SettingMenu.js":280,"react":242}],274:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -29113,7 +29184,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./Contloller_Strage.js":255,"react":242}],274:[function(require,module,exports){
+},{"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./Contloller_Strage.js":255,"react":242}],275:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -29166,7 +29237,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./View_AdminTools.js":280,"./View_Apps.js":281,"./View_Home.js":282,"./View_Work.js":283,"react":242}],275:[function(require,module,exports){
+},{"./Controller_View.js":258,"./View_AdminTools.js":281,"./View_Apps.js":282,"./View_Home.js":283,"./View_Work.js":284,"react":242}],276:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -29221,7 +29292,7 @@ module.exports = React.createClass({
     }
 });
 
-},{"./Controller_View.js":258,"react":242}],276:[function(require,module,exports){
+},{"./Controller_View.js":258,"react":242}],277:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -29353,7 +29424,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./BuildInfo.js":254,"./Controller_Login.js":256,"./InputAuthForm.js":268,"./LoginedView.js":274,"react":242}],277:[function(require,module,exports){
+},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./BuildInfo.js":254,"./Controller_Login.js":256,"./InputAuthForm.js":269,"./LoginedView.js":275,"react":242}],278:[function(require,module,exports){
 
 
 var QuestetraAPI = function(){
@@ -29563,7 +29634,7 @@ module.exports = {
     API:_QuestetraAPI
 }
 
-},{}],278:[function(require,module,exports){
+},{}],279:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -29579,7 +29650,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":242}],279:[function(require,module,exports){
+},{"react":242}],280:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -29653,7 +29724,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Login.js":256,"./Controller_View.js":258,"react":242,"react-router":192}],280:[function(require,module,exports){
+},{"./Controller_Login.js":256,"./Controller_View.js":258,"react":242,"react-router":192}],281:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -29690,7 +29761,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./Controller_View.js":258,"react":242}],281:[function(require,module,exports){
+},{"./Bootstrap_Col.js":247,"./Bootstrap_Container.js":248,"./Bootstrap_Row.js":253,"./Controller_View.js":258,"react":242}],282:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -29708,6 +29779,7 @@ var NavItem = require('./NavItem.js');
 var Ctr_QApi = require('./Controller_Questetra_API.js');
 var Ctr_Login = require('./Controller_Login.js');
 
+var SortSwitcher = require('./Elem_AppViewSortSwitcher.js');
 var AppItem = require('./Elem_AppItem.js');
 
 module.exports = React.createClass({
@@ -29838,6 +29910,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'container-fluid' },
+						React.createElement(SortSwitcher, null),
 						allApps
 					)
 				)
@@ -29865,7 +29938,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Login.js":256,"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"./Elem_AppItem.js":259,"./Footer.js":267,"./Layout_Body.js":269,"./Layout_BodyLeft.js":270,"./Layout_BodyRight.js":271,"./Layout_Header.js":272,"./NavItem.js":275,"./ScrollArea.js":278,"react":242}],282:[function(require,module,exports){
+},{"./Controller_Login.js":256,"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"./Elem_AppItem.js":259,"./Elem_AppViewSortSwitcher.js":260,"./Footer.js":268,"./Layout_Body.js":270,"./Layout_BodyLeft.js":271,"./Layout_BodyRight.js":272,"./Layout_Header.js":273,"./NavItem.js":276,"./ScrollArea.js":279,"react":242}],283:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -29951,7 +30024,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./Elem_Apps_Summary.js":260,"./Elem_MyWorkItems_Summary.js":264,"./Footer.js":267,"./Layout_Body.js":269,"./Layout_BodyLeft.js":270,"./Layout_BodyRight.js":271,"./Layout_Header.js":272,"./NavItem.js":275,"react":242}],283:[function(require,module,exports){
+},{"./Controller_View.js":258,"./Elem_Apps_Summary.js":261,"./Elem_MyWorkItems_Summary.js":265,"./Footer.js":268,"./Layout_Body.js":270,"./Layout_BodyLeft.js":271,"./Layout_BodyRight.js":272,"./Layout_Header.js":273,"./NavItem.js":276,"react":242}],284:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -30031,4 +30104,4 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./Elem_MyWorkitemList.js":265,"./Footer.js":267,"./Layout_Body.js":269,"./Layout_BodyLeft.js":270,"./Layout_BodyRight.js":271,"./Layout_Header.js":272,"./NavItem.js":275,"react":242}]},{},[245]);
+},{"./Controller_View.js":258,"./Elem_MyWorkitemList.js":266,"./Footer.js":268,"./Layout_Body.js":270,"./Layout_BodyLeft.js":271,"./Layout_BodyRight.js":272,"./Layout_Header.js":273,"./NavItem.js":276,"react":242}]},{},[245]);

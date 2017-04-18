@@ -135,11 +135,17 @@ var VIEW_TYPE = {
     CARD:"card"
 };
 
+var APP_SORT_TYPE = {
+    AI:"ai",
+    STARTABLE:"startable"
+};
+
 var _state = {
     auth:null,
     view:{
-        workitemListViewType:VIEW_TYPE.MINIMUM
-    }
+        workitemListViewType:VIEW_TYPE.MINIMUM,
+        appSortType:APP_SORT_TYPE.AI
+    },
 };
 
 var Store = assign({}, EventEmitter.prototype, {
@@ -154,7 +160,7 @@ var Store = assign({}, EventEmitter.prototype, {
         return null;
     },
     getMyWorkitemListViewType(){
-        console.log("getMyWorkitemListViewType");
+        //console.log("getMyWorkitemListViewType");
         // マイタスクの表示方法を返す
         if(!_state.view){
             return VIEW_TYPE.MINIMUM;
@@ -165,6 +171,17 @@ var Store = assign({}, EventEmitter.prototype, {
             viewType = VIEW_TYPE.MINIMUM;
         }
         return viewType;
+    },
+    getAppListViewSortType(){
+        // アプリリストのソート種別を返す
+        if(!_state.view){
+            return APP_SORT_TYPE.AI;
+        }
+        var sortType = _state.view.appSortType;
+        if(!sortType){
+            sortType = APP_SORT_TYPE.AI;
+        }
+        return sortType;
     },
     // Event
     addGetSavedSettingListener: function(callback) {
@@ -226,5 +243,6 @@ var Store = assign({}, EventEmitter.prototype, {
 module.exports = {
     Action: Action,
     Store: Store,
-    ViewType:VIEW_TYPE
+    ViewType:VIEW_TYPE,
+    AppSortTypes:APP_SORT_TYPE
 }

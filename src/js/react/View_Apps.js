@@ -15,6 +15,7 @@ var NavItem = require('./NavItem.js');
 var Ctr_QApi = require('./Controller_Questetra_API.js');
 var Ctr_Login = require('./Controller_Login.js');
 
+var SortSwitcher = require('./Elem_AppViewSortSwitcher.js');
 var AppItem = require('./Elem_AppItem.js');
 
 module.exports = React.createClass({
@@ -145,6 +146,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'container-fluid' },
+						React.createElement(SortSwitcher, null),
 						allApps
 					)
 				)
