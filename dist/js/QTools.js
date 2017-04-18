@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.18 19:03"
+    VERSION: "2017.04.18 19:09"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -29817,7 +29817,7 @@ module.exports = React.createClass({
 		var sortAndFilteredApps = this.sortApp(apps, sortType);
 		return {
 			apps: apps,
-			sortAndFilteredApps: sortAndFilteredApp,
+			sortAndFilteredApps: sortAndFilteredApps,
 			sortType: sortType
 		};
 	},
@@ -29828,10 +29828,10 @@ module.exports = React.createClass({
 		Ctr_QApi.Store.addChangeAppsListener(function () {
 			if (self.isMounted()) {
 				var apps = Ctr_QApi.Store.getApps();
-				var sortAndFilteredApps = this.sortApp(apps, self.state.sortType);
+				var sortAndFilteredApps = self.sortApp(apps, self.state.sortType);
 				self.setState({
 					apps: apps,
-					sortAndFilteredApps: sortAndFilteredApp
+					sortAndFilteredApps: sortAndFilteredApps
 				});
 			}
 		});
@@ -29843,7 +29843,7 @@ module.exports = React.createClass({
 				var sortAndFilteredApps = self.sortApp(self.state.apps, sortType);
 				self.setState({
 					sortType: sortType,
-					sortAndFilteredApps: sortAndFilteredApp
+					sortAndFilteredApps: sortAndFilteredApps
 				});
 			}
 		});
