@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.18 17:40"
+    VERSION: "2017.04.18 17:54"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -26962,7 +26962,15 @@ var Action = {
                 listType:listType
             }
         });
-    }
+    },
+    setAppListViewSortType:function(sortType){
+        dispatcher.dispatch({
+            actionType: "setAppListViewSortType",
+            value: {
+                sortType:sortType
+            }
+        });
+    },
 };
 
 // ****************************************************
@@ -27061,7 +27069,8 @@ var QIStrage = Strage('Q-Tools');
 var EVENT = {
     GET_AUTHENTICATION: "get_authentication",
     CHANGE_AUTHENTICATION: "change_authentication",
-    CHANGE_MY_WORKITEM_LISTVIEW_TYPE:"change_my_workitemlist_view_type"
+    CHANGE_MY_WORKITEM_LISTVIEW_TYPE:"change_my_workitemlist_view_type",
+    CHANGE_APP_LIST_SORT_TYPE:"change_app_list_sort_type"
 }
 
 var VIEW_TYPE = {
@@ -27137,6 +27146,13 @@ var Store = assign({}, EventEmitter.prototype, {
     emitChangeMyWorkitemListViewType:function(){
         this.emit(EVENT.CHANGE_MY_WORKITEM_LISTVIEW_TYPE);
     },
+    //
+    addChangeAppListViewSortTypeListener:function(callback){
+        this.on(EVENT.CHANGE_APP_LIST_SORT_TYPE, callback);
+    },
+    emitChangeAppListViewSortType:function(){
+        this.emit(EVENT.CHANGE_APP_LIST_SORT_TYPE);
+    },
     dispatcherIndex: dispatcher.register(function(payload) {
         switch (payload.actionType) {
             case "getSavedSetting":
@@ -27169,6 +27185,15 @@ var Store = assign({}, EventEmitter.prototype, {
                 _state.view.workitemListViewType = payload.value.listType;
                 QIStrage.set(_state);
                 Store.emitChangeMyWorkitemListViewType();
+                break;
+
+            case "setAppListViewSortType":
+                if(typeof _state.view === "undefined"){
+                    _state.view = {};
+                }
+                _state.view.appSortType = payload.value.sortType;
+                QIStrage.set(_state);
+                Store.emitChangeAppListViewSortType();
                 break;
         };
     })
@@ -28341,7 +28366,7 @@ module.exports = React.createClass({
 	onClick: function onClick(e) {
 		var appSortType = e.currentTarget.getAttribute('data-sorttype');
 		console.log("onClick:" + appSortType);
-		//Ctr_Strage.Action.setMyWorkitemListViewType(listType);
+		Ctr_Strage.Action.setAppListViewSortType(appSortType);
 	},
 	onChanged: function onChanged(e) {
 		console.log("onChanged");
@@ -29778,6 +29803,7 @@ var NavItem = require('./NavItem.js');
 
 var Ctr_QApi = require('./Controller_Questetra_API.js');
 var Ctr_Login = require('./Controller_Login.js');
+var Ctr_Strage = require('./Contloller_Strage.js');
 
 var SortSwitcher = require('./Elem_AppViewSortSwitcher.js');
 var AppItem = require('./Elem_AppItem.js');
@@ -29787,8 +29813,10 @@ module.exports = React.createClass({
 
 	getInitialState: function getInitialState() {
 		var apps = this.sortApp(Ctr_QApi.Store.getApps());
+		var sortType = Ctr_Strage.Store.getAppListViewSortType();
 		return {
-			apps: apps
+			apps: apps,
+			sortType: sortType
 		};
 	},
 	componentDidMount: function componentDidMount() {
@@ -29800,6 +29828,17 @@ module.exports = React.createClass({
 				var apps = self.sortApp(Ctr_QApi.Store.getApps());
 				self.setState({
 					apps: apps
+				});
+			}
+		});
+
+		// ソート方法が更新されたとき
+		Ctr_Strage.Store.addChangeAppListViewSortTypeListener(function () {
+			if (self.isMounted()) {
+				var sortType = Ctr_Strage.Store.getAppListViewSortType();
+				console.log("sortType:" + sortType);
+				self.setState({
+					sortType: sortType
 				});
 			}
 		});
@@ -29938,7 +29977,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_Login.js":256,"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"./Elem_AppItem.js":259,"./Elem_AppViewSortSwitcher.js":260,"./Footer.js":268,"./Layout_Body.js":270,"./Layout_BodyLeft.js":271,"./Layout_BodyRight.js":272,"./Layout_Header.js":273,"./NavItem.js":276,"./ScrollArea.js":279,"react":242}],283:[function(require,module,exports){
+},{"./Contloller_Strage.js":255,"./Controller_Login.js":256,"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"./Elem_AppItem.js":259,"./Elem_AppViewSortSwitcher.js":260,"./Footer.js":268,"./Layout_Body.js":270,"./Layout_BodyLeft.js":271,"./Layout_BodyRight.js":272,"./Layout_Header.js":273,"./NavItem.js":276,"./ScrollArea.js":279,"react":242}],283:[function(require,module,exports){
 'use strict';
 
 var React = require('react');

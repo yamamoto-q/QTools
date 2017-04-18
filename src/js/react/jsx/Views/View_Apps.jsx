@@ -12,6 +12,7 @@ var NavItem = require('./NavItem.js');
 
 var Ctr_QApi = require('./Controller_Questetra_API.js');
 var Ctr_Login = require('./Controller_Login.js');
+var Ctr_Strage = require('./Contloller_Strage.js');
 
 var SortSwitcher = require('./Elem_AppViewSortSwitcher.js');
 var AppItem = require('./Elem_AppItem.js');
@@ -19,8 +20,10 @@ var AppItem = require('./Elem_AppItem.js');
 module.exports = React.createClass({
 	getInitialState: function() {
 		var apps = this.sortApp(Ctr_QApi.Store.getApps());
+		var sortType = Ctr_Strage.Store.getAppListViewSortType();
 		return {
-			apps:apps
+			apps:apps,
+			sortType:sortType
 		};
 	},
 	componentDidMount: function() {
@@ -32,6 +35,17 @@ module.exports = React.createClass({
 				var apps = self.sortApp(Ctr_QApi.Store.getApps());
 				self.setState({
 					apps:apps
+				});
+			}
+		});
+
+		// ソート方法が更新されたとき
+		Ctr_Strage.Store.addChangeAppListViewSortTypeListener(function(){
+			if (self.isMounted()) {
+				var sortType = Ctr_Strage.Store.getAppListViewSortType();
+				console.log("sortType:" + sortType);
+				self.setState({
+					sortType:sortType
 				});
 			}
 		});

@@ -11,7 +11,7 @@ module.exports = React.createClass({
 	onClick:function(e){
 		var appSortType = e.currentTarget.getAttribute('data-sorttype');
 		console.log("onClick:" + appSortType);
-		//Ctr_Strage.Action.setMyWorkitemListViewType(listType);
+		Ctr_Strage.Action.setAppListViewSortType(appSortType);
 	},
 	onChanged:function(e){
 		console.log("onChanged");

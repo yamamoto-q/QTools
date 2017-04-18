@@ -28,7 +28,15 @@ var Action = {
                 listType:listType
             }
         });
-    }
+    },
+    setAppListViewSortType:function(sortType){
+        dispatcher.dispatch({
+            actionType: "setAppListViewSortType",
+            value: {
+                sortType:sortType
+            }
+        });
+    },
 };
 
 // ****************************************************
@@ -127,7 +135,8 @@ var QIStrage = Strage('Q-Tools');
 var EVENT = {
     GET_AUTHENTICATION: "get_authentication",
     CHANGE_AUTHENTICATION: "change_authentication",
-    CHANGE_MY_WORKITEM_LISTVIEW_TYPE:"change_my_workitemlist_view_type"
+    CHANGE_MY_WORKITEM_LISTVIEW_TYPE:"change_my_workitemlist_view_type",
+    CHANGE_APP_LIST_SORT_TYPE:"change_app_list_sort_type"
 }
 
 var VIEW_TYPE = {
@@ -203,6 +212,13 @@ var Store = assign({}, EventEmitter.prototype, {
     emitChangeMyWorkitemListViewType:function(){
         this.emit(EVENT.CHANGE_MY_WORKITEM_LISTVIEW_TYPE);
     },
+    //
+    addChangeAppListViewSortTypeListener:function(callback){
+        this.on(EVENT.CHANGE_APP_LIST_SORT_TYPE, callback);
+    },
+    emitChangeAppListViewSortType:function(){
+        this.emit(EVENT.CHANGE_APP_LIST_SORT_TYPE);
+    },
     dispatcherIndex: dispatcher.register(function(payload) {
         switch (payload.actionType) {
             case "getSavedSetting":
@@ -235,6 +251,15 @@ var Store = assign({}, EventEmitter.prototype, {
                 _state.view.workitemListViewType = payload.value.listType;
                 QIStrage.set(_state);
                 Store.emitChangeMyWorkitemListViewType();
+                break;
+
+            case "setAppListViewSortType":
+                if(typeof _state.view === "undefined"){
+                    _state.view = {};
+                }
+                _state.view.appSortType = payload.value.sortType;
+                QIStrage.set(_state);
+                Store.emitChangeAppListViewSortType();
                 break;
         };
     })
