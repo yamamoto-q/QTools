@@ -22,7 +22,7 @@ module.exports = React.createClass({
 	getInitialState: function() {
 		var apps = Ctr_QApi.Store.getApps();
 		var sortType = Ctr_Strage.Store.getAppListFilterType();
-		var listStyle = Ctr_Strage.Store.getAppListStyle();
+		//var listStyle = Ctr_Strage.Store.getAppListStyle();
 		var preSortedAPPs = this._appSortFilter(apps, Ctr_Strage.AppSortTypes.AI);
 		var sortAndFilteredApps = this._appSortFilter(apps, sortType);
 
@@ -31,7 +31,7 @@ module.exports = React.createClass({
 			apps:preSortedAPPs,
 			sortAndFilteredApps:sortAndFilteredApps,
 			sortType:sortType,
-			listStyle:listStyle
+			//listStyle:listStyle
 		};
 	},
 	componentDidMount: function() {
@@ -63,6 +63,7 @@ module.exports = React.createClass({
 			}
 		});
 
+		/*
 		// 表示方法が更新されたとき
 		Ctr_Strage.Store.addChangeAppListStyleListener(function(){
 			if (self.isMounted()) {
@@ -73,7 +74,7 @@ module.exports = React.createClass({
 				});
 			}
 		});
-
+		*/
 		Ctr_QApi.Action.getApps();
 	},
 	componentWillUnmount:function(){

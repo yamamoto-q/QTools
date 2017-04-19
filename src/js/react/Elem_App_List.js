@@ -4,28 +4,42 @@
  * アプリ一覧
  **/
 var React = require('react');
+var Ctr_Strage = require('./Contloller_Strage.js');
 var AppItem = require('./Elem_App_Item.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
 
+	getInitialState: function getInitialState() {
+		var listStyle = Ctr_Strage.Store.getAppListStyle();
+		return {
+			listStyle: listStyle
+		};
+	},
+	componentDidMount: function componentDidMount() {
+		var self = this;
+
+		// 表示方法が更新されたとき
+		Ctr_Strage.Store.addChangeAppListStyleListener(function () {
+			if (self.isMounted()) {
+				var listStyle = Ctr_Strage.Store.getAppListStyle();
+				self.setState({
+					listStyle: listStyle
+				});
+			}
+		});
+	},
 	render: function render() {
+		var apps = [];
+		for (var i = 0; i < this.props.apps.length; i++) {
+			var appinfo = this.props.apps[i];
+			apps.push(React.createElement(AppItem, { key: "elem-app-list-" + appinfo.processModelInfoId, app: appinfo }));
+		}
+
 		return React.createElement(
 			'div',
 			null,
-			React.createElement(
-				'pre',
-				null,
-				JSON.stringify(this.props.apps, null, 2)
-			)
+			apps
 		);
 	}
 });
-
-/*
-		for (var i = 0; i < this.state.sortAndFilteredApps.length; i++) {
-			allApps.push(
-				<AppItem key={"view-apps-app-" + this.state.sortAndFilteredApps[i].processModelInfoId} app={this.state.sortAndFilteredApps[i]} />
-			);
-		}
-*/

@@ -18,7 +18,6 @@ var Ctr_Strage = require('./Contloller_Strage.js');
 
 var FilterSwitcher = require('./Elem_App_ListFilter_Switcher.js');
 var ListSwitcher = require('./Elem_App_ListStyle_Switcher.js');
-
 var AppList = require('./Elem_App_List.js');
 
 module.exports = React.createClass({
@@ -27,7 +26,7 @@ module.exports = React.createClass({
 	getInitialState: function getInitialState() {
 		var apps = Ctr_QApi.Store.getApps();
 		var sortType = Ctr_Strage.Store.getAppListFilterType();
-		var listStyle = Ctr_Strage.Store.getAppListStyle();
+		//var listStyle = Ctr_Strage.Store.getAppListStyle();
 		var preSortedAPPs = this._appSortFilter(apps, Ctr_Strage.AppSortTypes.AI);
 		var sortAndFilteredApps = this._appSortFilter(apps, sortType);
 
@@ -35,8 +34,7 @@ module.exports = React.createClass({
 		return {
 			apps: preSortedAPPs,
 			sortAndFilteredApps: sortAndFilteredApps,
-			sortType: sortType,
-			listStyle: listStyle
+			sortType: sortType
 		};
 	},
 	componentDidMount: function componentDidMount() {
@@ -68,17 +66,18 @@ module.exports = React.createClass({
 			}
 		});
 
-		// 表示方法が更新されたとき
-		Ctr_Strage.Store.addChangeAppListStyleListener(function () {
-			if (self.isMounted()) {
-				var listStyle = Ctr_Strage.Store.getAppListStyle();
-				console.log("listStyle:" + listStyle);
-				self.setState({
-					listStyle: listStyle
-				});
-			}
-		});
-
+		/*
+  // 表示方法が更新されたとき
+  Ctr_Strage.Store.addChangeAppListStyleListener(function(){
+  	if (self.isMounted()) {
+  		var listStyle = Ctr_Strage.Store.getAppListStyle();
+  		console.log("listStyle:" + listStyle);
+  		self.setState({
+  			listStyle:listStyle
+  		});
+  	}
+  });
+  */
 		Ctr_QApi.Action.getApps();
 	},
 	componentWillUnmount: function componentWillUnmount() {
