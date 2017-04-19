@@ -16,7 +16,7 @@ var Ctr_QApi = require('./Controller_Questetra_API.js');
 var Ctr_Login = require('./Controller_Login.js');
 var Ctr_Strage = require('./Contloller_Strage.js');
 
-var SortSwitcher = require('./Elem_App_ListFilter_Switcher.js');
+var FilterSwitcher = require('./Elem_App_ListFilter_Switcher.js');
 var ListSwitcher = require('./Elem_App_ListStyle_Switcher.js');
 var AppItem = require('./Elem_App_Item.js');
 
@@ -25,7 +25,7 @@ module.exports = React.createClass({
 
 	getInitialState: function getInitialState() {
 		var apps = Ctr_QApi.Store.getApps();
-		var sortType = Ctr_Strage.Store.getAppListViewSortType();
+		var sortType = Ctr_Strage.Store.getAppListFilterType();
 		var listStyle = Ctr_Strage.Store.getAppListStyle();
 		var preSortedAPPs = this._appSortFilter(apps, Ctr_Strage.AppSortTypes.AI);
 		var sortAndFilteredApps = this._appSortFilter(apps, sortType);
@@ -56,9 +56,9 @@ module.exports = React.createClass({
 		});
 
 		// ソート方法が更新されたとき
-		Ctr_Strage.Store.addChangeAppListViewSortTypeListener(function () {
+		Ctr_Strage.Store.addChangeAppListFilterTypeListener(function () {
 			if (self.isMounted()) {
-				var sortType = Ctr_Strage.Store.getAppListViewSortType();
+				var sortType = Ctr_Strage.Store.getAppListFilterType();
 				var sortAndFilteredApps = self._appSortFilter(self.state.apps, sortType);
 				self.setState({
 					sortType: sortType,
@@ -220,7 +220,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'container-fluid' },
-						React.createElement(SortSwitcher, null),
+						React.createElement(FilterSwitcher, null),
 						React.createElement(ListSwitcher, null),
 						allApps
 					)

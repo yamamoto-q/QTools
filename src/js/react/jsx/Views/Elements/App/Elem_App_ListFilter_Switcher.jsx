@@ -6,15 +6,14 @@ var Ctr_Strage = require('./Contloller_Strage.js');
 
 module.exports = React.createClass({
 	getInitialState: function() {
-		var appSortType = Ctr_Strage.Store.getAppListViewSortType();
+		var appSortType = Ctr_Strage.Store.getAppListFilterType();
 		return {
 			appSortType : appSortType
 		}
 	},
 	onClick:function(e){
 		var appSortType = e.currentTarget.getAttribute('data-sorttype');
-		//console.log("onClick:" + appSortType);
-		Ctr_Strage.Action.setAppListViewSortType(appSortType);
+		Ctr_Strage.Action.setAppListFilterType(appSortType);
 	},
 	onChanged:function(e){
 		//console.log("onChanged");

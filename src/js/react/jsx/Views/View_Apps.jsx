@@ -21,7 +21,7 @@ var AppItem = require('./Elem_App_Item.js');
 module.exports = React.createClass({
 	getInitialState: function() {
 		var apps = Ctr_QApi.Store.getApps();
-		var sortType = Ctr_Strage.Store.getAppListViewSortType();
+		var sortType = Ctr_Strage.Store.getAppListFilterType();
 		var listStyle = Ctr_Strage.Store.getAppListStyle();
 		var preSortedAPPs = this._appSortFilter(apps, Ctr_Strage.AppSortTypes.AI);
 		var sortAndFilteredApps = this._appSortFilter(apps, sortType);
@@ -52,9 +52,9 @@ module.exports = React.createClass({
 		});
 
 		// ソート方法が更新されたとき
-		Ctr_Strage.Store.addChangeAppListViewSortTypeListener(function(){
+		Ctr_Strage.Store.addChangeAppListFilterTypeListener(function(){
 			if (self.isMounted()) {
-				var sortType = Ctr_Strage.Store.getAppListViewSortType();
+				var sortType = Ctr_Strage.Store.getAppListFilterType();
 				var sortAndFilteredApps = self._appSortFilter(self.state.apps, sortType);
 				self.setState({
 					sortType:sortType,

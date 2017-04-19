@@ -29,11 +29,11 @@ var Action = {
             }
         });
     },
-    setAppListViewSortType:function(sortType){
+    setAppListFilterType:function(filterType){
         dispatcher.dispatch({
-            actionType: "setAppListViewSortType",
+            actionType: "setAppListFilterType",
             value: {
-                sortType:sortType
+                filterType:filterType
             }
         });
     },
@@ -144,7 +144,7 @@ var EVENT = {
     GET_AUTHENTICATION: "get_authentication",
     CHANGE_AUTHENTICATION: "change_authentication",
     CHANGE_MY_WORKITEM_LISTVIEW_TYPE:"change_my_workitemlist_view_type",
-    CHANGE_APP_LIST_SORT_TYPE:"change_app_list_sort_type",
+    CHANGE_APP_LIST_FILTER_TYPE:"change_app_LIST_filter_type",
     CHANGE_APP_LIST_STYLE:"change_app_list_style"
 }
 
@@ -153,7 +153,7 @@ var VIEW_TYPE = {
     CARD:"card"
 };
 
-var APP_SORT_TYPE = {
+var APP_FILTER_TYPE = {
     AI:"ai",
     STARTABLE:"startable",
     MANAGER:"manager",
@@ -164,7 +164,7 @@ var _state = {
     auth:null,
     view:{
         workitemListViewType:VIEW_TYPE.MINIMUM,
-        appSortType:APP_SORT_TYPE.AI,
+        appListFilterType:APP_FILTER_TYPE.AI,
         appListStyle:VIEW_TYPE.MINIMUM
     },
 };
@@ -193,14 +193,14 @@ var Store = assign({}, EventEmitter.prototype, {
         }
         return viewType;
     },
-    getAppListViewSortType(){
+    getAppListFilterType(){
         // アプリリストのソート種別を返す
         if(!_state.view){
-            return APP_SORT_TYPE.AI;
+            return APP_FILTER_TYPE.AI;
         }
-        var sortType = _state.view.appSortType;
+        var sortType = _state.view.appListFilterType;
         if(!sortType){
-            sortType = APP_SORT_TYPE.AI;
+            sortType = APP_FILTER_TYPE.AI;
         }
         return sortType;
     },
@@ -234,14 +234,14 @@ var Store = assign({}, EventEmitter.prototype, {
     emitChangeMyWorkitemListViewType:function(){
         this.emit(EVENT.CHANGE_MY_WORKITEM_LISTVIEW_TYPE);
     },
-    //
-    addChangeAppListViewSortTypeListener:function(callback){
-        this.on(EVENT.CHANGE_APP_LIST_SORT_TYPE, callback);
+    // AppFilterType
+    addChangeAppListFilterTypeListener:function(callback){
+        this.on(EVENT.CHANGE_APP_LIST_FILTER_TYPE, callback);
     },
-    emitChangeAppListViewSortType:function(){
-        this.emit(EVENT.CHANGE_APP_LIST_SORT_TYPE);
+    emitChangeAppListFilterType:function(){
+        this.emit(EVENT.CHANGE_APP_LIST_FILTER_TYPE);
     },
-    //
+    // AppListStyle
     addChangeAppListStyleListener:function(callback){
         this.on(EVENT.CHANGE_APP_LIST_STYLE, callback);
     },
@@ -282,13 +282,13 @@ var Store = assign({}, EventEmitter.prototype, {
                 Store.emitChangeMyWorkitemListViewType();
                 break;
 
-            case "setAppListViewSortType":
+            case "setAppListFilterType":
                 if(typeof _state.view === "undefined"){
                     _state.view = {};
                 }
-                _state.view.appSortType = payload.value.sortType;
+                _state.view.appListFilterType = payload.value.filterType;
                 QIStrage.set(_state);
-                Store.emitChangeAppListViewSortType();
+                Store.emitChangeAppListFilterType();
                 break;
 
             case "setAppListStyle":
@@ -307,5 +307,5 @@ module.exports = {
     Action: Action,
     Store: Store,
     ViewType:VIEW_TYPE,
-    AppSortTypes:APP_SORT_TYPE
+    AppSortTypes:APP_FILTER_TYPE
 }
