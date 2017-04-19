@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.19 11:16"
+    VERSION: "2017.04.19 11:23"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28477,6 +28477,7 @@ module.exports = React.createClass({
 
 	getInitialState: function getInitialState() {
 		var listStyle = Ctr_Strage.Store.getAppListStyle();
+		console.log("listStyle:" + listStyle);
 		return {
 			listStyle: listStyle
 		};

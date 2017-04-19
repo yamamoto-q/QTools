@@ -7,6 +7,7 @@ var Ctr_Strage = require('./Contloller_Strage.js');
 module.exports = React.createClass({
 	getInitialState: function() {
 		var listStyle = Ctr_Strage.Store.getAppListStyle();
+		console.log("listStyle:" + listStyle);
 		return {
 			listStyle : listStyle
 		}

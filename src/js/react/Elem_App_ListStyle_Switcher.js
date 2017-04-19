@@ -11,6 +11,7 @@ module.exports = React.createClass({
 
 	getInitialState: function getInitialState() {
 		var listStyle = Ctr_Strage.Store.getAppListStyle();
+		console.log("listStyle:" + listStyle);
 		return {
 			listStyle: listStyle
 		};
