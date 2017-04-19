@@ -16,7 +16,7 @@ var Ctr_Strage = require('./Contloller_Strage.js');
 
 var FilterSwitcher = require('./Elem_App_ListFilter_Switcher.js');
 var ListSwitcher = require('./Elem_App_ListStyle_Switcher.js');
-var AppItem = require('./Elem_App_Item.js');
+var AppList = require('./Elem_App_List.js');
 
 module.exports = React.createClass({
 	getInitialState: function() {
@@ -26,7 +26,7 @@ module.exports = React.createClass({
 		var preSortedAPPs = this._appSortFilter(apps, Ctr_Strage.AppSortTypes.AI);
 		var sortAndFilteredApps = this._appSortFilter(apps, sortType);
 
-		console.log("listStyle:" + listStyle);
+		//console.log("listStyle:" + listStyle);
 		return {
 			apps:preSortedAPPs,
 			sortAndFilteredApps:sortAndFilteredApps,
@@ -179,13 +179,6 @@ module.exports = React.createClass({
 		return apps;
 	},
 	render: function() {
-		var allApps = [];
-		for (var i = 0; i < this.state.sortAndFilteredApps.length; i++) {
-			allApps.push(
-				<AppItem key={"view-apps-app-" + this.state.sortAndFilteredApps[i].processModelInfoId} app={this.state.sortAndFilteredApps[i]} />
-			);
-		}
-
 		return(
 			<LayoutHeader label="Apps">
 				<LayoutBody>
@@ -198,7 +191,7 @@ module.exports = React.createClass({
 						<div className="container-fluid">
 							<FilterSwitcher />
 							<ListSwitcher />
-							{allApps}
+							<AppList apps={this.state.sortAndFilteredApps}/>
 						</div>
 					</LayoutBodyRight>
 				</LayoutBody>

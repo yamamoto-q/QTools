@@ -18,7 +18,8 @@ var Ctr_Strage = require('./Contloller_Strage.js');
 
 var FilterSwitcher = require('./Elem_App_ListFilter_Switcher.js');
 var ListSwitcher = require('./Elem_App_ListStyle_Switcher.js');
-var AppItem = require('./Elem_App_Item.js');
+
+var AppList = require('./Elem_App_List.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -30,7 +31,7 @@ module.exports = React.createClass({
 		var preSortedAPPs = this._appSortFilter(apps, Ctr_Strage.AppSortTypes.AI);
 		var sortAndFilteredApps = this._appSortFilter(apps, sortType);
 
-		console.log("listStyle:" + listStyle);
+		//console.log("listStyle:" + listStyle);
 		return {
 			apps: preSortedAPPs,
 			sortAndFilteredApps: sortAndFilteredApps,
@@ -184,11 +185,6 @@ module.exports = React.createClass({
 		return apps;
 	},
 	render: function render() {
-		var allApps = [];
-		for (var i = 0; i < this.state.sortAndFilteredApps.length; i++) {
-			allApps.push(React.createElement(AppItem, { key: "view-apps-app-" + this.state.sortAndFilteredApps[i].processModelInfoId, app: this.state.sortAndFilteredApps[i] }));
-		}
-
 		return React.createElement(
 			LayoutHeader,
 			{ label: 'Apps' },
@@ -222,7 +218,7 @@ module.exports = React.createClass({
 						{ className: 'container-fluid' },
 						React.createElement(FilterSwitcher, null),
 						React.createElement(ListSwitcher, null),
-						allApps
+						React.createElement(AppList, { apps: this.state.sortAndFilteredApps })
 					)
 				)
 			),

@@ -7,7 +7,7 @@ var Ctr_Strage = require('./Contloller_Strage.js');
 module.exports = React.createClass({
 	getInitialState: function() {
 		var listStyle = Ctr_Strage.Store.getAppListStyle();
-		console.log("listStyle:" + listStyle);
+		//console.log("listStyle:" + listStyle);
 		return {
 			listStyle : listStyle
 		}
@@ -26,7 +26,7 @@ module.exports = React.createClass({
 		}
 
 		var card_label_classes = ["btn", "btn-primary"];
-		if(this.state.listStylee == Ctr_Strage.ViewType.CARD){
+		if(this.state.listStyle == Ctr_Strage.ViewType.CARD){
 			card_label_classes.push("active");
 		}
 

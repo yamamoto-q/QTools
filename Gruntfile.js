@@ -66,6 +66,7 @@ module.exports = function(grunt) {
                     { 'src/js/react/Elem_ListViewSwitcher.js': 'src/js/react/jsx/Views/Elements/Elem_ListViewSwitcher.jsx' },
                     { 'src/js/react/Elem_WorkitemListItem.js': 'src/js/react/jsx/Views/Elements/Elem_WorkitemListItem.jsx' },
                     // Elements/App
+                    { 'src/js/react/Elem_App_List.js': 'src/js/react/jsx/Views/Elements/App/Elem_App_List.jsx' },
                     { 'src/js/react/Elem_App_Item.js': 'src/js/react/jsx/Views/Elements/App/Elem_App_Item.jsx' },
                     { 'src/js/react/Elem_App_ListStyle_Switcher.js': 'src/js/react/jsx/Views/Elements/App/Elem_App_ListStyle_Switcher.jsx' },
                     { 'src/js/react/Elem_App_Summary.js': 'src/js/react/jsx/Views/Elements/App/Elem_App_Summary.jsx' },
