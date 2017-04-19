@@ -36,6 +36,11 @@ module.exports = React.createClass({
 			manager_label_classes.push("active");
 		}
 
+		var owner_label_classes = ["btn", "btn-primary"];
+		if (this.state.appSortType == Ctr_Strage.AppSortTypes.OWNER) {
+			owner_label_classes.push("active");
+		}
+
 		return React.createElement(
 			'div',
 			{ className: 'btn-group', 'data-toggle': 'buttons' },
@@ -56,6 +61,12 @@ module.exports = React.createClass({
 				{ className: manager_label_classes.join(" "), onClick: this.onClick, 'data-sorttype': Ctr_Strage.AppSortTypes.MANAGER },
 				React.createElement('input', { type: 'radio', name: 'options', onChange: this.onChanged, checked: this.state.appSortType == Ctr_Strage.AppSortTypes.MANAGER }),
 				React.createElement('span', { className: "icon icon-face" })
+			),
+			React.createElement(
+				'label',
+				{ className: owner_label_classes.join(" "), onClick: this.onClick, 'data-sorttype': Ctr_Strage.AppSortTypes.OWNER },
+				React.createElement('input', { type: 'radio', name: 'options', onChange: this.onChanged, checked: this.state.appSortType == Ctr_Strage.AppSortTypes.OWNER }),
+				React.createElement('span', { className: "icon icon-weekend" })
 			)
 		);
 	}

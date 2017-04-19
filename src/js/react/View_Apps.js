@@ -158,12 +158,21 @@ module.exports = React.createClass({
 				break;
 
 			case Ctr_Strage.AppSortTypes.MANAGER:
-				// 開始可能なAPP優先
+				// プロセスモデル管理権限フィルター
 				apps = apps.filter(function (element, index, array) {
 					var authorities = element.authorities || [];
 					var isManager = authorities.indexOf("PROCESS_MODEL_MANAGER") != -1;
-
 					if (isManager) {
+						return true;
+					}
+					return false;
+				});
+				break;
+
+			case Ctr_Strage.AppSortTypes.OWNER:
+				// オーナーフィルター
+				apps = apps.filter(function (element, index, array) {
+					if (Ctr_Login.Store.getLoginedUser().name == element.processModelInfoCreateQuserName) {
 						return true;
 					}
 					return false;

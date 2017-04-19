@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.18 19:47"
+    VERSION: "2017.04.19 09:55"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27081,7 +27081,8 @@ var VIEW_TYPE = {
 var APP_SORT_TYPE = {
     AI:"ai",
     STARTABLE:"startable",
-    MANAGER:"manager"
+    MANAGER:"manager",
+    OWNER:"owner"
 };
 
 var _state = {
@@ -28388,6 +28389,11 @@ module.exports = React.createClass({
 			manager_label_classes.push("active");
 		}
 
+		var owner_label_classes = ["btn", "btn-primary"];
+		if (this.state.appSortType == Ctr_Strage.AppSortTypes.OWNER) {
+			owner_label_classes.push("active");
+		}
+
 		return React.createElement(
 			'div',
 			{ className: 'btn-group', 'data-toggle': 'buttons' },
@@ -28408,6 +28414,12 @@ module.exports = React.createClass({
 				{ className: manager_label_classes.join(" "), onClick: this.onClick, 'data-sorttype': Ctr_Strage.AppSortTypes.MANAGER },
 				React.createElement('input', { type: 'radio', name: 'options', onChange: this.onChanged, checked: this.state.appSortType == Ctr_Strage.AppSortTypes.MANAGER }),
 				React.createElement('span', { className: "icon icon-face" })
+			),
+			React.createElement(
+				'label',
+				{ className: owner_label_classes.join(" "), onClick: this.onClick, 'data-sorttype': Ctr_Strage.AppSortTypes.OWNER },
+				React.createElement('input', { type: 'radio', name: 'options', onChange: this.onChanged, checked: this.state.appSortType == Ctr_Strage.AppSortTypes.OWNER }),
+				React.createElement('span', { className: "icon icon-weekend" })
 			)
 		);
 	}
@@ -29959,12 +29971,21 @@ module.exports = React.createClass({
 				break;
 
 			case Ctr_Strage.AppSortTypes.MANAGER:
-				// 開始可能なAPP優先
+				// プロセスモデル管理権限フィルター
 				apps = apps.filter(function (element, index, array) {
 					var authorities = element.authorities || [];
 					var isManager = authorities.indexOf("PROCESS_MODEL_MANAGER") != -1;
-
 					if (isManager) {
+						return true;
+					}
+					return false;
+				});
+				break;
+
+			case Ctr_Strage.AppSortTypes.OWNER:
+				// オーナーフィルター
+				apps = apps.filter(function (element, index, array) {
+					if (Ctr_Login.Store.getLoginedUser().name == element.processModelInfoCreateQuserName) {
 						return true;
 					}
 					return false;

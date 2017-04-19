@@ -32,6 +32,11 @@ module.exports = React.createClass({
 			manager_label_classes.push("active");
 		}
 
+		var owner_label_classes = ["btn", "btn-primary"];
+		if(this.state.appSortType == Ctr_Strage.AppSortTypes.OWNER){
+			owner_label_classes.push("active");
+		}
+
 		return (
 			<div className="btn-group" data-toggle="buttons">
 				<label className={ai_label_classes.join(" ")} onClick={this.onClick} data-sorttype={Ctr_Strage.AppSortTypes.AI}>
@@ -45,6 +50,10 @@ module.exports = React.createClass({
 				<label className={manager_label_classes.join(" ")} onClick={this.onClick} data-sorttype={Ctr_Strage.AppSortTypes.MANAGER}>
 					<input type="radio" name="options" onChange={this.onChanged} checked={this.state.appSortType == Ctr_Strage.AppSortTypes.MANAGER}/>
 					<span className={"icon icon-face"}/>
+				</label>
+				<label className={owner_label_classes.join(" ")} onClick={this.onClick} data-sorttype={Ctr_Strage.AppSortTypes.OWNER}>
+					<input type="radio" name="options" onChange={this.onChanged} checked={this.state.appSortType == Ctr_Strage.AppSortTypes.OWNER}/>
+					<span className={"icon icon-weekend"}/>
 				</label>
 			</div>
 		);
