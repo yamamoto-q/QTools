@@ -10,7 +10,7 @@ var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
 
 var MyWorkItemsSummary = require('./Elem_MyWorkItems_Summary.js');
-var AppsSummary = require('./Elem_Apps_Summary.js');
+var AppSummary = require('./Elem_App_Summary.js');
 
 module.exports = React.createClass({
 	componentDidMount: function() {
@@ -31,7 +31,7 @@ module.exports = React.createClass({
 					<LayoutBodyRight>
 						<div className="card-deck">
 							<MyWorkItemsSummary />
-							<AppsSummary />
+							<AppSummary />
 						</div>
 					</LayoutBodyRight>
 				</LayoutBody>

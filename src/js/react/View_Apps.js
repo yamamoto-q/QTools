@@ -16,9 +16,9 @@ var Ctr_QApi = require('./Controller_Questetra_API.js');
 var Ctr_Login = require('./Controller_Login.js');
 var Ctr_Strage = require('./Contloller_Strage.js');
 
-var SortSwitcher = require('./Elem_AppViewSortSwitcher.js');
-var ListSwitcher = require('./Elem_AppListStyle_Switcher.js');
-var AppItem = require('./Elem_AppItem.js');
+var SortSwitcher = require('./Elem_App_ListFilter_Switcher.js');
+var ListSwitcher = require('./Elem_App_ListStyle_Switcher.js');
+var AppItem = require('./Elem_App_Item.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',

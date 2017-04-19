@@ -62,13 +62,14 @@ module.exports = function(grunt) {
                     { 'src/js/react/Elem_Header.js': 'src/js/react/jsx/Views/Elements/Elem_Header.jsx' },
                     { 'src/js/react/Elem_Avater.js': 'src/js/react/jsx/Views/Elements/Elem_Avater.jsx' },
                     { 'src/js/react/Elem_MyWorkItems_Summary.js': 'src/js/react/jsx/Views/Elements/Elem_MyWorkItems_Summary.jsx' },
-                    { 'src/js/react/Elem_Apps_Summary.js': 'src/js/react/jsx/Views/Elements/Elem_Apps_Summary.jsx' },
                     { 'src/js/react/Elem_MyWorkitemList.js': 'src/js/react/jsx/Views/Elements/Elem_MyWorkitemList.jsx' },
                     { 'src/js/react/Elem_ListViewSwitcher.js': 'src/js/react/jsx/Views/Elements/Elem_ListViewSwitcher.jsx' },
                     { 'src/js/react/Elem_WorkitemListItem.js': 'src/js/react/jsx/Views/Elements/Elem_WorkitemListItem.jsx' },
-                    { 'src/js/react/Elem_AppViewSortSwitcher.js': 'src/js/react/jsx/Views/Elements/Elem_AppViewSortSwitcher.jsx' },
-                    { 'src/js/react/Elem_AppListStyle_Switcher.js': 'src/js/react/jsx/Views/Elements/Elem_AppListStyle_Switcher.jsx' },
-                    { 'src/js/react/Elem_AppItem.js': 'src/js/react/jsx/Views/Elements/Elem_AppItem.jsx' },
+                    // Elements/App
+                    { 'src/js/react/Elem_App_Item.js': 'src/js/react/jsx/Views/Elements/App/Elem_App_Item.jsx' },
+                    { 'src/js/react/Elem_App_ListStyle_Switcher.js': 'src/js/react/jsx/Views/Elements/App/Elem_App_ListStyle_Switcher.jsx' },
+                    { 'src/js/react/Elem_App_Summary.js': 'src/js/react/jsx/Views/Elements/App/Elem_App_Summary.jsx' },
+                    { 'src/js/react/Elem_App_ListFilter_Switcher.js': 'src/js/react/jsx/Views/Elements/App/Elem_App_ListFilter_Switcher.jsx' },
                     // Bootstrap
                     { 'src/js/react/Bootstrap_Row.js': 'src/js/react/jsx/Bootstrap/row.jsx' },
                     { 'src/js/react/Bootstrap_Container.js': 'src/js/react/jsx/Bootstrap/container.jsx' },

@@ -12,7 +12,7 @@ var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
 
 var MyWorkItemsSummary = require('./Elem_MyWorkItems_Summary.js');
-var AppsSummary = require('./Elem_Apps_Summary.js');
+var AppSummary = require('./Elem_App_Summary.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -56,7 +56,7 @@ module.exports = React.createClass({
 						'div',
 						{ className: 'card-deck' },
 						React.createElement(MyWorkItemsSummary, null),
-						React.createElement(AppsSummary, null)
+						React.createElement(AppSummary, null)
 					)
 				)
 			),

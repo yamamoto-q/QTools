@@ -210,7 +210,7 @@ var Store = assign({}, EventEmitter.prototype, {
         }
         var appListStyle = _state.view.appListStyle;
         if(!appListStyle){
-            appListStylee = VIEW_TYPE.MINIMUM;
+            appListStyle = VIEW_TYPE.MINIMUM;
         }
         return appListStyle;
     },

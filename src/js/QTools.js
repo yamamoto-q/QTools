@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.19 10:38"
+    VERSION: "2017.04.19 10:56"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -27144,7 +27144,7 @@ var Store = assign({}, EventEmitter.prototype, {
         }
         var appListStyle = _state.view.appListStyle;
         if(!appListStyle){
-            appListStylee = VIEW_TYPE.MINIMUM;
+            appListStyle = VIEW_TYPE.MINIMUM;
         }
         return appListStyle;
     },
@@ -28390,61 +28390,6 @@ module.exports = React.createClass({
 'use strict';
 
 /**
- * アプリ一覧の表示スタイルを変更するUI
- **/
-var React = require('react');
-var Ctr_Strage = require('./Contloller_Strage.js');
-
-module.exports = React.createClass({
-	displayName: 'exports',
-
-	getInitialState: function getInitialState() {
-		var listStyle = Ctr_Strage.Store.getAppListStyle();
-		return {
-			listStyle: listStyle
-		};
-	},
-	onClick: function onClick(e) {
-		var listStyle = e.currentTarget.getAttribute('data-liststyle');
-		Ctr_Strage.Action.setAppListStyle(listStyle);
-	},
-	onChanged: function onChanged(e) {
-		//console.log("onChanged");
-	},
-	render: function render() {
-		var minimum_label_classes = ["btn", "btn-primary"];
-		if (this.state.listStyle == Ctr_Strage.ViewType.MINIMUM) {
-			minimum_label_classes.push("active");
-		}
-
-		var card_label_classes = ["btn", "btn-primary"];
-		if (this.state.listStylee == Ctr_Strage.ViewType.CARD) {
-			card_label_classes.push("active");
-		}
-
-		return React.createElement(
-			'div',
-			{ className: 'btn-group', 'data-toggle': 'buttons' },
-			React.createElement(
-				'label',
-				{ className: minimum_label_classes.join(" "), onClick: this.onClick, 'data-liststyle': Ctr_Strage.ViewType.MINIMUM },
-				React.createElement('input', { type: 'radio', name: 'options', onChange: this.onChanged, checked: this.state.listStyle == Ctr_Strage.ViewType.MINIMUM }),
-				React.createElement('span', { className: "icon icon-view_headline" })
-			),
-			React.createElement(
-				'label',
-				{ className: card_label_classes.join(" "), onClick: this.onClick, 'data-liststyle': Ctr_Strage.ViewType.CARD },
-				React.createElement('input', { type: 'radio', name: 'options', onChange: this.onChanged, checked: this.state.listStyle == Ctr_Strage.ViewType.CARD }),
-				React.createElement('span', { className: "icon icon-view_module" })
-			)
-		);
-	}
-});
-
-},{"./Contloller_Strage.js":255,"react":242}],261:[function(require,module,exports){
-'use strict';
-
-/**
  * アプリ一覧の方法を変更するUI
  **/
 var React = require('react');
@@ -28514,6 +28459,61 @@ module.exports = React.createClass({
 				{ className: owner_label_classes.join(" "), onClick: this.onClick, 'data-sorttype': Ctr_Strage.AppSortTypes.OWNER },
 				React.createElement('input', { type: 'radio', name: 'options', onChange: this.onChanged, checked: this.state.appSortType == Ctr_Strage.AppSortTypes.OWNER }),
 				React.createElement('span', { className: "icon icon-weekend" })
+			)
+		);
+	}
+});
+
+},{"./Contloller_Strage.js":255,"react":242}],261:[function(require,module,exports){
+'use strict';
+
+/**
+ * アプリ一覧の表示スタイルを変更するUI
+ **/
+var React = require('react');
+var Ctr_Strage = require('./Contloller_Strage.js');
+
+module.exports = React.createClass({
+	displayName: 'exports',
+
+	getInitialState: function getInitialState() {
+		var listStyle = Ctr_Strage.Store.getAppListStyle();
+		return {
+			listStyle: listStyle
+		};
+	},
+	onClick: function onClick(e) {
+		var listStyle = e.currentTarget.getAttribute('data-liststyle');
+		Ctr_Strage.Action.setAppListStyle(listStyle);
+	},
+	onChanged: function onChanged(e) {
+		//console.log("onChanged");
+	},
+	render: function render() {
+		var minimum_label_classes = ["btn", "btn-primary"];
+		if (this.state.listStyle == Ctr_Strage.ViewType.MINIMUM) {
+			minimum_label_classes.push("active");
+		}
+
+		var card_label_classes = ["btn", "btn-primary"];
+		if (this.state.listStylee == Ctr_Strage.ViewType.CARD) {
+			card_label_classes.push("active");
+		}
+
+		return React.createElement(
+			'div',
+			{ className: 'btn-group', 'data-toggle': 'buttons' },
+			React.createElement(
+				'label',
+				{ className: minimum_label_classes.join(" "), onClick: this.onClick, 'data-liststyle': Ctr_Strage.ViewType.MINIMUM },
+				React.createElement('input', { type: 'radio', name: 'options', onChange: this.onChanged, checked: this.state.listStyle == Ctr_Strage.ViewType.MINIMUM }),
+				React.createElement('span', { className: "icon icon-view_headline" })
+			),
+			React.createElement(
+				'label',
+				{ className: card_label_classes.join(" "), onClick: this.onClick, 'data-liststyle': Ctr_Strage.ViewType.CARD },
+				React.createElement('input', { type: 'radio', name: 'options', onChange: this.onChanged, checked: this.state.listStyle == Ctr_Strage.ViewType.CARD }),
+				React.createElement('span', { className: "icon icon-view_module" })
 			)
 		);
 	}
@@ -29923,9 +29923,9 @@ var Ctr_QApi = require('./Controller_Questetra_API.js');
 var Ctr_Login = require('./Controller_Login.js');
 var Ctr_Strage = require('./Contloller_Strage.js');
 
-var SortSwitcher = require('./Elem_AppViewSortSwitcher.js');
-var ListSwitcher = require('./Elem_AppListStyle_Switcher.js');
-var AppItem = require('./Elem_AppItem.js');
+var SortSwitcher = require('./Elem_App_ListFilter_Switcher.js');
+var ListSwitcher = require('./Elem_App_ListStyle_Switcher.js');
+var AppItem = require('./Elem_App_Item.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -30156,7 +30156,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Contloller_Strage.js":255,"./Controller_Login.js":256,"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"./Elem_AppItem.js":259,"./Elem_AppListStyle_Switcher.js":260,"./Elem_AppViewSortSwitcher.js":261,"./Footer.js":269,"./Layout_Body.js":271,"./Layout_BodyLeft.js":272,"./Layout_BodyRight.js":273,"./Layout_Header.js":274,"./NavItem.js":277,"./ScrollArea.js":280,"react":242}],284:[function(require,module,exports){
+},{"./Contloller_Strage.js":255,"./Controller_Login.js":256,"./Controller_Questetra_API.js":257,"./Controller_View.js":258,"./Elem_App_Item.js":259,"./Elem_App_ListFilter_Switcher.js":260,"./Elem_App_ListStyle_Switcher.js":261,"./Footer.js":269,"./Layout_Body.js":271,"./Layout_BodyLeft.js":272,"./Layout_BodyRight.js":273,"./Layout_Header.js":274,"./NavItem.js":277,"./ScrollArea.js":280,"react":242}],284:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -30171,7 +30171,7 @@ var Footer = require('./Footer.js');
 var NavItem = require('./NavItem.js');
 
 var MyWorkItemsSummary = require('./Elem_MyWorkItems_Summary.js');
-var AppsSummary = require('./Elem_Apps_Summary.js');
+var AppSummary = require('./Elem_App_Summary.js');
 
 module.exports = React.createClass({
 	displayName: 'exports',
@@ -30215,7 +30215,7 @@ module.exports = React.createClass({
 						'div',
 						{ className: 'card-deck' },
 						React.createElement(MyWorkItemsSummary, null),
-						React.createElement(AppsSummary, null)
+						React.createElement(AppSummary, null)
 					)
 				)
 			),
@@ -30242,7 +30242,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Controller_View.js":258,"./Elem_Apps_Summary.js":262,"./Elem_MyWorkItems_Summary.js":266,"./Footer.js":269,"./Layout_Body.js":271,"./Layout_BodyLeft.js":272,"./Layout_BodyRight.js":273,"./Layout_Header.js":274,"./NavItem.js":277,"react":242}],285:[function(require,module,exports){
+},{"./Controller_View.js":258,"./Elem_App_Summary.js":262,"./Elem_MyWorkItems_Summary.js":266,"./Footer.js":269,"./Layout_Body.js":271,"./Layout_BodyLeft.js":272,"./Layout_BodyRight.js":273,"./Layout_Header.js":274,"./NavItem.js":277,"react":242}],285:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
