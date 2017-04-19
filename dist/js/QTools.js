@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.19 10:29"
+    VERSION: "2017.04.19 10:38"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -29933,12 +29933,16 @@ module.exports = React.createClass({
 	getInitialState: function getInitialState() {
 		var apps = Ctr_QApi.Store.getApps();
 		var sortType = Ctr_Strage.Store.getAppListViewSortType();
+		var listStyle = Ctr_Strage.Store.getAppListStyle();
 		var preSortedAPPs = this._appSortFilter(apps, Ctr_Strage.AppSortTypes.AI);
 		var sortAndFilteredApps = this._appSortFilter(apps, sortType);
+
+		console.log("listStyle:" + listStyle);
 		return {
 			apps: preSortedAPPs,
 			sortAndFilteredApps: sortAndFilteredApps,
-			sortType: sortType
+			sortType: sortType,
+			listStyle: listStyle
 		};
 	},
 	componentDidMount: function componentDidMount() {
@@ -29966,6 +29970,17 @@ module.exports = React.createClass({
 				self.setState({
 					sortType: sortType,
 					sortAndFilteredApps: sortAndFilteredApps
+				});
+			}
+		});
+
+		// 表示方法が更新されたとき
+		Ctr_Strage.Store.addChangeAppListStyleListener(function () {
+			if (self.isMounted()) {
+				var listStyle = Ctr_Strage.Store.getAppListStyle();
+				console.log("listStyle:" + listStyle);
+				self.setState({
+					listStyle: listStyle
 				});
 			}
 		});
