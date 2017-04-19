@@ -37,6 +37,14 @@ var Action = {
             }
         });
     },
+    setAppListStyle:function(listStyle){
+        dispatcher.dispatch({
+            actionType: "setAppListStyle",
+            value: {
+                listStyle:listStyle
+            }
+        });
+    },
 };
 
 // ****************************************************
@@ -136,7 +144,8 @@ var EVENT = {
     GET_AUTHENTICATION: "get_authentication",
     CHANGE_AUTHENTICATION: "change_authentication",
     CHANGE_MY_WORKITEM_LISTVIEW_TYPE:"change_my_workitemlist_view_type",
-    CHANGE_APP_LIST_SORT_TYPE:"change_app_list_sort_type"
+    CHANGE_APP_LIST_SORT_TYPE:"change_app_list_sort_type",
+    CHANGE_APP_LIST_STYLE:"change_app_list_style"
 }
 
 var VIEW_TYPE = {
@@ -155,7 +164,8 @@ var _state = {
     auth:null,
     view:{
         workitemListViewType:VIEW_TYPE.MINIMUM,
-        appSortType:APP_SORT_TYPE.AI
+        appSortType:APP_SORT_TYPE.AI,
+        appListStyle:VIEW_TYPE.MINIMUM
     },
 };
 
@@ -194,6 +204,16 @@ var Store = assign({}, EventEmitter.prototype, {
         }
         return sortType;
     },
+    getAppListStyle(){
+        if(!_state.view){
+            return VIEW_TYPE.MINIMUM;
+        }
+        var appListStyle = _state.view.appListStyle;
+        if(!appListStyle){
+            appListStylee = VIEW_TYPE.MINIMUM;
+        }
+        return appListStyle;
+    },
     // Event
     addGetSavedSettingListener: function(callback) {
         this.on(EVENT.GET_AUTHENTICATION, callback);
@@ -220,6 +240,13 @@ var Store = assign({}, EventEmitter.prototype, {
     },
     emitChangeAppListViewSortType:function(){
         this.emit(EVENT.CHANGE_APP_LIST_SORT_TYPE);
+    },
+    //
+    addChangeAppListStyleListener:function(callback){
+        this.on(EVENT.CHANGE_APP_LIST_STYLE, callback);
+    },
+    emitChangeAppListStyle:function(){
+        this.emit(EVENT.CHANGE_APP_LIST_STYLE);
     },
     dispatcherIndex: dispatcher.register(function(payload) {
         switch (payload.actionType) {
@@ -262,6 +289,15 @@ var Store = assign({}, EventEmitter.prototype, {
                 _state.view.appSortType = payload.value.sortType;
                 QIStrage.set(_state);
                 Store.emitChangeAppListViewSortType();
+                break;
+
+            case "setAppListStyle":
+                if(typeof _state.view === "undefined"){
+                    _state.view = {};
+                }
+                _state.view.appListStyle = payload.value.listStyle;
+                QIStrage.set(_state);
+                Store.emitChangeAppListStyle();
                 break;
         };
     })

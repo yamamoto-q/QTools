@@ -1,3 +1,6 @@
+/**
+ * アプリ一覧の方法を変更するUI
+ **/
 var React = require('react');
 var Ctr_Strage = require('./Contloller_Strage.js');
 
@@ -10,11 +13,11 @@ module.exports = React.createClass({
 	},
 	onClick:function(e){
 		var appSortType = e.currentTarget.getAttribute('data-sorttype');
-		console.log("onClick:" + appSortType);
+		//console.log("onClick:" + appSortType);
 		Ctr_Strage.Action.setAppListViewSortType(appSortType);
 	},
 	onChanged:function(e){
-		console.log("onChanged");
+		//console.log("onChanged");
 	},
 	render: function() {
 		var ai_label_classes = ["btn", "btn-primary"];

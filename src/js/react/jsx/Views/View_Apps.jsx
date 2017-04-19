@@ -15,14 +15,15 @@ var Ctr_Login = require('./Controller_Login.js');
 var Ctr_Strage = require('./Contloller_Strage.js');
 
 var SortSwitcher = require('./Elem_AppViewSortSwitcher.js');
+var ListSwitcher = require('./Elem_AppListStyle_Switcher.js');
 var AppItem = require('./Elem_AppItem.js');
 
 module.exports = React.createClass({
 	getInitialState: function() {
 		var apps = Ctr_QApi.Store.getApps();
-		var preSortedAPPs = this.sortApp(apps, Ctr_Strage.AppSortTypes.AI);
 		var sortType = Ctr_Strage.Store.getAppListViewSortType();
-		var sortAndFilteredApps = this.sortApp(apps, sortType);
+		var preSortedAPPs = this._appSortFilter(apps, Ctr_Strage.AppSortTypes.AI);
+		var sortAndFilteredApps = this._appSortFilter(apps, sortType);
 		return {
 			apps:preSortedAPPs,
 			sortAndFilteredApps:sortAndFilteredApps,
@@ -33,10 +34,12 @@ module.exports = React.createClass({
 		$("body").addClass('view-' + Controller_View.ViewNames.APPS);
 
 		var self = this;
+
+		// APPが更新されたとき
 		Ctr_QApi.Store.addChangeAppsListener(function(){
 			if (self.isMounted()) {
 				var apps = Ctr_QApi.Store.getApps();
-				var sortAndFilteredApps = self.sortApp(apps, self.state.sortType);
+				var sortAndFilteredApps = self._appSortFilter(apps, self.state.sortType);
 				self.setState({
 					apps:apps,
 					sortAndFilteredApps:sortAndFilteredApps
@@ -48,7 +51,7 @@ module.exports = React.createClass({
 		Ctr_Strage.Store.addChangeAppListViewSortTypeListener(function(){
 			if (self.isMounted()) {
 				var sortType = Ctr_Strage.Store.getAppListViewSortType();
-				var sortAndFilteredApps = self.sortApp(self.state.apps, sortType);
+				var sortAndFilteredApps = self._appSortFilter(self.state.apps, sortType);
 				self.setState({
 					sortType:sortType,
 					sortAndFilteredApps:sortAndFilteredApps
@@ -61,7 +64,7 @@ module.exports = React.createClass({
 	componentWillUnmount:function(){
 		$("body").removeClass('view-' + Controller_View.ViewNames.APPS);
 	},
-	aiSortScore(info){
+	_calcSortScore(info){
 		var score = "";
 
 		// 無効とスター
@@ -106,39 +109,7 @@ module.exports = React.createClass({
 
 		return parseInt(score,10);
 	},
-	startableSortScore(info){
-		var score = "";
-		if(info.starred || info.processModelInfoHasActiveProcessModel){
-			// スター付の優先度は無視
-			score += "2";
-		}else{
-			// アクティブではないものは優先度最下位
-			score += "1";
-		}
-
-		score += ("00" + info.startableActivitis.length).slice(-2);	// スタートできるアクティビティ数
-		score += "000"; // ToDo 遷移度
-		score += ("00" + info.allocatedWorkitems.length).slice(-2);	// 割り当て件数
-		score += ("00" + info.offeredWorkitems.length).slice(-2);	// オファー件数
-
-		if(Ctr_Login.Store.getLoginedUser().name == info.processModelInfoCreateQuserName){
-			// モデルの制作者の場合
-			score += "1";
-		}else{
-			score += "0";
-		}
-
-		if(Ctr_Login.Store.getLoginedUser().name == info.processModelInfoCreateQuserName){
-			// モデルの制作者の場合
-			score += "1";
-		}else{
-			score += "0";
-		}
-
-		score += info.processModelInfoViewPriority;
-		return parseInt(score,10);
-	},
-	sortApp:function(apps, sortType){
+	_appSortFilter:function(apps, sortType){
 		//console.log("sort");
 		var self = this;
 		switch (sortType){
@@ -177,8 +148,8 @@ module.exports = React.createClass({
 			default:
 				// AI Sort
 				apps.sort(function(a, b){
-					var scoreA = self.aiSortScore(a);
-					var scoreB = self.aiSortScore(b);
+					var scoreA = self._calcSortScore(a);
+					var scoreB = self._calcSortScore(b);
 					if(scoreA > scoreB){
 						return -1;
 					}
@@ -194,8 +165,6 @@ module.exports = React.createClass({
 	},
 	render: function() {
 		var allApps = [];
-
-		//console.log("apps", this.state.apps);
 		for (var i = 0; i < this.state.sortAndFilteredApps.length; i++) {
 			allApps.push(
 				<AppItem key={"view-apps-app-" + this.state.sortAndFilteredApps[i].processModelInfoId} app={this.state.sortAndFilteredApps[i]} />
@@ -213,6 +182,7 @@ module.exports = React.createClass({
 					<LayoutBodyRight>
 						<div className="container-fluid">
 							<SortSwitcher />
+							<ListSwitcher />
 							{allApps}
 						</div>
 					</LayoutBodyRight>
