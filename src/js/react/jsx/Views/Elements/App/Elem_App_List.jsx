@@ -26,16 +26,18 @@ module.exports = React.createClass({
 		});
 	},
 	render: function() {
+		var wrapperClasses = ["app-list", "app-list-liststyle-" + this.state.listStyle];
+
 		var apps = [];
 		for (var i = 0; i < this.props.apps.length; i++) {
 			var appinfo = this.props.apps[i];
 			apps.push(
-				<AppItem key={"elem-app-list-" + appinfo.processModelInfoId} app={appinfo} />
+				<AppItem className={"appitem-liststyle-" + this.state.listStyle} key={"app-list-appitem-" + appinfo.processModelInfoId} app={appinfo} />
 			);
 		}
 
 		return (
-			<div>
+			<div className={wrapperClasses.join(",")}>
 				{apps}
 			</div>
 		);
