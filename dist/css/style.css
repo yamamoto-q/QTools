@@ -212,15 +212,15 @@ body.view-apps #header {
 }
 .app-list.app-list-liststyle-minimum .app-item .app-item-inner-wrapper {
   display: flex;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
+  flex-wrap: nowrap;
+}
+.app-list.app-list-liststyle-minimum .app-item .app-item-inner-wrapper .app-item-info-appicon,
+.app-list.app-list-liststyle-minimum .app-item .app-item-inner-wrapper .app-item-info-owner {
+  display: none;
 }
 .app-list.app-list-liststyle-card {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
   justify-content: space-between;
 }
 .app-list.app-list-liststyle-card .app-item {

@@ -250,9 +250,11 @@ body.view-apps{
 		.app-item{
 			.app-item-inner-wrapper{
 				display: flex;
-				flex-wrap: wrap;
-				margin-right: -15px;
-				margin-left: -15px;
+				flex-wrap:nowrap;
+				.app-item-info-appicon,
+				.app-item-info-owner{
+					display: none;
+				}
 			}
 			border-bottom: solid 1px rgba(0,0,0,0.125);
 		}
@@ -260,8 +262,6 @@ body.view-apps{
 	&.app-list-liststyle-card{
 		display: flex;
 		flex-wrap: wrap;
-		margin-right: -15px;
-		margin-left: -15px;
 		justify-content: ~'space-between';
 		
 		.app-item{

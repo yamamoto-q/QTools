@@ -93,13 +93,17 @@ module.exports = React.createClass({
 					workItemNum,
 					startableIcon,
 					ownerIcon,
-					managerIcon,
-					owner
+					managerIcon
 				),
 				React.createElement(
 					'div',
 					{ className: 'app-item-info app-item-info-label' },
 					label
+				),
+				React.createElement(
+					'div',
+					{ className: 'app-item-info app-item-info-owner' },
+					owner
 				)
 			)
 		);
