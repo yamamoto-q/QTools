@@ -248,11 +248,12 @@ body.view-apps{
 	&.app-list-liststyle-minimum{
 		// MINIMUM 表示
 		.app-item{
-			display: flex;
-			flex-wrap: wrap;
-			margin-right: -15px;
-			margin-left: -15px;
-
+			.app-item-inner-wrapper{
+				display: flex;
+				flex-wrap: wrap;
+				margin-right: -15px;
+				margin-left: -15px;
+			}
 			border-bottom: solid 1px rgba(0,0,0,0.125);
 		}
 	}
@@ -264,9 +265,11 @@ body.view-apps{
 		justify-content: ~'space-between';
 		
 		.app-item{
-			max-width: 125px;
+			max-width: 100px;
 			min-width: 75px;
 			flex-grow: 1;
+			.app-item-inner-wrapper{
+			}
 		}
 	}
 }

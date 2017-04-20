@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.20 10:28"
+    VERSION: "2017.04.20 10:41"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28361,26 +28361,31 @@ module.exports = React.createClass({
 			{ className: classes.join(" ") },
 			React.createElement(
 				'div',
-				{ className: 'col', style: { maxWidth: "16px" } },
-				starIcon
-			),
-			React.createElement(
-				'div',
-				{ className: 'col', style: { maxWidth: "120px" } },
-				workItemNum,
-				startableIcon,
-				ownerIcon,
-				managerIcon
-			),
-			React.createElement(
-				'div',
-				{ className: 'col app-item-label' },
-				label
-			),
-			React.createElement(
-				'div',
-				{ className: 'col app-item-creator hidden-xs-down' },
-				owner
+				{ className: 'app-item-inner-wrapper' },
+				React.createElement(
+					'div',
+					{ className: 'app-item-info app-item-info-appicon' },
+					'appIcon'
+				),
+				React.createElement(
+					'div',
+					{ className: 'app-item-info app-item-info-star' },
+					starIcon
+				),
+				React.createElement(
+					'div',
+					{ className: 'app-item-info app-item-info-icons' },
+					workItemNum,
+					startableIcon,
+					ownerIcon,
+					managerIcon,
+					owner
+				),
+				React.createElement(
+					'div',
+					{ className: 'app-item-info app-item-info-label' },
+					label
+				)
 			)
 		);
 	}

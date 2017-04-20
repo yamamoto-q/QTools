@@ -64,10 +64,12 @@ module.exports = React.createClass({
 
 		return(
 			<div className={classes.join(" ")}>
-				<div className="col" style={{maxWidth:"16px"}}>{starIcon}</div>
-				<div className="col" style={{maxWidth:"120px"}}>{workItemNum}{startableIcon}{ownerIcon}{managerIcon}</div>
-				<div className="col app-item-label">{label}</div>
-				<div className="col app-item-creator hidden-xs-down">{owner}</div>
+				<div className="app-item-inner-wrapper">
+					<div className="app-item-info app-item-info-appicon">appIcon</div>
+					<div className="app-item-info app-item-info-star">{starIcon}</div>
+					<div className="app-item-info app-item-info-icons">{workItemNum}{startableIcon}{ownerIcon}{managerIcon}{owner}</div>
+					<div className="app-item-info app-item-info-label">{label}</div>
+				</div>
 			</div>
 		)
 	}
