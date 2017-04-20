@@ -7,9 +7,9 @@ module.exports = React.createClass({
 		if(this.props.className){
 			classes = this.props.className.split(" ");
 		}
-		classes.push("row");
+		//classes.push("row");
 		classes.push("app-item");
-		classes.push("app-item-view-minimum");
+		//classes.push("app-item-view-minimum");
 
 		var label = this.props.app.processModelInfoName;
 		var isStarred = this.props.app.starred;

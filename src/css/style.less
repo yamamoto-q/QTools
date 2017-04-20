@@ -142,28 +142,6 @@ body.view-apps{
 	}
 }
 
-// apps
-.app-item{
-	line-height: 2.75rem;
-	&.app-item-deactive{
-		background-color: rgba(0,0,0,0.125*0.75);
-		color: rgba(0,0,0,0.5);
-	}
-	.app-item-label,
-	.app-item-creator{
-		overflow: hidden;
-    	white-space: nowrap;
-    	text-overflow: ellipsis;
-	}
-	border-bottom: solid 1px rgba(0,0,0,0.125);
-	box-sizing: border-box;
-}
-/*
-.tab-content{
-	max-height:-webkit-calc(~'100% - 77px') ;
-   	max-height:calc(~'100% - 77px') ;
-}
-*/
 #footer{
 	height: @footerHeight;
     font-size: 1rem;
@@ -251,4 +229,18 @@ body.view-apps{
 	height: 100%;
 }
 
+.app-list{
+	&.app-list-liststyle-minimum{
+		// MINIMUM 表示
+		display: flex;
+		flex-wrap: wrap;
+		margin-right: -15px;
+		margin-left: -15px;
+		.app-item{
+			line-height: 2.75rem;
+		    border-bottom: solid 1px rgba(0, 0, 0, 0.125);
+		    box-sizing: border-box;
+		}
+	}
+}
 @import "font_quarterinch.less";

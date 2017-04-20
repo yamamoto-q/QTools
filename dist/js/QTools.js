@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.20 09:46"
+    VERSION: "2017.04.20 09:57"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28296,9 +28296,9 @@ module.exports = React.createClass({
 		if (this.props.className) {
 			classes = this.props.className.split(" ");
 		}
-		classes.push("row");
+		//classes.push("row");
 		classes.push("app-item");
-		classes.push("app-item-view-minimum");
+		//classes.push("app-item-view-minimum");
 
 		var label = this.props.app.processModelInfoName;
 		var isStarred = this.props.app.starred;
@@ -28424,12 +28424,12 @@ module.exports = React.createClass({
 		var apps = [];
 		for (var i = 0; i < this.props.apps.length; i++) {
 			var appinfo = this.props.apps[i];
-			apps.push(React.createElement(AppItem, { className: "appitem-liststyle-" + this.state.listStyle, key: "app-list-appitem-" + appinfo.processModelInfoId, app: appinfo }));
+			apps.push(React.createElement(AppItem, { key: "app-list-appitem-" + appinfo.processModelInfoId, app: appinfo }));
 		}
 
 		return React.createElement(
 			'div',
-			{ className: wrapperClasses.join(",") },
+			{ className: wrapperClasses.join(" ") },
 			apps
 		);
 	}

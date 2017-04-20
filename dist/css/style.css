@@ -111,27 +111,6 @@ body.view-apps #header {
 .card.card-apps-summary .card-block.card-block-header {
   color: white;
 }
-.app-item {
-  line-height: 2.75rem;
-  border-bottom: solid 1px rgba(0, 0, 0, 0.125);
-  box-sizing: border-box;
-}
-.app-item.app-item-deactive {
-  background-color: rgba(0, 0, 0, 0.09375);
-  color: rgba(0, 0, 0, 0.5);
-}
-.app-item .app-item-label,
-.app-item .app-item-creator {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-/*
-.tab-content{
-	max-height:-webkit-calc(~'100% - 77px') ;
-   	max-height:calc(~'100% - 77px') ;
-}
-*/
 #footer {
   height: 3.125rem;
   font-size: 1rem;
@@ -213,6 +192,17 @@ body.view-apps #header {
 }
 .scroll-v::-webkit-scrollbar-thumb {
   background-color: #AAA;
+}
+.app-list.app-list-liststyle-minimum {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.app-list.app-list-liststyle-minimum .app-item {
+  line-height: 2.75rem;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.125);
+  box-sizing: border-box;
 }
 /**************************************************
  * ICONS

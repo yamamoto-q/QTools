@@ -32,12 +32,12 @@ module.exports = React.createClass({
 		for (var i = 0; i < this.props.apps.length; i++) {
 			var appinfo = this.props.apps[i];
 			apps.push(
-				<AppItem className={"appitem-liststyle-" + this.state.listStyle} key={"app-list-appitem-" + appinfo.processModelInfoId} app={appinfo} />
+				<AppItem key={"app-list-appitem-" + appinfo.processModelInfoId} app={appinfo} />
 			);
 		}
 
 		return (
-			<div className={wrapperClasses.join(",")}>
+			<div className={wrapperClasses.join(" ")}>
 				{apps}
 			</div>
 		);
