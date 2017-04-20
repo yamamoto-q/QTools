@@ -214,6 +214,15 @@ body.view-apps #header {
   margin-right: -15px;
   margin-left: -15px;
 }
+.app-list.app-list-liststyle-card {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.app-list.app-list-liststyle-card .app-item {
+  max-width: 200px;
+}
 /**************************************************
  * ICONS
  **************************************************/
