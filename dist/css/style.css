@@ -53,7 +53,7 @@ body.logining {
   height: 100%;
   box-sizing: border-box;
 }
-.squarebox .appicon {
+.appicon .squarebox-content {
   background-color: purple;
   color: white;
   border-radius: 3px;
