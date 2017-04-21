@@ -60,9 +60,19 @@ body.logining {
   background-color: purple;
   color: white;
 }
-.appicon.appicon-active .squarebox-content {
+.appicon.appicon-deactive .squarebox-content {
   background-color: rgba(0, 0, 0, 0.125);
   color: rgba(0, 0, 0, 0.5);
+}
+.appicon .appicon-tl {
+  position: absolute;
+  top: -0.5rem;
+  left: -0.5rem;
+}
+.appicon .appicon-tr {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
 }
 #header {
   height: 3.125rem;
