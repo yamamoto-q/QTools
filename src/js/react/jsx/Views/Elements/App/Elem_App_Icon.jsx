@@ -9,7 +9,9 @@ module.exports = React.createClass({
 	render: function() {
 		return (
 			<div>
-				icon
+				<div className="squareBox">
+					<div className="content">content</div>
+				</div>
 			</div>
 		);
 	}

@@ -14,7 +14,15 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			null,
-			'icon'
+			React.createElement(
+				'div',
+				{ className: 'squareBox' },
+				React.createElement(
+					'div',
+					{ className: 'content' },
+					'content'
+				)
+			)
 		);
 	}
 });

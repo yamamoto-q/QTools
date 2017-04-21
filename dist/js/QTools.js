@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.21 10:29"
+    VERSION: "2017.04.21 11:05"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28299,7 +28299,15 @@ module.exports = React.createClass({
 		return React.createElement(
 			'div',
 			null,
-			'icon'
+			React.createElement(
+				'div',
+				{ className: 'squareBox' },
+				React.createElement(
+					'div',
+					{ className: 'content' },
+					'content'
+				)
+			)
 		);
 	}
 });
