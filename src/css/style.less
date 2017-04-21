@@ -232,7 +232,6 @@ body.view-apps{
 // APP LIST
 .app-list{
 	.app-item{
-		line-height: 2.75rem;
 		&.app-item-deactive{
 			background-color: rgba(0,0,0,0.125*0.75);
 			color: rgba(0,0,0,0.5);
@@ -247,6 +246,7 @@ body.view-apps{
 	}
 	&.app-list-liststyle-minimum{
 		// MINIMUM 表示
+		line-height: 1.5rem;
 		.app-item{
 			.app-item-inner-wrapper{
 				display: flex;
@@ -259,6 +259,9 @@ body.view-apps{
 					display: flex;
 					flex-wrap:nowrap;
 					justify-content: space-between;
+					.app-item-info-icons{
+						flex-grow: 1;
+					}
 				}
 			}
 			border-bottom: solid 1px rgba(0,0,0,0.125);

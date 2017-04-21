@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.21 10:05"
+    VERSION: "2017.04.21 10:13"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28364,7 +28364,7 @@ module.exports = React.createClass({
 				{ className: 'app-item-inner-wrapper' },
 				React.createElement(
 					'div',
-					{ className: 'app-item-info ' },
+					{ className: 'app-item-info app-item-info-appicon' },
 					'appIcon'
 				),
 				React.createElement(
@@ -28378,12 +28378,12 @@ module.exports = React.createClass({
 					React.createElement(
 						'div',
 						{ className: 'app-item-info-num' },
-						workItemNum
+						workItemNum,
+						startableIcon
 					),
 					React.createElement(
 						'div',
 						{ className: 'app-item-info-icons' },
-						startableIcon,
 						ownerIcon,
 						managerIcon
 					)
