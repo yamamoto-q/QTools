@@ -65,7 +65,7 @@ module.exports = React.createClass({
 		return(
 			<div className={classes.join(" ")}>
 				<div className="app-item-inner-wrapper">
-					<div className="app-item-info app-item-info-appicon">appIcon</div>
+					<div className="app-item-info ">appIcon</div>
 					<div className="app-item-info app-item-info-header">
 						<div className="app-item-info-star">{starIcon}</div>
 						<div className="app-item-info-num">{workItemNum}</div>

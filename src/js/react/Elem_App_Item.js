@@ -79,7 +79,7 @@ module.exports = React.createClass({
 				{ className: 'app-item-inner-wrapper' },
 				React.createElement(
 					'div',
-					{ className: 'app-item-info app-item-info-appicon' },
+					{ className: 'app-item-info ' },
 					'appIcon'
 				),
 				React.createElement(
