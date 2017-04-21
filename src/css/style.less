@@ -72,9 +72,20 @@ body.splash,body.splash, body.authentication, body.logining{
 }
 .appicon{
 	.squarebox-content{
-		background-color: purple;
-		color:white;
 		border-radius: 3px;
+	}
+	&.appicon-active{
+		.squarebox-content{
+			background-color: purple;
+			color:white;
+			
+		}
+	}
+	&.appicon-active{
+		.squarebox-content{
+			background-color: rgba(0,0,0,0.125);
+			color: rgba(0,0,0,0.5);
+		}
 	}
 }
 
@@ -256,10 +267,6 @@ body.view-apps{
 // APP LIST
 .app-list{
 	.app-item{
-		&.app-item-deactive{
-			background-color: rgba(0,0,0,0.125*0.75);
-			color: rgba(0,0,0,0.5);
-		}
 		.app-item-info-label,
 		.app-item-info-owner{
 			overflow: hidden;
@@ -272,6 +279,10 @@ body.view-apps{
 		// MINIMUM 表示
 		line-height: 1.5rem;
 		.app-item{
+			&.app-item-deactive{
+				background-color: rgba(0,0,0,0.125*0.75);
+				color: rgba(0,0,0,0.5);
+			}
 			.app-item-inner-wrapper{
 				display: flex;
 				flex-direction:column;
@@ -297,9 +308,12 @@ body.view-apps{
 		justify-content: ~'space-between';
 		
 		.app-item{
-			max-width: 100px;
-			min-width: 75px;
-			flex-grow: 1;
+			width: 90px;
+			&.app-item-deactive{
+				.app-item-info-body{
+
+				}
+			}
 			.app-item-inner-wrapper{
 				display: flex;
 				flex-direction:column;
@@ -310,7 +324,7 @@ body.view-apps{
 					display: none;
 				}
 				.app-item-info-body{
-
+					font-size: 0.75rem;
 				}
 			}
 		}

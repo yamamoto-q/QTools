@@ -7,8 +7,14 @@ var AppItem = require('./Elem_App_Item.js');
 
 module.exports = React.createClass({
 	render: function() {
+		var classes = ["appicon"];
+		if(this.props.isActive){
+			classes.push("appicon-active");
+		}else{
+			classes.push("appicon-deactive");
+		}
 		return (
-			<div className="appicon">
+			<div className={classes.join(" ")}>
 				<div className="squarebox">
 					<div className="squarebox-content">content</div>
 				</div>

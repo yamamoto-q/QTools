@@ -11,9 +11,15 @@ module.exports = React.createClass({
 	displayName: 'exports',
 
 	render: function render() {
+		var classes = ["appicon"];
+		if (this.props.isActive) {
+			classes.push("appicon-active");
+		} else {
+			classes.push("appicon-deactive");
+		}
 		return React.createElement(
 			'div',
-			{ className: 'appicon' },
+			{ className: classes.join(" ") },
 			React.createElement(
 				'div',
 				{ className: 'squarebox' },

@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.21 11:23"
+    VERSION: "2017.04.21 11:58"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28296,9 +28296,15 @@ module.exports = React.createClass({
 	displayName: 'exports',
 
 	render: function render() {
+		var classes = ["appicon"];
+		if (this.props.isActive) {
+			classes.push("appicon-active");
+		} else {
+			classes.push("appicon-deactive");
+		}
 		return React.createElement(
 			'div',
-			{ className: 'appicon' },
+			{ className: classes.join(" ") },
 			React.createElement(
 				'div',
 				{ className: 'squarebox' },
@@ -28396,7 +28402,7 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'app-item-info app-item-info-appicon' },
-					React.createElement(AppIcon, null)
+					React.createElement(AppIcon, { isActive: isActive })
 				),
 				React.createElement(
 					'div',
