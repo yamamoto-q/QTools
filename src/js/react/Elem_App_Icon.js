@@ -27,17 +27,17 @@ module.exports = React.createClass({
 					'div',
 					{ className: 'squarebox-content' },
 					'content'
+				),
+				React.createElement(
+					'div',
+					{ className: 'appicon-tl' },
+					'TL'
+				),
+				React.createElement(
+					'div',
+					{ className: 'appicon-tr' },
+					'TR'
 				)
-			),
-			React.createElement(
-				'div',
-				{ className: 'appicon-tl' },
-				'TL'
-			),
-			React.createElement(
-				'div',
-				{ className: 'appicon-tr' },
-				'TR'
 			)
 		);
 	}

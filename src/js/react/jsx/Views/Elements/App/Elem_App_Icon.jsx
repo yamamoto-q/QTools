@@ -17,9 +17,9 @@ module.exports = React.createClass({
 			<div className={classes.join(" ")}>
 				<div className="squarebox">
 					<div className="squarebox-content">content</div>
+					<div className="appicon-tl">TL</div>
+					<div className="appicon-tr">TR</div>
 				</div>
-				<div className="appicon-tl">TL</div>
-				<div className="appicon-tr">TR</div>
 			</div>
 		);
 	}

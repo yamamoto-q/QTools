@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.04.21 12:07"
+    VERSION: "2017.04.21 12:09"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28312,17 +28312,17 @@ module.exports = React.createClass({
 					'div',
 					{ className: 'squarebox-content' },
 					'content'
+				),
+				React.createElement(
+					'div',
+					{ className: 'appicon-tl' },
+					'TL'
+				),
+				React.createElement(
+					'div',
+					{ className: 'appicon-tr' },
+					'TR'
 				)
-			),
-			React.createElement(
-				'div',
-				{ className: 'appicon-tl' },
-				'TL'
-			),
-			React.createElement(
-				'div',
-				{ className: 'appicon-tr' },
-				'TR'
 			)
 		);
 	}
