@@ -200,8 +200,8 @@ body.view-apps #header {
   background-color: rgba(0, 0, 0, 0.09375);
   color: rgba(0, 0, 0, 0.5);
 }
-.app-list .app-item .app-item-label,
-.app-list .app-item .app-item-creator {
+.app-list .app-item .app-item-info-label,
+.app-list .app-item .app-item-info-owner {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -225,7 +225,7 @@ body.view-apps #header {
   flex-wrap: nowrap;
   justify-content: space-between;
 }
-.app-list.app-list-liststyle-minimum .app-item .app-item-inner-wrapper .app-item-info-header .app-item-info-icons {
+.app-list.app-list-liststyle-minimum .app-item .app-item-inner-wrapper .app-item-info-header .app-item-info-num {
   flex-grow: 1;
 }
 .app-list.app-list-liststyle-card {
@@ -237,6 +237,16 @@ body.view-apps #header {
   max-width: 100px;
   min-width: 75px;
   flex-grow: 1;
+}
+.app-list.app-list-liststyle-card .app-item .app-item-inner-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 0.25rem;
+  margin: 0.25rem;
+}
+.app-list.app-list-liststyle-card .app-item .app-item-inner-wrapper .app-item-info-header,
+.app-list.app-list-liststyle-card .app-item .app-item-inner-wrapper .app-item-info-footer {
+  display: none;
 }
 /**************************************************
  * ICONS
