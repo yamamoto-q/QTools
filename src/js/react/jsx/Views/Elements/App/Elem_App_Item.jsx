@@ -1,5 +1,6 @@
 var React = require('react');
 var Ctr_Login = require('./Controller_Login.js');
+var AppIcon = require('./Elem_App_Icon.js');
 
 module.exports = React.createClass({
 	render: function() {
@@ -65,7 +66,9 @@ module.exports = React.createClass({
 		return(
 			<div className={classes.join(" ")}>
 				<div className="app-item-inner-wrapper">
-					<div className="app-item-info app-item-info-appicon">appIcon</div>
+					<div className="app-item-info app-item-info-appicon">
+						<AppIcon />
+					</div>
 					<div className="app-item-info app-item-info-header">
 						<div className="app-item-info-star">{starIcon}</div>
 						<div className="app-item-info-num">{workItemNum}{startableIcon}</div>

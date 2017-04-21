@@ -71,6 +71,7 @@ module.exports = function(grunt) {
                     { 'src/js/react/Elem_App_ListStyle_Switcher.js': 'src/js/react/jsx/Views/Elements/App/Elem_App_ListStyle_Switcher.jsx' },
                     { 'src/js/react/Elem_App_Summary.js': 'src/js/react/jsx/Views/Elements/App/Elem_App_Summary.jsx' },
                     { 'src/js/react/Elem_App_ListFilter_Switcher.js': 'src/js/react/jsx/Views/Elements/App/Elem_App_ListFilter_Switcher.jsx' },
+                    { 'src/js/react/Elem_App_Icon.js': 'src/js/react/jsx/Views/Elements/App/Elem_App_Icon.jsx' },
                     // Bootstrap
                     { 'src/js/react/Bootstrap_Row.js': 'src/js/react/jsx/Bootstrap/row.jsx' },
                     { 'src/js/react/Bootstrap_Container.js': 'src/js/react/jsx/Bootstrap/container.jsx' },
