@@ -13,13 +13,13 @@ module.exports = React.createClass({
 	render: function render() {
 		return React.createElement(
 			'div',
-			null,
+			{ id: 'appicon' },
 			React.createElement(
 				'div',
-				{ className: 'squareBox' },
+				{ className: 'squarebox' },
 				React.createElement(
 					'div',
-					{ className: 'content' },
+					{ className: 'squarebox-content' },
 					'content'
 				)
 			)
