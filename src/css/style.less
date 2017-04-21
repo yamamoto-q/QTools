@@ -250,10 +250,14 @@ body.view-apps{
 		.app-item{
 			.app-item-inner-wrapper{
 				display: flex;
-				flex-wrap:nowrap;
+				flex-wrap:column;
 				.app-item-info-appicon,
-				.app-item-info-owner{
+				.app-item-info-footer{
 					display: none;
+				}
+				.app-item-info-header{
+					display: flex;
+					flex-wrap:nowrap;
 				}
 			}
 			border-bottom: solid 1px rgba(0,0,0,0.125);

@@ -84,26 +84,42 @@ module.exports = React.createClass({
 				),
 				React.createElement(
 					'div',
-					{ className: 'app-item-info app-item-info-star' },
-					starIcon
+					{ className: 'app-item-info app-item-info-header' },
+					React.createElement(
+						'div',
+						{ className: 'app-item-info-star' },
+						starIcon
+					),
+					React.createElement(
+						'div',
+						{ className: 'app-item-info-num' },
+						workItemNum
+					),
+					React.createElement(
+						'div',
+						{ className: 'app-item-info-icons' },
+						startableIcon,
+						ownerIcon,
+						managerIcon
+					)
 				),
 				React.createElement(
 					'div',
-					{ className: 'app-item-info app-item-info-icons' },
-					workItemNum,
-					startableIcon,
-					ownerIcon,
-					managerIcon
+					{ className: 'app-item-info app-item-info-body' },
+					React.createElement(
+						'div',
+						{ className: 'app-item-info-label' },
+						label
+					)
 				),
 				React.createElement(
 					'div',
-					{ className: 'app-item-info app-item-info-label' },
-					label
-				),
-				React.createElement(
-					'div',
-					{ className: 'app-item-info app-item-info-owner' },
-					owner
+					{ className: 'app-item-info app-item-info-footer' },
+					React.createElement(
+						'div',
+						{ className: 'app-item-info-owner' },
+						owner
+					)
 				)
 			)
 		);

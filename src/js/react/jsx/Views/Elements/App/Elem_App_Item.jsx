@@ -66,10 +66,17 @@ module.exports = React.createClass({
 			<div className={classes.join(" ")}>
 				<div className="app-item-inner-wrapper">
 					<div className="app-item-info app-item-info-appicon">appIcon</div>
-					<div className="app-item-info app-item-info-star">{starIcon}</div>
-					<div className="app-item-info app-item-info-icons">{workItemNum}{startableIcon}{ownerIcon}{managerIcon}</div>
-					<div className="app-item-info app-item-info-label">{label}</div>
-					<div className="app-item-info app-item-info-owner">{owner}</div>
+					<div className="app-item-info app-item-info-header">
+						<div className="app-item-info-star">{starIcon}</div>
+						<div className="app-item-info-num">{workItemNum}</div>
+						<div className="app-item-info-icons">{startableIcon}{ownerIcon}{managerIcon}</div>
+					</div>
+					<div className="app-item-info app-item-info-body">
+						<div className="app-item-info-label">{label}</div>
+					</div>
+					<div className="app-item-info app-item-info-footer">
+						<div className="app-item-info-owner">{owner}</div>
+					</div>
 				</div>
 			</div>
 		)

@@ -212,11 +212,15 @@ body.view-apps #header {
 }
 .app-list.app-list-liststyle-minimum .app-item .app-item-inner-wrapper {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: column;
 }
 .app-list.app-list-liststyle-minimum .app-item .app-item-inner-wrapper .app-item-info-appicon,
-.app-list.app-list-liststyle-minimum .app-item .app-item-inner-wrapper .app-item-info-owner {
+.app-list.app-list-liststyle-minimum .app-item .app-item-inner-wrapper .app-item-info-footer {
   display: none;
+}
+.app-list.app-list-liststyle-minimum .app-item .app-item-inner-wrapper .app-item-info-header {
+  display: flex;
+  flex-wrap: nowrap;
 }
 .app-list.app-list-liststyle-card {
   display: flex;
