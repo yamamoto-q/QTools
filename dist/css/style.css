@@ -53,6 +53,11 @@ body.logining {
   height: 100%;
   box-sizing: border-box;
 }
+.squarebox .appicon {
+  background-color: purple;
+  color: white;
+  border-radius: 3px;
+}
 #header {
   height: 3.125rem;
   font-size: 1rem;
