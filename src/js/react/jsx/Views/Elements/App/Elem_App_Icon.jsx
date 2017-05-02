@@ -38,7 +38,7 @@ module.exports = React.createClass({
 							<span className={"icon icon-games"} />
 						</CenterMiddle>
 					</div>
-					<div className="appicon-tl">{allocatedNum + "/" + offeredNumgit }</div>
+					<div className="appicon-tl">{allocatedNum + "/" + offeredNum }</div>
 					<div className="appicon-tr">TR</div>
 				</div>
 

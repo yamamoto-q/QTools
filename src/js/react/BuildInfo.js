@@ -1,3 +1,3 @@
 module.exports = {
-    VERSION: "2017.05.02 10:26"
+    VERSION: "2017.05.02 10:30"
 }

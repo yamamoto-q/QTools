@@ -52,7 +52,7 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'appicon-tl' },
-					allocatedNum + "/" + offeredNumgit
+					allocatedNum + "/" + offeredNum
 				),
 				React.createElement(
 					'div',
