@@ -39,7 +39,7 @@ module.exports = React.createClass({
 		var workItemNum = null;
 		if(allocatedNum + offeredNum > 0){
 			workItemNum = (
-				<Badge appearance={B4_Constant.DEFAULT}>
+				<Badge appearance={B4_Constant.APPEARANCE.DEFAULT}>
 					{allocatedNum}/{offeredNum}
 				</Badge>
 			);

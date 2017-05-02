@@ -42,7 +42,7 @@ module.exports = React.createClass({
 		if (allocatedNum + offeredNum > 0) {
 			workItemNum = React.createElement(
 				Badge,
-				{ appearance: B4_Constant.DEFAULT },
+				{ appearance: B4_Constant.APPEARANCE.DEFAULT },
 				allocatedNum,
 				'/',
 				offeredNum

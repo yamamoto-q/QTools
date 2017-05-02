@@ -26971,7 +26971,7 @@ module.exports = React.createClass({
 
 },{"react":242}],256:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.05.02 10:58"
+    VERSION: "2017.05.02 11:00"
 }
 },{}],257:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28436,7 +28436,7 @@ module.exports = React.createClass({
 		if (allocatedNum + offeredNum > 0) {
 			workItemNum = React.createElement(
 				Badge,
-				{ appearance: B4_Constant.DEFAULT },
+				{ appearance: B4_Constant.APPEARANCE.DEFAULT },
 				allocatedNum,
 				'/',
 				offeredNum
