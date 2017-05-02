@@ -26929,7 +26929,7 @@ module.exports = React.createClass({
 
 },{"react":242}],254:[function(require,module,exports){
 module.exports = {
-    VERSION: "2017.05.02 10:23"
+    VERSION: "2017.05.02 10:26"
 }
 },{}],255:[function(require,module,exports){
 var EventEmitter = require("events").EventEmitter;
@@ -28286,10 +28286,11 @@ module.exports = {
 'use strict';
 
 /**
- * アプリ一覧
+ * アプリのアイコン表現
  **/
 var React = require('react');
 var Ctr_Strage = require('./Contloller_Strage.js');
+var Ctr_Login = require('./Controller_Login.js');
 var AppItem = require('./Elem_App_Item.js');
 
 var CenterMiddle = require('./Layout_CenterMiddle.js');
@@ -28348,7 +28349,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./Contloller_Strage.js":255,"./Elem_App_Item.js":260,"./Layout_CenterMiddle.js":276,"react":242}],260:[function(require,module,exports){
+},{"./Contloller_Strage.js":255,"./Controller_Login.js":256,"./Elem_App_Item.js":260,"./Layout_CenterMiddle.js":276,"react":242}],260:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
