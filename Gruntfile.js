@@ -74,6 +74,7 @@ module.exports = function(grunt) {
                     { 'src/js/react/Elem_App_ListFilter_Switcher.js': 'src/js/react/jsx/Views/Elements/App/Elem_App_ListFilter_Switcher.jsx' },
                     { 'src/js/react/Elem_App_Icon.js': 'src/js/react/jsx/Views/Elements/App/Elem_App_Icon.jsx' },
                     // Bootstrap
+                    { 'src/js/react/Bootstrap_Constant.js': 'src/js/react/jsx/Bootstrap/Constant.jsx' },
                     { 'src/js/react/Bootstrap_Row.js': 'src/js/react/jsx/Bootstrap/row.jsx' },
                     { 'src/js/react/Bootstrap_Container.js': 'src/js/react/jsx/Bootstrap/container.jsx' },
                     { 'src/js/react/Bootstrap_Col.js': 'src/js/react/jsx/Bootstrap/col.jsx' },
@@ -82,6 +83,7 @@ module.exports = function(grunt) {
                     { 'src/js/react/Bootstrap_FormInput.js': 'src/js/react/jsx/Bootstrap/formInput.jsx' },
                     { 'src/js/react/Bootstrap_Button.js': 'src/js/react/jsx/Bootstrap/button.jsx' },
                     { 'src/js/react/Bootstrap_InputGroup.js': 'src/js/react/jsx/Bootstrap/inputGroup.jsx' },
+                    { 'src/js/react/Bootstrap_Badge.js': 'src/js/react/jsx/Bootstrap/badge.jsx' }
                 ]
             }
         },

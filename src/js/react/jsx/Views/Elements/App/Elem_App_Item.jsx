@@ -1,6 +1,9 @@
 var React = require('react');
 var Ctr_Login = require('./Controller_Login.js');
+var B4_Constant = require('./Bootstrap_Constant.js');
+var Badge = require('./Bootstrap_Badge.js');
 var AppIcon = require('./Elem_App_Icon.js');
+
 
 module.exports = React.createClass({
 	render: function() {
@@ -35,7 +38,11 @@ module.exports = React.createClass({
 
 		var workItemNum = null;
 		if(allocatedNum + offeredNum > 0){
-			workItemNum = (<span className="badge badge-default badge-pill">{allocatedNum}/{offeredNum}</span>);
+			workItemNum = (
+				<Badge appearance={B4_Constant.DEFAULT}>
+					{allocatedNum}/{offeredNum}
+				</Badge>
+			);
 			classes.push("app-item-has-workitem");
 		}
 
