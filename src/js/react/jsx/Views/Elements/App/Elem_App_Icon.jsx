@@ -5,10 +5,26 @@ var React = require('react');
 var Ctr_Strage = require('./Contloller_Strage.js');
 var AppItem = require('./Elem_App_Item.js');
 
+var CenterMiddle= require('./Layout_CenterMiddle.js');
+
 module.exports = React.createClass({
 	render: function() {
 		var classes = ["appicon"];
-		if(this.props.isActive){
+
+		var label = this.props.app.processModelInfoName;
+		var isStarred = this.props.app.starred;
+		var allocatedNum = this.props.app.allocatedWorkitems.length;
+		var offeredNum = this.props.app.offeredWorkitems.length;
+		var isStartable = this.props.app.startableActivitis.length > 0;
+		var owner = this.props.app.processModelInfoCreateQuserName;
+		var isActive = this.props.app.processModelInfoHasActiveProcessModel;
+
+		var authorities = this.props.app.authorities || [];
+		var isManager = authorities.indexOf("PROCESS_MODEL_MANAGER") != -1;
+
+		var isOwner = Ctr_Login.Store.getLoginedUser().name == owner;
+
+		if(isActive){
 			classes.push("appicon-active");
 		}else{
 			classes.push("appicon-deactive");
@@ -17,15 +33,14 @@ module.exports = React.createClass({
 			<div className={classes.join(" ")}>
 				<div className="squarebox">
 					<div className="squarebox-content">
-						<div style={{display:"table", height:"100%"}}>
-							<div style={{didplay:"table-cell", verticalAlign:"middle"}}>
-								<span className={"icon icon-games"} />
-							</div>
-						</div>
+						<CenterMiddle>
+							<span className={"icon icon-games"} />
+						</CenterMiddle>
 					</div>
-					<div className="appicon-tl">TL</div>
+					<div className="appicon-tl">{allocatedNum + "/" + offeredNumgit }</div>
 					<div className="appicon-tr">TR</div>
 				</div>
+
 			</div>
 		);
 	}

@@ -81,7 +81,7 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'app-item-info app-item-info-appicon' },
-					React.createElement(AppIcon, { isActive: isActive })
+					React.createElement(AppIcon, { app: this.props.app })
 				),
 				React.createElement(
 					'div',

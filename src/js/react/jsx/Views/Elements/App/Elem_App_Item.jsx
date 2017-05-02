@@ -67,7 +67,7 @@ module.exports = React.createClass({
 			<div className={classes.join(" ")}>
 				<div className="app-item-inner-wrapper">
 					<div className="app-item-info app-item-info-appicon">
-						<AppIcon isActive={isActive}/>
+						<AppIcon app={this.props.app}/>
 					</div>
 					<div className="app-item-info app-item-info-header">
 						<div className="app-item-info-star">{starIcon}</div>
