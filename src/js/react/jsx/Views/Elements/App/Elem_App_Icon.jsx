@@ -16,7 +16,13 @@ module.exports = React.createClass({
 		return (
 			<div className={classes.join(" ")}>
 				<div className="squarebox">
-					<div className="squarebox-content">content</div>
+					<div className="squarebox-content">
+						<div style={{display:"table", height:"100%"}}>
+							<div style={{didplay:"table-cell", verticalAlign:"middle"}}>
+								<span className={"icon icon-games"} />
+							</div>
+						</div>
+					</div>
 					<div className="appicon-tl">TL</div>
 					<div className="appicon-tr">TR</div>
 				</div>

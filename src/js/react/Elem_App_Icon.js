@@ -26,7 +26,15 @@ module.exports = React.createClass({
 				React.createElement(
 					'div',
 					{ className: 'squarebox-content' },
-					'content'
+					React.createElement(
+						'div',
+						{ style: { display: "table", height: "100%" } },
+						React.createElement(
+							'div',
+							{ style: { didplay: "table-cell", verticalAlign: "middle" } },
+							React.createElement('span', { className: "icon icon-games" })
+						)
+					)
 				),
 				React.createElement(
 					'div',
